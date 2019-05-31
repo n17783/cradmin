@@ -15,6 +15,7 @@ namespace cradmin.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        // Naresh chanes
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
