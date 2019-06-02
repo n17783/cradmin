@@ -1,20 +1,208 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Star Admin Free Bootstrap Admin Dashboard Template</title>
-    <!-- plugins:css -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     @Styles.Render("~/Content/AdminLayout/bootstrap.min.css")
+    <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @@media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;}
+    }
+    .mainLoader{
+    z-index: 100000;
+    width: 100%;
+    height: calc(100% - 93px);
+    top: 50px;
     
-    
+    position: absolute;
+        }
+     .mainInnerLoader{
+    z-index: 100000;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    right:50%;
+    position: absolute;
+        }
+        .lyfBg{
+             background-color: rgba(255, 255, 255, 0.7);
+    width: 100%;
+    height: 180%;
+    position: absolute;
+        }
+        .mainLoaderImg {
+            position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -26px 0 0 -26px;
+    background: url(../../Cradmin/Content/Images/varmalaloader.gif) no-repeat #fff 10px 10px;
+    width: 52px;
+    height: 52px;
+    z-index: 1;
+    border-radius: 8px;
+        }
+        .submitPopup {
+	display: none;
+	z-index: 70000;
+	position: absolute;
+}
+.overlay {
+	background: #fff;
+	bottom: 0;
+	opacity: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1001;
+}
+
+
+
+#alertBox .overlay {
+	background: #000;
+	opacity: 0.8;
+}
+.submitPopupPanel {
+	background: #e9edf0;
+	color: #000;
+	font-size: 1.1em;
+	/*margin-top:-95px;*/
+	margin-left: -150px;
+	position: fixed;
+	text-align: center;
+	top: 20%;
+	left: 50%;
+	width: 300px;
+	z-index: 70000;
+	padding: 15px;
+	border-radius: 8px;
+	box-shadow: 0px 5px 15px rgba(0,0,0,0.15);
+	border: 3px solid #dfe4e8;
+}
+.submitPopupPanel .legendBtn {
+	margin: 20px 0 0 0;
+	width: 100%;
+}
+.submitPopupPanel .legendBtn li:last-child {
+	margin: 0;
+}
+.submitPopupPanel .legendBtn li {
+	list-style-type: none;
+	display: inline-block;
+	margin: 0 10px 0 0;
+}
+
+    </style>
 </head>
 <body>
-    @RenderBody()
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img src="@Url.Content("~/Content/Images/logo.png")"/></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" data-toggle="modal" data-target="#myModal">
+                        <span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid text-center">
+        <div class="row content">
+            <div class="col-sm-2 sidenav">
+                
+            </div>
+            <div class="col-sm-8 text-left">
+                @RenderBody()
+            </div>
+            <div class="col-sm-2 sidenav">
+                
+            </div>
+        </div>
+    </div>
+    <div class="mainLoader" id="rclLoader" style="display: none;">
+        <div class="mainLoaderImg"></div>
+        <div class="lyfBg"></div>
+    </div>
+    <div id="myModal" class="modal fade" role="dialog" data-ng-app="CRAdminApp" data-ng-controller="LoginController">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <input type="text" data-ng-model="LoginModal.Email" class="form-control" name="email" placeholder="Username" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <input type="password" data-ng-model="LoginModal.Password" class="form-control" name="email" placeholder="Password" />
+                        </div>
+                    </div>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-ng-click="LoginUser()">Login</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <footer class="container-fluid text-center">
+        <p>Footer Text</p>
+    </footer>
+    
     @Scripts.Render("~/Scripts/AdminLayout/jquery-2.2.3.min.js")
     @Scripts.Render("~/Scripts/AdminLayout/bootstrap.min.js")
-    @Scripts.Render("https://code.angularjs.org/1.7.8/angular.min.js")
+    @Scripts.Render("~/Scripts/AdminLayout/angular.min.js")
     @Scripts.Render("~/Scripts/AdminLayout/App.js")
+    @Scripts.Render("~/Scripts/Adminlayout/common.js")
+    @Scripts.Render("~/Scripts/Adminlayout/ShowCustomAlert.js")
+    @Scripts.Render("~/Scripts/AdminLayout/LoginController.js")
 </body>
 </html>

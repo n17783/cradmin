@@ -45,11 +45,3 @@ var CRAdminApp = angular.module('CRAdminApp', []).run(['$rootScope', function ($
     };
 });
 
-CRAdminApp.controller("LoginController", ['$scope', '$http', '$filter', '$rootScope', function ($scope, $http, $filter, $rootScope) {
-
-    $scope.init = function () {
-        console.log("from login")
-    }
-
-    $scope.init();
-}]);

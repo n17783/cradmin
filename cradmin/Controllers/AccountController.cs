@@ -9,18 +9,20 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using cradmin.Models;
+using cradmin.Models.BAL;
 
 namespace cradmin.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        
+        AccountBusiness objUser = new AccountBusiness();
         
         [AllowAnonymous]
-        public ActionResult Login()
+        [HttpPost]
+        public ActionResult Login(LoginViewModel model)
         {
-            return View();
+            return Json(objUser.VerifyUserLogin(model),JsonRequestBehavior.AllowGet);
         }
         
 

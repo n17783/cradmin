@@ -11,13 +11,12 @@ namespace cradmin.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "naresh shinde spell";
-            return View("Contact");
+            return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
+            ViewBag.Message = "naresh shinde spell";
             return View();
         }
 

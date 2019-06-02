@@ -168,13 +168,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BAL\AccountBusiness.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Models\LoginResponse.cs" />
+    <Compile Include="Models\SessionManager.cs" />
+    <Compile Include="Models\SettingsHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -196,11 +201,14 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\favicon.png" />
+    <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\user1-128x128.jpg" />
     <Content Include="Content\Images\user2-160x160.jpg" />
     <Content Include="Content\Images\user3-128x128.jpg" />
     <Content Include="Content\Images\user4-128x128.jpg" />
+    <Content Include="Content\Images\varmalaloader.gif" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -212,6 +220,7 @@
     <Content Include="Scripts\AdminLayout\bootstrap.js" />
     <Content Include="Scripts\AdminLayout\bootstrap.min.js" />
     <Content Include="Scripts\AdminLayout\bootstrap3-wysihtml5.all.min.js" />
+    <Content Include="Scripts\AdminLayout\common.js" />
     <Content Include="Scripts\AdminLayout\core.js" />
     <Content Include="Scripts\AdminLayout\dashboard.js" />
     <Content Include="Scripts\AdminLayout\daterangepicker.js" />
@@ -229,12 +238,14 @@
     <Content Include="Scripts\AdminLayout\jquery.slim.min.js" />
     <Content Include="Scripts\AdminLayout\jquery.slimscroll.min.js" />
     <Content Include="Scripts\AdminLayout\jquery.sparkline.min.js" />
+    <Content Include="Scripts\AdminLayout\LoginController.js" />
     <Content Include="Scripts\AdminLayout\misc.js" />
     <Content Include="Scripts\AdminLayout\moment.min.js" />
     <Content Include="Scripts\AdminLayout\morris.min.js" />
     <Content Include="Scripts\AdminLayout\npm.js" />
     <Content Include="Scripts\AdminLayout\off-canvas.js" />
     <Content Include="Scripts\AdminLayout\raphael.min.js" />
+    <Content Include="Scripts\AdminLayout\ShowCustomAlert.js" />
     <Content Include="Scripts\AdminLayout\vendor.bundle.addons.js" />
     <Content Include="Scripts\AdminLayout\vendor.bundle.base.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -296,6 +307,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutPageLogin.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
