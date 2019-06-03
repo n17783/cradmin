@@ -73,7 +73,9 @@ namespace cradmin.Models
         public int Status { get; set; }
 
         public string ErrorMessage { get; set; }
-        
+        public int PageNo { get; set; }
+        public int PageSize { get; set; }
+
     }
 
     public static class Extensions

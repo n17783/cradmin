@@ -168,13 +168,22 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ContractorController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\DeptZoneController.cs" />
+    <Compile Include="Controllers\EmployeeTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PlantController.cs" />
+    <Compile Include="Controllers\ProjectTypeController.cs" />
+    <Compile Include="Controllers\TradeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BAL\AccountBusiness.cs" />
+    <Compile Include="Models\BAL\ProjectTypeCR.cs" />
+    <Compile Include="Models\BAL\TradeCategoryCR.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Models\LoginResponse.cs" />
@@ -220,11 +229,15 @@
     <Content Include="Scripts\AdminLayout\bootstrap.js" />
     <Content Include="Scripts\AdminLayout\bootstrap.min.js" />
     <Content Include="Scripts\AdminLayout\bootstrap3-wysihtml5.all.min.js" />
+    <Content Include="Scripts\AdminLayout\CategoryController.js" />
     <Content Include="Scripts\AdminLayout\common.js" />
+    <Content Include="Scripts\AdminLayout\ContractorController.js" />
     <Content Include="Scripts\AdminLayout\core.js" />
     <Content Include="Scripts\AdminLayout\dashboard.js" />
     <Content Include="Scripts\AdminLayout\daterangepicker.js" />
     <Content Include="Scripts\AdminLayout\demo.js" />
+    <Content Include="Scripts\AdminLayout\DeptZoneController.js" />
+    <Content Include="Scripts\AdminLayout\EmployeeTypeController.js" />
     <Content Include="Scripts\AdminLayout\fastclick.js" />
     <Content Include="Scripts\AdminLayout\icheck.min.js" />
     <Content Include="Scripts\AdminLayout\jquery-2.2.3.min.js" />
@@ -244,8 +257,11 @@
     <Content Include="Scripts\AdminLayout\morris.min.js" />
     <Content Include="Scripts\AdminLayout\npm.js" />
     <Content Include="Scripts\AdminLayout\off-canvas.js" />
+    <Content Include="Scripts\AdminLayout\PlantController.js" />
+    <Content Include="Scripts\AdminLayout\ProjectTypeController.js" />
     <Content Include="Scripts\AdminLayout\raphael.min.js" />
     <Content Include="Scripts\AdminLayout\ShowCustomAlert.js" />
+    <Content Include="Scripts\AdminLayout\TradeController.js" />
     <Content Include="Scripts\AdminLayout\vendor.bundle.addons.js" />
     <Content Include="Scripts\AdminLayout\vendor.bundle.base.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -308,9 +324,16 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutPageLogin.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\ProjectType\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Contractor\" />
+    <Folder Include="Views\DeptZone\" />
+    <Folder Include="Views\EmployeeType\" />
+    <Folder Include="Views\Plant\" />
+    <Folder Include="Views\Trade\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

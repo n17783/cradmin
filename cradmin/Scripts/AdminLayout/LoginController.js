@@ -9,6 +9,7 @@
 }]);
 
 CRAdminApp.controller("LoginController", ['$scope', '$http', '$filter', '$rootScope', 'UserService', function ($scope, $http, $filter, $rootScope,UserService) {
+
     $scope.LoginModal = { Email: "", Password: "" };
     $scope.urlBase = GetVirtualDirectory();
     $scope.LoginUser = function () {

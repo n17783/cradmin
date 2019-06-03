@@ -15,7 +15,7 @@ namespace cradmin.Models.Models
         public string LName { get; set; }
         public DateTime DOB { get; set; }
         public string BloodGroup { get; set; }
-        public int AadharNo { get; set; }
+        public string AadharNo { get; set; }
         public string EmpPhoto { get; set; }
         public string PanNo { get; set; }
         public int UserId { get; set; }
@@ -32,5 +32,23 @@ namespace cradmin.Models.Models
         public int EmployeeId { get; set; }
         public int Authorised { get; set; }
 
+    }
+
+    public class TradeCategory:Error
+    {
+        public int TradeCId { get; set; }
+        public string TradCDescription { get; set; }
+        public DateTime TCEntryDate { get; set; }
+        public bool IsDelete { get; set; }
+        public DateTime CreateDate { get; set; }
+        public int TotalRecords { get; set; }
+    }
+
+    public class ProjectType : Error
+    {
+        public int ProjectTypeId { get; set; }
+        public string ProjectTypeDescription { get; set; }
+        public DateTime PTEnteryDate { get; set; }
+        public int TotalRecords { get; set; }
     }
 }
