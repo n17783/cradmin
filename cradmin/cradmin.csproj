@@ -182,11 +182,14 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BAL\AccountBusiness.cs" />
+    <Compile Include="Models\BAL\EmpployeeRegisterBAL.cs" />
+    <Compile Include="Models\BAL\MainContractorCR.cs" />
     <Compile Include="Models\BAL\ProjectTypeCR.cs" />
     <Compile Include="Models\BAL\TradeCategoryCR.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Models\LoginResponse.cs" />
+    <Compile Include="Models\Models\MasterDataResponse.cs" />
     <Compile Include="Models\SessionManager.cs" />
     <Compile Include="Models\SettingsHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -234,9 +237,11 @@
     <Content Include="Scripts\AdminLayout\ContractorController.js" />
     <Content Include="Scripts\AdminLayout\core.js" />
     <Content Include="Scripts\AdminLayout\dashboard.js" />
+    <Content Include="Scripts\AdminLayout\DashboardController.js" />
     <Content Include="Scripts\AdminLayout\daterangepicker.js" />
     <Content Include="Scripts\AdminLayout\demo.js" />
     <Content Include="Scripts\AdminLayout\DeptZoneController.js" />
+    <Content Include="Scripts\AdminLayout\EmployeeController.js" />
     <Content Include="Scripts\AdminLayout\EmployeeTypeController.js" />
     <Content Include="Scripts\AdminLayout\fastclick.js" />
     <Content Include="Scripts\AdminLayout\icheck.min.js" />
@@ -274,6 +279,7 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\CRASIAPublish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

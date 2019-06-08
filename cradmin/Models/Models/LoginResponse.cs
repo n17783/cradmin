@@ -34,6 +34,21 @@ namespace cradmin.Models.Models
 
     }
 
+    
+
+    public class DeptZoneMaster : Error
+    {
+        public int DeptZoneId { get; set; }
+        public string DeptZoneDescription { get; set; }
+        public string DeptZoneAddress { get; set; }
+        public string ContactNo { get; set; }
+        public DateTime EntryDate { get; set; }
+        public int EntryBy { get; set; }
+        public DateTime ExitDate { get; set; }
+        public int ExitBy { get; set; }
+        public bool IsContinew { get; set; }
+    }
+
     public class TradeCategory:Error
     {
         public int TradeCId { get; set; }
@@ -42,6 +57,25 @@ namespace cradmin.Models.Models
         public bool IsDelete { get; set; }
         public DateTime CreateDate { get; set; }
         public int TotalRecords { get; set; }
+    }
+
+    public class EmployeeType : Error
+    {
+        public int EmpTypeId { get; set; }
+        public string EmpDesignation { get; set; }
+        public string IsDmOrStaff { get; set; }
+        public int EntryBy { get; set; }
+        public DateTime EntryDate { get; set; }
+        public string CreatedByAuthority { get; set; }
+    }
+
+    public class ValidationAgency : Error
+    {
+        public int ValidationAgencyId { get; set; }
+        public string AgencyDescription { get; set; }
+        public string AgencyAddress { get; set; }
+        public string AgencyContactNo { get; set; }
+        public int isContinew { get; set; }
     }
 
     public class ProjectType : Error
