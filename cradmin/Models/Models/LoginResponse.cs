@@ -51,4 +51,17 @@ namespace cradmin.Models.Models
         public DateTime PTEnteryDate { get; set; }
         public int TotalRecords { get; set; }
     }
+
+    public class MainContractor : Error
+    {
+        public int ContractorId { get; set; }
+        public string ContractorName { get; set; }
+        public string ContractorCompanyName { get; set; }
+        public string ContractorRegistrationNo { get; set; }
+        public string ContractorGstNo { get; set; }
+        public string ContractorOfficeAddress { get; set; }
+        public string ContractorPhoneNo { get; set; }
+        public int TotalRecords { get; set; }
+    }
+
 }

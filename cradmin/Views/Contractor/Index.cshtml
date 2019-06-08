@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="MainContractorController">
+    <div class="col-md-12" data-ng-show="AddNew">
+        <h3>Creation Of Contractor</h3>
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Contractor Name</label>
+                <input type="text" class="form-control" placeholder="Contractor Name ..." data-ng-model="ContractorModel.ContractorName">
+            </div>
+            <div class="form-group">
+                <label>Contractor Company Name</label>
+                <input type="text" class="form-control" placeholder="Contractor Company Name ..." data-ng-model="ContractorModel.ContractorCompanyName">
+            </div>
+            <div class="form-group">
+                <label>Contractor Registration No</label>
+                <input type="text" class="form-control" placeholder="Contractor Registration No ..." data-ng-model="ContractorModel.ContractorRegistrationNo">
+            </div>
+            <div class="form-group">
+                <label>Contractor Gst No</label>
+                <input type="text" class="form-control" placeholder="Contractor Gst No ..." data-ng-model="ContractorModel.ContractorGstNo">
+            </div>
+            <div class="form-group">
+                <label>Contractor Office Address</label>
+                <input type="text" class="form-control" placeholder="Contractor Office Address ..." data-ng-model="ContractorModel.ContractorOfficeAddress">
+            </div>
+            <div class="form-group">
+                <label>Contractor Phone No</label>
+                <input type="text" class="form-control" placeholder="Contractor Phone Nos ..." data-ng-model="ContractorModel.ContractorPhoneNo">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-danger" type="button" data-ng-click="Save()">Save</button>
+                <button class="btn btn-danger" type="button" data-ng-click="CancelClick()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" data-ng-show="Details">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="form-group">
+                <button class="btn btn-danger" type="button" data-ng-click="AddNewClick()">Add New</button>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Contractor Name</th>
+                        <th>Contractor Company Name</th>
+                        <th>Contractor Registration No</th>
+                        <th>Contractor Gst No</th>
+                        <th>Contractor Office Address</th>
+                        <th>Contractor Phone No</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="Contractor in ContractorList">
+                        <td>{{Contractor.ContractorId}}</td>
+                        <td>{{Contractor.ContractorName}}</td>
+                        <td>{{Contractor.ContractorCompanyName}}</td>
+                        <td>{{Contractor.ContractorRegistrationNo}}</td>
+                        <td>{{Contractor.ContractorGstNo}}</td>
+                        <td>{{Contractor.ContractorOfficeAddress}}</td>
+                        <td>{{Contractor.ContractorPhoneNo}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="col-md-12">
+                <div class="col-md-2">
+                    <select class="form-control" style="margin-top:20px;" data-ng-model="ContractorModel.PageSize">
+                        <option value="5">5</option>
+                        <option value="5">10</option>
+                    </select>
+                </div>
+                <div class="col-md-8">
+                    <ul class="pager">
+                        <li><a href="#">Page No : {{ContractorModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
+                        <li><a href="#" data-ng-click="Prev()">Previous</a></li>
+                        <li><a href="#" data-ng-click="Next()">Next</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+@Scripts.Render("~/Scripts/AdminLayout/MainContractorController.js")
