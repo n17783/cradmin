@@ -1,0 +1,24 @@
+CREATE PROCEDURE Insert_DEPTandZONE
+@DeptZoneDescription nvarchar(200),
+@ContactNo nvarchar(12),
+@EntryBy int,
+@CreatedBy nvarchar(150),
+@ContactNo2 nvarchar(12),
+@EmailId nvarchar(150),
+@DeptZoneAddress nvarchar(550)
+AS
+BEGIN
+	 if(exists(select * from DeptZoneMaster where DeptZoneDescription=DeptZoneDescription))
+    begin
+		select 0 as SuccessFailed
+    end
+    else
+    begin
+		insert into DeptZoneMaster
+		(DeptZoneDescription,ContactNo,EntryDate,EntryBy,IsContinew,ContactNo2,EmailId,CreatedBy,DeptZoneAddress)
+		values(@DeptZoneDescription,@ContactNo,GETDATE(),@EntryBy,1,@ContactNo2,@EmailId,@CreatedBy,@DeptZoneAddress)
+		
+		select 1 as SuccessFailed
+    end
+END
+GO

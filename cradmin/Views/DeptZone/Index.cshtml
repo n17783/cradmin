@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="DeptZoneController">
+    <div class="col-md-12" data-ng-show="AddNew">
+        <h3>Creation Of Employee Type</h3>
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>DEPT And ZONE Type Description</label>
+                <input type="text" class="form-control" placeholder="Enter DEPT And ZONE Type Description ..." data-ng-model="DeptZoneModel.DeptZoneDescription">
+            </div>
+            <div class="form-group">
+                <label>DEPT And ZONE Address</label>
+                <textarea class="form-control" rows="5" placeholder="Enter DEPT And ZONE Address ..." data-ng-model="DeptZoneModel.DeptZoneAddress"></textarea>
+            </div>
+            <div class="form-group">
+                <label>DEPT And ZONE Contact No 1</label>
+                <input type="text" class="form-control" placeholder="Enter DEPT And ZONE Contact No 1 ..." data-ng-model="DeptZoneModel.ContactNo">
+            </div>
+            <div class="form-group">
+                <label>DEPT And ZONE Contact No 2</label>
+                <input type="text" class="form-control" placeholder="Enter DEPT And ZONE Contact No 2 ..." data-ng-model="DeptZoneModel.ContactNo2">
+            </div>
+            <div class="form-group">
+                <label>DEPT And ZONE Email Id</label>
+                <input type="text" class="form-control" placeholder="Enter DEPT And ZONE Email Id ..." data-ng-model="DeptZoneModel.EmailId">
+            </div>
+           
+            <div class="form-group">
+                <label>Created By </label>
+                <input type="text" class="form-control" placeholder="Enter DEPT And ZONE Created Authority ..." data-ng-model="DeptZoneModel.CreatedBy">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-danger" type="button" data-ng-click="Save()">Save</button>
+                <button class="btn btn-danger" type="button" data-ng-click="CancelClick()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" data-ng-show="Details">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="form-group">
+                <button class="btn btn-danger" type="button" data-ng-click="AddNewClick()">Add New</button>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>DEPT/ZONE Type</th>
+                        <th>ADDRESS</th>
+                        <th>CONTACT NO 1</th>
+                        <th>CONTACT NO 2</th>
+                        <th>Email Id</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="DeptZone in DeptZoneList">
+                        <td>{{DeptZone.DeptZoneId}}</td>
+                        <td>{{DeptZone.DeptZoneDescription}}</td>
+                        
+                        <td>{{DeptZone.DeptZoneAddress}}</td>
+                       
+                        <td>{{DeptZone.ContactNo}}</td>
+                        <td>{{DeptZone.ContactNo2}}</td>
+                        <td>{{DeptZone.EmailId}}</td>
+
+
+                    </tr>
+                </tbody>
+            </table>
+            <div class="col-md-12">
+                <div class="col-md-2">
+                    <select class="form-control" style="margin-top:20px;" data-ng-model="DeptZoneModel.PageSize">
+                        <option value="5">5</option>
+                        <option value="5">10</option>
+                    </select>
+                </div>
+                <div class="col-md-8">
+                    <ul class="pager">
+                        <li><a href="#">Page No : {{DeptZoneModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
+                        <li><a href="#" data-ng-click="Prev()">Previous</a></li>
+                        <li><a href="#" data-ng-click="Next()">Next</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+@Scripts.Render("~/Scripts/AdminLayout/DeptZoneController.js")
+
