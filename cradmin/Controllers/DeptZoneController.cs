@@ -1,4 +1,6 @@
-﻿using System;
+﻿using cradmin.Models.BAL;
+using cradmin.Models.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +10,23 @@ namespace cradmin.Controllers
 {
     public class DeptZoneController : Controller
     {
-        // GET: DeptZone
+        DeptZoneCR objDeptZone = new DeptZoneCR();
+        // GET: ProjectType
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Save(DeptZone model)
+        {
+            return Json(objDeptZone.Save(model));
+        }
+
+        [HttpPost]
+        public ActionResult GetDeptZone(DeptZone model)
+        {
+             return Json(objDeptZone.GetDeptZone(model));
         }
     }
 }

@@ -48,13 +48,66 @@
     @Scripts.Render("~/Scripts/AdminLayout/App.js")
     @Scripts.Render("~/Scripts/Adminlayout/common.js")
     @Scripts.Render("~/Scripts/Adminlayout/ShowCustomAlert.js")
+    <style>
+               .submitPopup {
+	display: none;
+	z-index: 70000;
+	position: absolute;
+}
+.overlay {
+	background: #fff;
+	bottom: 0;
+	opacity: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1001;
+}
+
+
+
+#alertBox .overlay {
+	background: #000;
+	opacity: 0.8;
+}
+.submitPopupPanel {
+	background: #e9edf0 !important;
+	color: #000 !important;
+	font-size: 1.1em;
+	/*margin-top:-95px;*/
+	margin-left: -150px;
+	position: fixed;
+	text-align: center;
+	top: 20%;
+	left: 50%;
+	width: 300px;
+	z-index: 70000;
+	padding: 15px;
+	border-radius: 8px;
+	box-shadow: 0px 5px 15px rgba(0,0,0,0.15);
+	border: 3px solid #dfe4e8;
+}
+.submitPopupPanel .legendBtn {
+	margin: 20px 0 0 0;
+	width: 100%;
+}
+.submitPopupPanel .legendBtn li:last-child {
+	margin: 0;
+}
+.submitPopupPanel .legendBtn li {
+	list-style-type: none;
+	display: inline-block;
+	margin: 0 10px 0 0;
+}
+
+    </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         <header class="main-header">
             <a href="index2.html" class="logo">
-                <span class="logo-mini"><b>A</b>LT</span>
-                <span class="logo-lg"><b>Admin</b>LTE</span>
+                <span class="logo-mini"><b>C</b>R</span>
+                <span class="logo-lg"><b>CR</b>ASIA</span>
             </a>
             <nav class="navbar navbar-static-top">
                 <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
@@ -66,14 +119,14 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="~/Content/Images/user2-160x160.jpg" class="user-image" alt="User Image">
-                                <span class="hidden-xs">Alexander Pierce</span>
+                                <span class="hidden-xs">Naresh Shinde</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
                                     <img src="~/Content/Images/user2-160x160.jpg" class="img-circle" alt="User Image">
                                     <p>
-                                        Alexander Pierce - Web Developer
+                                        Naresh Shinde - Web Developer
                                         <small>Member since Nov. 2012</small>
                                     </p>
                                 </li>
@@ -98,15 +151,15 @@
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
                 <!-- Sidebar user panel -->
-                <div class="user-panel">
+                @*<div class="user-panel">
                     <div class="pull-left image">
                         <img src="~/Content/Images/user2-160x160.jpg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>Alexander Pierce</p>
+                        <p>Naresh Shinde</p>
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
-                </div>
+                </div>*@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     
@@ -129,9 +182,9 @@
                             <li><a href="@Url.Action("index","Contractor")"><i class="fa fa-circle-o"></i>Contractor</a></li>
                             <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i>Zone</a></li>
                             <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i>Plant</a></li>
-                            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i>Employee Type</a></li>
+                            <li><a href="@Url.Action("index","EmployeeType")"><i class="fa fa-circle-o"></i>Employee Type</a></li>
                             <li><a href="@Url.Action("index","Category")"><i class="fa fa-circle-o"></i>Trade Category</a></li>
-                            <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i>Trade </a></li>
+                            <li><a href="@Url.Action("index","Trade")"><i class="fa fa-circle-o"></i>Trade </a></li>
                         </ul>
                     </li>
                     <li>
@@ -292,7 +345,7 @@
             <div class="pull-right hidden-xs">
                 <b>Version</b> 2.4.0
             </div>
-            <strong>Copyright &copy; 2014-2016 <a href="#">Almsaeed Studio</a>.</strong> All rights
+            <strong>Copyright &copy; 2019-2020 <a href="#">Bhargavi Prototech Pvt Ltd </a>.</strong> All rights
             reserved.
         </footer>
     </div>

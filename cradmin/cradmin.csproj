@@ -182,10 +182,16 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BAL\AccountBusiness.cs" />
+<<<<<<< Updated upstream
     <Compile Include="Models\BAL\EmpployeeRegisterBAL.cs" />
     <Compile Include="Models\BAL\MainContractorCR.cs" />
+=======
+    <Compile Include="Models\BAL\DeptZoneCR.cs" />
+    <Compile Include="Models\BAL\EmployeeTypeCR.cs" />
+>>>>>>> Stashed changes
     <Compile Include="Models\BAL\ProjectTypeCR.cs" />
     <Compile Include="Models\BAL\TradeCategoryCR.cs" />
+    <Compile Include="Models\BAL\TradeTypeCR.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Models\LoginResponse.cs" />
@@ -332,14 +338,14 @@
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\ProjectType\Index.cshtml" />
+    <Content Include="Views\Trade\Index.cshtml" />
+    <Content Include="Views\EmployeeType\Index.cshtml" />
+    <Content Include="Views\DeptZone\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Contractor\" />
-    <Folder Include="Views\DeptZone\" />
-    <Folder Include="Views\EmployeeType\" />
     <Folder Include="Views\Plant\" />
-    <Folder Include="Views\Trade\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
