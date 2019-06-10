@@ -26,7 +26,10 @@
     $scope.CancelClick = function () {
         $scope.AddNew = false;
         $scope.Details = true;
-        $scope.ContractorModel = { PageNo: 1, PageSize: 5, ProjectTypeDescription: "" };
+        $scope.ContractorModel = {
+            PageNo: 1, PageSize: 2, ContractorId: 0, ContractorName: "", ContractorCompanyName: "",
+            ContractorRegistrationNo: "", ContractorGstNo: "", ContractorOfficeAddress: "", ContractorPhoneNo: ""
+        };
     }
 
     $scope.Save = function () {
