@@ -85,7 +85,6 @@ namespace cradmin.Models.Models
         public DateTime PTEnteryDate { get; set; }
         public int TotalRecords { get; set; }
     }
-<<<<<<< Updated upstream
 
     public class MainContractor : Error
     {
@@ -98,8 +97,7 @@ namespace cradmin.Models.Models
         public string ContractorPhoneNo { get; set; }
         public int TotalRecords { get; set; }
     }
-
-=======
+    
     public class TradeType : Error
     {
         public int TradeId { get; set; }
@@ -108,15 +106,7 @@ namespace cradmin.Models.Models
         public int TotalRecords { get; set; }
         public string TradCDescription { get; set; }
     }
-    public class EmployeeType:Error
-    {
-        public string EmpDesignation { get; set; }
-        public bool IsDmOrStaff { get; set; }
-        public int EntryBy { get; set; }
-        public DateTime EntryDate { get; set; }
-        public string CreatedByAuthority { get; set; }
-        public int EmpTypeId { get; set; }
-    }
+    
     public class DeptZone : Error
     {
         public int DeptZoneId { get; set; }
@@ -133,5 +123,16 @@ namespace cradmin.Models.Models
         public string CreatedBy { get; set; }
         public string DeptZoneAddress { get; set; }
     }
->>>>>>> Stashed changes
+
+    public class RoleModel : Error
+    {
+        public int RoleId { get; set; }
+        public string RoleDescription { get; set; }
+        public int DeptId { get; set; }
+        public string DeptName { get; set; }
+        public string RoleEntryDate { get; set; }
+        public string RoleEntryBy { get; set; }
+        public string RoleEntryByName { get; set; }
+        public int TotalRecords { get; set; }
+    }
 }

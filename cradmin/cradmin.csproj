@@ -182,14 +182,12 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BAL\AccountBusiness.cs" />
-<<<<<<< Updated upstream
     <Compile Include="Models\BAL\EmpployeeRegisterBAL.cs" />
     <Compile Include="Models\BAL\MainContractorCR.cs" />
-=======
     <Compile Include="Models\BAL\DeptZoneCR.cs" />
     <Compile Include="Models\BAL\EmployeeTypeCR.cs" />
->>>>>>> Stashed changes
     <Compile Include="Models\BAL\ProjectTypeCR.cs" />
+    <Compile Include="Models\BAL\RoleCR.cs" />
     <Compile Include="Models\BAL\TradeCategoryCR.cs" />
     <Compile Include="Models\BAL\TradeTypeCR.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -271,6 +269,7 @@
     <Content Include="Scripts\AdminLayout\PlantController.js" />
     <Content Include="Scripts\AdminLayout\ProjectTypeController.js" />
     <Content Include="Scripts\AdminLayout\raphael.min.js" />
+    <Content Include="Scripts\AdminLayout\RoleController.js" />
     <Content Include="Scripts\AdminLayout\ShowCustomAlert.js" />
     <Content Include="Scripts\AdminLayout\TradeController.js" />
     <Content Include="Scripts\AdminLayout\vendor.bundle.addons.js" />
@@ -341,10 +340,11 @@
     <Content Include="Views\Trade\Index.cshtml" />
     <Content Include="Views\EmployeeType\Index.cshtml" />
     <Content Include="Views\DeptZone\Index.cshtml" />
+    <Content Include="Views\Contractor\Index.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Contractor\" />
     <Folder Include="Views\Plant\" />
   </ItemGroup>
   <ItemGroup>
