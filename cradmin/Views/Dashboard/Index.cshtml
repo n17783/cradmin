@@ -121,13 +121,13 @@
                     <input type="button" value="Capture" onclick="Capture();" />
                 </div>
                 <div class="form-group">
-                    <div class="radio">
+                    <div class="">
                         <label>
                             <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
                             STAFF
                         </label>
                     </div>
-                    <div class="radio">
+                    <div class="">
                         <label>
                             <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
                             DM
@@ -156,13 +156,13 @@
                 
                 <div style="display:none">
                     <div class="form-group">
-                        <div class="radio">
+                        <div class="">
                             <label>
                                 <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
                                 Male
                             </label>
                         </div>
-                        <div class="radio">
+                        <div class="rado">
                             <label>
                                 <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
                                 Female
@@ -269,7 +269,7 @@
                     });
                 },
                 onCapture: function () {
-                    webcam.save('@Url.Action("Capture", "Employee")');
+                    webcam.save('@Url.Action("Capture", "Dashboard")');
                 }
             });
         });
