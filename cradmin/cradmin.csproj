@@ -178,6 +178,7 @@
     <Compile Include="Controllers\ProjectTypeController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\TradeController.cs" />
+    <Compile Include="Controllers\ValidationAgencyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -191,6 +192,7 @@
     <Compile Include="Models\BAL\RoleCR.cs" />
     <Compile Include="Models\BAL\TradeCategoryCR.cs" />
     <Compile Include="Models\BAL\TradeTypeCR.cs" />
+    <Compile Include="Models\BAL\ValidationAgencyCR.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Models\LoginResponse.cs" />
@@ -273,6 +275,7 @@
     <Content Include="Scripts\AdminLayout\RoleController.js" />
     <Content Include="Scripts\AdminLayout\ShowCustomAlert.js" />
     <Content Include="Scripts\AdminLayout\TradeController.js" />
+    <Content Include="Scripts\AdminLayout\ValidationAgencyController.js" />
     <Content Include="Scripts\AdminLayout\vendor.bundle.addons.js" />
     <Content Include="Scripts\AdminLayout\vendor.bundle.base.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -343,6 +346,8 @@
     <Content Include="Views\DeptZone\Index.cshtml" />
     <Content Include="Views\Contractor\Index.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\ValidationAgency.cshtml" />
+    <Content Include="Views\ValidationAgency\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

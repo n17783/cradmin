@@ -5,7 +5,7 @@ using System.Web;
 
 namespace cradmin.Models.Models
 {
-    public class LoginResponse: Error
+    public class LoginResponse : Error
     {
         public int PkId { get; set; }
         public string Regt_No { get; set; }
@@ -34,7 +34,7 @@ namespace cradmin.Models.Models
 
     }
 
-    
+
 
     public class DeptZoneMaster : Error
     {
@@ -49,7 +49,7 @@ namespace cradmin.Models.Models
         public bool IsContinew { get; set; }
     }
 
-    public class TradeCategory:Error
+    public class TradeCategory : Error
     {
         public int TradeCId { get; set; }
         public string TradCDescription { get; set; }
@@ -97,7 +97,7 @@ namespace cradmin.Models.Models
         public string ContractorPhoneNo { get; set; }
         public int TotalRecords { get; set; }
     }
-    
+
     public class TradeType : Error
     {
         public int TradeId { get; set; }
@@ -106,12 +106,12 @@ namespace cradmin.Models.Models
         public int TotalRecords { get; set; }
         public string TradCDescription { get; set; }
     }
-    
+
     public class DeptZone : Error
     {
         public int DeptZoneId { get; set; }
         public string DeptZoneDescription { get; set; }
-       
+
         public string ContactNo { get; set; }
         public DateTime EntryDate { get; set; }
         public int EntryBy { get; set; }
@@ -133,6 +133,16 @@ namespace cradmin.Models.Models
         public string RoleEntryDate { get; set; }
         public string RoleEntryBy { get; set; }
         public string RoleEntryByName { get; set; }
+        public int TotalRecords { get; set; }
+    }
+
+    public class ValidationAgencyModel : Error
+    {
+        public int ValidationAgencyId { get; set; }
+        public string AgencyDescription { get; set; }
+        public string AgencyAddress { get; set; }
+        public string AgencyContactNo { get; set; }
+        public bool isContinew { get; set; }
         public int TotalRecords { get; set; }
     }
 }
