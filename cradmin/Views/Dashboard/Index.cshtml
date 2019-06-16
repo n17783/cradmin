@@ -269,7 +269,7 @@
                     });
                 },
                 onCapture: function () {
-                    webcam.save('/Home/Capture');
+                    webcam.save('@Url.Action("Capture", "Employee")');
                 }
             });
         });
