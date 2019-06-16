@@ -64,6 +64,7 @@ namespace cradmin.Models
             }
             SqlDataAdapter msqlsda = new SqlDataAdapter(msqlcmd);
             msqlsda.Fill(ldt);
+            msqlcmd.Parameters.Clear();
             return ldt;
         }
     }

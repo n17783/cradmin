@@ -27,17 +27,17 @@ namespace cradmin.Models.BAL
             lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
             lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
 
-            DataTable dtValidattionAgency = objHelper.GetDataTable("Get_Validation_Agency", lst);
+            DataTable dtValidattionAgency = objHelper.GetDataTable("GetValidationAgencyList", lst);
             lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
             lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
 
-            DataTable dtEmployeeTypeList = objHelper.GetDataTable("Get_EmpType", lst);
+            DataTable dtEmployeeTypeList = objHelper.GetDataTable("GetEmployeeTypeList", lst);
             lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
             lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
 
-            DataTable dtContractorList = objHelper.GetDataTable("Get_Contractor", lst);
+            DataTable dtContractorList = objHelper.GetDataTable("GetMainContractorList", lst);
             lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
             lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
