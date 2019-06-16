@@ -9,7 +9,7 @@ namespace cradmin.Models.Models
     {
         public MasterDataResponse()
         {
-            TradeList = new List<TradeCategory>();
+            TradeCategoryList = new List<TradeCategory>();
             ContractorList = new List<MainContractor>();
             ValidationAgencyList = new List<ValidationAgency>();
             EmployeeTypeList = new List<EmployeeType>();
@@ -19,7 +19,7 @@ namespace cradmin.Models.Models
 
         public List< DeptZoneMaster> ZoneList { get; set; }
 
-        public List<TradeCategory> TradeList { get; set; }
+        public List<TradeCategory> TradeCategoryList { get; set; }
 
         public List<MainContractor> ContractorList { get; set; }
 

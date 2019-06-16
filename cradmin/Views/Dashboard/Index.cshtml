@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row nomargin">
+<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="EmployeeController">
     <div class="col-md-12">
         <h3>Employee OneTime Registeration Process</h3>
         <div class="col-md-6">
@@ -14,7 +14,7 @@
                 </div>
                 <div class="form-group">
                     <label>Select Zone</label>
-                    <select class="form-control">
+                    <select class="form-control" id="ddlZone">
                         <option>Gujrat 1</option>
                         <option>Maharashtra 2</option>
                         <option>TamilNadu 3</option>
@@ -25,20 +25,18 @@
                
                 <div class="form-group">
                     <label>Select Validation Agency</label>
-                    <select class="form-control">
+                    <select class="form-control" id="ddlVAgency">
                         <option>CR ASIA</option>
                         <option>ANUP TECK 2</option>
                         <option>Trived 3</option>
-
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Select Trade</label>
-                    <select class="form-control">
+                    <select class="form-control" id="ddlTrade">
                         <option>Trade1</option>
                         <option>Trade 2</option>
                         <option>Trade 3</option>
-
                     </select>
                 </div>
                 <div style="display:none">
@@ -117,11 +115,11 @@
         </div>
         <div class="col-md-6">
             <div class="box-body">
-                @*<div class="col-md-12">
+                <div class="col-md-12">
                     <div id="webcam" style="min-height:250px;max-height:250px;"></div>
                     <img id="imgCapture" style="visibility: hidden; width: 320px;height: 240px" />
                     <input type="button" value="Capture" onclick="Capture();" />
-                </div>*@
+                </div>
                 <div class="form-group">
                     <div class="radio">
                         <label>
@@ -139,7 +137,7 @@
                 </div>
                 <div class="form-group">
                     <label>Select Employee Type</label>
-                    <select class="form-control">
+                    <select class="form-control" id="ddlEmpType">
                         <option>Supervisor </option>
                         <option>DM </option>
                         <option>DM ShutDown </option>
@@ -149,11 +147,10 @@
                 </div>
                 <div class="form-group">
                     <label>Select Contractor</label>
-                    <select class="form-control">
+                    <select class="form-control" id="ddlContractor">
                         <option>Naresh Shinde</option>
                         <option>Pandurang Kumbhar</option>
                         <option>Mahesh Kumar</option>
-
                     </select>
                 </div>
                 
@@ -243,8 +240,8 @@
     </div>
     
 </div>
-
-@*@Scripts.Render("~/Scripts/AdminLayout/jquery.webcam.js")
+@Scripts.Render("~/Scripts/AdminLayout/EmployeeController.js")
+@Scripts.Render("~/Scripts/AdminLayout/jquery.webcam.js")
 <script type="text/javascript">
     $(function () {
             jQuery("#webcam").webcam({
@@ -279,4 +276,4 @@
         function Capture() {
             webcam.capture();
         }
-</script>*@
+</script>
