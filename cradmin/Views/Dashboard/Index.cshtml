@@ -6,14 +6,11 @@
 <div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="EmployeeController">
     <div class="col-md-12">
         <h3>Employee OneTime Registeration Process</h3>
-        
-        
-        
         <div class="col-md-6">
             <div class="box-body">
                 <div class="form-group">
                     <label>Aadhar No</label>
-                    <input type="text" class="form-control" placeholder="Enter Aadhar No ...">
+                    <input type="text" class="form-control" data-ng-model="LoginModal.AdhaarNo" placeholder="Enter Aadhar No ..." data-ng-change="CheckAdhaarExist();">
                 </div>
                 <div class="form-group">
                     <label>Select Zone</label>
@@ -120,19 +117,22 @@
             <div class="box-body">
                 <div class="col-md-12">
                     <div id="webcam" style="min-height:250px;max-height:250px;"></div>
-                    <img id="imgCapture" style="visibility: hidden; width: 320px;height: 240px" />
-                    <input type="button" value="Capture" onclick="Capture();" />
+                    <img id="imgCapture" style="display: none; width: 320px;height: 240px" />
+                    <input type="button" class="btn btn-danger" value="Capture" onclick="Capture();" />
+                    <button id="uploadAdhaar" class="btn btn-danger" type="button">Upload</button>
+                    <input type="hidden" id="profileImagehidden" />
+                    <input id="AdhaarImage" type="file" style="display:none" />
                 </div>
                 <div class="form-group">
                     <div class="">
                         <label>
-                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                            <input type="radio" name="optionStaff" id="rdoStaff" value="0">
                             STAFF
                         </label>
                     </div>
                     <div class="">
                         <label>
-                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                            <input type="radio" name="optionStaff" id="rdoDM" value="1">
                             DM
                         </label>
                     </div>
@@ -248,36 +248,50 @@
 @Scripts.Render("~/Scripts/AdminLayout/jquery.webcam.js")
 <script type="text/javascript">
     $(function () {
-            jQuery("#webcam").webcam({
-                width: 320,
-                height: 240,
-                mode: "save",
-                swffile: '@Url.Content("~/Scripts/AdminLayout/jscam.swf")',
-                debug: function (type, status) {
-                    $('#camStatus').append(type + ": " + status + '<br /><br />');
-                },
-                onSave: function (data, ab) {
-                    $.ajax({
-                        type: "POST",
-                        url: '/Home/GetCapture',
-                        data: '',
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "text",
-                        success: function (r) {
-                            $("#imgCapture").css("visibility", "visible");
-                            $("#imgCapture").attr("src", r);
-                        },
-                        failure: function (response) {
-                            alert(response.d);
-                        }
-                    });
-                },
-                onCapture: function () {
-                    webcam.save('@Url.Action("Capture", "Dashboard")');
-                }
-            });
+        jQuery("#webcam").webcam({
+            width: 320,
+            height: 240,
+            mode: "save",
+            swffile: '@Url.Content("~/Scripts/AdminLayout/jscam.swf")',
+            debug: function (type, status) {
+                $('#camStatus').append(type + ": " + status + '<br /><br />');
+            },
+            onSave: function (data, ab) {
+                $.ajax({
+                    type: "POST",
+                    url: '/Home/GetCapture',
+                    data: '',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "text",
+                    success: function (r) {
+                        $("#webcam").hide();
+                        $("#imgCapture").show();
+                        $("#imgCapture").attr("src", r);
+                    },
+                    failure: function (response) {
+                        alert(response.d);
+                    }
+                });
+            },
+            onCapture: function () {
+                webcam.save('@Url.Action("Capture", "Dashboard")');
+            }
         });
-        function Capture() {
-            webcam.capture();
-        }
+
+        $("#uploadAdhaar").click(function () {
+            files = $("#AdhaarImage").get(0).files;
+            if (files.length == 0) {
+                $("#AdhaarImage").trigger("click");
+            }
+            else {
+                UploadA();
+            }
+        })
+        $("#AdhaarImage").change(function () {
+            $("#uploadAdhaar").trigger("click");
+        });
+    });
+    function Capture() {
+        webcam.capture();
+    }
 </script>

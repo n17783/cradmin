@@ -6,6 +6,7 @@
     $scope.ValidationAgencyList = [];
     $scope.EmployeeTypeList = [];
     $scope.ContractorList = [];
+    $scope.EmployeeModal = { PageNo: 1, PageSize: 2 ,AdhaarNo : ""};
     
     function GetMasterDataList()
     {
@@ -13,7 +14,7 @@
         $http({
             method: 'post',
             url: $scope.urlBase + '/Dashboard/GetMasterDataforRegister',
-            data: $scope.LoginModal,
+            data: $scope.EmployeeModal,
         }).then(function (response) {
             HideLoader();
             if (response.data.Status == 1) {
@@ -64,7 +65,21 @@
         });
     }
 
-
+    $scope.CheckAdhaarExist = function () {
+        if ($scope.EmployeeModal.AdhaarNo.length==12) {
+            ShowLoader();
+            $http({
+                method: 'post',
+                url: $scope.urlBase + '/Dashboard/CheckAdhaarExist',
+                data: $scope.EmployeeModal,
+            }).then(function (response) {
+                HideLoader();
+            }, function (error) {
+                HideLoader();
+                console.log(error);
+            })
+        }
+    }
 
     $scope.init = function () {
         GetMasterDataList();
@@ -72,3 +87,36 @@
 
     $scope.init();
 }]);
+
+function UploadA() {
+    var urlbase = GetVirtualDirectory();
+    ShowLoader();
+    var data = new FormData();
+    var files = $("#AdhaarImage").get(0).files;
+    if (files.length > 0) {
+        data.append("AdhaarImage", files[0]);
+    }
+    $.ajax({
+        url: urlbase + "/Dashboard/UploadA",
+        type: "POST",
+        processData: false,
+        contentType: false,
+        data: data,
+        success: function (response) {
+            var objShowCustomAlert = new ShowCustomAlert({
+                Title: "",
+                Message: "Image uploaded successfully.",
+                Type: "alert",
+            });
+            objShowCustomAlert.ShowCustomAlertBox();
+            $("#webcam").hide();
+            $("#imgCapture").show();
+            $("#imgCapture").attr("src", response);
+            $("#AdhaarImagehidden").val(response)
+            HideLoader();
+        },
+        error: function (er) {
+            alert(er.responseText);
+        }
+    });
+}

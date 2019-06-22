@@ -4,7 +4,7 @@
 
     $scope.AddNew = false;
     $scope.Details = true;
-
+    $scope.EmployeeModal = { PageNo: 1, PageSize: 2 };
     $scope.TotalRecords = 0;
     $scope.TotalPages = 0
 
@@ -14,7 +14,7 @@
         $http({
             method: 'post',
             url: $scope.urlBase + '/Dashboard/GetMasterDataforRegister',
-            data: $scope.TradeModal,
+            data: $scope.EmployeeModal,
         }).then(function (response) {
             HideLoader();
             
@@ -32,3 +32,6 @@
 
     $scope.init();
 }]);
+
+
+
