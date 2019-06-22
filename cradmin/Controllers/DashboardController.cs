@@ -16,7 +16,12 @@ namespace cradmin.Controllers
         {
             return View();
         }
-        
+
+        public ActionResult CheckAdhaarExist(EmmployeeModel model)
+        {
+
+        }
+
         [HttpPost]
         public ActionResult GetMasterDataforRegister()
         {
@@ -38,7 +43,24 @@ namespace cradmin.Controllers
                     imagepath = VirtualPathUtility.ToAbsolute(imagePath);
                 }
             }
-            return Json(imagepath,JsonRequestBehavior.AllowGet);
+            return Json(imagepath, JsonRequestBehavior.AllowGet);
+        }
+
+       
+
+        [HttpPost]
+        public ActionResult UploadA()
+        {
+            string base64string = string.Empty;
+            if (Request.Files.Count > 0)
+            {
+                HttpPostedFileBase file = Request.Files[0];
+                string imageName = DateTime.Now.ToString("dd-MM-yy hh-mm-ss");
+                base64string = "Content/CaptureEmployee/" + imageName + ".jpg";
+                file.SaveAs(Server.MapPath("~/" + base64string));
+                base64string = VirtualPathUtility.ToAbsolute("~/" + base64string);
+            }
+            return Json(base64string);
         }
 
         private static byte[] ConvertHexToBytes(string hex)
