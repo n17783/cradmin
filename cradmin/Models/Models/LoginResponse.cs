@@ -131,6 +131,8 @@ namespace cradmin.Models.Models
         public string ProjectTypeDescription { get; set; }
         public DateTime PTEnteryDate { get; set; }
         public int TotalRecords { get; set; }
+        public int CreatedBy { get; set; }
+        public int PTEntryBy { get; set; }
     }
 
     public class MainContractor : Error
@@ -191,5 +193,34 @@ namespace cradmin.Models.Models
         public string AgencyContactNo { get; set; }
         public bool isContinew { get; set; }
         public int TotalRecords { get; set; }
+    }
+    public class PlantTradeTracking : Error
+    {
+        public int PlantTradeTrackingId { get; set; }
+        public int TradeId { get; set; }
+        public string AuthorizedStrenth { get; set; }
+        public string AuthorizedBy { get; set; }
+        public string AuthorizedDate { get; set; }
+       
+        public int EntryBy { get; set; }
+        public int PlantId { get; set; }
+        public bool IsContinew { get; set; }
+        public int UnAuthorizedBy { get; set; }
+        public int UnAuthorizedDate { get; set; }
+        public int ExitEntryBy { get; set; }
+
+
+    }
+    public class PlantModel : Error
+    {
+        public int PlantId { get; set; }
+        public string PlantTitle { get; set; }
+        public string PlantDescription { get; set; }
+        public string PlantAddress { get; set; }
+        public string PlantPhoneNo { get; set; }
+        public string PlantPhoneNo2 { get; set; }
+        public int DeptZoneId { get; set; }
+
+
     }
 }

@@ -7,7 +7,7 @@
     $scope.TotalRecords = 0;
     $scope.TotalPages = 0
 
-    $scope.ProjectTypeModel = { PageNo: 1, PageSize: 2, ProjectTypeDescription: "" };
+    $scope.ProjectTypeModel = { PageNo: 1, PageSize: 2, ProjectTypeDescription: "", PTEnteryDate:"", CreatedBy: "" };
 
     $scope.AddNewClick = function () {
         $scope.AddNew = true;

@@ -26,5 +26,9 @@ namespace cradmin.Models.Models
         public List<ValidationAgency> ValidationAgencyList { get; set; }
 
         public List<EmployeeType> EmployeeTypeList { get; set; }
+        public List<PlantTradeTracking> PlantTradeTrackingList { get; set; }
+        public List<PlantModel> PlantList { get; set; }
+        public List<TradeType> TradeList { get; set; }
+
     }
 }

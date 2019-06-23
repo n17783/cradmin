@@ -30,12 +30,16 @@
                     <tr>
                         <th>Id</th>
                         <th>Project Type Description</th>
+                        <th>Creation Date</th>
+                        <th>Created By</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr data-ng-repeat="ProjectType in ProjectTypeList">
                         <td>{{ProjectType.ProjectTypeId}}</td>
                         <td>{{ProjectType.ProjectTypeDescription}}</td>
+                        <td>{{ProjectType.PTEnteryDate  |mydate| date: 'dd-MM-yyyy'}}</td>
+                        <td>{{ProjectType.CreatedBy}}</td>
                         
                     </tr>
                 </tbody>

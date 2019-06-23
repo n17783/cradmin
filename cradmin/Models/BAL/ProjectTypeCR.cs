@@ -15,6 +15,8 @@ namespace cradmin.Models.BAL
             ProjectType objProjectType = new ProjectType();
             List<SqlParameter> lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@ProjectTypeDescription", Value = model.ProjectTypeDescription });
+            lst.Add(new SqlParameter() { ParameterName = "@PTEntryBy", Value = model.PTEntryBy });
+            lst.Add(new SqlParameter() { ParameterName = "@CreatedBy", Value = model.CreatedBy });
             SettingsHelper objHelper = SettingsHelper.Instance;
             DataTable dt = objHelper.GetDataTable("Insert_ProjectType", lst);
             objProjectType.Status = 1;
