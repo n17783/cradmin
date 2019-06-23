@@ -131,8 +131,6 @@ namespace cradmin.Models.Models
         public string ProjectTypeDescription { get; set; }
         public DateTime PTEnteryDate { get; set; }
         public int TotalRecords { get; set; }
-        public int CreatedBy { get; set; }
-        public int PTEntryBy { get; set; }
     }
 
     public class MainContractor : Error
