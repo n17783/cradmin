@@ -189,7 +189,10 @@
     <Compile Include="Models\BAL\MainContractorCR.cs" />
     <Compile Include="Models\BAL\DeptZoneCR.cs" />
     <Compile Include="Models\BAL\EmployeeTypeCR.cs" />
+<<<<<<< Updated upstream
     <Compile Include="Models\BAL\PlantTradeTracking.cs" />
+=======
+>>>>>>> Stashed changes
     <Compile Include="Models\BAL\PlantTradeTrackingCR.cs" />
     <Compile Include="Models\BAL\ProjectTypeCR.cs" />
     <Compile Include="Models\BAL\RoleCR.cs" />
@@ -320,7 +323,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -356,9 +361,15 @@
     <Content Include="Views\DeptZone\Index.cshtml" />
     <Content Include="Views\Contractor\Index.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
+<<<<<<< Updated upstream
     <Content Include="Views\PlantTradeTracking\Index.cshtml" />
     <Content Include="Views\ValidationAgency\Index.cshtml" />
     <Content Include="Views\ValidationAgency.cshtml" />
+=======
+    <Content Include="Views\ValidationAgency\Index.cshtml" />
+    <Content Include="Views\ValidationAgency.cshtml" />
+    <Content Include="Views\PlantTradeTracking\Index.cshtml" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
