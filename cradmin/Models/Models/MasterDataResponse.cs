@@ -14,6 +14,9 @@ namespace cradmin.Models.Models
             ValidationAgencyList = new List<ValidationAgency>();
             EmployeeTypeList = new List<EmployeeType>();
             ZoneList = new List<DeptZoneMaster>();
+            PlantList = new List<PlantModel>();
+            TradeList = new List<TradeType>();
+            PlantTradeTrackingList = new List<PlantTradeTracking>();
 
         }
 
