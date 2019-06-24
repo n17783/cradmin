@@ -66,7 +66,7 @@
     }
 
     $scope.CheckAdhaarExist = function () {
-        if ($scope.EmployeeModal.AdhaarNo.length==12) {
+        if ($scope.EmployeeModal.AadharNo.length==12) {
             ShowLoader();
             $http({
                 method: 'post',
@@ -74,6 +74,9 @@
                 data: $scope.EmployeeModal,
             }).then(function (response) {
                 HideLoader();
+                if (true) {
+    
+}
             }, function (error) {
                 HideLoader();
                 console.log(error);

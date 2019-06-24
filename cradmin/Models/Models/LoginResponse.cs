@@ -34,53 +34,76 @@ namespace cradmin.Models.Models
 
     }
 
-    public class Emmployee:Error
+    
+
+    public class Employee : Error
     {
-        public int PkId { get; set; }
+        public int? PkId { get; set; }
         public string Regt_No { get; set; }
-        public bool Gender { get; set; }
+        public bool? Gender { get; set; }
         public string FName { get; set; }
         public string MName { get; set; }
         public string LName { get; set; }
-        public DateTime DOB { get; set; }
+        public DateTime? DOB { get; set; }
         public string BloodGroup { get; set; }
         public string EmpPhoto { get; set; }
         public string PanNo { get; set; }
         public string AadharNo { get; set; }
     }
 
+    public class EmployeeExit : Error
+    {
+        public int? EmpExitId { get; set; }
+        public int? EmpDetailsId { get; set; }
+        public DateTime? LastWorkingDate { get; set; }
+        public DateTime? ClearenceExitDateTime { get; set; }
+        public bool? BiometricDeactivation { get; set; }
+        public bool? ExitClearenceSubmited { get; set; }
+        public string LeftReason { get; set; }
+        public string LeftReasonRemarks { get; set; }
+        public bool? StoreClearence { get; set; }
+        public bool? NoticePeriodYes { get; set; }
+        public bool? IfNotiRecoverNoticePay { get; set; }
+        public DateTime? CancelDate { get; set; }
+        public string FAndFStatus { get; set; }
+        public bool? IsExit { get; set; }
+        public int? EntryBy { get; set; }
+        public DateTime? EntryDate { get; set; }
+        public string ExitByAuthority { get; set; }
+    }
+
     public class EmployeeDetails : Error
     {
-        public int EmpDetailsId { get; set; }
-        public int PkId { get; set; }
-        public int EmpTypeId { get; set; }
-        public bool JoiningStatus { get; set; }
-        public DateTime DateOfReport { get; set; }
-        public int ContractorId { get; set; }
+        public int? EmpDetailsId { get; set; }
+        public int? PkId { get; set; }
+        public int? EmpTypeId { get; set; }
+        public bool? JoiningStatus { get; set; }
+        public DateTime? DateOfReport { get; set; }
+        public int? ContractorId { get; set; }
         public string ContactNo { get; set; }
         public string EmrContactNo { get; set; }
         public string IdProofType { get; set; }
         public string IdProofNo { get; set; }
         public string IdProofImage { get; set; }
         public string PHouseNo { get; set; }
-        public int PVillageId { get; set; }
-        public int PDisticId { get; set; }
-        public int PTalukaId { get; set; }
-        public int PStateId { get; set; }
-        public int PCountryId { get; set; }
-        public int PPincodeId { get; set; }
-        public int THouseNo { get; set; }
-        public int TVillageId { get; set; }
-        public int TDisticId { get; set; }
-        public int TTalukaId { get; set; }
-        public int TStateId { get; set; }
-        public int TCountryId { get; set; }
-        public int TPincode { get; set; }
+        public int? PVillageId { get; set; }
+        public int? PDisticId { get; set; }
+        public int? PTalukaId { get; set; }
+        public int? PStateId { get; set; }
+        public int? PCountryId { get; set; }
+        public int? PPincodeId { get; set; }
+        public int? THouseNo { get; set; }
+        public int? TVillageId { get; set; }
+        public int? TDisticId { get; set; }
+        public int? TTalukaId { get; set; }
+        public int? TStateId { get; set; }
+        public int? TCountryId { get; set; }
+        public int? TPincode { get; set; }
         public bool ReJoineOrNewJoin { get; set; }
-        public int DeptZoneId { get; set; }
-        public DateTime RegistrationDate { get; set; }
-        public int EntryBy { get; set; }
-        public DateTime EnteryDate { get; set; }
+        public int? DeptZoneId { get; set; }
+        public DateTime? RegistrationDate { get; set; }
+        public int? EntryBy { get; set; }
+        public DateTime? EnteryDate { get; set; }
     }
 
     public class DeptZoneMaster : Error

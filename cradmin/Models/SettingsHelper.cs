@@ -81,6 +81,18 @@ namespace cradmin.Models
 
     public static class Extensions
     {
+        public static object GetField(this DataRow row, string ColumnName)
+        {
+            if (row[ColumnName]==DBNull.Value)
+            {
+                return null;
+            }
+            else
+            {
+                return row[ColumnName];
+            }
+        }
+
         public static List<T> ToList<T>(this DataTable table) where T : new()
         {
             IList<PropertyInfo> properties = typeof(T).GetProperties().ToList();

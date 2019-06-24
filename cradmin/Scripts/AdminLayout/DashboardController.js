@@ -4,7 +4,7 @@
 
     $scope.AddNew = false;
     $scope.Details = true;
-    $scope.EmployeeModal = { PageNo: 1, PageSize: 2 };
+    $scope.EmployeeModal = { PageNo: 1, PageSize: 2 ,AdhaarNo:""};
     $scope.TotalRecords = 0;
     $scope.TotalPages = 0
 
@@ -23,6 +23,8 @@
             console.log(error);
         });
     }
+
+    
 
     $scope.init = function () {
         $scope.AddNew = false;

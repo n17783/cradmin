@@ -1,4 +1,5 @@
 ﻿using cradmin.Models.BAL;
+using cradmin.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,9 +18,10 @@ namespace cradmin.Controllers
             return View();
         }
 
-        public ActionResult CheckAdhaarExist(EmmployeeModel model)
+        public ActionResult CheckAdhaarExist(Employee model)
         {
-
+            MasterDataResponse response=objEmp.CheckUserExist(model);
+            return Json(response, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
