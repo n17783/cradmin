@@ -1,10 +1,16 @@
-CREATE PROCEDURE Insert_EmpType
+alter PROCEDURE Insert_EmpType
 	@EmpDesignation nvarchar(150),
 	@IsDmOrStaff bit,
 	@EntryBy int,
 	@CreatedByAuthority nvarchar(150)
 AS
 BEGIN
+if(exists(select * from tblEmpType where EmpDesignation=@EmpDesignation))
+    begin
+		select 0 as SuccessFailed
+    end
+    else
+    begin
 	INSERT INTO tblEmpType
            (EmpDesignation
            ,IsDmOrStaff
@@ -16,5 +22,7 @@ BEGIN
            ,@EntryBy
            ,GETDATE()
            ,@CreatedByAuthority)
+end
+           
 END
 GO
