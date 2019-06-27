@@ -154,6 +154,8 @@ namespace cradmin.Models.Models
         public string ProjectTypeDescription { get; set; }
         public DateTime PTEnteryDate { get; set; }
         public int TotalRecords { get; set; }
+        public int PTEntryBy { get; set; }
+        public string CreatedBy { get; set; }
     }
 
     public class MainContractor : Error
@@ -173,8 +175,12 @@ namespace cradmin.Models.Models
         public int TradeId { get; set; }
         public int TradeCId { get; set; }
         public string TradDescription { get; set; }
+        public DateTime TEntryDate { get; set; }
+        public int EntryBy { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime SanctionDate { get; set; }
         public int TotalRecords { get; set; }
-        public string TradCDescription { get; set; }
+        
     }
 
     public class DeptZone : Error
@@ -241,6 +247,7 @@ namespace cradmin.Models.Models
         public string PlantPhoneNo { get; set; }
         public string PlantPhoneNo2 { get; set; }
         public int DeptZoneId { get; set; }
+        
 
 
     }

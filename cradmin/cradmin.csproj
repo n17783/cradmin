@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContractorController.cs" />
+    <Compile Include="Controllers\CourseMasterController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DeptZoneController.cs" />
     <Compile Include="Controllers\EmployeeTypeController.cs" />
@@ -185,14 +186,12 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BAL\AccountBusiness.cs" />
+    <Compile Include="Models\BAL\CourseCreationCR.cs" />
     <Compile Include="Models\BAL\EmpployeeRegisterBAL.cs" />
     <Compile Include="Models\BAL\MainContractorCR.cs" />
     <Compile Include="Models\BAL\DeptZoneCR.cs" />
     <Compile Include="Models\BAL\EmployeeTypeCR.cs" />
-
-    <Compile Include="Models\BAL\PlantTradeTracking.cs" />
-
-
+    <Compile Include="Models\BAL\PlantCreationCR.cs" />
     <Compile Include="Models\BAL\PlantTradeTrackingCR.cs" />
     <Compile Include="Models\BAL\ProjectTypeCR.cs" />
     <Compile Include="Models\BAL\RoleCR.cs" />
@@ -201,6 +200,7 @@
     <Compile Include="Models\BAL\ValidationAgencyCR.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Models\CourseDataResponce.cs" />
     <Compile Include="Models\Models\LoginResponse.cs" />
     <Compile Include="Models\Models\MasterDataResponse.cs" />
     <Compile Include="Models\SessionManager.cs" />
@@ -249,6 +249,7 @@
     <Content Include="Scripts\AdminLayout\common.js" />
     <Content Include="Scripts\AdminLayout\ContractorController.js" />
     <Content Include="Scripts\AdminLayout\core.js" />
+    <Content Include="Scripts\AdminLayout\CourseMasterController.js" />
     <Content Include="Scripts\AdminLayout\dashboard.js" />
     <Content Include="Scripts\AdminLayout\DashboardController.js" />
     <Content Include="Scripts\AdminLayout\daterangepicker.js" />
@@ -361,20 +362,18 @@
     <Content Include="Views\DeptZone\Index.cshtml" />
     <Content Include="Views\Contractor\Index.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
-
     <Content Include="Views\PlantTradeTracking\Index.cshtml" />
     <Content Include="Views\ValidationAgency\Index.cshtml" />
     <Content Include="Views\ValidationAgency.cshtml" />
-
     <Content Include="Views\ValidationAgency\Index.cshtml" />
     <Content Include="Views\ValidationAgency.cshtml" />
     <Content Include="Views\PlantTradeTracking\Index.cshtml" />
-
+    <Content Include="Views\CourseMaster\Index.cshtml" />
+    <Content Include="Views\Plant\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\CaptureEmployee\" />
-    <Folder Include="Views\Plant\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

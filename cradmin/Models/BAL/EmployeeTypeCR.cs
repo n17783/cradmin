@@ -31,7 +31,7 @@ namespace cradmin.Models.BAL
             lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = model.PageNo });
             lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = model.PageSize });
             SettingsHelper objHelper = SettingsHelper.Instance;
-            DataTable dt = objHelper.GetDataTable("Get_EmpType", lst);
+            DataTable dt = objHelper.GetDataTable("GetEmployeeTypeList", lst);
             return dt.ToList<EmployeeType>();
         }
     }

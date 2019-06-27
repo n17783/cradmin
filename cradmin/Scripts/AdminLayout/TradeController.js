@@ -12,20 +12,23 @@
     $scope.AddNewClick = function () {
         $scope.AddNew = true;
         $scope.Details = false;
-        $scope.TradeTypModel = { PageNo: 1, PageSize: 2, TradDescription: "" };
+        $scope.TradeTypModel = { PageNo: 1, PageSize: 2, TradDescription: "", TradeCId: "", CreatedBy: "", SanctionDate: "" };
     }
 
     $scope.CancelClick = function () {
         $scope.AddNew = false;
         $scope.Details = true;
-        $scope.TradeTypModel = { PageNo: 1, PageSize: 2, TradDescription: "", TradeCId: "" };
+        $scope.TradeTypModel = { PageNo: 1, PageSize: 2, TradDescription: "", TradeCId: "", CreatedBy: "", SanctionDate:"" };
     }
 
     $scope.PageSizeList = [5, 10, 15, 20];
     $scope.TradeTypeList = [];
 
     $scope.Save = function () {
+        
         $scope.TradeTypModel.TradeCId = $("#ddlTradeC").val();
+        $scope.TradeTypModel.CreatedBy = $("#ddlTCAuto").val();
+        $scope.TradeTypModel.SanctionDate = $("#ddlTSDate").val();
         ShowLoader();
         $http({
             method: 'post',
