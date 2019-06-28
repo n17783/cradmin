@@ -20,7 +20,7 @@ namespace cradmin.Controllers
 
         public ActionResult CheckAdhaarExist(Employee model)
         {
-            MasterDataResponse response=objEmp.CheckUserExist(model);
+            MasterDataResponse response = objEmp.CheckUserExist(model);
             return Json(response, JsonRequestBehavior.AllowGet);
         }
 
