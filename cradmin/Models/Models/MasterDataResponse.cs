@@ -17,9 +17,9 @@ namespace cradmin.Models.Models
             PlantList = new List<PlantModel>();
             TradeList = new List<TradeType>();
             PlantTradeTrackingList = new List<PlantTradeTracking>();
-            EmpExit = new List<EmployeeExit>();
-            Emp = new List<Employee>();
-            EmpDetails = new List<EmployeeDetails>();
+            EmpExit = new EmployeeExit();
+            Emp = new Employee();
+            EmpDetails = new EmployeeDetails();
 
         }
 
@@ -35,9 +35,9 @@ namespace cradmin.Models.Models
         public List<PlantTradeTracking> PlantTradeTrackingList { get; set; }
         public List<PlantModel> PlantList { get; set; }
         public List<TradeType> TradeList { get; set; }
-        public List<EmployeeExit> EmpExit { get; set; }
-        public List<Employee> Emp { get; set; }
-        public List<EmployeeDetails> EmpDetails { get; set; }
+        public EmployeeExit EmpExit { get; set; }
+        public Employee Emp { get; set; }
+        public EmployeeDetails EmpDetails { get; set; }
 
     }
 }
