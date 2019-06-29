@@ -36,7 +36,7 @@ namespace cradmin.Models.Models
 
     
 
-    public class Employee : Error
+    public class Employee
     {
         public int? PkId { get; set; }
         public string Regt_No { get; set; }
@@ -49,9 +49,39 @@ namespace cradmin.Models.Models
         public string EmpPhoto { get; set; }
         public string PanNo { get; set; }
         public string AadharNo { get; set; }
+        public string UserName { get; set; }
     }
 
-    public class EmployeeExit : Error
+    public class CountryMaster
+    {
+        public int ContryId { get; set; }
+
+        public string ContryName { get; set; }
+    }
+
+    public class StateMaster
+    {
+        public int StateId { get; set; }
+
+        public string StateName { get; set; }
+
+        public string CountryName { get; set; }
+
+        public int ContryId { get; set; }
+    }
+
+    public class CityMaster
+    {
+        public int DTCVId { get; set; }
+
+        public string StateName { get; set; }
+
+        public string DTCVName { get; set; }
+
+        public int SateId { get; set; }
+    }
+
+    public class EmployeeExit
     {
         public int? EmpExitId { get; set; }
         public int? EmpDetailsId { get; set; }
@@ -72,7 +102,7 @@ namespace cradmin.Models.Models
         public string ExitByAuthority { get; set; }
     }
 
-    public class EmployeeDetails : Error
+    public class EmployeeDetails
     {
         public int? EmpDetailsId { get; set; }
         public int? PkId { get; set; }
@@ -86,24 +116,28 @@ namespace cradmin.Models.Models
         public string IdProofNo { get; set; }
         public string IdProofImage { get; set; }
         public string PHouseNo { get; set; }
-        public int? PVillageId { get; set; }
+        public string PVillageId { get; set; }
         public int? PDisticId { get; set; }
-        public int? PTalukaId { get; set; }
+        public string PTalukaId { get; set; }
         public int? PStateId { get; set; }
         public int? PCountryId { get; set; }
-        public int? PPincodeId { get; set; }
-        public int? THouseNo { get; set; }
-        public int? TVillageId { get; set; }
+        public string PPincodeId { get; set; }
+        public string THouseNo { get; set; }
+        public string TVillageId { get; set; }
         public int? TDisticId { get; set; }
-        public int? TTalukaId { get; set; }
+        public string TTalukaId { get; set; }
         public int? TStateId { get; set; }
         public int? TCountryId { get; set; }
-        public int? TPincode { get; set; }
+        public string TPincode { get; set; }
         public bool ReJoineOrNewJoin { get; set; }
         public int? DeptZoneId { get; set; }
         public DateTime? RegistrationDate { get; set; }
         public int? EntryBy { get; set; }
         public DateTime? EnteryDate { get; set; }
+
+        public int? ValidationAgencyId { get; set; }
+        public bool? IsAlreadyValidated { get; set; }
+        public int? TradeId { get; set; }
     }
 
     public class DeptZoneMaster : Error

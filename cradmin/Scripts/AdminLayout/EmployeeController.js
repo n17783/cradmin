@@ -6,8 +6,16 @@
     $scope.ValidationAgencyList = [];
     $scope.EmployeeTypeList = [];
     $scope.ContractorList = [];
+    $scope.CountryList = [];
+    $scope.StateList = [];
+    $scope.CityList = [];
     $scope.EmployeeModal = { PageNo: 1, PageSize: 2 ,AdhaarNo : ""};
-    
+    $scope.IsNewUser = "";
+    $scope.Emp = {};
+    $scope.EmpDetails = {};
+    $scope.EmpExit = {};
+    var objdatehelper = new datehelper({ format: "dd/MM/yyyy", cdate: new Date() });
+
     function GetMasterDataList()
     {
         ShowLoader();
@@ -23,6 +31,11 @@
                 $scope.ValidationAgencyList = response.data.ValidationAgencyList;
                 $scope.EmployeeTypeList = response.data.EmployeeTypeList;
                 $scope.ContractorList = response.data.ContractorList;
+                $scope.CountryList = response.data.CountryList;
+                $scope.StateList = response.data.StateList;
+                $scope.CityList = response.data.CityList;
+
+                $scope.CountryList.splice(0, 0, { ContryId: 0, ContryName: "---Select Country---" });
                 $scope.ZoneList.splice(0, 0, { DeptZoneId: 0, DeptZoneDescription: "---Select Zone---" });
                 $scope.TradeCategoryList.splice(0, 0, { TradeCId: 0, TradCDescription: "---Select Category---" });
                 $scope.ValidationAgencyList.splice(0, 0, { ValidationAgencyId: 0, AgencyDescription: "---Select Agency---" });
@@ -55,6 +68,13 @@
                     html4 += "<option value='" + value.ContractorId + "'>" + value.ContractorName + "</option>";
                 });
                 $("#ddlContractor").html(html4);
+
+                var html5 = "";
+                angular.forEach($scope.CountryList, function (value, key) {
+                    html5 += "<option value='" + value.ContryId + "'>" + value.ContryName + "</option>";
+                });
+                $("#ddlCountry").html(html5);
+                $("#ddlPCountry").html(html5);
             }
             else {
                 window.location = $scope.urlBase + "/dashboard/index";
@@ -63,6 +83,61 @@
             HideLoader();
             console.log(error);
         });
+    }
+
+    $scope.BindStateList = function ()
+    {
+        if ($("#ddlCountry").val()>0) {
+            var statelist = $scope.StateList.filter(function (state) {
+                return (state.ContryId == $("#ddlCountry").val());
+            });
+
+            statelist.splice(0, 0, { StateId: 0, StateName: "---Select State---" });
+            var html5 = "";
+            angular.forEach(statelist, function (value, key) {
+                html5 += "<option value='" + value.StateId + "'>" + value.StateName + "</option>";
+            });
+            $("#ddlState").html(html5);
+        }
+        if ($("#ddlPCountry").val() > 0) {
+            var statelist = $scope.StateList.filter(function (state) {
+                return (state.ContryId == $("#ddlPCountry").val());
+            });
+
+            statelist.splice(0, 0, { StateId: 0, StateName: "---Select State---" });
+            var html5 = "";
+            angular.forEach(statelist, function (value, key) {
+                html5 += "<option value='" + value.StateId + "'>" + value.StateName + "</option>";
+            });
+            $("#ddlPState").html(html5);
+        }
+    }
+
+    $scope.BindDistrictList = function () {
+        if ($("#ddlState").val() > 0) {
+            var citylist = $scope.CityList.filter(function (state) {
+                return (state.SateId == $("#ddlState").val());
+            });
+
+            citylist.splice(0, 0, { DTCVId: 0, DTCVName: "---Select City---" });
+            var html5 = "";
+            angular.forEach(citylist, function (value, key) {
+                html5 += "<option value='" + value.DTCVId + "'>" + value.DTCVName + "</option>";
+            });
+            $("#ddlDistrict").html(html5);
+        }
+        if ($("#ddlPState").val() > 0) {
+            var citylist = $scope.CityList.filter(function (state) {
+                return (state.SateId == $("#ddlPState").val());
+            });
+
+            citylist.splice(0, 0, { DTCVId: 0, DTCVName: "---Select City---" });
+            var html5 = "";
+            angular.forEach(citylist, function (value, key) {
+                html5 += "<option value='" + value.DTCVId + "'>" + value.DTCVName + "</option>";
+            });
+            $("#ddlPDistrict").html(html5);
+        }
     }
 
     $scope.CheckAdhaarExist = function () {
@@ -74,9 +149,35 @@
                 data: $scope.EmployeeModal,
             }).then(function (response) {
                 HideLoader();
-                if (true) {
-    
-}
+                console.log(response);
+                if (response.data=="") {
+                    $scope.IsNewUser = 1;
+                    var objShowCustomAlert = new ShowCustomAlert({
+                        Title: "Warning",
+                        Message: "No such user exist. you have to register new user.",
+                        Type: "alert"
+                    });
+                    objShowCustomAlert.ShowCustomAlertBox();
+                }
+                else {
+                    $scope.Emp = response.data.Emp;
+                    $scope.EmpDetails = response.data.EmpDetails;
+                    $scope.EmpExit = response.data.EmpExit;
+                    if ($scope.EmpExit.IsExit==0) {
+                        $scope.IsNewUser = 0;
+                    }
+                    else {
+                        $scope.IsNewUser = 2;
+                    }
+                    if ($scope.Emp.Gender) {
+                        $("#rdoMale").prop("checked", true);
+                    }
+                    else {
+                        $("#rdoFemale").prop("checked", false);
+                    }
+                    $scope.Emp.DOB = objdatehelper.getFormatteddate($filter('mydate')($scope.Emp.DOB), "dd/mm/yyyy");
+                    $scope.EmpDetails.DateOfReport = objdatehelper.getFormatteddate($filter('mydate')($scope.EmpDetails.DateOfReport), "dd/mm/yyyy");
+                }
             }, function (error) {
                 HideLoader();
                 console.log(error);

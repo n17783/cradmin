@@ -252,6 +252,7 @@
     <Content Include="Scripts\AdminLayout\CourseMasterController.js" />
     <Content Include="Scripts\AdminLayout\dashboard.js" />
     <Content Include="Scripts\AdminLayout\DashboardController.js" />
+    <Content Include="Scripts\AdminLayout\datehelper.js" />
     <Content Include="Scripts\AdminLayout\daterangepicker.js" />
     <Content Include="Scripts\AdminLayout\demo.js" />
     <Content Include="Scripts\AdminLayout\DeptZoneController.js" />
