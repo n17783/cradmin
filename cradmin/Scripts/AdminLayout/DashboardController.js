@@ -27,7 +27,7 @@
     
 
     $scope.init = function () {
-        $scope.AddNew = false;
+        $scope.AddNew = true;
         $scope.Details = true;
         $scope.GetMasterDataforRegister();
     }

@@ -4,7 +4,8 @@
    
     $scope.PlantList = [];
     $scope.TradeList = [];
-   
+    $scope.MainTradeTrackList = [];
+    $scope.SearchTradeTrackList = [];
 
     function GetMasterDataList() {
         ShowLoader();
@@ -20,7 +21,7 @@
                
                 
                 $scope.TradeList.splice(0, 0, { TradeId: 0, TradDescription: "---Select Trade---" });
-                $scope.PlantList.splice(0, 0, { PlantId: 0, PlantDescription: "---Select Plant---" });
+                $scope.PlantList.splice(0, 0, { PlantId: 0, PlantTitle: "---Select Plant---" });
                
                 var html = "";
                 angular.forEach($scope.TradeList, function (value, key) {
@@ -28,8 +29,8 @@
                 });
                 $("#ddltrade").html(html);
                 var html1 = "";
-                angular.forEach($scope.TradeCategoryList, function (value, key) {
-                    html1 += "<option value='" + value.PlantId + "'>" + value.PlantDescription + "</option>";
+                angular.forEach($scope.PlantList, function (value, key) {
+                    html1 += "<option value='" + value.PlantId + "'>" + value.PlantTitle + "</option>";
                 });
                 $("#ddlplant").html(html1);
 
@@ -114,6 +115,7 @@
         }).then(function (response) {
             HideLoader();
             $scope.PlantTradeTrackingList = response.data.PlantTradeTrackingList;
+            $scope.MainTradeTrackList = response.data.PlantTradeTrackingList;
             if (response.data.PlantTradeTrackingList.length > 0) {
                 $scope.TotalRecords = response.data[0].TotalRecords;
                 $scope.TotalPages = parseInt($scope.TotalRecords / $scope.TradeTrackingModel.PageSize);
@@ -128,6 +130,18 @@
         });
     }
     //
+    $scope.FilterList = function () {
+        var reg = new RegExp($scope.Prefix.toLowerCase());
+        $scope.MainTradeTrackList = $scope.PlantTradeTrackingList.filter(function (actype) {
+            return (reg.test(actype.PlantTradeTrackingId.toLowerCase()));
+        });
+        $scope.First();
+    }
+    $scope.Reset = function () {
+        $scope.MainTradeTrackList = $scope.PlantTradeTrackingList;
+        $scope.SearchTradeTrackList = $scope.MainTradeTrackList;
+        $scope.First();
+    }
 
 
     $scope.init = function () {
