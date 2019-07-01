@@ -39,10 +39,27 @@ namespace cradmin.Models.BAL
             lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
 
             DataTable dtContractorList = objHelper.GetDataTable("GetMainContractorList", lst);
+
             lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
             lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
+            DataTable dtCountryList = objHelper.GetDataTable("Get_CountryList", lst);
 
+            lst = new List<SqlParameter>();
+            lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
+            lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
+            lst.Add(new SqlParameter() { ParameterName = "@CountryId", Value = DBNull.Value });
+            DataTable dtStateList = objHelper.GetDataTable("Get_StateList", lst);
+
+            lst = new List<SqlParameter>();
+            lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
+            lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
+            lst.Add(new SqlParameter() { ParameterName = "@StateId", Value = DBNull.Value });
+            DataTable dtCityList = objHelper.GetDataTable("Get_CityList", lst);
+
+            response.CityList = dtCityList.ToList<CityMaster>();
+            response.StateList = dtStateList.ToList<StateMaster>();
+            response.CountryList = dtCountryList.ToList<CountryMaster>();
             response.ZoneList = dtzone.ToList<DeptZoneMaster>();
             response.TradeCategoryList = dt.ToList<TradeCategory>();
             response.ValidationAgencyList = dtValidattionAgency.ToList<ValidationAgency>();
@@ -74,6 +91,7 @@ namespace cradmin.Models.BAL
                                 PanNo = Convert.ToString(tbl.GetField("PanNo")),
                                 PkId = Convert.ToInt32(tbl.GetField("PkId")),
                                 Regt_No = Convert.ToString(tbl.GetField("Regt_No")),
+                                UserName = Convert.ToString(tbl.GetField("UserName")),
                             },
                             EmpDetails = new EmployeeDetails()
                             {
@@ -94,19 +112,22 @@ namespace cradmin.Models.BAL
                                 PDisticId = Convert.ToInt32(tbl.GetField("PDisticId")),
                                 PHouseNo = Convert.ToString(tbl.GetField("PHouseNo")),
                                 PkId = Convert.ToInt32(tbl.GetField("PkId")),
-                                PPincodeId = Convert.ToInt32(tbl.GetField("PPincodeId")),
+                                PPincodeId = Convert.ToString(tbl.GetField("PPincodeId")),
                                 PStateId = Convert.ToInt32(tbl.GetField("PStateId")),
-                                PTalukaId = Convert.ToInt32(tbl.GetField("PTalukaId")),
-                                PVillageId = Convert.ToInt32(tbl.GetField("PVillageId")),
+                                PTalukaId = Convert.ToString(tbl.GetField("PTalukaId")),
+                                PVillageId = Convert.ToString(tbl.GetField("PVillageId")),
                                 RegistrationDate = Convert.ToDateTime(tbl.GetField("RegistrationDate")),
                                 ReJoineOrNewJoin = Convert.ToBoolean(tbl.GetField("ReJoineOrNewJoin")),
                                 TCountryId = Convert.ToInt32(tbl.GetField("TCountryId")),
                                 TDisticId = Convert.ToInt32(tbl.GetField("TDisticId")),
-                                THouseNo = Convert.ToInt32(tbl.GetField("THouseNo")),
-                                TPincode = Convert.ToInt32(tbl.GetField("TPincode")),
+                                THouseNo = Convert.ToString(tbl.GetField("THouseNo")),
+                                TPincode = Convert.ToString(tbl.GetField("TPincode")),
                                 TStateId = Convert.ToInt32(tbl.GetField("TStateId")),
-                                TTalukaId = Convert.ToInt32(tbl.GetField("TTalukaId")),
-                                TVillageId = Convert.ToInt32(tbl.GetField("TVillageId")),
+                                TTalukaId = Convert.ToString(tbl.GetField("TTalukaId")),
+                                TVillageId = Convert.ToString(tbl.GetField("TVillageId")),
+                                ValidationAgencyId = Convert.ToInt32(tbl.GetField("ValidationAgencyId")),
+                                TradeId = Convert.ToInt32(tbl.GetField("TradeId")),
+                                IsAlreadyValidated = Convert.ToBoolean(tbl.GetField("IsAlreadyValidated")),
                             },
                             EmpExit = new EmployeeExit()
                             {

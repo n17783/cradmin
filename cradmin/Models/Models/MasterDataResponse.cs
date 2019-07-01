@@ -20,8 +20,16 @@ namespace cradmin.Models.Models
             EmpExit = new EmployeeExit();
             Emp = new Employee();
             EmpDetails = new EmployeeDetails();
-
+            StateList = new List<StateMaster>();
+            CityList = new List<CityMaster>();
+            CountryList = new List<CountryMaster>();
         }
+
+        public List<CityMaster> CityList { get; set; }
+
+        public List<CountryMaster> CountryList { get; set; }
+
+        public List<StateMaster> StateList { get; set; }
 
         public List< DeptZoneMaster> ZoneList { get; set; }
 

@@ -10,44 +10,55 @@
             <div class="box-body">
                 <div class="form-group">
                     <label>Aadhar No</label>
-                    <input type="text" class="form-control" data-ng-model="EmployeeModal.AadharNo" placeholder="Enter Aadhar No ..." data-ng-change="CheckAdhaarExist();">
+                    <input type="text" class="form-control" data-ng-model="EmployeeModal.AadharNo" placeholder="Enter Aadhar No ..." data-ng-blur="CheckAdhaarExist();">
+                </div>
+                <div class="form-group" data-ng-switch="IsNewUser">
+                    <label>Exit Status</label>
+                    <span ng-switch-when="0">Existing User</span>
+                    <span ng-switch-when="1">New User</span>
+                    <span ng-switch-when="2">Re Join</span>
                 </div>
                 <div class="form-group">
                     <label>Select Zone</label>
                     <select class="form-control" id="ddlZone">
-                       
                     </select>
                 </div>
-               
+
                 <div class="form-group">
                     <label>Select Validation Agency</label>
                     <select class="form-control" id="ddlVAgency">
-                        
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Select Trade</label>
                     <select class="form-control" id="ddlTrade">
-                       
                     </select>
                 </div>
+<<<<<<< HEAD
                 <div style="display:inline-block">
+=======
+                <div>
+>>>>>>> 9f4951a7948d260d94e81d311d44a50a03f979d3
                     <div class="form-group">
                         <label>First Name</label>
-                        <input type="text" class="form-control" placeholder="Enter First Name ...">
+                        <input type="text" class="form-control" placeholder="Enter First Name ..." data-ng-model="Emp.FName">
                     </div>
                     <div class="form-group">
                         <label>Middle Name</label>
-                        <input type="text" class="form-control" placeholder="Enter Middle Name ...">
+                        <input type="text" class="form-control" placeholder="Enter Middle Name ..." data-ng-model="Emp.MName">
                     </div>
                     <div class="form-group">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" placeholder="Enter Last Name ...">
+                        <input type="text" class="form-control" placeholder="Enter Last Name ..." data-ng-model="Emp.LName">
                     </div>
 
                     <div class="form-group">
                         <label>Date Of Reporting</label>
+<<<<<<< HEAD
                         <input type="text" class="form-control" placeholder="Enter Date Of Reporting ...">
+=======
+                        <input type="text" class="form-control" placeholder="Enter Date Of Reprting ..." data-ng-model="EmpDetails.DateOfReport">
+>>>>>>> 9f4951a7948d260d94e81d311d44a50a03f979d3
                     </div>
                     <div class="form-group">
                         <label>Select Id Proof Type</label>
@@ -55,12 +66,11 @@
                             <option>Aadhar</option>
                             <option>PAN</option>
                             <option>Driving Licence</option>
-
                         </select>
                     </div>
                     <div class="form-group">
                         <label>ID Proof No</label>
-                        <input type="text" class="form-control" placeholder="Enter Id Proof No ...">
+                        <input type="text" class="form-control" placeholder="Enter Id Proof No ..." data-ng-model="EmpDetails.IdProofNo">
                     </div>
                     <div class="form-group">
                         <label>Upload Id Proof Document</label>
@@ -68,32 +78,31 @@
                     </div>
                     <div class="form-group">
                         <label> Permanant House NO And Name</label>
-                        <input type="text" class="form-control" placeholder="Enter Permanant House NO And Name ...">
+                        <input type="text" class="form-control" placeholder="Enter Permanant House NO And Name ..." data-ng-model="EmpDetails.PHouseNo">
                     </div>
                     <div class="form-group">
                         <label> Village </label>
-                        <select class="form-control">
-                            
-
-                        </select>
+                        <input type="text" class="form-control" placeholder="Enter Permanant House NO And Name ..." data-ng-model="EmpDetails.PVillageId">
                     </div>
                     <div class="form-group">
                         <label>Permanant Taluka</label>
-                        <select class="form-control">
-                            
-
-                        </select>
+                        <input type="text" class="form-control" placeholder="Enter Permanant House NO And Name ..." data-ng-model="EmpDetails.PTalukaId">
                     </div>
                     <div class="form-group">
-                        <label> Permanant Distic</label>
-                        <select class="form-control">
-                            
-
-                        </select>
+                        <label> Country</label>
+                        <select id="ddlPCountry" class="form-control" data-ng-click="BindStateList()"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>State</label>
+                        <select id="ddlPState" class="form-control" data-ng-click="BindDistrictList()"></select>
+                    </div>
+                    <div class="form-group">
+                        <label> Permanent  District</label>
+                        <select class="form-control" id="ddlPDistrict"></select>
                     </div>
                     <div class="form-group">
                         <label> Permanant Pin Code</label>
-                        <input type="text" class="form-control" placeholder="Enter Pin code ...">
+                        <input type="text" class="form-control" placeholder="Enter Pin code ..." data-ng-model="EmpDetails.PPincodeId">
                     </div>
                     <div class="form-group">
                         <label> Contact No</label>
@@ -131,27 +140,38 @@
                 <div class="form-group">
                     <label>Select Employee Type</label>
                     <select class="form-control" id="ddlEmpType">
-                        
+                        <option>Supervisor </option>
+                        <option>DM </option>
+                        <option>DM ShutDown </option>
+                        <option>Technical Fitter</option>
+                        <option>DM Special Shutdown</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Select Contractor</label>
                     <select class="form-control" id="ddlContractor">
-                        
+                        <option>Naresh Shinde</option>
+                        <option>Pandurang Kumbhar</option>
+                        <option>Mahesh Kumar</option>
                     </select>
                 </div>
+<<<<<<< HEAD
                 
                 <div style="display:inline-table">
+=======
+
+                <div>
+>>>>>>> 9f4951a7948d260d94e81d311d44a50a03f979d3
                     <div class="form-group">
                         <div class="">
                             <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                                <input type="radio" name="optionGender" id="rdoMale" data-ng-model="Emp.Gender" data-ng-value="1">
                                 Male
                             </label>
                         </div>
                         <div class="rado">
                             <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                <input type="radio" name="optionGender" id="rdoFemale" data-ng-value="0" data-ng-model="Emp.Gender">
                                 Female
                             </label>
                         </div>
@@ -159,7 +179,7 @@
                     </div>
                     <div class="form-group">
                         <label>Date Of Birth</label>
-                        <input type="text" class="form-control" placeholder="Enter Date Of Birth ...">
+                        <input type="text" class="form-control" placeholder="Enter Date Of Birth ..." data-ng-model="Emp.DOB">
                     </div>
                     <div class="form-group">
                         <label>Select BloodGroup</label>
@@ -172,52 +192,60 @@
                     </div>
                     <div class="form-group">
                         <label>Pan No</label>
-                        <input type="text" class="form-control" placeholder="Enter PAN No ...">
+                        <input type="text" class="form-control" placeholder="Enter PAN No ..." data-ng-model="Emp.PanNo">
                     </div>
                     <div class="form-group">
                         <label>Email Id</label>
-                        <input type="text" class="form-control" placeholder="Enter Email Id ...">
+                        <input type="text" class="form-control" placeholder="Enter Email Id ..." data-ng-model="Emp.UserName">
+                    </div>
+                    <div class="form-group">
+                        <label> Country</label>
+                        <select id="ddlCountry" class="form-control" data-ng-click="BindStateList()"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>State</label>
+                        <select id="ddlState" class="form-control" data-ng-click="BindDistrictList()"></select>
+                    </div>
+                    <div class="form-group">
+                        <label> Temporary  District</label>
+                        <select class="form-control" id="ddlDistrict">
+                        </select>
                     </div>
                     <div class="form-group">
                         <label> Temporary  House NO And Name</label>
-                        <input type="text" class="form-control" placeholder="Enter Permanant House NO And Name ...">
+                        <input type="text" class="form-control" placeholder="Enter Permanant House NO And Name ..." data-ng-model="EmpDetails.THouseNo">
                     </div>
                     <div class="form-group">
                         <label> Temporary Village Name  </label>
-                        <select class="form-control">
-                           
-
-                        </select>
+                        <input type="text" class="form-control" placeholder="Enter Permanant House NO And Name ..." data-ng-model="EmpDetails.TVillageId">
                     </div>
                     <div class="form-group">
                         <label>Temporary  Taluka</label>
-                        <select class="form-control">
-                           
-
-                        </select>
+                        <input type="text" class="form-control" placeholder="Enter Permanant House NO And Name ..." data-ng-model="EmpDetails.TTalukaId">
                     </div>
-                    <div class="form-group">
-                        <label> Temporary  Distic</label>
-                        <select class="form-control">
-                           
 
-                        </select>
-                    </div>
                     <div class="form-group">
                         <label> Temporary  Pin Code</label>
-                        <input type="text" class="form-control" placeholder="Enter Pin Code ...">
+                        <input type="text" class="form-control" placeholder="Enter Permanant House NO And Name ..." data-ng-model="EmpDetails.TPincode">
                     </div>
+<<<<<<< HEAD
                    
+=======
+                    <div class="form-group">
+                        <label> Contact No</label>
+                        <input type="text" class="form-control" placeholder="Enter Permanant House NO And Name ..." data-ng-model="EmpDetails.ContactNo">
+                    </div>
+>>>>>>> 9f4951a7948d260d94e81d311d44a50a03f979d3
                     <div class="form-group">
                         <label>Emergency Contact No</label>
-                        <input type="text" class="form-control" placeholder="Enter Emergency Contact No ...">
+                        <input type="text" class="form-control" placeholder="Enter Emergency Contact No ..." data-ng-model="EmpDetails.EmrContactNo">
                     </div>
 
                 </div>
             </div>
         </div>
     </div>
-    
+
 </div>
 @Scripts.Render("~/Scripts/AdminLayout/EmployeeController.js")
 @Scripts.Render("~/Scripts/AdminLayout/jquery.webcam.js")
