@@ -1,7 +1,7 @@
 ﻿CRAdminApp.controller("PlantTradeTrackingController", ['$scope', '$http', '$filter', '$rootScope', function ($scope, $http, $filter, $rootScope) {
 
     $scope.urlBase = GetVirtualDirectory();
-   
+
     $scope.PlantList = [];
     $scope.TradeList = [];
     $scope.MainTradeTrackList = [];
@@ -16,13 +16,13 @@
         }).then(function (response) {
             HideLoader();
             if (response.data.Status == 1) {
-             $scope.TradeList = response.data.TradeList;
+                $scope.TradeList = response.data.TradeList;
                 $scope.PlantList = response.data.PlantList;
-               
-                
+
+
                 $scope.TradeList.splice(0, 0, { TradeId: 0, TradDescription: "---Select Trade---" });
                 $scope.PlantList.splice(0, 0, { PlantId: 0, PlantTitle: "---Select Plant---" });
-               
+
                 var html = "";
                 angular.forEach($scope.TradeList, function (value, key) {
                     html += "<option value='" + value.TradeId + "'>" + value.TradDescription + "</option>";
@@ -34,7 +34,7 @@
                 });
                 $("#ddlplant").html(html1);
 
-               
+
             }
             else {
                 window.location = $scope.urlBase + "/PlantTradeTracking/index";
@@ -45,25 +45,25 @@
         });
     }
     //
-   
+
     $scope.AddNew = false;
     $scope.Details = true;
 
     $scope.TotalRecords = 0;
     $scope.TotalPages = 0
 
-    $scope.TradeTrackingModel = { PageNo: 1, PageSize: 2, AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId:"",TradeId:"" };
+    $scope.TradeTrackingModel = { PageNo: 1, PageSize: 2, AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "", TradDescription: "", PlantTitle: "" };
 
     $scope.AddNewClick = function () {
         $scope.AddNew = true;
         $scope.Details = false;
-        $scope.TradeTrackingModel = { PageNo: 1, PageSize: 2, AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "" };
+        $scope.TradeTrackingModel = { PageNo: 1, PageSize: 2, AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "", TradDescription: "", PlantTitle: "" };
     }
 
     $scope.CancelClick = function () {
         $scope.AddNew = false;
         $scope.Details = true;
-        $scope.TradeTrackingModel = { PageNo: 1, PageSize: 2, AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "" };
+        $scope.TradeTrackingModel = { PageNo: 1, PageSize: 2, AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "", TradDescription: "", PlantTitle: "" };
     }
 
     $scope.PageSizeList = [5, 10, 15, 20];
@@ -105,6 +105,55 @@
             console.log(error);
         });
     }
+    //Edit 
+
+    //update
+    $scope.Update = function () {
+        $scope.TradeTrackingModel.TradeId = $("#ddltrade").val();
+        $scope.TradeTrackingModel.PlantId = $("#ddlplant").val();
+
+        ShowLoader();
+        $http({
+            method: 'post',
+            url: $scope.urlBase + '/PlantTradeTracking/Save',
+            data: $scope.TradeTrackingModel,
+        }).then(function (response) {
+            HideLoader();
+            if (response.data.Status == 0) {
+                var objShowCustomAlert = new ShowCustomAlert({
+                    Title: "Error",
+                    Message: "This Record Is All Ready Exist",
+                    Type: "alert"
+                });
+                objShowCustomAlert.ShowCustomAlertBox();
+            }
+            else {
+                var objShowCustomAlert = new ShowCustomAlert({
+                    Title: "Success",
+                    Message: "Record Seved Successfully",
+                    Type: "alert"
+                });
+                objShowCustomAlert.ShowCustomAlertBox();
+            }
+            $scope.CancelClick();
+            $scope.GetTradeTrackingList();
+        }, function (error) {
+            HideLoader();
+            console.log(error);
+        });
+    }
+    //update
+
+    $scope.Edit = function (TradeTracking) {
+        $scope.Details = false;
+        $scope.AddNew = true;
+        $("#ddltrade").val(TradeTracking.TradeId)
+        $("#ddlplant").val(TradeTracking.PlantId);
+        $scope.TradeTrackingModel = { AuthorizedStrenth: TradeTracking.AuthorizedStrenth, AuthorizedBy: TradeTracking.AuthorizedBy, AuthorizedDate: TradeTracking.AuthorizedDate, PlantId: TradeTracking.PlantId, TradeId: TradeTracking.TradeId };
+
+
+    }
+    //Edit
 
     $scope.GetTradeTrackingList = function () {
         ShowLoader();
@@ -133,7 +182,7 @@
     $scope.FilterList = function () {
         var reg = new RegExp($scope.Prefix.toLowerCase());
         $scope.MainTradeTrackList = $scope.PlantTradeTrackingList.filter(function (actype) {
-            return (reg.test(actype.PlantTradeTrackingId.toLowerCase()));
+            return (reg.test(actype.PlantTitle.toLowerCase()));
         });
         $scope.First();
     }
