@@ -138,6 +138,8 @@ namespace cradmin.Models.Models
         public int? ValidationAgencyId { get; set; }
         public bool? IsAlreadyValidated { get; set; }
         public int? TradeId { get; set; }
+        public string AdhaarImage { get; set; }
+        public bool IsDMorStaff { get; set; }
     }
 
     public class DeptZoneMaster : Error
@@ -160,7 +162,6 @@ namespace cradmin.Models.Models
         public DateTime TCEntryDate { get; set; }
         public bool IsDelete { get; set; }
         public DateTime CreateDate { get; set; }
-        public int TotalRecords { get; set; }
     }
 
     public class EmployeeType : Error

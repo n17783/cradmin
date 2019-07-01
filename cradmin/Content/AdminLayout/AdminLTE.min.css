@@ -4378,7 +4378,10 @@ table.text-center, table.text-center td, table.text-center th {
         background-color: #500a6f;
         border-color: rgba(0,0,0,0.2);
     }
-
+    .badge-danger {
+        color: #fff;
+        background-color: #dc3545;
+    }
     .btn-yahoo:active, .btn-yahoo.active, .open > .dropdown-toggle.btn-yahoo {
         color: #fff;
         background-color: #500a6f;

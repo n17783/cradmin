@@ -9,12 +9,34 @@
     $scope.CountryList = [];
     $scope.StateList = [];
     $scope.CityList = [];
-    $scope.EmployeeModal = { PageNo: 1, PageSize: 2 ,AdhaarNo : ""};
     $scope.IsNewUser = "";
-    $scope.Emp = {};
-    $scope.EmpDetails = {};
+    $scope.Emp = { PageNo: 1, PageSize: 2, AdhaarNo: "", Regt_No: "", Gender: 0, FName: "", MName: "", LName: "", DOB: "", BloodGroup: "", EmpPhoto: "", PanNo: "", UserName:"" };
+    $scope.EmpDetails = {
+        EmpDetailsId: 0, PkId: 0, EmpTypeId: 0, JoiningStatus: 1, DateOfReport: "",
+        ContractorId: 1, ContactNo: "", EmrContactNo: "", IdProofType: "", IdProofNo: "",
+        IdProofImage: "", PHouseNo: "", PVillageId: "", PDisticId: 0, PTalukaId: "", PStateId: 0,
+        PCountryId: 0, PPincodeId: "", THouseNo: "", TVillageId: "", TDisticId: 0, TTalukaId: "",
+        TStateId: 0, TCountryId: "", TPincode: "", ReJoineOrNewJoin: 0, DeptZoneId: 0, ValidationAgencyId: 0,
+        IsAlreadyValidated: 0, TradeId: 0, AdhaarImage: "", IsDMorStaff: 0
+    };
+
+    $scope.ErrorModel = {
+        AdhaarNo: false, ErrorMessageAdhaarNo: "", FName: false, ErrorMessageFName: "", MName: false, ErrorMessageMName: "", LName: false,
+        ErrorMessageLName: "", DOB: false, ErrorMessageDOB: "", BloodGroup: false, ErrorMessageBloodGroup: "", EmpPhoto: false, ErrorMessageEmpPhoto: "", PanNo: false,
+        ErrorMessagePanNo: "", UserName: false, ErrorMessageUserName: "",
+        EmpTypeId: false, ErrorMessageEmpTypeId: "", DateOfReport: false, ErrorMessageDateOfReport: "",
+        ContractorId: false, ErrorMessageContractorId: "", ContactNo: false, ErrorMessageContactNo: "", EmrContactNo: false, ErrorMessageEmrContactNo: "",
+        PVillageId: false, ErrorMessagePVillageId: "", PDisticId: false, ErrorMessagePDisticId: "", PStateId: false, ErrorMessagePStateId: "",
+        PCountryId: false, ErrorMessagePContryId: "", PPincodeId: false, ErrorMessagePPincodeId: "", TVillageId: false, ErrorMessageTVillageId: "", TDisticId: false,
+        ErrorMessageTDisticId: "",
+        TStateId: false, ErrorMessageTStateId: "", TCountryId: false, ErrorMessageContryId: "", TPincode: false, ErrorMessageTPincode: "", DeptZoneId: false, ErrorMessageDeptZoneId: "",
+        ValidationAgencyId: false, ErrorMessageValidationAgencyId: "", TradeId: false, ErrorMessageTradeId: "",
+        AdhaarImage: false, ErrorMessageAdhaarImage: "", IsDMorStaff: false, ErrorMessageIsDMorStaff: ""
+    };
     $scope.EmpExit = {};
     var objdatehelper = new datehelper({ format: "dd/MM/yyyy", cdate: new Date() });
+
+    
 
     function GetMasterDataList()
     {
@@ -22,7 +44,7 @@
         $http({
             method: 'post',
             url: $scope.urlBase + '/Dashboard/GetMasterDataforRegister',
-            data: $scope.EmployeeModal,
+            data: $scope.Emp,
         }).then(function (response) {
             HideLoader();
             if (response.data.Status == 1) {
@@ -99,6 +121,10 @@
             });
             $("#ddlState").html(html5);
         }
+        
+    }
+
+    $scope.BindPStateList = function () {
         if ($("#ddlPCountry").val() > 0) {
             var statelist = $scope.StateList.filter(function (state) {
                 return (state.ContryId == $("#ddlPCountry").val());
@@ -110,6 +136,21 @@
                 html5 += "<option value='" + value.StateId + "'>" + value.StateName + "</option>";
             });
             $("#ddlPState").html(html5);
+        }
+    }
+
+    $scope.BindPDistrictList = function () {
+        if ($("#ddlPState").val() > 0) {
+            var citylist = $scope.CityList.filter(function (state) {
+                return (state.SateId == $("#ddlPState").val());
+            });
+
+            citylist.splice(0, 0, { DTCVId: 0, DTCVName: "---Select City---" });
+            var html5 = "";
+            angular.forEach(citylist, function (value, key) {
+                html5 += "<option value='" + value.DTCVId + "'>" + value.DTCVName + "</option>";
+            });
+            $("#ddlPDistrict").html(html5);
         }
     }
 
@@ -126,27 +167,90 @@
             });
             $("#ddlDistrict").html(html5);
         }
-        if ($("#ddlPState").val() > 0) {
-            var citylist = $scope.CityList.filter(function (state) {
-                return (state.SateId == $("#ddlPState").val());
-            });
+    }
 
-            citylist.splice(0, 0, { DTCVId: 0, DTCVName: "---Select City---" });
-            var html5 = "";
-            angular.forEach(citylist, function (value, key) {
-                html5 += "<option value='" + value.DTCVId + "'>" + value.DTCVName + "</option>";
-            });
-            $("#ddlPDistrict").html(html5);
+    $scope.Validate = function () {
+        var valid = true;
+        if ($scope.Emp.AdhaarNo == "") {
+            $scope.ErrorModel.AadharNo = true;
+            $scope.ErrorModel.ErrorMessageAdhaarNo = "Adhaar No should be filled.";
+            valid = false;
+        }
+        if ($scope.Emp.FName == "") {
+            $scope.ErrorModel.FName = true;
+            $scope.ErrorModel.ErrorMessageFName = "First Name should be filled.";
+            valid = false;
+        }
+        if ($scope.Emp.LName == "") {
+            $scope.ErrorModel.LName = true;
+            $scope.ErrorModel.ErrorMessageLName = "Last Name should be filled.";
+            valid = false;
+        }
+        if ($scope.Emp.MName == "") {
+            $scope.ErrorModel.MName = true;
+            $scope.ErrorModel.ErrorMessageMName = "Middle Name should be filled.";
+            valid = false;
+        }
+        if ($scope.EmpDetails.DateOfReport == "") {
+            $scope.ErrorModel.DateOfReport = true;
+            $scope.ErrorModel.ErrorMessageMName = "Date Of Report should be filled.";
+            valid = false;
+        }
+        return valid
+    }
+
+    $scope.RegisterStaff = function () {
+        if($scope.Validate())
+        {
+            ShowLoader();
+            if ($("#rdoMale").prop("checked") == true) {
+                $scope.Emp.Gender = true;
+            }
+            else {
+                $scope.Emp.Gender = false;
+            }
+            if ($("#rdoStaff").prop("checked") == true) {
+                $scope.EmpDetails.IsDMorStaff = true;
+            }
+            else {
+                $scope.EmpDetails.IsDMorStaff = false;
+            }
+
+            $scope.EmpDetails.TCountryId=$("#ddlCountry").val();
+            $scope.EmpDetails.TStateId=$("#ddlState").val();
+            $scope.EmpDetails.TDisticId=$("#ddlDistrict").val();
+            $scope.EmpDetails.PCountryId=$("#ddlPCountry").val();
+            $scope.EmpDetails.PStateId=$("#ddlPState").val();
+            $scope.EmpDetails.PDisticId=$("#ddlPDistrict").val();
+            $scope.EmpDetails.DeptZoneId=$("#ddlZone").val();
+            $scope.EmpDetails.ValidationAgencyId=$("#ddlVAgency").val();
+            $scope.EmpDetails.TradeId=$("#ddlTrade").val();
+            $scope.EmpDetails.IdProofType=$("#ddlIdProofType").val();
+            $scope.EmpDetails.EmpTypeId=$("#ddlEmpType").val();
+            $scope.EmpDetails.ContractorId = $("#ddlContractor").val();
+            $scope.Emp.EmpPhoto = $("#imgCapture").attr("src");
+            var model = { Emp: $scope.Emp, EmpDetails: $scope.EmpDetails };
+            $http({
+                method: 'post',
+                url: $scope.urlBase + '/Dashboard/Save',
+                data: model,
+            }).then(function (response) {
+                HideLoader();
+
+            }, function (error) {
+                HideLoader();
+                console.log(error);
+            });    
         }
     }
 
     $scope.CheckAdhaarExist = function () {
-        if ($scope.EmployeeModal.AadharNo.length==12) {
+        if ($scope.Emp.AadharNo.length==12) {
             ShowLoader();
             $http({
                 method: 'post',
                 url: $scope.urlBase + '/Dashboard/CheckAdhaarExist',
-                data: $scope.EmployeeModal,
+                data: $scope.Emp,
             }).then(function (response) {
                 HideLoader();
                 console.log(response);
@@ -175,8 +279,31 @@
                     else {
                         $("#rdoFemale").prop("checked", false);
                     }
+                    if ($scope.Emp.IsDMorStaff) {
+                        $("#rdoStaff").prop("checked", true);
+                    }
+                    else {
+                        $("#rdoDM").prop("checked", false);
+                    }
                     $scope.Emp.DOB = objdatehelper.getFormatteddate($filter('mydate')($scope.Emp.DOB), "dd/mm/yyyy");
                     $scope.EmpDetails.DateOfReport = objdatehelper.getFormatteddate($filter('mydate')($scope.EmpDetails.DateOfReport), "dd/mm/yyyy");
+                    $("#ddlCountry").val($scope.EmpDetails.TCountryId);
+                    $scope.BindStateList();
+                    $("#ddlState").val($scope.EmpDetails.TStateId);
+                    $scope.BindDistrictList();
+                    $("#ddlDistrict").val($scope.EmpDetails.TDisticId);
+                    $("#ddlPCountry").val($scope.EmpDetails.PCountryId);
+                    $scope.BindStateList();
+                    $("#ddlPState").val($scope.EmpDetails.PStateId);
+                    $scope.BindDistrictList();
+                    $("#ddlPDistrict").val($scope.EmpDetails.PDisticId);
+                    $("#ddlZone").val($scope.EmpDetails.DeptZoneId);
+                    $("#ddlVAgency").val($scope.EmpDetails.ValidationAgencyId);
+                    $("#ddlTrade").val($scope.EmpDetails.TradeId);
+                    $("#ddlIdProofType").val($scope.EmpDetails.IdProofType);
+                    $("#ddlEmpType").val($scope.EmpDetails.EmpTypeId);
+                    $("#ddlContractor").val($scope.EmpDetails.ContractorId);
+
                 }
             }, function (error) {
                 HideLoader();
@@ -216,7 +343,6 @@ function UploadA() {
             $("#webcam").hide();
             $("#imgCapture").show();
             $("#imgCapture").attr("src", response);
-            $("#AdhaarImagehidden").val(response)
             HideLoader();
         },
         error: function (er) {

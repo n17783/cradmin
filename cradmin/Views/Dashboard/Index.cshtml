@@ -2,7 +2,6 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="EmployeeController">
     <div class="col-md-12">
         <h3>Employee OneTime Registeration Process</h3>
@@ -10,7 +9,12 @@
             <div class="box-body">
                 <div class="form-group">
                     <label>Aadhar No</label>
-                    <input type="text" class="form-control" data-ng-model="EmployeeModal.AadharNo" placeholder="Enter Aadhar No ..." data-ng-blur="CheckAdhaarExist();">
+                    <input type="text" class="form-control" data-ng-model="Emp.AadharNo" placeholder="Enter Aadhar No ..." data-ng-blur="CheckAdhaarExist();">
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.AadharNo">{{ErrorModel.ErrorMessageAdhaarNo}}</span>
+                </div>
+                <div class="form-group">
+                    <label>Aadhar Image</label>
+                    <input type="file" class="form-control">
                 </div>
                 <div class="form-group" data-ng-switch="IsNewUser">
                     <label>Exit Status</label>
@@ -20,52 +24,55 @@
                 </div>
                 <div class="form-group">
                     <label>Select Zone</label>
-                    <select class="form-control" id="ddlZone">
-                    </select>
+                    <select class="form-control" id="ddlZone" data-ng-disabled="IsNewUser!=1"></select>
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.DeptZoneId">{{ErrorModel.ErrorMessageDeptZoneId}}</span>
                 </div>
-
+                <div class="form-group">
+                    <label>Already Validated</label>
+                    <input type="checkbox" class="checkbox" id="chkIsAlreadyValidated" />
+                </div>
                 <div class="form-group">
                     <label>Select Validation Agency</label>
-                    <select class="form-control" id="ddlVAgency">
-                    </select>
+                    <select class="form-control" id="ddlVAgency" data-ng-disabled="IsNewUser!=1"></select>
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.ValidationAgencyId">{{ErrorModel.ErrorMessageValidationAgencyId}}</span>
                 </div>
                 <div class="form-group">
                     <label>Select Trade</label>
-                    <select class="form-control" id="ddlTrade">
-                    </select>
+                    <select class="form-control" id="ddlTrade" data-ng-disabled="IsNewUser!=1"></select>
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.TradeId">{{ErrorModel.ErrorMessageTradeId}}</span>
                 </div>
-<<<<<<< HEAD
-                <div style="display:inline-block">
-=======
                 <div>
->>>>>>> 9f4951a7948d260d94e81d311d44a50a03f979d3
                     <div class="form-group">
                         <label>First Name</label>
                         <input type="text" class="form-control" placeholder="Enter First Name ..." data-ng-model="Emp.FName">
+                        <span class="badge badge-danger" data-ng-show="ErrorModel.FName">{{ErrorModel.ErrorMessageFName}}</span>
                     </div>
                     <div class="form-group">
                         <label>Middle Name</label>
                         <input type="text" class="form-control" placeholder="Enter Middle Name ..." data-ng-model="Emp.MName">
+                        <span class="badge badge-danger" data-ng-show="ErrorModel.MName">{{ErrorModel.ErrorMessageMName}}</span>
                     </div>
                     <div class="form-group">
                         <label>Last Name</label>
                         <input type="text" class="form-control" placeholder="Enter Last Name ..." data-ng-model="Emp.LName">
+                        <span class="badge badge-danger" data-ng-show="ErrorModel.LName">{{ErrorModel.ErrorMessageLName}}</span>
                     </div>
 
                     <div class="form-group">
                         <label>Date Of Reporting</label>
-<<<<<<< HEAD
-                        <input type="text" class="form-control" placeholder="Enter Date Of Reporting ...">
-=======
-                        <input type="text" class="form-control" placeholder="Enter Date Of Reprting ..." data-ng-model="EmpDetails.DateOfReport">
->>>>>>> 9f4951a7948d260d94e81d311d44a50a03f979d3
+                        <div class='input-group date' id='dtReport'>
+                            <input type="text" class="form-control" placeholder="Enter Date Of Reprting ..." data-ng-model="EmpDetails.DateOfReport">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-time"></span>
+                            </span>
+                            <span class="badge badge-danger" data-ng-show="ErrorModel.DateOfReport">{{ErrorModel.ErrorMessageDateOfReport}}</span>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>Select Id Proof Type</label>
-                        <select class="form-control">
-                            <option>Aadhar</option>
-                            <option>PAN</option>
-                            <option>Driving Licence</option>
+                        <select class="form-control" id="ddlIdProofType" data-ng-disabled="IsNewUser!=1">
+                            <option value="PAN">PAN</option>
+                            <option value="DL">Driving Licence</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -83,6 +90,7 @@
                     <div class="form-group">
                         <label> Village </label>
                         <input type="text" class="form-control" placeholder="Enter Permanant House NO And Name ..." data-ng-model="EmpDetails.PVillageId">
+                        <span class="badge badge-danger" data-ng-show="ErrorModel.PVillageId">{{ErrorModel.ErrorMessagePVillageId}}</span>
                     </div>
                     <div class="form-group">
                         <label>Permanant Taluka</label>
@@ -90,23 +98,23 @@
                     </div>
                     <div class="form-group">
                         <label> Country</label>
-                        <select id="ddlPCountry" class="form-control" data-ng-click="BindStateList()"></select>
+                        <select id="ddlPCountry" class="form-control" data-ng-click="BindPStateList()"></select>
+                        <span class="badge badge-danger" data-ng-show="ErrorModel.PCountryId">{{ErrorModel.ErrorMessagePContryId}}</span>
                     </div>
                     <div class="form-group">
                         <label>State</label>
-                        <select id="ddlPState" class="form-control" data-ng-click="BindDistrictList()"></select>
+                        <select id="ddlPState" class="form-control" data-ng-click="BindPDistrictList()"></select>
+                        <span class="badge badge-danger" data-ng-show="ErrorModel.PStateId">{{ErrorModel.ErrorMessagePStateId}}</span>
                     </div>
                     <div class="form-group">
                         <label> Permanent  District</label>
                         <select class="form-control" id="ddlPDistrict"></select>
+                        <span class="badge badge-danger" data-ng-show="ErrorModel.PDisticId">{{ErrorModel.ErrorMessagePDisticId}}</span>
                     </div>
                     <div class="form-group">
                         <label> Permanant Pin Code</label>
                         <input type="text" class="form-control" placeholder="Enter Pin code ..." data-ng-model="EmpDetails.PPincodeId">
-                    </div>
-                    <div class="form-group">
-                        <label> Contact No</label>
-                        <input type="text" class="form-control" placeholder="Enter Contact No ...">
+                        <span class="badge badge-danger" data-ng-show="ErrorModel.PPincodeId">{{ErrorModel.ErrorMessagePPincodeId}}</span>
                     </div>
                 </div>
             </div>
@@ -119,7 +127,6 @@
                     <img id="imgCapture" style="display: none; width: 320px;height: 240px" />
                     <input type="button" class="btn btn-danger" value="Capture" onclick="Capture();" />
                     <button id="uploadAdhaar" class="btn btn-danger" type="button">Upload</button>
-                    <input type="hidden" id="profileImagehidden" />
                     <input id="AdhaarImage" type="file" style="display:none" />
                 </div>
                 <div class="form-group">
@@ -139,29 +146,14 @@
                 </div>
                 <div class="form-group">
                     <label>Select Employee Type</label>
-                    <select class="form-control" id="ddlEmpType">
-                        <option>Supervisor </option>
-                        <option>DM </option>
-                        <option>DM ShutDown </option>
-                        <option>Technical Fitter</option>
-                        <option>DM Special Shutdown</option>
-                    </select>
+                    <select class="form-control" id="ddlEmpType" data-ng-disabled="IsNewUser!=1"></select>
                 </div>
                 <div class="form-group">
                     <label>Select Contractor</label>
-                    <select class="form-control" id="ddlContractor">
-                        <option>Naresh Shinde</option>
-                        <option>Pandurang Kumbhar</option>
-                        <option>Mahesh Kumar</option>
-                    </select>
+                    <select class="form-control" id="ddlContractor" data-ng-disabled="IsNewUser!=1"></select>
                 </div>
-<<<<<<< HEAD
-                
-                <div style="display:inline-table">
-=======
 
                 <div>
->>>>>>> 9f4951a7948d260d94e81d311d44a50a03f979d3
                     <div class="form-group">
                         <div class="">
                             <label>
@@ -179,15 +171,19 @@
                     </div>
                     <div class="form-group">
                         <label>Date Of Birth</label>
-                        <input type="text" class="form-control" placeholder="Enter Date Of Birth ..." data-ng-model="Emp.DOB">
+                        <div class='input-group date' id='dtReport'>
+                            <input type="text" class="form-control" placeholder="Enter Date Of Birth ..." data-ng-model="Emp.DOB" id="dtBirth">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-time"></span>
+                            </span>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>Select BloodGroup</label>
                         <select class="form-control">
-                            <option>A+</option>
-                            <option>B+</option>
-                            <option>O-</option>
-
+                            <option value="A+">A+</option>
+                            <option value="B+">B+</option>
+                            <option value="O-">O-</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -208,8 +204,7 @@
                     </div>
                     <div class="form-group">
                         <label> Temporary  District</label>
-                        <select class="form-control" id="ddlDistrict">
-                        </select>
+                        <select class="form-control" id="ddlDistrict"></select>
                     </div>
                     <div class="form-group">
                         <label> Temporary  House NO And Name</label>
@@ -228,14 +223,10 @@
                         <label> Temporary  Pin Code</label>
                         <input type="text" class="form-control" placeholder="Enter Permanant House NO And Name ..." data-ng-model="EmpDetails.TPincode">
                     </div>
-<<<<<<< HEAD
-                   
-=======
                     <div class="form-group">
                         <label> Contact No</label>
                         <input type="text" class="form-control" placeholder="Enter Permanant House NO And Name ..." data-ng-model="EmpDetails.ContactNo">
                     </div>
->>>>>>> 9f4951a7948d260d94e81d311d44a50a03f979d3
                     <div class="form-group">
                         <label>Emergency Contact No</label>
                         <input type="text" class="form-control" placeholder="Enter Emergency Contact No ..." data-ng-model="EmpDetails.EmrContactNo">
@@ -245,56 +236,76 @@
             </div>
         </div>
     </div>
-
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <div class="box-body">
+                <div class="form-group">
+                    <button type="button" class="btn btn-danger" data-ng-click="RegisterStaff()">Save</button>
+                    <button type="button" class="btn btn-danger">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @Scripts.Render("~/Scripts/AdminLayout/EmployeeController.js")
 @Scripts.Render("~/Scripts/AdminLayout/jquery.webcam.js")
 <script type="text/javascript">
-    $(function () {
-        jQuery("#webcam").webcam({
-            width: 320,
-            height: 240,
-            mode: "save",
-            swffile: '@Url.Content("~/Scripts/AdminLayout/jscam.swf")',
-            debug: function (type, status) {
-                $('#camStatus').append(type + ": " + status + '<br /><br />');
-            },
-            onSave: function (data, ab) {
-                $.ajax({
-                    type: "POST",
-                    url: '/Home/GetCapture',
-                    data: '',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "text",
-                    success: function (r) {
-                        $("#webcam").hide();
-                        $("#imgCapture").show();
-                        $("#imgCapture").attr("src", r);
+            $(function () {
+                jQuery("#webcam").webcam({
+                    width: 320,
+                    height: 240,
+                    mode: "save",
+                    swffile: '@Url.Content("~/Scripts/AdminLayout/jscam.swf")',
+                    debug: function (type, status) {
+                        $('#camStatus').append(type + ": " + status + '<br /><br />');
                     },
-                    failure: function (response) {
-                        alert(response.d);
+                    onSave: function (data, ab) {
+                        $.ajax({
+                            type: "POST",
+                            url: '/Home/GetCapture',
+                            data: '',
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "text",
+                            success: function (r) {
+                                $("#webcam").hide();
+                                $("#imgCapture").show();
+                                $("#imgCapture").attr("src", r);
+                            },
+                            failure: function (response) {
+                                alert(response.d);
+                            }
+                        });
+                    },
+                    onCapture: function () {
+                        webcam.save('@Url.Action("Capture", "Dashboard")');
                     }
                 });
-            },
-            onCapture: function () {
-                webcam.save('@Url.Action("Capture", "Dashboard")');
-            }
-        });
 
-        $("#uploadAdhaar").click(function () {
-            files = $("#AdhaarImage").get(0).files;
-            if (files.length == 0) {
-                $("#AdhaarImage").trigger("click");
+                $("#uploadAdhaar").click(function () {
+                    files = $("#AdhaarImage").get(0).files;
+                    if (files.length == 0) {
+                        $("#AdhaarImage").trigger("click");
+                    }
+                    else {
+                        UploadA();
+                    }
+                })
+                $("#AdhaarImage").change(function () {
+                    $("#uploadAdhaar").trigger("click");
+                });
+                $("#dtReport").datepicker({
+                    format: "dd-MM-yyyy",
+                    autoclose: true,
+                    todayHighlight: true
+                }).datepicker('update', new Date());
+
+                $("#dtBirth").datepicker({
+                    format: "dd-MM-yyyy",
+                    autoclose: true,
+                    todayHighlight: true
+                }).datepicker('update', new Date());
+            });
+            function Capture() {
+                webcam.capture();
             }
-            else {
-                UploadA();
-            }
-        })
-        $("#AdhaarImage").change(function () {
-            $("#uploadAdhaar").trigger("click");
-        });
-    });
-    function Capture() {
-        webcam.capture();
-    }
 </script>

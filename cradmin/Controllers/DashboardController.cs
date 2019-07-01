@@ -30,7 +30,11 @@ namespace cradmin.Controllers
             return Json(objEmp.GetMasterData(), JsonRequestBehavior.AllowGet);
         }
 
-        
+        [HttpPost]
+        public ActionResult Save(MasterDataResponse model)
+        {
+            return Json(objEmp.RegisterEmployee(model), JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public ActionResult Capture()
