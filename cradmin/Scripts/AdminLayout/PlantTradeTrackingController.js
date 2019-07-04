@@ -48,22 +48,25 @@
 
     $scope.AddNew = false;
     $scope.Details = true;
-
+    $scope.Update = false;
     $scope.TotalRecords = 0;
     $scope.TotalPages = 0
 
-    $scope.TradeTrackingModel = { PageNo: 1, PageSize: 2, AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "", TradDescription: "", PlantTitle: "" };
+    $scope.TradeTrackingModel = { PageNo: 1, PageSize: 2, AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "", TradDescription: "", PlantTitle: "", PlantTradeTrackingId:"" };
 
     $scope.AddNewClick = function () {
         $scope.AddNew = true;
         $scope.Details = false;
-        $scope.TradeTrackingModel = { PageNo: 1, PageSize: 2, AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "", TradDescription: "", PlantTitle: "" };
+        $scope.Update = false;
+        $scope.TradeTrackingModel = null;
+       // $scope.TradeTrackingModel = { PageNo: 1, PageSize: 2, AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "", TradDescription: "", PlantTitle: "", PlantTradeTrackingId: "" };
     }
 
     $scope.CancelClick = function () {
         $scope.AddNew = false;
         $scope.Details = true;
-        $scope.TradeTrackingModel = { PageNo: 1, PageSize: 2, AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "", TradDescription: "", PlantTitle: "" };
+        $scope.TradeTrackingModel = null;
+        $scope.TradeTrackingModel = { PageNo: 1, PageSize: 2, AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "", TradDescription: "", PlantTitle: "", PlantTradeTrackingId: "" };
     }
 
     $scope.PageSizeList = [5, 10, 15, 20];
@@ -130,7 +133,7 @@
             else {
                 var objShowCustomAlert = new ShowCustomAlert({
                     Title: "Success",
-                    Message: "Record Seved Successfully",
+                    Message: "Record  Successfully",
                     Type: "alert"
                 });
                 objShowCustomAlert.ShowCustomAlertBox();
@@ -147,9 +150,10 @@
     $scope.Edit = function (TradeTracking) {
         $scope.Details = false;
         $scope.AddNew = true;
+        $scope.Update = true;
         $("#ddltrade").val(TradeTracking.TradeId)
         $("#ddlplant").val(TradeTracking.PlantId);
-        $scope.TradeTrackingModel = { AuthorizedStrenth: TradeTracking.AuthorizedStrenth, AuthorizedBy: TradeTracking.AuthorizedBy, AuthorizedDate: TradeTracking.AuthorizedDate, PlantId: TradeTracking.PlantId, TradeId: TradeTracking.TradeId };
+        $scope.TradeTrackingModel = { PlantTradeTrackingId:TradeTracking.PlantTradeTrackingId, AuthorizedStrenth: TradeTracking.AuthorizedStrenth, AuthorizedBy: TradeTracking.AuthorizedBy, AuthorizedDate: TradeTracking.AuthorizedDate, PlantId: TradeTracking.PlantId, TradeId: TradeTracking.TradeId };
 
 
     }
