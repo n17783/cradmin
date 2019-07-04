@@ -15,6 +15,7 @@ namespace cradmin.Models.BAL
         {
             
             List<SqlParameter> lst = new List<SqlParameter>();
+            lst.Add(new SqlParameter() { ParameterName = "@PlantTradeTrackingId", Value = model.PlantTradeTrackingId });
             lst.Add(new SqlParameter() { ParameterName = "@AuthorizedStrenth", Value = model.AuthorizedStrenth });
             lst.Add(new SqlParameter() { ParameterName = "@AuthorizedBy", Value = model.AuthorizedBy });
             lst.Add(new SqlParameter() { ParameterName = "@AuthorizedDate", Value = model.AuthorizedDate });
