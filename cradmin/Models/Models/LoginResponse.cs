@@ -262,13 +262,13 @@ namespace cradmin.Models.Models
         public int TradeId { get; set; }
         public string AuthorizedStrenth { get; set; }
         public string AuthorizedBy { get; set; }
-        public string AuthorizedDate { get; set; }
+        public DateTime AuthorizedDate { get; set; }
         public string PlantTitle { get; set; }
         public int EntryBy { get; set; }
         public int PlantId { get; set; }
         public bool IsContinew { get; set; }
-        public int UnAuthorizedBy { get; set; }
-        public int UnAuthorizedDate { get; set; }
+        public string UnAuthorizedBy { get; set; }
+        public DateTime UnAuthorizedDate { get; set; }
         public int ExitEntryBy { get; set; }
         public string TradDescription { get; set; }
 

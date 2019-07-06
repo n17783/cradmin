@@ -32,8 +32,16 @@
                 </div>
                 <div class="form-group">
                     <label>Authorised Date</label>
-                    <input type="text" class="form-control" id="ddlAdate" placeholder="Enter Authorised Date ..." data-ng-model="TradeTrackingModel.AuthorizedDate">
+                    <div class='input-group date' id='dtReport'>
+                        <input type="text" class="form-control" id="ddlAdate" placeholder="Enter Authorised Date ..." data-ng-model="TradeTrackingModel.AuthorizedDate |mydate|date: 'dd-mm-yyyy'">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-time"></span>
+                        </span>
+                    </div>
                 </div>
+                
+                
+                
                 
             </div>
             <div class="form-group">
@@ -98,7 +106,7 @@
 
                         <td>{{TradeTracking.AuthorizedStrenth}}</td>
                         <td>{{TradeTracking.AuthorizedBy}}</td>
-                        <td>{{TradeTracking.AuthorizedDate |mydate|date: 'dd-mm-yyyy'}}</td>
+                        <td>{{TradeTracking.AuthorizedDate |mydate|date: ' dd-mm-yyyy' }}</td>
                         <td>
                             <button type="button" class="btn btn-danger" data-ng-click="Edit(TradeTracking)" data-toggle="tooltip"
                                     title="Update">
@@ -130,4 +138,66 @@
     </div>
 </div>
 @Scripts.Render("~/Scripts/AdminLayout/PlantTradeTrackingController.js")
+
+<script type="text/javascript">
+            $(function () {
+                jQuery("#webcam").webcam({
+                    width: 320,
+                    height: 240,
+                    mode: "save",
+                    swffile: '@Url.Content("~/Scripts/AdminLayout/jscam.swf")',
+                    debug: function (type, status) {
+                        $('#camStatus').append(type + ": " + status + '<br /><br />');
+                    },
+                    onSave: function (data, ab) {
+                        $.ajax({
+                            type: "POST",
+                            url: '/Home/GetCapture',
+                            data: '',
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "text",
+                            success: function (r) {
+                                $("#webcam").hide();
+                                $("#imgCapture").show();
+                                $("#imgCapture").attr("src", r);
+                            },
+                            failure: function (response) {
+                                alert(response.d);
+                            }
+                        });
+                    },
+                    onCapture: function () {
+                        webcam.save('@Url.Action("Capture", "Dashboard")');
+                    }
+                });
+
+                $("#uploadAdhaar").click(function () {
+                    files = $("#AdhaarImage").get(0).files;
+                    if (files.length == 0) {
+                        $("#AdhaarImage").trigger("click");
+                    }
+                    else {
+                        UploadA();
+                    }
+                })
+                $("#AdhaarImage").change(function () {
+                    $("#uploadAdhaar").trigger("click");
+                });
+                $("#dtReport").datepicker({
+                    format: "dd-MM-yyyy",
+                    autoclose: true,
+                    todayHighlight: true
+                }).datepicker('update', new Date());
+
+                $("#ddlAdate").datepicker({
+                    format: "dd-MM-yyyy",
+                    autoclose: true,
+                    todayHighlight: true
+                }).datepicker('update', new Date());
+            });
+            function Capture() {
+                webcam.capture();
+            }
+</script>
+
 
