@@ -29,6 +29,7 @@ CRAdminApp.controller("LoginController", ['$scope', '$http', '$filter', '$rootSc
                 objShowCustomAlert.ShowCustomAlertBox();
             }
             else {
+                document.cookie = "Token="+ response.data.Token +"; expires="+ new Date() +"; path=/";
                 window.location = $scope.urlBase + "/dashboard/index";
             }
         }, function (error) {

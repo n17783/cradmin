@@ -31,6 +31,7 @@ namespace cradmin.Models.Models
         public int RollId { get; set; }
         public int EmployeeId { get; set; }
         public int Authorised { get; set; }
+        public Guid Token { get; set; }
 
     }
 
