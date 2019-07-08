@@ -17,14 +17,13 @@ namespace cradmin.Controllers
     public class AccountController : Controller
     {
         AccountBusiness objUser = new AccountBusiness();
-        
+
         [AllowAnonymous]
         [HttpPost]
         public ActionResult Login(LoginViewModel model)
         {
-            return Json(objUser.VerifyUserLogin(model),JsonRequestBehavior.AllowGet);
+            return Json(objUser.VerifyUserLogin(model), JsonRequestBehavior.AllowGet);
         }
-        
 
         //
         // GET: /Account/ForgotPassword
@@ -34,7 +33,11 @@ namespace cradmin.Controllers
             return View();
         }
 
-        
+        [HttpPost]
+        public ActionResult LogOff(string Token)
+        {
+            return Json(objUser.LogOff(Token), JsonRequestBehavior.AllowGet);
+        }
         //
         // GET: /Account/ForgotPasswordConfirmation
         [AllowAnonymous]
@@ -50,7 +53,5 @@ namespace cradmin.Controllers
         {
             return code == null ? View("Error") : View();
         }
-
-        
     }
 }

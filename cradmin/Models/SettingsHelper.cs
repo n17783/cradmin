@@ -72,13 +72,13 @@ namespace cradmin.Models
     public class Error
     {
         public int Status { get; set; }
-
+        // Status : 1=Success, 0=Failure, 2=Unauth
         public string ErrorMessage { get; set; }
         public int PageNo { get; set; }
         public int PageSize { get; set; }
         public int TotalRecords { get; set; }
 
-
+        public int LoginUserId { get; set; }
     }
 
     public static class Extensions

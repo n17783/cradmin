@@ -9,19 +9,20 @@
             <div class="box-body">
                 <div class="form-group">
                     <label>Aadhar No</label>
-                    <input type="text" class="form-control" data-ng-model="Emp.AadharNo" placeholder="Enter Aadhar No ..." data-ng-blur="CheckAdhaarExist();">
+                    <input type="text" class="form-control" data-ng-model="Emp.AadharNo" placeholder="Enter Aadhar No ..." data-ng-blur="CheckAdhaarExist();" maxlength="12" data-ng-change="fromUser();"  >
                     <span class="badge badge-danger" data-ng-show="ErrorModel.AadharNo">{{ErrorModel.ErrorMessageAdhaarNo}}</span>
                 </div>
-                <div class="form-group">
-                    <label>Aadhar Image</label>
-                    <input type="file" class="form-control">
-                </div>
-                <div class="form-group" data-ng-switch="IsNewUser">
+                <div class="form-group" data-ng-switch="IsNewUser" style="color:coral">
                     <label>Exit Status</label>
                     <span ng-switch-when="0">Existing User</span>
                     <span ng-switch-when="1">New User</span>
                     <span ng-switch-when="2">Re Join</span>
                 </div>
+                <div class="form-group">
+                    <label>Aadhar Image</label>
+                    <input type="file" class="form-control">
+                </div>
+               
                 <div class="form-group">
                     <label>Select Zone</label>
                     <select class="form-control" id="ddlZone" data-ng-disabled="IsNewUser!=1"></select>
@@ -44,7 +45,7 @@
                 <div>
                     <div class="form-group">
                         <label>First Name</label>
-                        <input type="text" class="form-control" placeholder="Enter First Name ..." data-ng-model="Emp.FName">
+                        <input type="text" class="form-control" placeholder="Enter First Name ..." data-ng-model="Emp.FName"  />
                         <span class="badge badge-danger" data-ng-show="ErrorModel.FName">{{ErrorModel.ErrorMessageFName}}</span>
                     </div>
                     <div class="form-group">
@@ -157,13 +158,13 @@
                     <div class="form-group">
                         <div class="">
                             <label>
-                                <input type="radio" name="optionGender" id="rdoMale" data-ng-model="Emp.Gender" data-ng-value="1">
+                                <input type="radio" name="optionGender" id="rdoMale" data-ng-model="Emp.Gender" data-ng-value="0">
                                 Male
                             </label>
                         </div>
                         <div class="rado">
                             <label>
-                                <input type="radio" name="optionGender" id="rdoFemale" data-ng-value="0" data-ng-model="Emp.Gender">
+                                <input type="radio" name="optionGender" id="rdoFemale" data-ng-value="1" data-ng-model="Emp.Gender">
                                 Female
                             </label>
                         </div>
@@ -308,4 +309,6 @@
             function Capture() {
                 webcam.capture();
             }
+           
+
 </script>

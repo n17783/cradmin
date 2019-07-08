@@ -10,6 +10,35 @@ namespace cradmin.Models.BAL
 {
     public class AccountBusiness
     {
+
+        public bool ValidateToken(string AuthToken)
+        {
+            bool Valid = false;
+            List<SqlParameter> lst = new List<SqlParameter>();
+            lst.Add(new SqlParameter() { ParameterName = "@Token", Value = Guid.Parse(AuthToken), SqlDbType = SqlDbType.UniqueIdentifier });
+            SettingsHelper objHelper = SettingsHelper.Instance;
+            DataTable dt = objHelper.GetDataTable("ValidateToken", lst);
+            if (dt.Rows.Count > 0)
+            {
+                Valid = true;
+            }
+            return Valid;
+        }
+
+        public Error LogOff(string AuthToken)
+        {
+            Error Valid = new Error();
+            List<SqlParameter> lst = new List<SqlParameter>();
+            lst.Add(new SqlParameter() { ParameterName = "@Token", Value = Guid.Parse(AuthToken), SqlDbType = SqlDbType.UniqueIdentifier });
+            SettingsHelper objHelper = SettingsHelper.Instance;
+            DataTable dt = objHelper.GetDataTable("LogOff", lst);
+            if (dt.Rows.Count > 0)
+            {
+                Valid.Status = 1;
+            }
+            return Valid;
+        }
+
         public LoginResponse VerifyUserLogin(LoginViewModel model)
         {
             LoginResponse objLoginDetails = new LoginResponse();

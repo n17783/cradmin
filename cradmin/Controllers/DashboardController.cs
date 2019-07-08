@@ -1,4 +1,5 @@
-﻿using cradmin.Models.BAL;
+﻿using cradmin.Models;
+using cradmin.Models.BAL;
 using cradmin.Models.Models;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,10 @@ namespace cradmin.Controllers
 {
     public class DashboardController : Controller
     {
+        
         EmpployeeRegisterBAL objEmp = new EmpployeeRegisterBAL();
         // GET: Dashboard
+        [MyAuthorize]
         public ActionResult Index()
         {
             return View();
