@@ -14,7 +14,7 @@ namespace cradmin.Controllers
         // GET: ProjectType
         public ActionResult Index()
         {
-            return View();
+            return PartialView("Index");
         }
 
         [HttpPost]

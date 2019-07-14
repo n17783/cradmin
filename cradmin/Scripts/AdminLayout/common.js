@@ -46,15 +46,34 @@ function LogOff()
     var token=getCookie("Token");
     $.ajax({
         type: "POST",
-        url: GetVirtualDirectory() + "/Account/LogOff",
-        data: { Token: token },
-        success: function (students) {
-            //window.location = GetVirtualDirectory() + "/Home/Index";
+        url: GetVirtualDirectory() + '/Account/LogOff',
+        data: "{'Token':'"+ token +"'}",
+        contentType: "application/json;",
+        success: function (r) {
+            setCookie("Token", "");
+            window.location = GetVirtualDirectory() + "/Home/Index";
         },
         error: function (xhr, ajaxOptions, thrownError) {
             alert('Error during process: \n' + xhr.responseText);
         }
     });
+}
+
+function LoadUserControls(element) {
+    var url = $(element).attr("data-url");
+    $("#contentLoader").html("");
+    $.ajax({
+        url: url,
+        contentType: 'application/html; charset=utf-8',
+        type: 'GET',
+        dataType: 'html'
+    })
+    .success(function (result) {
+        $('#contentLoader').html(result);
+    })
+    .error(function (xhr, status) {
+        alert(status);
+    })
 }
 
 function setCookie(cname, cvalue, exdays) {

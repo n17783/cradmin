@@ -1,0 +1,44 @@
+﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="CategoryController">
+    <div class="col-md-12" data-ng-show="AddNew">
+        <h3>Trade Category</h3>
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Trade Category Description</label>
+                <input type="text" class="form-control" placeholder="Trade Category Description ..." data-ng-model="TradeModal.TradCDescription">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-danger" type="button" data-ng-click="Save()">Save</button>
+                <button class="btn btn-danger" type="button" data-ng-click="CancelClick()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" data-ng-show="Details">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="form-group">
+                <button class="btn btn-danger" type="button" data-ng-click="AddNewClick()">Add New</button>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Trade Category Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="trade in TradeList">
+                        <td>{{trade.TradeCId}}</td>
+                        <td>{{trade.TradCDescription}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <ul class="pager">
+                <li><a href="#">Page No : {{TradeModal.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
+                <li><a href="#" data-ng-click="Prev()">Previous</a></li>
+                <li><a href="#" data-ng-click="Next()">Next</a></li>
+            </ul>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

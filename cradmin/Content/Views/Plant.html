@@ -1,0 +1,87 @@
+﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="PlantController">
+    <div class="col-md-12" data-ng-show="AddNew">
+        <h3>Creation Of Trade Type</h3>
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Plant Name</label>
+                <input type="text" class="form-control" placeholder="Enter Plant Name ..." data-ng-model="PlantModel.PlantTitle">
+            </div>
+            <div class="form-group">
+                <label> Plant Information</label>
+
+                <input type="text" class="form-control" placeholder="Enter Plant Information ..." data-ng-model="PlantModel.PlantDescription">
+            </div>
+            <div class="form-group">
+                <label> Plant Address</label>
+                <input type="text" class="form-control" placeholder="Enter Plant Address ..." data-ng-model="PlantModel.PlantAddress">
+
+            </div>
+            <div class="form-group">
+                <label>First Phone Number</label>
+                <input type="text" class="form-control" placeholder="Enter First Phone Number ..." data-ng-model="PlantModel.PlantPhoneNo">
+
+            </div>
+            <div class="form-group">
+                <label> Second Phone Number</label>
+                <input type="text" class="form-control" placeholder="Enter Second Phone Number ..." data-ng-model="PlantModel.PlantPhoneNo2">
+
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-danger" type="button" data-ng-click="Save()">Save</button>
+                <button class="btn btn-danger" type="button" data-ng-click="CancelClick()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" data-ng-show="Details">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="form-group">
+                <button class="btn btn-danger" type="button" data-ng-click="AddNewClick()">Add New</button>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Plant Name</th>
+                        <th>Plant Description</th>
+                        <th>PlantAddress</th>
+                        <th>Plant Phone No first</th>
+                        <th>Plant Phone No Second</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="PlantType in PlantList">
+                        <td>{{PlantType.PlantId}}</td>
+                        <td>{{PlantType.PlantTitle}}</td>
+                        <td>{{PlantType.PlantDescription}}</td>
+                        <td>{{PlantType.PlantAddress}}</td>
+                        <td>{{PlantType.PlantPhoneNo}}</td>
+                        <td>{{PlantType.PlantPhoneNo2 }}</td>
+                        <td><span class="glyphicon glyphicon-edit" data-ng-click="EditPlantType(PlantType)"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="col-md-12">
+                <div class="col-md-2">
+                    <select class="form-control" style="margin-top:20px;" data-ng-model="PlantModel.PageSize">
+                        <option value="5">5</option>
+                        <option value="5">10</option>
+                    </select>
+                </div>
+                <div class="col-md-8">
+                    <ul class="pager">
+                        <li><a href="#">Page No : {{PlantModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
+                        <li><a href="#" data-ng-click="Prev(PlantModel.PageNo)">Previous</a></li>
+                        <li><a href="#" data-ng-click="Next(PlantModel.PageNo)">Next</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

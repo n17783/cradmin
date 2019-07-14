@@ -13,7 +13,6 @@ using cradmin.Models.BAL;
 
 namespace cradmin.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
         AccountBusiness objUser = new AccountBusiness();
