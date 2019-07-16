@@ -37,7 +37,7 @@
                 $scope.FormList2 = []; 
                 $scope.FormList3 = [];
                 var list1,list2,list3;
-                var group =[];//[ $scope.FormList1,$scope.FormList2, $scope.FormList3 ];
+                $scope.group1 =[];//[ $scope.FormList1,$scope.FormList2, $scope.FormList3 ];
                 var myarray = {};
                 var groupsize= $scope.FormList.length / 3;
                 var groupsize1 = groupsize;
@@ -50,19 +50,19 @@
                     $scope.FormList1.push($scope.FormList[i]);
                    
                 }
-                group.push($scope.FormList1);
+              
                 groupsize = i + groupsize;
                 for (i; i < groupsize; i++) {
                     $scope.FormList2.push($scope.FormList[i]);
                     
                 }
-                group.push($scope.FormList2);
+                
                 groupsize = i + groupsize;
                 for (i; i < groupsize; i++) {
                     $scope.FormList3.push($scope.FormList[i]);
                    
                 }
-                group.push($scope.FormList3);
+                $scope.group1 = [ $scope.FormList1,$scope.FormList2, $scope.FormList3 ];
                 
                
             }

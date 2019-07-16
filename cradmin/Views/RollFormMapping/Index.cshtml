@@ -32,9 +32,9 @@
                                
                             </tr>
                           </thead>
-           `             <tr data-ng-repeat="(key,value)in group">
+           `             <tr data-ng-repeat="gr in group1">
                              
-                            <td><input type="checkbox" class="checkbox" dat-ng-repeat="(FormList1 in value )" />{{FormList1.FormTitle }}</td>
+                            <td data-ng-repeat="form1 in gr">{{form1.FormTitle}}<input type="checkbox" class="checkbox" /></td>
                            
                            
                          
