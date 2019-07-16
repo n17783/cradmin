@@ -179,6 +179,7 @@
     <Compile Include="Controllers\PlantTradeTrackingController.cs" />
     <Compile Include="Controllers\ProjectTypeController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\RollFormMappingController.cs" />
     <Compile Include="Controllers\TradeController.cs" />
     <Compile Include="Controllers\ValidationAgencyController.cs" />
     <Compile Include="Global.asax.cs">
@@ -188,6 +189,7 @@
     <Compile Include="Models\BAL\AccountBusiness.cs" />
     <Compile Include="Models\BAL\CourseCreationCR.cs" />
     <Compile Include="Models\BAL\EmpployeeRegisterBAL.cs" />
+    <Compile Include="Models\BAL\FormAssignToRollCR.cs" />
     <Compile Include="Models\BAL\MainContractorCR.cs" />
     <Compile Include="Models\BAL\DeptZoneCR.cs" />
     <Compile Include="Models\BAL\EmployeeTypeCR.cs" />
@@ -203,6 +205,9 @@
     <Compile Include="Models\Models\CourseDataResponce.cs" />
     <Compile Include="Models\Models\LoginResponse.cs" />
     <Compile Include="Models\Models\MasterDataResponse.cs" />
+    <Compile Include="Models\Models\PlantTradeStreanth.cs" />
+    <Compile Include="Models\Models\RollFormMappingResponce.cs" />
+    <Compile Include="Models\MyAuthorizeAttribute.cs" />
     <Compile Include="Models\SessionManager.cs" />
     <Compile Include="Models\SettingsHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -288,6 +293,7 @@
     <Content Include="Scripts\AdminLayout\ProjectTypeController.js" />
     <Content Include="Scripts\AdminLayout\raphael.min.js" />
     <Content Include="Scripts\AdminLayout\RoleController.js" />
+    <Content Include="Scripts\AdminLayout\RollFormMappingController.js" />
     <Content Include="Scripts\AdminLayout\ShowCustomAlert.js" />
     <Content Include="Scripts\AdminLayout\TradeController.js" />
     <Content Include="Scripts\AdminLayout\ValidationAgencyController.js" />
@@ -371,6 +377,7 @@
     <Content Include="Views\PlantTradeTracking\Index.cshtml" />
     <Content Include="Views\CourseMaster\Index.cshtml" />
     <Content Include="Views\Plant\Index.cshtml" />
+    <Content Include="Views\RollFormMapping\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

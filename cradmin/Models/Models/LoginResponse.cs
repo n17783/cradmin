@@ -189,7 +189,7 @@ namespace cradmin.Models.Models
         public int ProjectTypeId { get; set; }
         public string ProjectTypeDescription { get; set; }
         public DateTime PTEnteryDate { get; set; }
-        public int TotalRecords { get; set; }
+       
         public int PTEntryBy { get; set; }
         public string CreatedBy { get; set; }
     }
@@ -203,7 +203,7 @@ namespace cradmin.Models.Models
         public string ContractorGstNo { get; set; }
         public string ContractorOfficeAddress { get; set; }
         public string ContractorPhoneNo { get; set; }
-        public int TotalRecords { get; set; }
+       
     }
 
     public class TradeType : Error
@@ -215,7 +215,7 @@ namespace cradmin.Models.Models
         public int EntryBy { get; set; }
         public string CreatedBy { get; set; }
         public DateTime SanctionDate { get; set; }
-        public int TotalRecords { get; set; }
+        
         
     }
 
@@ -245,7 +245,7 @@ namespace cradmin.Models.Models
         public string RoleEntryDate { get; set; }
         public string RoleEntryBy { get; set; }
         public string RoleEntryByName { get; set; }
-        public int TotalRecords { get; set; }
+       
     }
 
     public class ValidationAgencyModel : Error
@@ -255,7 +255,7 @@ namespace cradmin.Models.Models
         public string AgencyAddress { get; set; }
         public string AgencyContactNo { get; set; }
         public bool isContinew { get; set; }
-        public int TotalRecords { get; set; }
+        
     }
     public class PlantTradeTracking : Error
     {
@@ -272,6 +272,7 @@ namespace cradmin.Models.Models
         public DateTime UnAuthorizedDate { get; set; }
         public int ExitEntryBy { get; set; }
         public string TradDescription { get; set; }
+        
 
     }
     public class PlantModel : Error

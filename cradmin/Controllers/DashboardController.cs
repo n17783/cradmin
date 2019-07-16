@@ -15,7 +15,7 @@ namespace cradmin.Controllers
         
         EmpployeeRegisterBAL objEmp = new EmpployeeRegisterBAL();
         // GET: Dashboard
-        [MyAuthorize]
+        
         public ActionResult Index()
         {
             return View();

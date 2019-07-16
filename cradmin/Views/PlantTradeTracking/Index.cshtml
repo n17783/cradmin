@@ -33,7 +33,7 @@
                 <div class="form-group">
                     <label>Authorised Date</label>
                     <div class='input-group date' id='dtReport'>
-                        <input type="text" class="form-control" id="ddlAdate" placeholder="Enter Authorised Date ..." data-ng-model="TradeTrackingModel.AuthorizedDate">
+                        <input type="text" class="form-control" id="ddlAdate" placeholder="Enter Authorised Date ..." >
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-time"></span>
                         </span>
@@ -58,7 +58,7 @@
 
         <hr />
         <div class="col-md-5 divsearch">
-            <input type="text" placeholder="Search" class="form-control" data-ng-model="Prefix"
+            <input type="text" placeholder="Search" class="form-control" data-ng-model="TradeTrackingModel.Prefix"
                    data-ng-change="FilterList()" />
         </div>
         <div class="col-md-4">
@@ -86,7 +86,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        
                         <th>Plant Name</th>
                         <th>Trade Name Type</th>
                         <th>Authorized Strenth</th>
@@ -97,16 +97,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-ng-repeat="TradeTracking in PlantTradeTrackingList">
+                    <tr data-ng-repeat="TradeTracking in MainTradeTrackList">
 
-                        <td>{{TradeTracking.PlantTradeTrackingId}}</td>
+                        
                         <td>{{TradeTracking.PlantTitle}}</td>
 
                         <td>{{TradeTracking.TradDescription}}</td>
 
                         <td>{{TradeTracking.AuthorizedStrenth}}</td>
                         <td>{{TradeTracking.AuthorizedBy}}</td>
-                        <td>{{TradeTracking.AuthorizedDate |mydate|date: ' dd-mm-yyyy' }}</td>
+                        <td>{{TradeTracking.AuthorizedDate |mydate| date: ' dd-MM-yyyy' }}</td>
                         <td>
                             <button type="button" class="btn btn-danger" data-ng-click="Edit(TradeTracking)" data-toggle="tooltip"
                                     title="Update">
@@ -127,7 +127,7 @@
                     <ul class="pager">
                         <li><a href="#">Page No : {{TradeTrackingModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
                         <li><a href="#" data-ng-click="Prev()">Previous</a></li>
-                        <li><a href="#" data-ng-click="Next()">Next</a></li>
+                        <li><a href="#" data-ng-click="Next()" ng-disabled="next">Next</a></li>
                     </ul>
                 </div>
 

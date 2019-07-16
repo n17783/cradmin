@@ -79,6 +79,7 @@ namespace cradmin.Models
         public int TotalRecords { get; set; }
 
         public int LoginUserId { get; set; }
+        public string Prefix { get; set; }
     }
 
     public static class Extensions

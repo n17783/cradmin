@@ -11,6 +11,7 @@ namespace cradmin.Controllers
     public class PlantTradeTrackingController : Controller
     {
         PlantTradeTrackingCR objTradeTracking = new PlantTradeTrackingCR();
+        
         // GET: PlantTradeTracking
         public ActionResult Index()
         {
@@ -24,7 +25,7 @@ namespace cradmin.Controllers
         [HttpPost]
         public ActionResult GetTradeStrenth(PlantTradeTracking model)
         {
-            return Json(objTradeTracking.GetPlantTradeStrenth(), JsonRequestBehavior.AllowGet);
+            return Json(objTradeTracking.GetPlantTradeStrenth(model), JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult Save(PlantTradeTracking model)

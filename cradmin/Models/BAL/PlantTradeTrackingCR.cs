@@ -11,6 +11,8 @@ namespace cradmin.Models.BAL
     public class PlantTradeTrackingCR
     {
         PlantTradeTracking objPTTracking = new PlantTradeTracking();
+        SettingsHelper objHelper = SettingsHelper.Instance;
+       
         public PlantTradeTracking Save(PlantTradeTracking model)
         {
             
@@ -28,25 +30,23 @@ namespace cradmin.Models.BAL
             objPTTracking.Status = dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["SuccessFailed"].ToString()) : 0;
             return objPTTracking;
         }
-        public MasterDataResponse GetMasterData()
+        public PlantTradeStreanth GetMasterData()
         {
-            MasterDataResponse response = new MasterDataResponse();
-            List<SqlParameter> lst = new List<SqlParameter>();
-            lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
-            lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
-            SettingsHelper objHelper = SettingsHelper.Instance;
-            DataTable dtPlantList = objHelper.GetDataTable("Get_PlantList", lst);
-            lst = new List<SqlParameter>();
-            lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
-            lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
-            DataTable dtTradeList = objHelper.GetDataTable("Get_TradeList", lst);
+            PlantTradeStreanth response = new PlantTradeStreanth();
+            //List<SqlParameter> lst = new List<SqlParameter>();
+            //lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
+            //lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
+            DataTable dtPlantList = objHelper.GetDataTable("Get_PlantList");
+           
+            //lst = new List<SqlParameter>();
+            //lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
+            //lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
+            DataTable dtTradeList = objHelper.GetDataTable("Get_TradeList");
             response.PlantList = dtPlantList.ToList<PlantModel>();
             response.TradeList = dtTradeList.ToList<TradeType>();
             response.Status = 1;
             return response;
-            //lst = new List<SqlParameter>();
-            //lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
-            //lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
+
 
             //DataTable dtPlantAuthorisedStreanth = objHelper.GetDataTable("Get_PlantAuthorizedStrenth", lst);
             //lst = new List<SqlParameter>();
@@ -61,19 +61,29 @@ namespace cradmin.Models.BAL
             // response.PlantTradeTrackingList = dtPlantAuthorisedStreanth.ToList<PlantTradeTracking>();
 
         }
-        public MasterDataResponse GetPlantTradeStrenth()
+        public List<PlantTradeTracking> GetPlantTradeStrenth(PlantTradeTracking model)
         {
-            MasterDataResponse response = new MasterDataResponse();
-            List<SqlParameter> lst = new List<SqlParameter>();
-            lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
-            lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
+            try
+            {
+                List<SqlParameter> lst = new List<SqlParameter>();
+            lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = model.PageNo});
+            lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = model.PageSize });
+            lst.Add(new SqlParameter() { ParameterName = "@Prefix", Value = model.Prefix });
             SettingsHelper objHelper = SettingsHelper.Instance;
-            DataTable dtPlantTradeTrackingList = objHelper.GetDataTable("Get_PlantAuthorizedStrenth", lst);
            
-            response.PlantTradeTrackingList = dtPlantTradeTrackingList.ToList<PlantTradeTracking>();
+                DataTable dtPlantTradeTrackingList = objHelper.GetDataTable("Get_PlantAuthorizedStrenth", lst);
+                return dtPlantTradeTrackingList.ToList<PlantTradeTracking>();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+           
+           
+           
             
-            response.Status = 1;
-            return response;
+            
         }
             
     }

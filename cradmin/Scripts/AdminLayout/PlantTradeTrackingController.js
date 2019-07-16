@@ -6,6 +6,9 @@
     $scope.TradeList = [];
     $scope.MainTradeTrackList = [];
     $scope.SearchTradeTrackList = [];
+    $scope.TotalRecords = 0;
+    $scope.TotalPages = 0
+    $scope.Prefix="" ;
 
     function GetMasterDataList() {
         ShowLoader();
@@ -49,10 +52,11 @@
     $scope.AddNew = false;
     $scope.Details = true;
     $scope.Update = false;
-    $scope.TotalRecords = 0;
-    $scope.TotalPages = 0
+    $scope.next = true;
+    $scope.prev = true;
+   
 
-    $scope.TradeTrackingModel = { PageNo: 1, PageSize: 2, AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "", TradDescription: "", PlantTitle: "", PlantTradeTrackingId:"" };
+    $scope.TradeTrackingModel = { PageNo: 1, PageSize: 2, Prefix: "", AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "", TradDescription: "", PlantTitle: "", PlantTradeTrackingId: "" };
 
     $scope.AddNewClick = function () {
         $scope.AddNew = true;
@@ -66,7 +70,7 @@
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.TradeTrackingModel = null;
-        $scope.TradeTrackingModel = { PageNo: 1, PageSize: 2, AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "", TradDescription: "", PlantTitle: "", PlantTradeTrackingId: "" };
+        $scope.TradeTrackingModel = { PageNo: 1, PageSize: TradeTrackingModel.PageSize, Prefix: "", AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "", TradDescription: "", PlantTitle: "", PlantTradeTrackingId: "" };
     }
 
     $scope.PageSizeList = [5, 10, 15, 20];
@@ -114,7 +118,7 @@
     $scope.Update = function () {
         $scope.TradeTrackingModel.TradeId = $("#ddltrade").val();
         $scope.TradeTrackingModel.PlantId = $("#ddlplant").val();
-
+       
         ShowLoader();
         $http({
             method: 'post',
@@ -146,14 +150,17 @@
         });
     }
     //update
-
+     var objdatehelper = new datehelper({ format: "dd/MM/yyyy", cdate: new Date() });
     $scope.Edit = function (TradeTracking) {
         $scope.Details = false;
         $scope.AddNew = true;
         $scope.Update = true;
         $("#ddltrade").val(TradeTracking.TradeId)
         $("#ddlplant").val(TradeTracking.PlantId);
-        $scope.TradeTrackingModel = { PlantTradeTrackingId:TradeTracking.PlantTradeTrackingId, AuthorizedStrenth: TradeTracking.AuthorizedStrenth, AuthorizedBy: TradeTracking.AuthorizedBy, AuthorizedDate: TradeTracking.AuthorizedDate, PlantId: TradeTracking.PlantId, TradeId: TradeTracking.TradeId };
+        $("#ddlAdate").val(objdatehelper.getFormatteddate($filter('mydate')(TradeTracking.AuthorizedDate), "dd/mm/yyyy"));
+       
+       
+        $scope.TradeTrackingModel = { PlantTradeTrackingId:TradeTracking.PlantTradeTrackingId, AuthorizedStrenth: TradeTracking.AuthorizedStrenth, AuthorizedBy: TradeTracking.AuthorizedBy, PlantId: TradeTracking.PlantId, TradeId: TradeTracking.TradeId };
 
 
     }
@@ -167,9 +174,9 @@
             data: $scope.TradeTrackingModel,
         }).then(function (response) {
             HideLoader();
-            $scope.PlantTradeTrackingList = response.data.PlantTradeTrackingList;
-            $scope.MainTradeTrackList = response.data.PlantTradeTrackingList;
-            if (response.data.PlantTradeTrackingList.length > 0) {
+           
+            $scope.MainTradeTrackList = response.data;
+            if (response.data.length > 0) {
                 $scope.TotalRecords = response.data[0].TotalRecords;
                 $scope.TotalPages = parseInt($scope.TotalRecords / $scope.TradeTrackingModel.PageSize);
                 var reminder = $scope.TotalRecords % $scope.TradeTrackingModel.PageSize;
@@ -183,15 +190,35 @@
         });
     }
     //
+    $scope.Prev = function () {
+        if ($scope.TradeTrackingModel.PageNo > 1) {
+            $scope.TradeTrackingModel.PageNo--;
+            $scope.GetTradeTrackingList();
+        }
+    }
+
+    $scope.Next = function () {
+        if ($scope.TradeTrackingModel.PageNo < $scope.TotalPages) {
+            $scope.TradeTrackingModel.PageNo++;
+            $scope.GetTradeTrackingList();
+        }
+        if ($scope.TradeTrackingModel.PageNo == $scope.TotalPages)
+        {
+            $scope.next = true;
+            $scope.prev = true;
+        }
+    }
+
+
+    
     $scope.FilterList = function () {
-        var reg = new RegExp($scope.Prefix.toLowerCase());
-        $scope.MainTradeTrackList = $scope.PlantTradeTrackingList.filter(function (actype) {
-            return (reg.test(actype.PlantTitle.toLowerCase()));
-        });
+       
+        $scope.GetTradeTrackingList();
+        
         $scope.First();
     }
     $scope.Reset = function () {
-        $scope.MainTradeTrackList = $scope.PlantTradeTrackingList;
+        $scope.MainTradeTrackList = $scope.MainTradeTrackList;
         $scope.SearchTradeTrackList = $scope.MainTradeTrackList;
         $scope.First();
     }

@@ -14,9 +14,7 @@ namespace cradmin.Models.Models
             ValidationAgencyList = new List<ValidationAgency>();
             EmployeeTypeList = new List<EmployeeType>();
             ZoneList = new List<DeptZoneMaster>();
-            PlantList = new List<PlantModel>();
-            TradeList = new List<TradeType>();
-            PlantTradeTrackingList = new List<PlantTradeTracking>();
+           
             EmpExit = new EmployeeExit();
             Emp = new Employee();
             EmpDetails = new EmployeeDetails();
@@ -40,9 +38,7 @@ namespace cradmin.Models.Models
         public List<ValidationAgency> ValidationAgencyList { get; set; }
 
         public List<EmployeeType> EmployeeTypeList { get; set; }
-        public List<PlantTradeTracking> PlantTradeTrackingList { get; set; }
-        public List<PlantModel> PlantList { get; set; }
-        public List<TradeType> TradeList { get; set; }
+      
         public EmployeeExit EmpExit { get; set; }
         public Employee Emp { get; set; }
         public EmployeeDetails EmpDetails { get; set; }
