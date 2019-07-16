@@ -32,42 +32,28 @@
                     html += "<option value='" + value.RoleID + "'>" + value.RoleDescription + "</option>";
                 });
                 $("#ddlRoll").html(html);
-                
                 $scope.FormList1 = [];
-                $scope.FormList2 = []; 
-                $scope.FormList3 = [];
-                var list1,list2,list3;
-                $scope.group1 =[];//[ $scope.FormList1,$scope.FormList2, $scope.FormList3 ];
-                var myarray = {};
-                var groupsize= $scope.FormList.length / 3;
-                var groupsize1 = groupsize;
-                if ((groupsize1%3)>0) {
-                    groupsize1++;
+               $scope.group1 = [];
+                var j = 0;
+                var k = 0;
+                for (j = 0; j < $scope.FormList.length; j++)
+                {
+                    var i = 0;
+                    for (i; i < 3; i++) {
+                        if (k == $scope.FormList.length) {
+                            break;
+                        }
+                        $scope.FormList1.push($scope.FormList[k]);
+                        k++;
                 }
-               
-                var i = 0;
-                for (i; i < groupsize1; i++) {
-                    $scope.FormList1.push($scope.FormList[i]);
+                    $scope.group1[j] = $scope.FormList1;
+                    if (k == $scope.FormList.length) {
+                        break;
+                    }
+                    $scope.FormList1 = [];
                    
-                }
-              
-                groupsize = i + groupsize;
-                for (i; i < groupsize; i++) {
-                    $scope.FormList2.push($scope.FormList[i]);
-                    
-                }
-                
-                groupsize = i + groupsize;
-                for (i; i < groupsize; i++) {
-                    $scope.FormList3.push($scope.FormList[i]);
-                   
-                }
-                $scope.group1 = [ $scope.FormList1,$scope.FormList2, $scope.FormList3 ];
-                
-               
+               }
             }
-          
-
             else {
                 window.location = $scope.urlBase + "/RollFormMapping/index";
             }

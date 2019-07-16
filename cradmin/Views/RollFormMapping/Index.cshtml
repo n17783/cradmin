@@ -24,39 +24,29 @@
                 
                 <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
-                    <table class="table table-bordered table-striped mb-0" >
+                    <table class="table table-bordered table-striped mb-0">
                         <thead>
-                            <tr >
+                            <tr>
                                 <th scope="col">Form Name</th>
                                 <th scope="col">Form Name</th>
-                               
+                                <th scope="col">Form Name</th>
+
                             </tr>
-                          </thead>
-           `             <tr data-ng-repeat="gr in group1">
-                             
-                            <td data-ng-repeat="form1 in gr">{{form1.FormTitle}}<input type="checkbox" class="checkbox" /></td>
-                           
-                           
-                         
+                        </thead>
+                        `
+                        <tr data-ng-repeat="gr in group1">
+
+                            <td data-ng-repeat="form1 in gr">{{form1.FormTitle}}<input type="checkbox" class="checkbox" id="{{form1.FormId}}" /></td>
+
+
+
                         </tr>
-                        
-                            
-
-
-                       
-                        </table>
-                    </div> 
-               
-
+                    </table>
+                </div> 
                             <div class="form-group">
                                 <label>Authorised Authority</label>
                                 <input type="text" class="form-control" id="ddlAAuthorised" data-ng-model="FormToRollModel.AuthorisedBy" placeholder="Enter Authorised Person Name with Designation ...">
                             </div>
-
-
-
-
-
                 </div>
                 <div class="form-group">
                     <button class="btn btn-danger" type="button" data-ng-click="Save()" data-ng-show="Update==false && AddNew==true">Save</button>
