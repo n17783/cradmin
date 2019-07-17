@@ -41,7 +41,7 @@ namespace cradmin.Models.BAL
             //lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
             //lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
            DataTable dtFormList = objHelper.GetDataTable("GetFormForAssign");
-            response.RollList = dtRollList.ToList<RollResponce>();
+            response.RollList = dtRollList.ToList<RoleModel>();
             response.FormList = dtFormList.ToList<FormResponce>();
             response.Status = 1;
             return response;

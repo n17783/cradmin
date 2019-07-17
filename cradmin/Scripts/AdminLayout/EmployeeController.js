@@ -10,6 +10,7 @@
     $scope.StateList = [];
     $scope.CityList = [];
     $scope.IsNewUser = "";
+    $scope.Token=getCookie("token");
     $scope.Emp = { PageNo: 1, PageSize: 2, AdhaarNo: "", Regt_No: "", Gender: 0, FName: "", MName: "", LName: "", DOB: "", BloodGroup: "", EmpPhoto: "", PanNo: "", UserName:"" };
     $scope.EmpDetails = {
         EmpDetailsId: 0, PkId: 0, EmpTypeId: 0, JoiningStatus: 1, DateOfReport: "",
@@ -44,6 +45,10 @@
         $http({
             method: 'post',
             url: $scope.urlBase + '/Dashboard/GetMasterDataforRegister',
+            headers: {
+               'Content-Type':'application/x-www-form-urlencoded', 
+               'Token':$scope.Token,
+             },
             data: $scope.Emp,
         }).then(function (response) {
             HideLoader();
@@ -247,6 +252,8 @@
             });    
         }
     }
+
+
 
     $scope.CheckAdhaarExist = function () {
         if ($scope.Emp.AadharNo.length < 12) {

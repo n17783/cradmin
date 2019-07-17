@@ -27,6 +27,7 @@ namespace cradmin.Controllers
             return Json(response, JsonRequestBehavior.AllowGet);
         }
 
+        [MyAuthorize]
         [HttpPost]
         public ActionResult GetMasterDataforRegister()
         {

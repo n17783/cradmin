@@ -7,9 +7,6 @@
 <div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="RollFormMappingController">
     <div class="col-md-12" data-ng-show="AddNew">
         <h3>Form Assign To Roll</h3>
-
-
-
         <div class="col-md-6">
             <div class="box-body">
                 <input type="hidden" data-ng-model="FormToRollModel.RollFormMappingId" />
@@ -17,43 +14,31 @@
                     <label>Select Roll</label>
                     <select class="form-control" id="ddlRoll" ng-disabled="Update"></select>
                 </div>
-                @*<div class="form-group">
-                <label>Select Form</label>
-                <select class="form-control" id="ddlForm" ng-disabled="Update"></select>
-            </div>*@
-                
                 <div class="table-wrapper-scroll-y my-custom-scrollbar">
-
                     <table class="table table-bordered table-striped mb-0">
                         <thead>
                             <tr>
                                 <th scope="col">Form Name</th>
                                 <th scope="col">Form Name</th>
                                 <th scope="col">Form Name</th>
-
                             </tr>
                         </thead>
-                        `
                         <tr data-ng-repeat="gr in group1">
-
                             <td data-ng-repeat="form1 in gr">{{form1.FormTitle}}<input type="checkbox" class="checkbox" id="{{form1.FormId}}" /></td>
-
-
-
                         </tr>
                     </table>
-                </div> 
-                            <div class="form-group">
-                                <label>Authorised Authority</label>
-                                <input type="text" class="form-control" id="ddlAAuthorised" data-ng-model="FormToRollModel.AuthorisedBy" placeholder="Enter Authorised Person Name with Designation ...">
-                            </div>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-danger" type="button" data-ng-click="Save()" data-ng-show="Update==false && AddNew==true">Save</button>
-                    <button class="btn btn-danger" type="button" data-ng-click="Save()" data-ng-show="Update">Update</button>
-                    <button class="btn btn-danger" type="button" data-ng-click="CancelClick()">Cancel</button>
+                    <label>Authorised Authority</label>
+                    <input type="text" class="form-control" id="ddlAAuthorised" data-ng-model="FormToRollModel.AuthorisedBy" placeholder="Enter Authorised Person Name with Designation ...">
                 </div>
             </div>
+            <div class="form-group">
+                <button class="btn btn-danger" type="button" data-ng-click="Save()" data-ng-show="Update==false && AddNew==true">Save</button>
+                <button class="btn btn-danger" type="button" data-ng-click="Save()" data-ng-show="Update">Update</button>
+                <button class="btn btn-danger" type="button" data-ng-click="CancelClick()">Cancel</button>
+            </div>
+        </div>
 
     </div>
 

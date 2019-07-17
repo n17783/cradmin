@@ -107,10 +107,18 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
         //name: 'DeptZone', 11
         name: $scope.domainpath + '/Content/Views/DeptZone.html',
         url: $scope.domainpath + '/Content/Views/DeptZone.html'
+    },
+    {
+        //name: 'DeptZone', 11
+        name: $scope.domainpath + '/Content/Views/RollFormMapping.html',
+        url: $scope.domainpath + '/Content/Views/RollFormMapping.html'
     }];
 
     $scope.LoadUserControls = function (tname) {
         switch (tname) {
+            case "RollFormMapping":
+                $scope.template = $scope.templates[12];
+                break
             case "DeptZone":
                 $scope.template=$scope.templates[11];
                 break
