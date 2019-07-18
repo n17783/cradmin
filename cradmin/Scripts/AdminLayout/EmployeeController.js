@@ -45,10 +45,7 @@
         $http({
             method: 'post',
             url: $scope.urlBase + '/Dashboard/GetMasterDataforRegister',
-            headers: {
-               'Content-Type':'application/x-www-form-urlencoded', 
-               'Token':$scope.Token,
-             },
+            headers: getToken(),
             data: $scope.Emp,
         }).then(function (response) {
             HideLoader();

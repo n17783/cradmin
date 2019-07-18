@@ -13,6 +13,15 @@ function LoadViews(UserControl)
     }
 }
 
+function getToken()
+{
+    var token={
+               'Content-Type':'application/x-www-form-urlencoded', 
+               'Token':getCookie('Token'),
+             };
+    return token;
+}
+
 function Logout() {
     window.location = GetVirtualDirectory() + '/Account/LogOff';
 }

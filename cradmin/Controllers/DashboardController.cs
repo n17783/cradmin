@@ -34,6 +34,7 @@ namespace cradmin.Controllers
             return Json(objEmp.GetMasterData(), JsonRequestBehavior.AllowGet);
         }
 
+        [MyAuthorize]
         [HttpPost]
         public ActionResult Save(MasterDataResponse model)
         {
