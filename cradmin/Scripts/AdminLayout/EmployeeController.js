@@ -346,33 +346,10 @@
         }
 
     }
-    //$scope.fromUser1=function()
-    //{
-    //    if ($scope.Emp.FName == '/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/') {
-    //        var transformedInput = $scope.Emp.FName.replace(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/g, '');
-
-    //        if (transformedInput !== '') {
-    //            $scope.Emp.FName = transformedInput;
-    //            var st;
-                
-    //        }
-    //        else {
-    //            $scope.Emp.FName = '';
-
-    //        }
-    //    }
-
-    //}
-
-
-
-
-
-    
-       
-    
 
     $scope.init = function () {
+        checkToken();
+        $("#ddlPageSize").val(5);
         $("#rdoMale").prop("checked", true);
         $("#rdoDM").prop("checked", true);
         GetMasterDataList();

@@ -53,7 +53,6 @@
     }
 
     $scope.Prev = function () {
-        debugger;
         if ($scope.RoleModel.PageNo > 1) {
             $scope.RoleModel.PageNo--;
             $scope.GetRoleList();
@@ -61,7 +60,6 @@
     }
 
     $scope.Next = function () {
-        debugger;
         if ($scope.RoleModel.PageNo < $scope.TotalPages) {
             $scope.RoleModel.PageNo++;
             $scope.GetRoleList();
@@ -69,7 +67,6 @@
     }
 
     $scope.GetRoleList = function () {
-        debugger;
         ShowLoader();
         $http({
             method: 'post',
@@ -77,7 +74,6 @@
             data: $scope.RoleModel,
         }).then(function (response) {
             HideLoader();
-            debugger;
             $scope.RoleList = response.data;
             if (response.data.length > 0) {
                 $scope.TotalRecords = response.data[0].TotalRecords;
@@ -94,6 +90,8 @@
     }
 
     $scope.init = function () {
+        checkToken();
+        $("#ddlPageSize").val(5);
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.GetRoleList();

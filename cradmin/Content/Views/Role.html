@@ -1,7 +1,6 @@
 ﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="RoleController">
+    <div class="col-md-12"><h3 class="header">Role Master</h3></div>
     <div class="col-md-12" data-ng-show="AddNew">
-        <h3>Creation Of Role</h3>
-        <div class="col-md-2"></div>
         <div class="col-md-6">
             <div class="form-group">
                 <label>Role Description</label>
@@ -14,12 +13,11 @@
         </div>
     </div>
     <div class="col-md-12" data-ng-show="Details">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="form-group">
                 <button class="btn btn-danger" type="button" data-ng-click="AddNewClick()">Add New</button>
             </div>
-            <table class="table">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -38,8 +36,8 @@
                 </tbody>
             </table>
             <div class="col-md-12">
-                <div class="col-md-2">
-                    <select class="form-control" style="margin-top:20px;" data-ng-model="RoleModel.PageSize">
+                <div class="col-md-4">
+                    <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
                         <option value="5">5</option>
                         <option value="5">10</option>
                     </select>

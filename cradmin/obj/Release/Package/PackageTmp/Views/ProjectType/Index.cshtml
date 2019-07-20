@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="ProjectTypeController">
+    <div class="col-md-12" data-ng-show="AddNew">
+        <h3>Creation Of Project Type</h3>
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Project Type Description</label>
+                <input type="text" class="form-control" placeholder="Project Type Description ..." data-ng-model="ProjectTypeModel.ProjectTypeDescription">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-danger" type="button" data-ng-click="Save()">Save</button>
+                <button class="btn btn-danger" type="button" data-ng-click="CancelClick()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" data-ng-show="Details">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="form-group">
+                <button class="btn btn-danger" type="button" data-ng-click="AddNewClick()">Add New</button>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Project Type Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="ProjectType in ProjectTypeList">
+                        <td>{{ProjectType.ProjectTypeId}}</td>
+                        <td>{{ProjectType.ProjectTypeDescription}}</td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+            <div class="col-md-12">
+                <div class="col-md-2">
+                    <select class="form-control" style="margin-top:20px;" data-ng-model="ProjectTypeModel.PageSize" >
+                        <option value="5">5</option>
+                        <option value="5">10</option>
+                    </select>
+                </div>
+                <div class="col-md-8">
+                    <ul class="pager">
+                        <li><a href="#">Page No : {{ProjectTypeModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
+                        <li><a href="#" data-ng-click="Prev()">Previous</a></li>
+                        <li><a href="#" data-ng-click="Next()">Next</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+@Scripts.Render("~/Scripts/AdminLayout/ProjectTypeController.js")
+

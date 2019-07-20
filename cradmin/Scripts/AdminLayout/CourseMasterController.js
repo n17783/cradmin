@@ -100,6 +100,7 @@
     }
 
     $scope.init = function () {
+        $("#ddlPageSize").val(5);
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.GetCourseMasterResponse();

@@ -225,6 +225,8 @@
 
 
     $scope.init = function () {
+        checkToken();
+        $("#ddlPageSize").val(5);
         GetMasterDataList();
         $scope.GetTradeTrackingList();
     }

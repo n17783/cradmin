@@ -1,0 +1,106 @@
+﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="RollFormMappingController">
+    <div class="col-md-12"><h3 class="header">Roll Form Mapping</h3></div>
+    <div class="col-md-12" data-ng-show="AddNew">
+        <div class="col-md-6">
+            <div class="box-body">
+                <input type="hidden" data-ng-model="FormToRollModel.RollFormMappingId" />
+                <div class="form-group">
+                    <label>Select Roll</label>
+                    <select class="form-control" id="ddlRoll" ng-disabled="Update"></select>
+                </div>
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    <table class="table table-bordered table-striped mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Form Name</th>
+                                <th scope="col">Form Name</th>
+                                <th scope="col">Form Name</th>
+                            </tr>
+                        </thead>
+                        <tr data-ng-repeat="gr in group1">
+                            <td data-ng-repeat="form1 in gr">{{form1.FormTitle}}<input type="checkbox" class="checkbox" id="{{form1.FormId}}" /></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="form-group">
+                    <label>Authorised Authority</label>
+                    <input type="text" class="form-control" id="ddlAAuthorised" data-ng-model="FormToRollModel.AuthorisedBy" placeholder="Enter Authorised Person Name with Designation ...">
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-danger" type="button" data-ng-click="Save()" data-ng-show="Update==false && AddNew==true">Save</button>
+                <button class="btn btn-danger" type="button" data-ng-click="Save()" data-ng-show="Update">Update</button>
+                <button class="btn btn-danger" type="button" data-ng-click="CancelClick()">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="col-md-12" data-ng-show="Details">
+
+        <hr />
+        <div class="col-md-8 divsearch">
+            <input type="text" placeholder="Search" class="form-control" data-ng-model="FormToRollModel.Prefix"
+                   data-ng-change="FilterList()" />
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-danger" data-ng-click="FilterList()" data-toggle="tooltip"
+                    title="Search">
+                Search
+            </button>
+            <button type="button" class="btn btn-danger" data-ng-click="AddNewClick()" data-toggle="tooltip"
+                    title="New">
+                New
+            </button>
+            <button type="button" class="btn btn-danger" data-ng-click="Reset()" data-toggle="tooltip"
+                    title="Reset">
+                Reset
+            </button>
+        </div>
+        <hr />
+        <div class="col-md-8">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Roll Description</th>
+                        <th>Form Name</th>
+                        <th>Authorized By</th>
+                        <th>System Entery Date </th>
+                        <th>Update </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="FormToRoll in MainTradeTrackList">
+                        <td>{{FormToRoll.RoleDescription}}</td>
+                        <td>{{FormToRoll.FormTitle}}</td>
+                        <td>{{FormToRoll.AuthorisedBy}}</td>
+                        <td>{{FormToRoll.EntryDate |mydate| date: ' dd-MM-yyyy' }}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger" data-ng-click="Edit(FormToRoll)" data-toggle="tooltip"
+                                    title="Update">
+                                Edit
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
+                        <option value="5">5</option>
+                        <option value="5">10</option>
+                    </select>
+                </div>
+                <div class="col-md-8">
+                    <ul class="pager">
+                        <li><a href="#">Page No : {{FormToRollModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
+                        <li><a href="#" data-ng-click="Prev()">Previous</a></li>
+                        <li><a href="#" data-ng-click="Next()" ng-disabled="next">Next</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

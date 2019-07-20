@@ -32,7 +32,7 @@ namespace cradmin.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult LogOff(string Token)
         {
             return Json(objUser.LogOff(Token), JsonRequestBehavior.AllowGet);

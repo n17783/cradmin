@@ -78,6 +78,8 @@
     }
 
     $scope.init = function () {
+        checkToken();
+        $("#ddlPageSize").val(5);
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.GetProjectTypeList();

@@ -1,6 +1,6 @@
 ﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="CategoryController">
+    <div class="col-md-12"><h3 class="header">Trade Category</h3></div>
     <div class="col-md-12" data-ng-show="AddNew">
-        <h3>Trade Category</h3>
         <div class="col-md-2"></div>
         <div class="col-md-6">
             <div class="form-group">
@@ -14,12 +14,11 @@
         </div>
     </div>
     <div class="col-md-12" data-ng-show="Details">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="form-group">
                 <button class="btn btn-danger" type="button" data-ng-click="AddNewClick()">Add New</button>
             </div>
-            <table class="table">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -33,11 +32,21 @@
                     </tr>
                 </tbody>
             </table>
-            <ul class="pager">
-                <li><a href="#">Page No : {{TradeModal.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
-                <li><a href="#" data-ng-click="Prev()">Previous</a></li>
-                <li><a href="#" data-ng-click="Next()">Next</a></li>
-            </ul>
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
+                        <option value="5">5</option>
+                        <option value="5">10</option>
+                    </select>
+                </div>
+                <div class="col-md-8">
+                    <ul class="pager">
+                        <li><a href="#">Page No : {{TradeModal.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
+                        <li><a href="#" data-ng-click="Prev()">Previous</a></li>
+                        <li><a href="#" data-ng-click="Next()">Next</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <div class="col-md-2"></div>
     </div>

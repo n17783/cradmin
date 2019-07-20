@@ -14,3 +14,9 @@ pre.prettyprint { padding:15px; border:1px solid #eee; border-radius:5px; backgr
 .notopmargin{
     margin-top:0px;
 }
+.header
+{
+    text-align: center;
+    color: maroon;
+    font-size: 3rem;
+}

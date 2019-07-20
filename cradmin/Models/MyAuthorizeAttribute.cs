@@ -56,13 +56,20 @@ namespace cradmin.Models
             {
                 if (cookie==null)
                 {
+                    filterContext.HttpContext.Response.Cookies.Clear();
                     var redirectTarget = new System.Web.Routing.RouteValueDictionary(new { action = "Index", controller = "Home", area = "" });
                     filterContext.Result = new RedirectToRouteResult(redirectTarget);
                 }
                 else
                 {
                     string authtoken = cookie.Value;
-                    if (ValidateAuthToken(authtoken))
+                    if (string.IsNullOrEmpty(authtoken))
+                    {
+                        filterContext.HttpContext.Response.Cookies.Clear();
+                        var redirectTarget = new System.Web.Routing.RouteValueDictionary(new { action = "Index", controller = "Home", area = "" });
+                        filterContext.Result = new RedirectToRouteResult(redirectTarget);
+                    }
+                    else if (ValidateAuthToken(authtoken))
                     {
                         HttpCookie StudentCookies = new HttpCookie("Token");
                         StudentCookies.Value = authtoken;
@@ -72,6 +79,7 @@ namespace cradmin.Models
                     }
                     else
                     {
+                        filterContext.HttpContext.Response.Cookies.Clear();
                         var redirectTarget = new System.Web.Routing.RouteValueDictionary(new { action = "Index", controller = "Home", area = "" });
                         filterContext.Result = new RedirectToRouteResult(redirectTarget);
                     }
