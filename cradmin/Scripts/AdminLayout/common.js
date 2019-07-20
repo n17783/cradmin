@@ -45,7 +45,7 @@ function checkToken()
 {
     var token = getCookie("Token");
     if (token == "") {
-        window.location = $scope.urlBase + "/Home/Index";
+        window.location = GetVirtualDirectory() + "/Home/Index";
     }
 }
 

@@ -7,19 +7,19 @@
     $scope.TotalRecords = 0;
     $scope.TotalPages = 0
 
-    $scope.EmployeeTypeModel = { PageNo: 1, PageSize: 2, EmpTypeId: "", EmpDesignation: "", IsDmOrStaff: null, CreatedByAuthority: "" };
+    $scope.EmployeeTypeModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), EmpTypeId: "", EmpDesignation: "", IsDmOrStaff: null, CreatedByAuthority: "" };
 
     $scope.AddNewClick = function () {
         $scope.AddNew = true;
         $scope.Details = false;
         
-        $scope.EmployeeTypeModel = { PageNo: 1, PageSize: 2, EmpTypeId:0, EmpDesignation: "", IsDmOrStaff: null, CreatedByAuthority: "" };
+        $scope.EmployeeTypeModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), EmpTypeId:0, EmpDesignation: "", IsDmOrStaff: null, CreatedByAuthority: "" };
     }
 
     $scope.CancelClick = function () {
         $scope.AddNew = false;
         $scope.Details = true;
-        $scope.EmployeeTypeModel = { PageNo: 1, PageSize: 2, EmpTypeId: 0, EmpDesignation: "", IsDmOrStaff: null, CreatedByAuthority: "" };
+        $scope.EmployeeTypeModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), EmpTypeId: 0, EmpDesignation: "", IsDmOrStaff: null, CreatedByAuthority: "" };
     }
 
     $scope.PageSizeList = [5, 10, 15, 20];
@@ -109,6 +109,7 @@
     $scope.init = function () {
         checkToken();
         $("#ddlPageSize").val(5);
+        $scope.EmployeeTypeModel.PageSize = $("#ddlPageSize").val();
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.GetEmpTypeList();

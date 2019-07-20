@@ -19,7 +19,7 @@
         $scope.AddNew = true;
         $scope.Details = false;
         $scope.RoleModel = {
-            PageNo: 1, PageSize: 5, RoleId: 0, RoleDescription: "", DeptId: "",
+            PageNo: 1, PageSize: $("#ddlPageSize").val(), RoleId: 0, RoleDescription: "", DeptId: "",
             DeptName: "", RoleEntryDate: "", RoleEntryBy: "", RoleEntryByName: ""
         };
     }
@@ -28,7 +28,7 @@
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.RoleModel = {
-            PageNo: 1, PageSize: 5, RoleId: 0, RoleDescription: "", DeptId: "",
+            PageNo: 1, PageSize: $("#ddlPageSize").val(), RoleId: 0, RoleDescription: "", DeptId: "",
             DeptName: "", RoleEntryDate: "", RoleEntryBy: "", RoleEntryByName: ""
         };
     }
@@ -92,6 +92,7 @@
     $scope.init = function () {
         checkToken();
         $("#ddlPageSize").val(5);
+        $scope.RoleModel.PageSize = $("#ddlPageSize").val();
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.GetRoleList();

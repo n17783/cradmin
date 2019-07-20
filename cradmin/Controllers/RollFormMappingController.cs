@@ -1,4 +1,5 @@
-﻿using cradmin.Models.BAL;
+﻿using cradmin.Models;
+using cradmin.Models.BAL;
 using cradmin.Models.Models;
 using System;
 using System.Collections.Generic;
@@ -17,16 +18,22 @@ namespace cradmin.Controllers
         {
             return View();
         }
+
+        [MyAuthorize]
         [HttpPost]
         public ActionResult GetMasterDataforAssign()
         {
             return Json(objFormToRoll.GetMasterData(), JsonRequestBehavior.AllowGet);
         }
+
+        [MyAuthorize]
         [HttpPost]
         public ActionResult GetFormToRoll(RollFormMappResponce model)
         {
             return Json( objFormToRoll.GetFormToRoll(model).ToList<RollFormMappResponce>(), JsonRequestBehavior.AllowGet);
         }
+
+        [MyAuthorize]
         [HttpPost]
         public ActionResult Save(RollFormMappResponce model)
         {

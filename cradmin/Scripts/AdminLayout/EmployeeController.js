@@ -140,9 +140,6 @@
             $("#ddlPState").html(html5);
         }
     }
-
-   
-    
     
     $scope.BindPDistrictList = function () {
         if ($("#ddlPState").val() > 0) {
@@ -350,10 +347,10 @@
     $scope.init = function () {
         checkToken();
         $("#ddlPageSize").val(5);
+        $scope.Emp.PageSize = $("#ddlPageSize").val();
         $("#rdoMale").prop("checked", true);
         $("#rdoDM").prop("checked", true);
         GetMasterDataList();
-       
     }
 
     $scope.init();

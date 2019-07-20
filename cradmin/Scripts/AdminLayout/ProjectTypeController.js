@@ -7,18 +7,18 @@
     $scope.TotalRecords = 0;
     $scope.TotalPages = 0
 
-    $scope.ProjectTypeModel = { PageNo: 1, PageSize: 2, ProjectTypeDescription: "", PTEnteryDate:"", CreatedBy: "" };
+    $scope.ProjectTypeModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), ProjectTypeDescription: "", PTEnteryDate: "", CreatedBy: "" };
 
     $scope.AddNewClick = function () {
         $scope.AddNew = true;
         $scope.Details = false;
-        $scope.ProjectTypeModel = { PageNo: 1, PageSize: 2, ProjectTypeDescription: "" };
+        $scope.ProjectTypeModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), ProjectTypeDescription: "" };
     }
 
     $scope.CancelClick = function () {
         $scope.AddNew = false;
         $scope.Details = true;
-        $scope.ProjectTypeModel = { PageNo: 1, PageSize: 2, ProjectTypeDescription: "" };
+        $scope.ProjectTypeModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), ProjectTypeDescription: "" };
     }
 
     $scope.PageSizeList=[5,10,15,20];
@@ -80,6 +80,7 @@
     $scope.init = function () {
         checkToken();
         $("#ddlPageSize").val(5);
+        $scope.ProjectTypeModel.PageSize = $("#ddlPageSize").val();
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.GetProjectTypeList();

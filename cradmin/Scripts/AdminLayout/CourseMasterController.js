@@ -7,18 +7,18 @@
     $scope.TotalRecords = 0;
     $scope.TotalPages = 0
 
-    $scope.CourseMasterModel = { PageNo: 1, PageSize: 2, CourseId: "", CourseTitle: "", CourseDescription: "", CourseCreatedBy: "", EntryBy: "", EntryDate: "", CourseSanctionDate:"" };
+    $scope.CourseMasterModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), CourseId: "", CourseTitle: "", CourseDescription: "", CourseCreatedBy: "", EntryBy: "", EntryDate: "", CourseSanctionDate: "" };
 
     $scope.AddNewClick = function () {
         $scope.AddNew = true;
         $scope.Details = false;
-        $scope.CourseMasterModel = { PageNo: 1, PageSize: 2, CourseId: "", CourseTitle: "", CourseDescription: "", CourseCreatedBy: "", EntryBy: "", EntryDate: "", CourseSanctionDate: "" };
+        $scope.CourseMasterModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), CourseId: "", CourseTitle: "", CourseDescription: "", CourseCreatedBy: "", EntryBy: "", EntryDate: "", CourseSanctionDate: "" };
     }
 
     $scope.CancelClick = function () {
         $scope.AddNew = false;
         $scope.Details = true;
-        $scope.CourseMasterModel = { PageNo: 1, PageSize: 2, CourseId: "", CourseTitle: "", CourseDescription: "", CourseCreatedBy: "", EntryBy: "", EntryDate: "", CourseSanctionDate: "" };
+        $scope.CourseMasterModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), CourseId: "", CourseTitle: "", CourseDescription: "", CourseCreatedBy: "", EntryBy: "", EntryDate: "", CourseSanctionDate: "" };
     }
 
     $scope.PageSizeList = [5, 10, 15, 20];
@@ -100,10 +100,11 @@
     }
 
     $scope.init = function () {
+        checkToken();
         $("#ddlPageSize").val(5);
+        $scope.CourseMasterModel.PageSize = $("#ddlPageSize").val();
         $scope.AddNew = false;
         $scope.Details = true;
-        $scope.GetCourseMasterResponse();
         $scope.GetCourseMasterResponse();
     }
 

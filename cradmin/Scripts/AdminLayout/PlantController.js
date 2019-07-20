@@ -7,18 +7,18 @@
     $scope.TotalRecords = 0;
     $scope.TotalPages = 0
 
-    $scope.PlantModel = { PageNo: 1, PageSize: 2, PlantId: "", PlantTitle: "", PlantDescription: "", PlantAddress: "", PlantPhoneNo: "", PlantPhoneNo2: "" };
+    $scope.PlantModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), PlantId: "", PlantTitle: "", PlantDescription: "", PlantAddress: "", PlantPhoneNo: "", PlantPhoneNo2: "" };
 
     $scope.AddNewClick = function () {
         $scope.AddNew = true;
         $scope.Details = false;
-        $scope.PlantModel = { PageNo: 1, PageSize: 2, PlantId: "", PlantTitle: "", PlantDescription: "", PlantAddress: "", PlantPhoneNo: "", PlantPhoneNo2: "" };
+        $scope.PlantModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), PlantId: "", PlantTitle: "", PlantDescription: "", PlantAddress: "", PlantPhoneNo: "", PlantPhoneNo2: "" };
     }
 
     $scope.CancelClick = function () {
         $scope.AddNew = false;
         $scope.Details = true;
-        $scope.PlantModel = { PageNo: 1, PageSize: 2, PlantId: "", PlantTitle: "", PlantDescription: "", PlantAddress: "", PlantPhoneNo: "", PlantPhoneNo2: "" };
+        $scope.PlantModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), PlantId: "", PlantTitle: "", PlantDescription: "", PlantAddress: "", PlantPhoneNo: "", PlantPhoneNo2: "" };
     }
 
     $scope.PageSizeList = [5, 10, 15, 20];
@@ -111,6 +111,7 @@
     $scope.init = function () {
         checkToken();
         $("#ddlPageSize").val(5);
+        $scope.PlantModel.PageSize = $("#ddlPageSize").val();
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.GetPlantList();

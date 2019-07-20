@@ -1,4 +1,5 @@
-﻿using cradmin.Models.BAL;
+﻿using cradmin.Models;
+using cradmin.Models.BAL;
 using cradmin.Models.Models;
 using System;
 using System.Collections.Generic;
@@ -17,12 +18,14 @@ namespace cradmin.Controllers
             return View();
         }
 
+        [MyAuthorize]
         [HttpPost]
         public ActionResult Save(EmployeeType model)
         {
             return Json(objEmployeeType.Save(model));
         }
 
+        [MyAuthorize]
         [HttpPost]
         public ActionResult GetEmpType(EmployeeType model)
         {

@@ -42,40 +42,32 @@ namespace cradmin.Models.BAL
         public RollFormMappingResponce GetMasterData()
         {
             RollFormMappingResponce response = new RollFormMappingResponce();
-           
             DataTable dtRollList = objHelper.GetDataTable("GetRoleListForFormAssign");
-
-           
-           DataTable dtFormList = objHelper.GetDataTable("GetFormForAssign");
+            DataTable dtFormList = objHelper.GetDataTable("GetFormForAssign");
             response.RollList = dtRollList.ToList<RoleModel>();
             response.FormList = dtFormList.ToList<FormResponce>();
             response.Status = 1;
             return response;
-          }
+        }
         public List<RollFormMappResponce> GetFormToRoll(RollFormMappResponce model)
         {
+            DataTable dtFormToRollList = new DataTable();
+            List<RollFormMappResponce> lstrespose = new List<RollFormMappResponce>();
             try
             {
                 List<SqlParameter> lst = new List<SqlParameter>();
                 lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = model.PageNo });
                 lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = model.PageSize });
                 lst.Add(new SqlParameter() { ParameterName = "@Prefix", Value = model.Prefix });
-
                 SettingsHelper objHelper = SettingsHelper.Instance;
-
-                DataTable dtFormToRollList = objHelper.GetDataTable("Get_FormMappingToRoll", lst);
-                return dtFormToRollList.ToList<RollFormMappResponce>();
+                dtFormToRollList= objHelper.GetDataTable("Get_FormMappingToRoll", lst);
+                lstrespose= dtFormToRollList.ToList<RollFormMappResponce>();
             }
             catch (Exception ex)
             {
-
-                throw;
+                
             }
-
-
-
-
-
+            return lstrespose;
         }
 
     }

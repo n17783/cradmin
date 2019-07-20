@@ -18,7 +18,7 @@
         $scope.AddNew = true;
         $scope.Details = false;
         $scope.ContractorModel = {
-            PageNo: 1, PageSize: 2, ContractorId: 0, ContractorName: "", ContractorCompanyName: "",
+            PageNo: 1, PageSize: $("#ddlPageSize").val(), ContractorId: 0, ContractorName: "", ContractorCompanyName: "",
             ContractorRegistrationNo: "", ContractorGstNo: "", ContractorOfficeAddress: "", ContractorPhoneNo: ""
         };
     }
@@ -27,7 +27,7 @@
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.ContractorModel = {
-            PageNo: 1, PageSize: 2, ContractorId: 0, ContractorName: "", ContractorCompanyName: "",
+            PageNo: 1, PageSize: $("#ddlPageSize").val(), ContractorId: 0, ContractorName: "", ContractorCompanyName: "",
             ContractorRegistrationNo: "", ContractorGstNo: "", ContractorOfficeAddress: "", ContractorPhoneNo: ""
         };
     }
@@ -88,6 +88,7 @@
     $scope.init = function () {
         checkToken();
         $("#ddlPageSize").val(5);
+        $scope.ContractorModel.PageSize = $("#ddlPageSize").val();
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.GetContractorList();
