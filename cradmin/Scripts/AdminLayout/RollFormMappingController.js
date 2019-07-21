@@ -6,10 +6,13 @@
     $scope.FormList = [];
     $scope.RollFormMappingList = [];
     $scope.SearchFormRollList = [];
+    $scope.FormIdList = [];
     $scope.TotalRecords = 0;
     $scope.TotalPages = 0
     $scope.Prefix = "";
-   
+    var formlist = "";
+    var discon1 = "conti";
+    
 
     function GetMasterDataList() {
         ShowLoader();
@@ -24,12 +27,12 @@
                 $scope.FormList = response.data.FormList;
 
 
-                $scope.RollList.splice(0, 0, { RoleID: 0, RoleDescription: "---Select Roll---" });
+                $scope.RollList.splice(0, 0, { RollId: 0, RollDescription: "---Select Roll---" });
              
 
                 var html = "";
                 angular.forEach($scope.RollList, function (value, key) {
-                    html += "<option value='" + value.RoleID + "'>" + value.RoleDescription + "</option>";
+                    html += "<option value='" + value.RollId + "'>" + value.RollDescription + "</option>";
                 });
                 $("#ddlRoll").html(html);
                 $scope.FormList1 = [];
@@ -62,14 +65,29 @@
             console.log(error);
         });
     }
+    var FormId;
+    var selected = [];
+    //$scope.selectedForm = [];
+    //$scope.selectedItem = {};
+    var i = 0;
+    function selectedform() {
+        if (selected.length == 0) {
+            var objShowCustomAlert = new ShowCustomAlert({
+                Title: "Error",
+                Message: "Please select at list One Form for Assign To roll ",
+                Type: "alert"
+            });
+            objShowCustomAlert.ShowCustomAlertBox();
 
-
-    $scope.FormList1 = [];
-    $scope.FormList2 = [];
-    $scope.FormList3 = [];
-
-    //
-
+        }
+        for (i in $scope.selectedItem)
+        {
+            selected.push(i);
+        }
+        formlist = selected.join(',');
+        
+    }
+   
     $scope.AddNew = false;
     $scope.Details = true;
     $scope.Update = false;
@@ -77,29 +95,34 @@
     $scope.prev = true;
 
 
-    $scope.FormToRollModel = { PageNo: 1, PageSize: 4, Prefix: "", AuthorizedBy: "", RoleID: "", FormID: "", RoleDescription: "", FormTitle: "", RollFormMappingId: "", EntryBy: 1, EntryDate: null };
+    $scope.FormToRollModel = { PageNo: 1, PageSize: 4, Prefix: "", AuthorisedBy: "", RollId: null, FormId: 0, RollDescription: "", FormTitle: "", RollFormMappingId: "", EntryBy: 1, EntryDate: null, AllFormId: "", discontinew: discon1 };
 
     $scope.AddNewClick = function () {
         $scope.AddNew = true;
         $scope.Details = false;
         $scope.Update = false;
         $scope.FormToRollModel = null;
-        // $scope.FormToRollModel = { PageNo: 1, PageSize: 2, AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "", TradDescription: "", PlantTitle: "", PlantTradeTrackingId: "" };
     }
 
     $scope.CancelClick = function () {
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.FormToRollModel = null;
-        //$scope.FormToRollModel = { PageNo: 1, PageSize: FormToRollModel.PageSize, Prefix: "", AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "", TradDescription: "", PlantTitle: "", PlantTradeTrackingId: "" };
     }
 
     $scope.PageSizeList = [5, 10, 15, 20];
-    $scope.PlantTradeTrackingList = [];
+    
 
     $scope.Save = function () {
-        $scope.FormToRollModel.RoleID = $("#ddlRoll").val();
-        $scope.FormToRollModel.RoleID = $("#ddlForm").val();
+        selectedform();
+        
+       
+        $scope.FormToRollModel.discontinew = discon1;
+        $scope.FormToRollModel.RollFormMappingId = null;
+        $scope.FormToRollModel.RollId = $("#ddlRoll").val();
+        
+        $scope.FormToRollModel.AllFormId = formlist;
+       
        // $scope.FormToRollModel.AuthorizedBy = $("#ddlAAuthority").val();
         ShowLoader();
         $http({
@@ -115,6 +138,7 @@
                     Type: "alert"
                 });
                 objShowCustomAlert.ShowCustomAlertBox();
+                selected = [];
             }
             else {
                 var objShowCustomAlert = new ShowCustomAlert({
@@ -123,6 +147,7 @@
                     Type: "alert"
                 });
                 objShowCustomAlert.ShowCustomAlertBox();
+                selected = [];
             }
             $scope.CancelClick();
             $scope.GetFormToRollList();
@@ -130,14 +155,28 @@
             HideLoader();
             console.log(error);
         });
+       
     }
     //Edit 
 
     //update
-    $scope.Update = function () {
-        $scope.FormToRollModel.RoleID = $("#ddlRoll").val();
-        $scope.FormToRollModel.FormId = $("#ddlForm").val();
+    $scope.Update = function (FormToRoll) {
+        if (selected.length == 0) {
+            var objShowCustomAlert = new ShowCustomAlert({
+                Title: "Error",
+                Message: "Please select at list One Form for Assign To roll ",
+                Type: "alert"
+            });
+            objShowCustomAlert.ShowCustomAlertBox();
 
+        }
+         $scope.FormToRollModel = { RollFormMappingId: FormToRoll.RollFormMappingId, RollDescription: FormToRoll.RollDescription, FormTitle: FormToRoll.FormTitle, AuthorisedBy: FormToRoll.AuthorisedBy, FormId: FormToRoll.FormId, RollId: FormToRoll.RollId, EntryDate: FormToRoll.EntryDate, };
+        $scope.FormToRollModel.RollId = $("#ddlRoll").val();
+       
+        $scope.FormToRollModel.AllFormId = formlist;
+        $scope.FormToRollModel.discontinew = discon1;
+        
+        selected = [];
         ShowLoader();
         $http({
             method: 'post',
@@ -162,26 +201,62 @@
                 objShowCustomAlert.ShowCustomAlertBox();
             }
             $scope.CancelClick();
-            $scope.GetFormToRollList();
+          
         }, function (error) {
             HideLoader();
             console.log(error);
         });
+        $scope.GetFormToRollList();
     }
+
     //update
+    // discontinew
+    $scope.Discontinew = function (FormToRoll) {
+       
+        selected = [];
+        $scope.FormToRollModel = { RollFormMappingId: FormToRoll.RollFormMappingId, RollDescription: FormToRoll.RollDescription, FormTitle: FormToRoll.FormTitle, AuthorisedBy: FormToRoll.AuthorisedBy, FormId: FormToRoll.FormId, RollId: FormToRoll.RollId, EntryDate: FormToRoll.EntryDate, };
+        $scope.FormToRollModel.discontinew = 'Discon';
+        
+
+        ShowLoader();
+        $http({
+            method: 'post',
+            url: $scope.urlBase + '/RollFormMapping/Save',
+            data: $scope.FormToRollModel,
+        }).then(function (response) {
+            HideLoader();
+            if (response.data.Status == 0) {
+                var objShowCustomAlert = new ShowCustomAlert({
+                    Title: "Error",
+                    Message: "Technical Error for Discontinuation",
+                    Type: "alert"
+                });
+                objShowCustomAlert.ShowCustomAlertBox();
+            }
+            else {
+                var objShowCustomAlert = new ShowCustomAlert({
+                    Title: "Success",
+                    Message: " This Form Successfully Discontinew",
+                    Type: "alert"
+                });
+                objShowCustomAlert.ShowCustomAlertBox();
+            }
+            $scope.CancelClick();
+           
+        }, function (error) {
+            HideLoader();
+            console.log(error);
+        });
+        $scope.GetFormToRollList();
+    }
+    //discontinew
     var objdatehelper = new datehelper({ format: "dd/MM/yyyy", cdate: new Date() });
     $scope.Edit = function (FormToRoll) {
         $scope.Details = false;
         $scope.AddNew = true;
         $scope.Update = true;
-        $("#ddlRoll").val(FormToRoll.RoleID)
-        $("#ddlForm").val(FormToRoll.FormId);
-       // $("#ddlAdate").val(objdatehelper.getFormatteddate($filter('mydate')(TradeTracking.AuthorizedDate), "dd/mm/yyyy"));
-
-        
-        $scope.FormToRollModel = { RollFormMappingId: FormToRoll.RollFormMappingId, RoleDescription: FormToRoll.RoleDescription, FormTitle: FormToRoll.FormTitle, AuthorizedBy: FormToRoll.AuthorizedBy, FormId: FormToRoll.FormId, RoleID: FormToRoll.RoleID, EntryDate:FormToRoll.EntryDate };
-        
-
+        $("#ddlRoll").val(FormToRoll.RollId);
+        $scope.FormToRollModel = { RollFormMappingId: FormToRoll.RollFormMappingId, RollDescription: FormToRoll.RollDescription, FormTitle: FormToRoll.FormTitle, AuthorisedBy: FormToRoll.AuthorisedBy, FormId: FormToRoll.FormId, RollId: FormToRoll.RollId, EntryDate: FormToRoll.EntryDate, };
     }
     //Edit
 

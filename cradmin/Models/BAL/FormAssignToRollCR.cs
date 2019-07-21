@@ -15,51 +15,43 @@ namespace cradmin.Models.BAL
 
         public RollFormMappingResponce Save(RollFormMappResponce model)
         {
+            try
+            {
+               
+                List<SqlParameter> lst = new List<SqlParameter>();
+                lst.Add(new SqlParameter() { ParameterName = "@RollFormMappingId", Value = model.RollFormMappingId });
+                lst.Add(new SqlParameter() { ParameterName = "@RollId", Value = model.RollId });
+                lst.Add(new SqlParameter() { ParameterName = "@allformid", Value =model.AllFormId });
+                lst.Add(new SqlParameter() { ParameterName = "@EntryBy", Value = model.EntryBy });
+                lst.Add(new SqlParameter() { ParameterName = "@AuthorisedBy", Value = model.AuthorisedBy });
+                lst.Add(new SqlParameter() { ParameterName = "@discontinew", Value = model.@discontinew });
 
-            List<SqlParameter> lst = new List<SqlParameter>();
-            lst.Add(new SqlParameter() { ParameterName = "@RollFormMappingId", Value = model.RollFormMappingId });
-            lst.Add(new SqlParameter() { ParameterName = "@RollId", Value = model.RollId });
-            lst.Add(new SqlParameter() { ParameterName = "@FormId", Value = model.FormId });
-            lst.Add(new SqlParameter() { ParameterName = "@EntryBy", Value = model.EntryBy });
-            lst.Add(new SqlParameter() { ParameterName = "@TradeId", Value = model.AuthorisedBy });
-           
-            SettingsHelper objHelper = SettingsHelper.Instance;
-            DataTable dt = objHelper.GetDataTable("Insert_FormMappingToRoll", lst);
+                SettingsHelper objHelper = SettingsHelper.Instance;
 
-             objFormToRoll.Status = dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["SuccessFailed"].ToString()) : 0;
+                DataTable dt = objHelper.GetDataTable("Insert_FormMappingToRoll", lst);
+
+            objFormToRoll.Status = dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["SuccessFailed"].ToString()) : 0;
             return objFormToRoll;
+        }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
         public RollFormMappingResponce GetMasterData()
         {
             RollFormMappingResponce response = new RollFormMappingResponce();
-            //List<SqlParameter> lst = new List<SqlParameter>();
-            //lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
-            //lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
-            DataTable dtRollList = objHelper.GetDataTable("GetRoleList");
+           
+            DataTable dtRollList = objHelper.GetDataTable("GetRoleListForFormAssign");
 
-            //lst = new List<SqlParameter>();
-            //lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
-            //lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
+           
            DataTable dtFormList = objHelper.GetDataTable("GetFormForAssign");
             response.RollList = dtRollList.ToList<RoleModel>();
             response.FormList = dtFormList.ToList<FormResponce>();
             response.Status = 1;
             return response;
-
-
-            //DataTable dtPlantAuthorisedStreanth = objHelper.GetDataTable("Get_PlantAuthorizedStrenth", lst);
-            //lst = new List<SqlParameter>();
-            //lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
-            //lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
-
-            //DataTable dtEmployeeTypeList = objHelper.GetDataTable("GetEmployeeTypeList", lst);
-
-
-
-            //response.EmployeeTypeList = dtEmployeeTypeList.ToList<EmployeeType>();
-            // response.PlantTradeTrackingList = dtPlantAuthorisedStreanth.ToList<PlantTradeTracking>();
-
-        }
+          }
         public List<RollFormMappResponce> GetFormToRoll(RollFormMappResponce model)
         {
             try
@@ -68,6 +60,7 @@ namespace cradmin.Models.BAL
                 lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = model.PageNo });
                 lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = model.PageSize });
                 lst.Add(new SqlParameter() { ParameterName = "@Prefix", Value = model.Prefix });
+
                 SettingsHelper objHelper = SettingsHelper.Instance;
 
                 DataTable dtFormToRollList = objHelper.GetDataTable("Get_FormMappingToRoll", lst);

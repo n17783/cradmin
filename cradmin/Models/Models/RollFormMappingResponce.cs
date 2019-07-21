@@ -10,17 +10,17 @@ namespace cradmin.Models.Models
         public RollFormMappingResponce()
         {
              RollFormMappingList = new List<RollFormMappResponce>();
-             FormList = new List<FormResponce>();
+            
              RollList = new List<RoleModel>();
-
+          
         }
         public List<RollFormMappResponce> RollFormMappingList { get; set; }
-        public List<FormResponce> FormList { get; set; }
+        
         public List<RoleModel> RollList { get; set; }
-
+        
     }
 
-    public class RollFormMappResponce:Error 
+    public class RollFormMappResponce : Error
     {
         public int RollFormMappingId { get; set; }
         public int RollId { get; set; }
@@ -32,6 +32,11 @@ namespace cradmin.Models.Models
         public bool IsContinew { get; set; }
         public string AuthorisedBy { get; set; }
         public string UnAuthorisedBy { get; set; }
+        public string AllFormId {get;set;}
+        public string FormTitle { get; set; }
+        public string RollDescription { get; set; }
+        public string discontinew { get; set; }
+        
     }
     public class FormResponce : Error
     {
@@ -41,6 +46,30 @@ namespace cradmin.Models.Models
         public bool IsDelete { get; set; }
 
     }
+<<<<<<< .mine
     
+
+
+
+
+
+
+
+=======
+    public class RollResponce : Error
+    {
+        public int RollId { get; set; }
+        public string RollDescription { get; set; }
+        public int DeptId { get; set; }
+        public DateTime RoleEntryDate { get; set; }
+        public int RollEntryBy { get; set; }
+    }
+>>>>>>> .theirs
+    public class FormIdResponse
+    {
+        public int FormId { get; set; }
+    }
+
+
 
 }
