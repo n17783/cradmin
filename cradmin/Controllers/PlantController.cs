@@ -1,4 +1,5 @@
-﻿using cradmin.Models.BAL;
+﻿using cradmin.Models;
+using cradmin.Models.BAL;
 using cradmin.Models.Models;
 using System;
 using System.Collections.Generic;
@@ -16,12 +17,15 @@ namespace cradmin.Controllers
         {
             return View();
         }
+
+        [MyAuthorize]
         [HttpPost]
         public ActionResult save(PlantModel model)
         {
             return Json(objplant.save(model));
         }
 
+        [MyAuthorize]
         [HttpPost]
         public ActionResult GetPlantList(PlantModel model)
         {

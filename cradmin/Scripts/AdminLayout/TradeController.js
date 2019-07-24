@@ -121,6 +121,9 @@
     }
 
     $scope.init = function () {
+        checkToken();
+        $("#ddlPageSize").val(5);
+        $scope.TradeTypModel.PageSize = $("#ddlPageSize").val();
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.GetTradeTypeList();

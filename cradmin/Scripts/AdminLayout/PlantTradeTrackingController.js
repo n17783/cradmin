@@ -56,7 +56,7 @@
     $scope.prev = true;
    
 
-    $scope.TradeTrackingModel = { PageNo: 1, PageSize: 2, Prefix: "", AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "", TradDescription: "", PlantTitle: "", PlantTradeTrackingId: "" };
+    $scope.TradeTrackingModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), Prefix: "", AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "", TradDescription: "", PlantTitle: "", PlantTradeTrackingId: "" };
 
     $scope.AddNewClick = function () {
         $scope.AddNew = true;
@@ -70,7 +70,7 @@
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.TradeTrackingModel = null;
-        $scope.TradeTrackingModel = { PageNo: 1, PageSize: TradeTrackingModel.PageSize, Prefix: "", AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "", TradDescription: "", PlantTitle: "", PlantTradeTrackingId: "" };
+        $scope.TradeTrackingModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), Prefix: "", AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "", TradDescription: "", PlantTitle: "", PlantTradeTrackingId: "" };
     }
 
     $scope.PageSizeList = [5, 10, 15, 20];
@@ -225,6 +225,9 @@
 
 
     $scope.init = function () {
+        checkToken();
+        $("#ddlPageSize").val(5);
+        $scope.MainTradeTrackList.PageSize = $("#ddlPageSize").val();
         GetMasterDataList();
         $scope.GetTradeTrackingList();
     }

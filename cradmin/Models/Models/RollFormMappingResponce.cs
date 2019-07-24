@@ -9,15 +9,16 @@ namespace cradmin.Models.Models
     {
         public RollFormMappingResponce()
         {
-             RollFormMappingList = new List<RollFormMappResponce>();
-            
-             RollList = new List<RoleModel>();
-          
+            RollFormMappingList = new List<RollFormMappResponce>();
+            RollList = new List<RoleModel>();
+            FormList = new List<FormResponce>();
         }
         public List<RollFormMappResponce> RollFormMappingList { get; set; }
         
         public List<RoleModel> RollList { get; set; }
-        
+
+        public List<FormResponce> FormList { get; set; }
+
     }
 
     public class RollFormMappResponce : Error
@@ -46,16 +47,6 @@ namespace cradmin.Models.Models
         public bool IsDelete { get; set; }
 
     }
-<<<<<<< .mine
-    
-
-
-
-
-
-
-
-=======
     public class RollResponce : Error
     {
         public int RollId { get; set; }
@@ -64,7 +55,7 @@ namespace cradmin.Models.Models
         public DateTime RoleEntryDate { get; set; }
         public int RollEntryBy { get; set; }
     }
->>>>>>> .theirs
+
     public class FormIdResponse
     {
         public int FormId { get; set; }

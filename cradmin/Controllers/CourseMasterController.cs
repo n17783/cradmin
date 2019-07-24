@@ -1,4 +1,5 @@
-﻿using cradmin.Models.BAL;
+﻿using cradmin.Models;
+using cradmin.Models.BAL;
 using cradmin.Models.Models;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,14 @@ namespace cradmin.Controllers
             return View();
         }
 
+        [MyAuthorize]
         [HttpPost]
         public ActionResult Save(CourseMasterResponse model)
         {
             return Json(objCCreation.Save(model));
         }
 
+        [MyAuthorize]
         [HttpPost]
         public ActionResult GetCourseMasterDetails(CourseMasterResponse model)
         {

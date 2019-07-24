@@ -1,9 +1,6 @@
 ﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="PlantTradeTrackingController">
+    <div class="col-md-12"><h3 class="header">Plant Trade Tracking</h3></div>
     <div class="col-md-12" data-ng-show="AddNew">
-        <h3>Fill Per Trade Authorised Strenth For Plant</h3>
-
-
-
         <div class="col-md-6">
             <div class="box-body">
                 <input type="hidden" data-ng-model="TradeTrackingModel.PlantTradeTrackingId" />
@@ -38,12 +35,9 @@
         </div>
 
     </div>
-
-
     <div class="col-md-12" data-ng-show="Details">
-
         <hr />
-        <div class="col-md-5 divsearch">
+        <div class="col-md-8 divsearch">
             <input type="text" placeholder="Search" class="form-control" data-ng-model="Prefix"
                    data-ng-change="FilterList()" />
         </div>
@@ -62,10 +56,8 @@
             </button>
         </div>
         <hr />
-
-
-        <div class="col-md-8">
-            <table class="table">
+        <div class="col-md-12">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -99,8 +91,8 @@
                 </tbody>
             </table>
             <div class="col-md-12">
-                <div class="col-md-2">
-                    <select class="form-control" style="margin-top:20px;" data-ng-model="TradeTrackingModel.PageSize">
+                <div class="col-md-4">
+                    <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
                         <option value="5">5</option>
                         <option value="5">10</option>
                     </select>

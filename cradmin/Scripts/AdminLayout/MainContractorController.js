@@ -18,7 +18,7 @@
         $scope.AddNew = true;
         $scope.Details = false;
         $scope.ContractorModel = {
-            PageNo: 1, PageSize: 2, ContractorId: 0, ContractorName: "", ContractorCompanyName: "",
+            PageNo: 1, PageSize: $("#ddlPageSize").val(), ContractorId: 0, ContractorName: "", ContractorCompanyName: "",
             ContractorRegistrationNo: "", ContractorGstNo: "", ContractorOfficeAddress: "", ContractorPhoneNo: ""
         };
     }
@@ -27,7 +27,7 @@
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.ContractorModel = {
-            PageNo: 1, PageSize: 2, ContractorId: 0, ContractorName: "", ContractorCompanyName: "",
+            PageNo: 1, PageSize: $("#ddlPageSize").val(), ContractorId: 0, ContractorName: "", ContractorCompanyName: "",
             ContractorRegistrationNo: "", ContractorGstNo: "", ContractorOfficeAddress: "", ContractorPhoneNo: ""
         };
     }
@@ -49,7 +49,6 @@
     }
 
     $scope.Prev = function () {
-        debugger;
         if ($scope.ContractorModel.PageNo > 1) {
             $scope.ContractorModel.PageNo--;
             $scope.GetContractorList();
@@ -57,7 +56,6 @@
     }
 
     $scope.Next = function () {
-        debugger;
         if ($scope.ContractorModel.PageNo < $scope.TotalPages) {
             $scope.ContractorModel.PageNo++;
             $scope.GetContractorList();
@@ -72,7 +70,6 @@
             data: $scope.ContractorModel,
         }).then(function (response) {
             HideLoader();
-            debugger;
             $scope.ContractorList = response.data;
             if (response.data.length > 0) {
                 $scope.TotalRecords = response.data[0].TotalRecords;
@@ -89,6 +86,9 @@
     }
 
     $scope.init = function () {
+        checkToken();
+        $("#ddlPageSize").val(5);
+        $scope.ContractorModel.PageSize = $("#ddlPageSize").val();
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.GetContractorList();

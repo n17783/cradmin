@@ -41,6 +41,14 @@ function validateEmail(element)
     return isvalid;
 }
 
+function checkToken()
+{
+    var token = getCookie("Token");
+    if (token == "") {
+        window.location = GetVirtualDirectory() + "/Home/Index";
+    }
+}
+
 function ShowLoader()
 {
     $("#rclLoader").show();
@@ -54,9 +62,8 @@ function LogOff()
 {
     var token=getCookie("Token");
     $.ajax({
-        type: "POST",
-        url: GetVirtualDirectory() + '/Account/LogOff',
-        data: "{'Token':'"+ token +"'}",
+        type: "GET",
+        url: GetVirtualDirectory() + '/Account/LogOff?Token=' + token,
         contentType: "application/json;",
         success: function (r) {
             setCookie("Token", "");

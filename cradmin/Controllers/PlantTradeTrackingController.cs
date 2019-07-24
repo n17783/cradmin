@@ -1,4 +1,5 @@
-﻿using cradmin.Models.BAL;
+﻿using cradmin.Models;
+using cradmin.Models.BAL;
 using cradmin.Models.Models;
 using System;
 using System.Collections.Generic;
@@ -17,16 +18,22 @@ namespace cradmin.Controllers
         {
             return View();
         }
+
+        [MyAuthorize]
         [HttpPost]
         public ActionResult GetMasterDataforRegister()
         {
             return Json(objTradeTracking.GetMasterData(), JsonRequestBehavior.AllowGet);
         }
+
+        [MyAuthorize]
         [HttpPost]
         public ActionResult GetTradeStrenth(PlantTradeTracking model)
         {
             return Json(objTradeTracking.GetPlantTradeStrenth(model), JsonRequestBehavior.AllowGet);
         }
+
+        [MyAuthorize]
         [HttpPost]
         public ActionResult Save(PlantTradeTracking model)
         {

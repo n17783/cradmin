@@ -1,4 +1,5 @@
-﻿using cradmin.Models.BAL;
+﻿using cradmin.Models;
+using cradmin.Models.BAL;
 using cradmin.Models.Models;
 using System;
 using System.Collections.Generic;
@@ -17,12 +18,14 @@ namespace cradmin.Controllers
             return PartialView("Index");
         }
 
+        [MyAuthorize]
         [HttpPost]
         public ActionResult Save(ProjectType model)
         {
             return Json(objProjectType.Save(model));
         }
 
+        [MyAuthorize]
         [HttpPost]
         public ActionResult GetProjectType(ProjectType model)
         {

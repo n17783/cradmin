@@ -7,19 +7,19 @@
     $scope.TotalRecords = 0;
     $scope.TotalPages = 0
 
-    $scope.DeptZoneModel = { PageNo: 1, PageSize: 2, DeptZoneId: "", DeptZoneDescription: "", ContactNo: "", EntryDate: "", EntryBy: "", ExitDate: "", ExitBy: "", IsContinew: null, ContactNo2: "", EmailId: "", CreatedBy: "", DeptZoneAddress: "" };
+    $scope.DeptZoneModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), DeptZoneId: "", DeptZoneDescription: "", ContactNo: "", EntryDate: "", EntryBy: "", ExitDate: "", ExitBy: "", IsContinew: null, ContactNo2: "", EmailId: "", CreatedBy: "", DeptZoneAddress: "" };
 
     $scope.AddNewClick = function () {
         $scope.AddNew = true;
         $scope.Details = false;
 
-        $scope.DeptZoneModel = { PageNo: 1, PageSize: 2, DeptZoneId: "", DeptZoneDescription: "", ContactNo: "", EntryDate: "", EntryBy: "", ExitDate: "", ExitBy: "", IsContinew: null, ContactNo2: "", EmailId: "", CreatedBy: "", DeptZoneAddress: "" };
+        $scope.DeptZoneModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), DeptZoneId: "", DeptZoneDescription: "", ContactNo: "", EntryDate: "", EntryBy: "", ExitDate: "", ExitBy: "", IsContinew: null, ContactNo2: "", EmailId: "", CreatedBy: "", DeptZoneAddress: "" };
     }
 
     $scope.CancelClick = function () {
         $scope.AddNew = false;
         $scope.Details = true;
-        $scope.DeptZoneModel = { PageNo: 1, PageSize: 2, DeptZoneId: "", DeptZoneDescription: "", ContactNo: "", EntryDate: "", EntryBy: "", ExitDate: "", ExitBy: "", IsContinew: null,ContactNo2:"",EmailId:"",CreatedBy:"", DeptZoneAddress: "" };
+        $scope.DeptZoneModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), DeptZoneId: "", DeptZoneDescription: "", ContactNo: "", EntryDate: "", EntryBy: "", ExitDate: "", ExitBy: "", IsContinew: null,ContactNo2:"",EmailId:"",CreatedBy:"", DeptZoneAddress: "" };
     }
 
     $scope.PageSizeList = [5, 10, 15, 20];
@@ -102,6 +102,9 @@
     }
 
     $scope.init = function () {
+        checkToken();
+        $("#ddlPageSize").val(5);
+        $scope.DeptZoneModel.PageSize = $("#ddlPageSize").val();
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.GetDeptZoneList();

@@ -19,7 +19,7 @@
         $scope.AddNew = true;
         $scope.Details = false;
         $scope.ValidationAgencyModel = {
-            PageNo: 1, PageSize: 5, ValidationAgencyId: 0, AgencyDescription: "", AgencyAddress: "",
+            PageNo: 1, PageSize: $("#ddlPageSize").val(), ValidationAgencyId: 0, AgencyDescription: "", AgencyAddress: "",
             AgencyContactNo: "", isContinew: null
         };
     }
@@ -28,7 +28,7 @@
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.ValidationAgencyModel = {
-            PageNo: 1, PageSize: 5, ValidationAgencyId: 0, AgencyDescription: "", AgencyAddress: "",
+            PageNo: 1, PageSize: $("#ddlPageSize").val(), ValidationAgencyId: 0, AgencyDescription: "", AgencyAddress: "",
             AgencyContactNo: "", isContinew: null
         };
     }
@@ -53,7 +53,6 @@
     }
 
     $scope.Prev = function () {
-        debugger;
         if ($scope.ValidationAgencyModel.PageNo > 1) {
             $scope.ValidationAgencyModel.PageNo--;
             $scope.GetValidationAgencyList();
@@ -61,7 +60,6 @@
     }
 
     $scope.Next = function () {
-        debugger;
         if ($scope.ValidationAgencyModel.PageNo < $scope.TotalPages) {
             $scope.ValidationAgencyModel.PageNo++;
             $scope.GetValidationAgencyList();
@@ -69,7 +67,6 @@
     }
 
     $scope.GetValidationAgencyList = function () {
-        debugger;
         ShowLoader();
         $http({
             method: 'post',
@@ -77,7 +74,6 @@
             data: $scope.ValidationAgencyModel,
         }).then(function (response) {
             HideLoader();
-            debugger;
             $scope.ValidationAgencyList = response.data;
             if (response.data.length > 0) {
                 $scope.TotalRecords = response.data[0].TotalRecords;
@@ -94,6 +90,9 @@
     }
 
     $scope.init = function () {
+        checkToken();
+        $("#ddlPageSize").val(5);
+        $scope.ValidationAgencyModel.PageSize = $("#ddlPageSize").val();
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.GetValidationAgencyList();

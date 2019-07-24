@@ -12,6 +12,7 @@ namespace cradmin.Models.BAL
     {
         public DeptZone Save(DeptZone model)
         {
+            model.ContactNo2=string.IsNullOrEmpty(model.ContactNo2) ? "" : model.ContactNo2;
             DeptZone objDeptZone = new DeptZone();
             List<SqlParameter> lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@DeptZoneDescription", Value = model.DeptZoneDescription });
