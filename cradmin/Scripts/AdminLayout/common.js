@@ -60,7 +60,10 @@ function HideLoader() {
 
 function LogOff()
 {
-    var token=getCookie("Token");
+    var token = getCookie("Token");
+    if (token=="") {
+        token=$("#hdnToken").val();
+    }
     $.ajax({
         type: "GET",
         url: GetVirtualDirectory() + '/Account/LogOff?Token=' + token,

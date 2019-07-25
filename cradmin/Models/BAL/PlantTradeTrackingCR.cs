@@ -33,57 +33,32 @@ namespace cradmin.Models.BAL
         public PlantTradeStreanth GetMasterData()
         {
             PlantTradeStreanth response = new PlantTradeStreanth();
-            //List<SqlParameter> lst = new List<SqlParameter>();
-            //lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
-            //lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
             DataTable dtPlantList = objHelper.GetDataTable("Get_PlantList");
-           
-            //lst = new List<SqlParameter>();
-            //lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
-            //lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
             DataTable dtTradeList = objHelper.GetDataTable("Get_TradeList");
             response.PlantList = dtPlantList.ToList<PlantModel>();
             response.TradeList = dtTradeList.ToList<TradeType>();
             response.Status = 1;
             return response;
-
-
-            //DataTable dtPlantAuthorisedStreanth = objHelper.GetDataTable("Get_PlantAuthorizedStrenth", lst);
-            //lst = new List<SqlParameter>();
-            //lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
-            //lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
-
-            //DataTable dtEmployeeTypeList = objHelper.GetDataTable("GetEmployeeTypeList", lst);
-
-
-
-            //response.EmployeeTypeList = dtEmployeeTypeList.ToList<EmployeeType>();
-            // response.PlantTradeTrackingList = dtPlantAuthorisedStreanth.ToList<PlantTradeTracking>();
-
         }
         public List<PlantTradeTracking> GetPlantTradeStrenth(PlantTradeTracking model)
         {
+            List<PlantTradeTracking> lstresult =new List<PlantTradeTracking>();
             try
             {
                 List<SqlParameter> lst = new List<SqlParameter>();
-            lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = model.PageNo});
-            lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = model.PageSize });
-            lst.Add(new SqlParameter() { ParameterName = "@Prefix", Value = model.Prefix });
-            SettingsHelper objHelper = SettingsHelper.Instance;
-           
+                lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = model.PageNo });
+                lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = model.PageSize });
+                lst.Add(new SqlParameter() { ParameterName = "@Prefix", Value = model.Prefix });
+                SettingsHelper objHelper = SettingsHelper.Instance;
+
                 DataTable dtPlantTradeTrackingList = objHelper.GetDataTable("Get_PlantAuthorizedStrenth", lst);
-                return dtPlantTradeTrackingList.ToList<PlantTradeTracking>();
+                lstresult =dtPlantTradeTrackingList.ToList<PlantTradeTracking>();
             }
             catch (Exception ex)
             {
 
-                throw;
             }
-           
-           
-           
-            
-            
+            return lstresult;
         }
             
     }

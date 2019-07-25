@@ -15,10 +15,23 @@ namespace cradmin.Controllers
         
         EmpployeeRegisterBAL objEmp = new EmpployeeRegisterBAL();
         // GET: Dashboard
-        
         public ActionResult Index()
         {
-            return View();
+            if (SessionManager.Instance.LoginUser==null)
+            {
+                Response.SetCookie(null);
+                ViewBag.Token = "";
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                HttpCookie StudentCookies = new HttpCookie("Token");
+                StudentCookies.Value = SessionManager.Instance.LoginUser.Token.ToString();
+                StudentCookies.Expires = DateTime.Now.AddHours(1);
+                Response.SetCookie(StudentCookies);
+                ViewBag.Token = SessionManager.Instance.LoginUser.Token.ToString();
+                return View();
+            }
         }
 
         public ActionResult CheckAdhaarExist(Employee model)

@@ -20,6 +20,8 @@ namespace cradmin.Models.BAL
             DataTable dt = objHelper.GetDataTable("ValidateToken", lst);
             if (dt.Rows.Count > 0)
             {
+                List<LoginResponse> response=dt.ToList<LoginResponse>();
+                SessionManager.Instance.LoginUser = response[0];
                 Valid = true;
             }
             return Valid;
@@ -28,6 +30,8 @@ namespace cradmin.Models.BAL
         public Error LogOff(string AuthToken)
         {
             Error Valid = new Error();
+            SessionManager.Instance.LoginUser = null;
+            HttpContext.Current.Session.Abandon();
             List<SqlParameter> lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@Token", Value = Guid.Parse(AuthToken), SqlDbType = SqlDbType.UniqueIdentifier });
             SettingsHelper objHelper = SettingsHelper.Instance;
@@ -48,6 +52,7 @@ namespace cradmin.Models.BAL
             SettingsHelper objHelper = SettingsHelper.Instance;
             DataTable dt=objHelper.GetDataTable("GetLogginDetails", lst);
             var response=dt.ToList<LoginResponse>();
+            
             if (response.Count==0)
             {
                 objLoginDetails.Authorised = 0;
@@ -57,6 +62,8 @@ namespace cradmin.Models.BAL
             else
             {
                 objLoginDetails = response[0];
+                SessionManager objS = SessionManager.Instance;
+                objS.LoginUser = objLoginDetails;
                 objLoginDetails.Pssword = "";
             }
             return objLoginDetails;

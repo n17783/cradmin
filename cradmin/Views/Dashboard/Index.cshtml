@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<input type="hidden" id="hdnToken" value="@ViewBag.Token" />
 <div data-ng-include="template.url"></div>
 @Scripts.Render("~/Scripts/AdminLayout/CategoryController.js")
 @Scripts.Render("~/Scripts/AdminLayout/TradeController.js")

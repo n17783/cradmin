@@ -1,4 +1,5 @@
-﻿using System;
+﻿using cradmin.Models.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,7 +14,7 @@ namespace cradmin.Models
 
         }
 
-        public SessionManager Instance
+        public static SessionManager Instance
         {
             get
             {
@@ -25,6 +26,22 @@ namespace cradmin.Models
             }
         }
 
+        public LoginResponse LoginUser
+        {
+            get
+            {
+                LoginResponse emp = null;
+                if (HttpContext.Current.Session["AuthUser"]!=null)
+                {
+                    emp = (LoginResponse)HttpContext.Current.Session["AuthUser"];
+                }
+                return emp;
+            }
+            set
+            {
+                HttpContext.Current.Session["AuthUser"] = value;
+            }
+        }
 
     }
 }
