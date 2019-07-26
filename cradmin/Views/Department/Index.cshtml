@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="DepartmentController">
+    <div class="col-md-12"><h3 class="header">Department Master</h3></div>
+    <div class="col-md-12" data-ng-show="AddNew">
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Department Name</label>
+                <input type="text" class="form-control" placeholder="Department Name ..." data-ng-model="DeptTypModel.Dept_Name">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Address ..." data-ng-model="DeptTypModel.Dept_Address">
+            </div>
+            <div class="form-group">
+                <label>Phone No</label>
+                <input type="text" class="form-control" placeholder="Phone No ..." data-ng-model="DeptTypModel.PhoneNo">
+
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-danger" type="button" data-ng-click="Save()">Save</button>
+                <button class="btn btn-danger" type="button" data-ng-click="CancelClick()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" data-ng-show="Details">
+        <div class="col-md-12">
+            <div class="form-group">
+                <button class="btn btn-danger" type="button" data-ng-click="AddNewClick()">Add New</button>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Department Name</th>
+                        <th>Address</th>
+                        <th>Phone No</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="DeptType in DeptTypeList">
+                        <td>{{DeptType.DeptId}}</td>
+                        <td>{{DeptType.Dept_Name}}</td>
+                        <td>{{DeptType.Dept_Address}}</td>
+                        <td>{{DeptType.PhoneNo}}</td>
+
+
+                    </tr>
+                </tbody>
+            </table>
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
+                        <option value="5">5</option>
+                        <option value="5">10</option>
+                    </select>
+                </div>
+                <div class="col-md-8">
+                    <ul class="pager">
+                        <li><a href="#">Page No : {{DeptTypeModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
+                        <li><a href="#" data-ng-click="Prev()">Previous</a></li>
+                        <li><a href="#" data-ng-click="Next()">Next</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
