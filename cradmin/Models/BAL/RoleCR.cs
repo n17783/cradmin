@@ -15,7 +15,7 @@ namespace cradmin.Models.BAL
             RoleModel objContractor = new RoleModel();
             List<SqlParameter> lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@RoleDescription", Value = model.RoleDescription });
-            lst.Add(new SqlParameter() { ParameterName = "@DeptId", Value = model.DeptId });
+            //lst.Add(new SqlParameter() { ParameterName = "@DeptId", Value = model.DeptId });
             lst.Add(new SqlParameter() { ParameterName = "@RoleEntryBy", Value = model.RoleEntryBy });
 
             SettingsHelper objHelper = SettingsHelper.Instance;

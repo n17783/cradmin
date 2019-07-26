@@ -10,7 +10,7 @@ namespace cradmin.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "naresh shinde spell";
+            Response.Cookies.Clear();
             return View();
         }
 

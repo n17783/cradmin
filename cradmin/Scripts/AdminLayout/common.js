@@ -49,6 +49,13 @@ function checkToken()
     }
 }
 
+function checkLoginStatus(response){
+    if (response.data.Status == 1) {
+        setCookie("Token", "");
+        window.location = GetVirtualDirectory() + "/Home/Index";
+    }
+}
+
 function ShowLoader()
 {
     $("#rclLoader").show();

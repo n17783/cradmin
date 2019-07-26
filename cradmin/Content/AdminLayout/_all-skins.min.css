@@ -43,14 +43,12 @@
 }
 
 .skin-blue .main-header .logo {
-    background-color: #ed2928;
+    background-color: #fff;
     color: #fff;
     border-bottom: 0 solid transparent;
 }
 
-    .skin-blue .main-header .logo:hover {
-        background-color: #357ca5;
-    }
+
 
 .skin-blue .main-header li.user-header {
     background-color: #3c8dbc;
@@ -82,9 +80,7 @@
     background: #1e282c;
 }
 
-.skin-blue .sidebar-menu > li.active > a {
-    border-left-color: #3c8dbc;
-}
+
 
 .skin-blue .sidebar-menu > li > .treeview-menu {
     margin: 0 1px;

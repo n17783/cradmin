@@ -35,11 +35,8 @@ namespace cradmin.Models.BAL
             List<SqlParameter> lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@Token", Value = Guid.Parse(AuthToken), SqlDbType = SqlDbType.UniqueIdentifier });
             SettingsHelper objHelper = SettingsHelper.Instance;
-            DataTable dt = objHelper.GetDataTable("LogOff", lst);
-            if (dt.Rows.Count > 0)
-            {
-                Valid.Status = 1;
-            }
+            objHelper.GetDataTable("LogOff", lst);
+            Valid.Status = 1;
             return Valid;
         }
 

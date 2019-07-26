@@ -22,17 +22,14 @@
             data: $scope.LoginModal,
         }).then(function (response) {
             HideLoader();
+            checkLoginStatus();
             if (response.data.Status == 1) {
                 $scope.RollList = response.data.RollList;
                 $scope.FormList = response.data.FormList;
-
-
-                $scope.RollList.splice(0, 0, { RollId: 0, RollDescription: "---Select Roll---" });
-             
-
+                $scope.RollList.splice(0, 0, { RoleId: 0, RoleDescription: "---Select Roll---" });
                 var html = "";
                 angular.forEach($scope.RollList, function (value, key) {
-                    html += "<option value='" + value.RollId + "'>" + value.RollDescription + "</option>";
+                    html += "<option value='" + value.RoleId + "'>" + value.RoleDescription + "</option>";
                 });
                 $("#ddlRoll").html(html);
                 $scope.FormList1 = [];
@@ -56,9 +53,6 @@
                     $scope.FormList1 = [];
                    
                }
-            }
-            else {
-                window.location = $scope.urlBase + "/RollFormMapping/index";
             }
         }, function (error) {
             HideLoader();
