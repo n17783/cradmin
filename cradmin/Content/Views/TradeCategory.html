@@ -26,20 +26,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-ng-repeat="trade in TradeList">
+                    <tr data-ng-repeat="trade in TradeList track by trade.TradeCId">
                         <td>{{trade.TradeCId}}</td>
                         <td>{{trade.TradCDescription}}</td>
                     </tr>
                 </tbody>
             </table>
             <div class="col-md-12">
-                <div class="col-md-4">
-                    <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
-                        <option value="5">5</option>
-                        <option value="5">10</option>
-                    </select>
+                <div class="col-md-7"></div>
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
+                            <option value="5">5</option>
+                            <option value="5">10</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-md-8">
+                <div>
                     <ul class="pager">
                         <li><a href="#">Page No : {{TradeModal.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
                         <li><a href="#" data-ng-click="Prev()">Previous</a></li>
@@ -48,6 +51,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2"></div>
+        
     </div>
 </div>

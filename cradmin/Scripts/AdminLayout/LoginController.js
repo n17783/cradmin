@@ -17,6 +17,7 @@ CRAdminApp.controller("LoginController", ['$scope', '$http', '$filter', '$rootSc
         $http({
             method: 'post',
             url: $scope.urlBase + '/account/login',
+            
             data:$scope.LoginModal,
         }).then(function (response) {
             HideLoader();

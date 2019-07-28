@@ -40,14 +40,14 @@ namespace cradmin.Controllers
             return Json(response, JsonRequestBehavior.AllowGet);
         }
 
-        [MyAuthorize]
+        //[MyAuthorize]
         [HttpPost]
         public ActionResult GetMasterDataforRegister()
         {
             return Json(objEmp.GetMasterData(), JsonRequestBehavior.AllowGet);
         }
 
-        [MyAuthorize]
+       // [MyAuthorize]
         [HttpPost]
         public ActionResult Save(MasterDataResponse model)
         {

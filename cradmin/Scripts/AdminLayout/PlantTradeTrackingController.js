@@ -40,7 +40,7 @@
 
             }
             else {
-                window.location = $scope.urlBase + "/PlantTradeTracking/index";
+                //window.location = $scope.urlBase + "/PlantTradeTracking/index";
             }
         }, function (error) {
             HideLoader();
@@ -225,6 +225,7 @@
 
 
     $scope.init = function () {
+        
         checkToken();
         $("#ddlPageSize").val(5);
         $scope.MainTradeTrackList.PageSize = $("#ddlPageSize").val();

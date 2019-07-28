@@ -236,17 +236,17 @@ namespace cradmin.Models.Models
         public string DeptZoneAddress { get; set; }
     }
 
-    public class RoleModel : Error
-    {
-        public int RoleId { get; set; }
-        public string RoleDescription { get; set; }
-        public int DeptId { get; set; }
-        public string DeptName { get; set; }
-        public string RoleEntryDate { get; set; }
-        public string RoleEntryBy { get; set; }
-        public string RoleEntryByName { get; set; }
-       
-    }
+    //public class RollModel : Error
+    //{
+    //    public int RollId { get; set; }
+    //    public string RollDescription { get; set; }
+    //    public int DeptId { get; set; }
+    //    public string DeptName { get; set; }
+    //    public string RollEntryDate { get; set; }
+    //    public int RollEntryBy { get; set; }
+    //    public string RollEntryByName { get; set; }
+
+    //}
 
     public class ValidationAgencyModel : Error
     {
@@ -287,5 +287,12 @@ namespace cradmin.Models.Models
         
 
 
+    }
+    public class DeptNames : Error
+    {
+        public int DeptId { get; set; }
+        public string Dept_Name { get; set; }
+        public string Dept_Address { get; set; }
+        public string PhoneNo { get; set; }
     }
 }

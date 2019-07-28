@@ -20,14 +20,14 @@ namespace cradmin.Controllers
 
         [MyAuthorize]
         [HttpPost]
-        public ActionResult Save(RoleModel model)
+        public ActionResult Save(RollModel model)
         {
             return Json(objRole.Save(model));
         }
 
         [MyAuthorize]
         [HttpPost]
-        public ActionResult GetRoleList(RoleModel model)
+        public ActionResult GetRollList1(RollModel model)
         {
             return Json(objRole.GetRoleList(model));
         }

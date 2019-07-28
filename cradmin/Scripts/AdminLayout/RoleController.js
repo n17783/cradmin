@@ -7,45 +7,44 @@
     $scope.TotalRecords = 0;
     $scope.TotalPages = 0
 
-    $scope.RoleModel = {
-        PageNo: 1, PageSize: 5, RoleId: 0, RoleDescription: "", DeptId: "",
-        DeptName: "", RoleEntryDate: "", RoleEntryBy: "", RoleEntryByName: ""
+    $scope.RollModel = {
+        PageNo: 1, PageSize: 5, RollId: 0, RollDescription: "", 
+         RoleEntryDate: "", RollEntryBy: ""
     };
 
     $scope.PageSizeList = [5, 10, 15, 20];
-    $scope.RoleList = [];
+    $scope.RollList = [];
 
     $scope.AddNewClick = function () {
         $scope.AddNew = true;
         $scope.Details = false;
-        $scope.RoleModel = {
-            PageNo: 1, PageSize: $("#ddlPageSize").val(), RoleId: 0, RoleDescription: "", DeptId: "",
-            DeptName: "", RoleEntryDate: "", RoleEntryBy: "", RoleEntryByName: ""
+        $scope.RollModel = { RollDescription: "", 
+             
         };
     }
 
     $scope.CancelClick = function () {
         $scope.AddNew = false;
         $scope.Details = true;
-        $scope.RoleModel = {
-            PageNo: 1, PageSize: $("#ddlPageSize").val(), RoleId: 0, RoleDescription: "", DeptId: "",
-            DeptName: "", RoleEntryDate: "", RoleEntryBy: "", RoleEntryByName: ""
+        $scope.RollModel = {
+            PageNo: 1, PageSize: $("#ddlPageSize").val(), RollId: 0, RollDescription: "", 
+             RollEntryDate: "", RollEntryBy: ""
         };
     }
 
     $scope.Save = function () {
         ShowLoader();
 
-        $scope.RoleModel.DeptId = $('#ddldpt option:selected').val();
-        $scope.RoleModel.RoleEntryBy = 1;
+       
+        $scope.RollModel.RollEntryBy = 1;
         $http({
             method: 'post',
             url: $scope.urlBase + '/Role/Save',
-            data: $scope.RoleModel,
+            data: $scope.RollModel,
         }).then(function (response) {
             HideLoader();
             $scope.CancelClick();
-            $scope.GetRoleList();
+            $scope.GetRollList();
         }, function (error) {
             HideLoader();
             console.log(error);
@@ -53,32 +52,34 @@
     }
 
     $scope.Prev = function () {
-        if ($scope.RoleModel.PageNo > 1) {
-            $scope.RoleModel.PageNo--;
-            $scope.GetRoleList();
+        if ($scope.RollModel.PageNo > 1) {
+            $scope.RollModel.PageNo--;
+            $scope.GetRollList();
         }
     }
 
     $scope.Next = function () {
-        if ($scope.RoleModel.PageNo < $scope.TotalPages) {
-            $scope.RoleModel.PageNo++;
-            $scope.GetRoleList();
+        if ($scope.RollModel.PageNo < $scope.TotalPages) {
+            $scope.RollModel.PageNo++;
+            $scope.GetRollList();
         }
     }
-
-    $scope.GetRoleList = function () {
+    $scope.RollModel = {
+        PageNo: 1, PageSize: $("#ddlPageSize").val()
+    };
+    $scope.GetRollList = function () {
         ShowLoader();
         $http({
             method: 'post',
-            url: $scope.urlBase + '/Role/GetRoleList',
-            data: $scope.RoleModel,
+            url: $scope.urlBase + '/Role/GetRollList1',
+            data: $scope.RollModel,
         }).then(function (response) {
             HideLoader();
-            $scope.RoleList = response.data;
+            $scope.RollList = response.data;
             if (response.data.length > 0) {
                 $scope.TotalRecords = response.data[0].TotalRecords;
-                $scope.TotalPages = parseInt($scope.TotalRecords / $scope.RoleModel.PageSize);
-                var reminder = $scope.TotalRecords % $scope.RoleModel.PageSize;
+                $scope.TotalPages = parseInt($scope.TotalRecords / $scope.RollModel.PageSize);
+                var reminder = $scope.TotalRecords % $scope.RollModel.PageSize;
                 if (reminder > 0) {
                     $scope.TotalPages++;
                 }
@@ -92,10 +93,10 @@
     $scope.init = function () {
         checkToken();
         $("#ddlPageSize").val(5);
-        $scope.RoleModel.PageSize = $("#ddlPageSize").val();
+        $scope.RollModel.PageSize = $("#ddlPageSize").val();
         $scope.AddNew = false;
         $scope.Details = true;
-        $scope.GetRoleList();
+        $scope.GetRollList();
 
     }
 

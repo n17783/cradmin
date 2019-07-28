@@ -18,7 +18,7 @@
                             </tr>
                         </thead>
                         <tr data-ng-repeat="gr in group1">
-                            <td data-ng-repeat="form1 in gr">{{form1.FormTitle}}<input type="checkbox" class="checkbox" id="{{form1.FormId}}" /></td>
+                            <td data-ng-repeat="form1 in gr">{{form1.FormTitle}}<input type="checkbox" class="checkbox"  /></td>
                         </tr>
                     </table>
                 </div>
@@ -71,8 +71,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-ng-repeat="FormToRoll in MainTradeTrackList">
-                        <td>{{FormToRoll.RoleDescription}}</td>
+                    <tr data-ng-repeat="FormToRoll in RollFormMappingList">
+                        <td>{{FormToRoll.RollFormMappingId}}</td>
                         <td>{{FormToRoll.FormTitle}}</td>
                         <td>{{FormToRoll.AuthorisedBy}}</td>
                         <td>{{FormToRoll.EntryDate |mydate| date: ' dd-MM-yyyy' }}</td>
@@ -86,13 +86,16 @@
                 </tbody>
             </table>
             <div class="col-md-12">
-                <div class="col-md-4">
-                    <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
-                        <option value="5">5</option>
-                        <option value="5">10</option>
-                    </select>
+                <div class="col-md-7"></div>
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
+                            <option value="5">5</option>
+                            <option value="5">10</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-md-8">
+                <div>
                     <ul class="pager">
                         <li><a href="#">Page No : {{FormToRollModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
                         <li><a href="#" data-ng-click="Prev()">Previous</a></li>
@@ -101,6 +104,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2"></div>
+       
     </div>
 </div>

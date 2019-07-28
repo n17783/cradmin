@@ -44,7 +44,7 @@ namespace cradmin.Models.BAL
             RollFormMappingResponce response = new RollFormMappingResponce();
             DataTable dtRollList = objHelper.GetDataTable("GetRoleListForFormAssign");
             DataTable dtFormList = objHelper.GetDataTable("GetFormForAssign");
-            response.RollList = dtRollList.ToList<RoleModel>();
+            response.RollList = dtRollList.ToList<RollModel>();
             response.FormList = dtFormList.ToList<FormResponce>();
             response.Status = 1;
             return response;

@@ -26,10 +26,14 @@
             if (response.data.Status == 1) {
                 $scope.RollList = response.data.RollList;
                 $scope.FormList = response.data.FormList;
-                $scope.RollList.splice(0, 0, { RoleId: 0, RoleDescription: "---Select Roll---" });
+
+
+                $scope.RollList.splice(0, 0, { RollId: 0, RollDescription: "---Select Roll---" });
+             
+
                 var html = "";
                 angular.forEach($scope.RollList, function (value, key) {
-                    html += "<option value='" + value.RoleId + "'>" + value.RoleDescription + "</option>";
+                    html += "<option value='" + value.RollId + "'>" + value.RollDescription + "</option>";
                 });
                 $("#ddlRoll").html(html);
                 $scope.FormList1 = [];
@@ -61,11 +65,11 @@
     }
     var FormId;
     var selected = [];
-    //$scope.selectedForm = [];
-    //$scope.selectedItem = {};
+    $scope.selectedForm = [];
+    $scope.selectedItem = {};
     var i = 0;
     function selectedform() {
-        if (selected.length == 0) {
+        if ($scope.selectedItem.length == 0) {
             var objShowCustomAlert = new ShowCustomAlert({
                 Title: "Error",
                 Message: "Please select at list One Form for Assign To roll ",

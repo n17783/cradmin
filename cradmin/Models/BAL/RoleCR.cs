@@ -10,13 +10,12 @@ namespace cradmin.Models.BAL
 {
     public class RoleCR
     {
-        public RoleModel Save(RoleModel model)
+        public RollModel Save(RollModel model)
         {
-            RoleModel objContractor = new RoleModel();
+            RollModel objContractor = new RollModel();
             List<SqlParameter> lst = new List<SqlParameter>();
-            lst.Add(new SqlParameter() { ParameterName = "@RoleDescription", Value = model.RoleDescription });
-            //lst.Add(new SqlParameter() { ParameterName = "@DeptId", Value = model.DeptId });
-            lst.Add(new SqlParameter() { ParameterName = "@RoleEntryBy", Value = model.RoleEntryBy });
+            lst.Add(new SqlParameter() { ParameterName = "@RollDescription", Value = model.RollDescription });
+            lst.Add(new SqlParameter() { ParameterName = "@RollEntryBy", Value = 1 });
 
             SettingsHelper objHelper = SettingsHelper.Instance;
             DataTable dt = objHelper.GetDataTable("InsertRole", lst);
@@ -24,14 +23,14 @@ namespace cradmin.Models.BAL
             return objContractor;
         }
 
-        public List<RoleModel> GetRoleList(RoleModel model)
+        public List<RollModel> GetRoleList(RollModel model)
         {
             List<SqlParameter> lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = model.PageNo });
             lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = model.PageSize });
             SettingsHelper objHelper = SettingsHelper.Instance;
             DataTable dt = objHelper.GetDataTable("GetRoleList", lst);
-            return dt.ToList<RoleModel>();
+            return dt.ToList<RollModel>();
         }
     }
 }
