@@ -39,5 +39,11 @@ namespace cradmin.Controllers
         {
             return Json(objFormToRoll.Save(model));
         }
+        [MyAuthorize]
+        [HttpPost]
+        public ActionResult Discontinew(RollFormMappResponce model)
+        {
+            return Json(objFormToRoll.discontinew(model));
+        }
     }
 }

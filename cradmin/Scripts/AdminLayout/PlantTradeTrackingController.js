@@ -81,7 +81,7 @@
         $scope.TradeTrackingModel.PlantId = $("#ddlplant").val();
         $scope.TradeTrackingModel.AuthorizedStrenth = $("#ddlAstrenth").val();
         $scope.TradeTrackingModel.AuthorizedBy = $("#ddlAAuthority").val();
-        $scope.TradeTrackingModel.AuthorizedDate = $("#ddlAdate").val();
+        $scope.TradeTrackingModel.AuthorizedDate = objdatehelper.getFormatteddate($filter('mydate')($scope.TradeTrackingModel.AuthorizedDate), "dd/mm/yyyy");
         ShowLoader();
         $http({
             method: 'post',

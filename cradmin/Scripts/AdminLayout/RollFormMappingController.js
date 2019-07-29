@@ -12,7 +12,8 @@
     $scope.Prefix = "";
     var formlist = "";
     var discon1 = "conti";
-
+    $scope.FormList1 = [];
+    $scope.group1 = [];
 
     function GetMasterDataList() {
         ShowLoader();
@@ -35,8 +36,7 @@
                     html += "<option value='" + value.RollId + "'>" + value.RollDescription + "</option>";
                 });
                 $("#ddlRoll").html(html);
-                $scope.FormList1 = [];
-                $scope.group1 = [];
+               
                 var j = 0;
                 var k = 0;
                 for (j = 0; j < $scope.FormList.length; j++) {
@@ -83,7 +83,7 @@
             selected.push(i);
         }
         formlist = selected.join(',');
-
+        selected = [];
     }
 
     $scope.AddNew = false;
@@ -96,16 +96,17 @@
     $scope.FormToRollModel = { PageNo: 1, PageSize: 4, Prefix: "", AuthorisedBy: "", RollId: null, FormId: 0, RollDescription: "", FormTitle: "", RollFormMappingId: "", EntryBy: 1, EntryDate: null, AllFormId: "", discontinew: discon1 };
 
     $scope.AddNewClick = function () {
+       
         $scope.AddNew = true;
         $scope.Details = false;
         $scope.Update = false;
-        $scope.FormToRollModel = null;
+        
     }
 
     $scope.CancelClick = function () {
         $scope.AddNew = false;
         $scope.Details = true;
-        $scope.FormToRollModel = null;
+       
     }
 
     $scope.PageSizeList = [5, 10, 15, 20];
@@ -114,14 +115,10 @@
     $scope.Save = function () {
         selectedform();
 
-
-        $scope.FormToRollModel.discontinew = discon1;
-        $scope.FormToRollModel.RollFormMappingId = null;
         $scope.FormToRollModel.RollId = $("#ddlRoll").val();
-
+        $scope.FormToRollModel.discontinew = "naresh";
+        $scope.FormToRollModel.RollFormMappingId = null;
         $scope.FormToRollModel.AllFormId = formlist;
-
-        // $scope.FormToRollModel.AuthorizedBy = $("#ddlAAuthority").val();
         ShowLoader();
         $http({
             method: 'post',
@@ -136,7 +133,7 @@
                     Type: "alert"
                 });
                 objShowCustomAlert.ShowCustomAlertBox();
-                selected = [];
+                $scope.selectedItem = {};
             }
             else {
                 var objShowCustomAlert = new ShowCustomAlert({
@@ -145,7 +142,7 @@
                     Type: "alert"
                 });
                 objShowCustomAlert.ShowCustomAlertBox();
-                selected = [];
+                $scope.selectedItem = {};
             }
             $scope.CancelClick();
             $scope.GetFormToRollList();
@@ -158,68 +155,20 @@
     //Edit 
 
     //update
-    $scope.Update = function (FormToRoll) {
-        if (selected.length == 0) {
-            var objShowCustomAlert = new ShowCustomAlert({
-                Title: "Error",
-                Message: "Please select at list One Form for Assign To roll ",
-                Type: "alert"
-            });
-            objShowCustomAlert.ShowCustomAlertBox();
-
-        }
-        $scope.FormToRollModel = { RollFormMappingId: FormToRoll.RollFormMappingId, RollDescription: FormToRoll.RollDescription, FormTitle: FormToRoll.FormTitle, AuthorisedBy: FormToRoll.AuthorisedBy, FormId: FormToRoll.FormId, RollId: FormToRoll.RollId, EntryDate: FormToRoll.EntryDate, };
-        $scope.FormToRollModel.RollId = $("#ddlRoll").val();
-
-        $scope.FormToRollModel.AllFormId = formlist;
-        $scope.FormToRollModel.discontinew = discon1;
-
-        selected = [];
-        ShowLoader();
-        $http({
-            method: 'post',
-            url: $scope.urlBase + '/RollFormMapping/Save',
-            data: $scope.FormToRollModel,
-        }).then(function (response) {
-            HideLoader();
-            if (response.data.Status == 0) {
-                var objShowCustomAlert = new ShowCustomAlert({
-                    Title: "Error",
-                    Message: "This Record Is All Ready Exist",
-                    Type: "alert"
-                });
-                objShowCustomAlert.ShowCustomAlertBox();
-            }
-            else {
-                var objShowCustomAlert = new ShowCustomAlert({
-                    Title: "Success",
-                    Message: "Record  Successfully",
-                    Type: "alert"
-                });
-                objShowCustomAlert.ShowCustomAlertBox();
-            }
-            $scope.CancelClick();
-
-        }, function (error) {
-            HideLoader();
-            console.log(error);
-        });
-        $scope.GetFormToRollList();
-    }
-
+   
     //update
     // discontinew
     $scope.Discontinew = function (FormToRoll) {
 
-        selected = [];
-        $scope.FormToRollModel = { RollFormMappingId: FormToRoll.RollFormMappingId, RollDescription: FormToRoll.RollDescription, FormTitle: FormToRoll.FormTitle, AuthorisedBy: FormToRoll.AuthorisedBy, FormId: FormToRoll.FormId, RollId: FormToRoll.RollId, EntryDate: FormToRoll.EntryDate, };
+       
+        $scope.FormToRollModel = { AllFormId:"", RollFormMappingId: FormToRoll.RollFormMappingId, RollDescription: FormToRoll.RollDescription, FormTitle: FormToRoll.FormTitle, AuthorisedBy: FormToRoll.AuthorisedBy, FormId: FormToRoll.FormId, RollId: FormToRoll.RollId, EntryDate: FormToRoll.EntryDate, };
         $scope.FormToRollModel.discontinew = 'Discon';
 
 
         ShowLoader();
         $http({
             method: 'post',
-            url: $scope.urlBase + '/RollFormMapping/Save',
+            url: $scope.urlBase + '/RollFormMapping/Discontinew',
             data: $scope.FormToRollModel,
         }).then(function (response) {
             HideLoader();
@@ -230,6 +179,7 @@
                     Type: "alert"
                 });
                 objShowCustomAlert.ShowCustomAlertBox();
+                $scope.GetFormToRollList();
             }
             else {
                 var objShowCustomAlert = new ShowCustomAlert({
@@ -238,14 +188,15 @@
                     Type: "alert"
                 });
                 objShowCustomAlert.ShowCustomAlertBox();
+                $scope.GetFormToRollList();
             }
-            $scope.CancelClick();
-
+           
+            
         }, function (error) {
             HideLoader();
             console.log(error);
         });
-        $scope.GetFormToRollList();
+       
     }
     //discontinew
     var objdatehelper = new datehelper({ format: "dd/MM/yyyy", cdate: new Date() });

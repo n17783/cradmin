@@ -18,7 +18,7 @@
                             </tr>
                         </thead>
                         <tr data-ng-repeat="gr in group1">
-                            <td data-ng-repeat="form1 in gr">{{form1.FormTitle}}<input type="checkbox" class="checkbox" /></td>
+                            <td data-ng-repeat="form1 in gr">{{form1.FormTitle}}<input type="checkbox" class="checkbox" data-ng-model="selectedItem[form1.FormId]" /></td>
                         </tr>
                     </table>
                 </div>
@@ -28,8 +28,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <button class="btn btn-danger" type="button" data-ng-click="Save()" data-ng-show="Update==false && AddNew==true">Save</button>
-                <button class="btn btn-danger" type="button" data-ng-click="Save()" data-ng-show="Update">Update</button>
+                <button class="btn btn-danger" type="button" data-ng-click="Save()"  data-ng-show="Update==false && AddNew==true">Save</button>
+                <button class="btn btn-danger" type="button" data-ng-click="Update()" data-ng-show="Update">Update</button>
                 <button class="btn btn-danger" type="button" data-ng-click="CancelClick()">Cancel</button>
             </div>
         </div>
@@ -77,9 +77,9 @@
                         <td>{{FormToRoll.AuthorisedBy}}</td>
                         <td>{{FormToRoll.EntryDate |mydate| date: ' dd-MM-yyyy' }}</td>
                         <td>
-                            <button type="button" class="btn btn-danger" data-ng-click="Edit(FormToRoll)" data-toggle="tooltip"
+                            <button type="button" class="btn btn-danger" data-ng-click="Discontinew(FormToRoll)" data-toggle="tooltip"
                                     title="Update">
-                                Edit
+                                Discontinew
                             </button>
                         </td>
                     </tr>

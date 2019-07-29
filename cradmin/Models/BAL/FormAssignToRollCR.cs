@@ -17,11 +17,15 @@ namespace cradmin.Models.BAL
         {
             try
             {
-               
+                if (model.AllFormId == null)
+                {
+                    model.AllFormId = model.FormId.ToString();
+                }
+
                 List<SqlParameter> lst = new List<SqlParameter>();
                 lst.Add(new SqlParameter() { ParameterName = "@RollFormMappingId", Value = model.RollFormMappingId });
                 lst.Add(new SqlParameter() { ParameterName = "@RollId", Value = model.RollId });
-                lst.Add(new SqlParameter() { ParameterName = "@allformid", Value =model.AllFormId });
+                lst.Add(new SqlParameter() { ParameterName = "@allformid", Value = model.AllFormId });
                 lst.Add(new SqlParameter() { ParameterName = "@EntryBy", Value = model.EntryBy });
                 lst.Add(new SqlParameter() { ParameterName = "@AuthorisedBy", Value = model.AuthorisedBy });
                 lst.Add(new SqlParameter() { ParameterName = "@discontinew", Value = model.@discontinew });
@@ -30,9 +34,9 @@ namespace cradmin.Models.BAL
 
                 DataTable dt = objHelper.GetDataTable("Insert_FormMappingToRoll", lst);
 
-            objFormToRoll.Status = dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["SuccessFailed"].ToString()) : 0;
-            return objFormToRoll;
-        }
+                objFormToRoll.Status = dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["SuccessFailed"].ToString()) : 0;
+                return objFormToRoll;
+            }
             catch (Exception ex)
             {
 
@@ -53,22 +57,36 @@ namespace cradmin.Models.BAL
         {
             DataTable dtFormToRollList = new DataTable();
             List<RollFormMappResponce> lstrespose = new List<RollFormMappResponce>();
-            try
-            {
+           
                 List<SqlParameter> lst = new List<SqlParameter>();
                 lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = model.PageNo });
                 lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = model.PageSize });
                 lst.Add(new SqlParameter() { ParameterName = "@Prefix", Value = model.Prefix });
                 SettingsHelper objHelper = SettingsHelper.Instance;
-                dtFormToRollList= objHelper.GetDataTable("Get_FormMappingToRoll", lst);
-                lstrespose= dtFormToRollList.ToList<RollFormMappResponce>();
+                dtFormToRollList = objHelper.GetDataTable("Get_FormMappingToRoll", lst);
+                lstrespose = dtFormToRollList.ToList<RollFormMappResponce>();
+                return lstrespose;
             }
-            catch (Exception ex)
-            {
-                
-            }
-            return lstrespose;
-        }
+           
+           
 
+        
+
+         public RollFormMappingResponce discontinew(RollFormMappResponce model)
+        {
+          
+           
+            List<SqlParameter> lst = new List<SqlParameter>();
+            lst.Add(new SqlParameter() { ParameterName = "@discontinew", Value = model.discontinew });
+            lst.Add(new SqlParameter() { ParameterName = "@RollFormMappingId", Value = model.RollFormMappingId });
+            lst.Add(new SqlParameter() { ParameterName = "@EntryBy", Value = model.EntryBy });
+            lst.Add(new SqlParameter() { ParameterName = "@AuthorisedBy", Value = model.AuthorisedBy });
+            SettingsHelper objHelper = SettingsHelper.Instance;
+
+            DataTable dt = objHelper.GetDataTable("Discontinew_RoleFormMapping", lst);
+
+            objFormToRoll.Status = dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["SuccessFailed"].ToString()) : 0;
+            return objFormToRoll;
+        }
     }
 }

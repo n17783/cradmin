@@ -50,9 +50,9 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
     
     $scope.domainpath = GetVirtualDirectory();
 
-    $scope.templates = [{
-        //name: "employee",0
-        name: $scope.domainpath + '/Content/Views/employee.html',
+    $scope.templates = [
+    //name: "employee",0
+        {name: $scope.domainpath + '/Content/Views/employee.html',
         url: $scope.domainpath + '/Content/Views/employee.html'
     }, {
         //name: 'Contractor', 1
@@ -112,10 +112,20 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
         //name: 'DeptZone', 11
         name: $scope.domainpath + '/Content/Views/RollFormMapping.html',
         url: $scope.domainpath + '/Content/Views/RollFormMapping.html'
+    },
+    {
+        name: $scope.domainpath + '/Content/Views/Department.html',
+        url: $scope.domainpath + '/Content/Views/Department.html'
+
     }];
+
+    
 
     $scope.LoadUserControls = function (tname) {
         switch (tname) {
+            case "Department":
+                $scope.template = $scope.templates[13];
+                break
             case "RollFormMapping":
                 $scope.template = $scope.templates[12];
                 break
