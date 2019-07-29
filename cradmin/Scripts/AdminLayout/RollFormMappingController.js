@@ -12,7 +12,7 @@
     $scope.Prefix = "";
     var formlist = "";
     var discon1 = "conti";
-    
+
 
     function GetMasterDataList() {
         ShowLoader();
@@ -22,14 +22,13 @@
             data: $scope.LoginModal,
         }).then(function (response) {
             HideLoader();
-            checkLoginStatus();
             if (response.data.Status == 1) {
                 $scope.RollList = response.data.RollList;
                 $scope.FormList = response.data.FormList;
 
 
                 $scope.RollList.splice(0, 0, { RollId: 0, RollDescription: "---Select Roll---" });
-             
+
 
                 var html = "";
                 angular.forEach($scope.RollList, function (value, key) {
@@ -37,11 +36,10 @@
                 });
                 $("#ddlRoll").html(html);
                 $scope.FormList1 = [];
-               $scope.group1 = [];
+                $scope.group1 = [];
                 var j = 0;
                 var k = 0;
-                for (j = 0; j < $scope.FormList.length; j++)
-                {
+                for (j = 0; j < $scope.FormList.length; j++) {
                     var i = 0;
                     for (i; i < 3; i++) {
                         if (k == $scope.FormList.length) {
@@ -49,14 +47,17 @@
                         }
                         $scope.FormList1.push($scope.FormList[k]);
                         k++;
-                }
+                    }
                     $scope.group1[j] = $scope.FormList1;
                     if (k == $scope.FormList.length) {
                         break;
                     }
                     $scope.FormList1 = [];
-                   
-               }
+
+                }
+            }
+            else {
+                // window.location = $scope.urlBase + "/RollFormMapping/index";
             }
         }, function (error) {
             HideLoader();
@@ -78,14 +79,13 @@
             objShowCustomAlert.ShowCustomAlertBox();
 
         }
-        for (i in $scope.selectedItem)
-        {
+        for (i in $scope.selectedItem) {
             selected.push(i);
         }
         formlist = selected.join(',');
-        
+
     }
-   
+
     $scope.AddNew = false;
     $scope.Details = true;
     $scope.Update = false;
@@ -109,19 +109,19 @@
     }
 
     $scope.PageSizeList = [5, 10, 15, 20];
-    
+
 
     $scope.Save = function () {
         selectedform();
-        
-       
+
+
         $scope.FormToRollModel.discontinew = discon1;
         $scope.FormToRollModel.RollFormMappingId = null;
         $scope.FormToRollModel.RollId = $("#ddlRoll").val();
-        
+
         $scope.FormToRollModel.AllFormId = formlist;
-       
-       // $scope.FormToRollModel.AuthorizedBy = $("#ddlAAuthority").val();
+
+        // $scope.FormToRollModel.AuthorizedBy = $("#ddlAAuthority").val();
         ShowLoader();
         $http({
             method: 'post',
@@ -153,7 +153,7 @@
             HideLoader();
             console.log(error);
         });
-       
+
     }
     //Edit 
 
@@ -168,12 +168,12 @@
             objShowCustomAlert.ShowCustomAlertBox();
 
         }
-         $scope.FormToRollModel = { RollFormMappingId: FormToRoll.RollFormMappingId, RollDescription: FormToRoll.RollDescription, FormTitle: FormToRoll.FormTitle, AuthorisedBy: FormToRoll.AuthorisedBy, FormId: FormToRoll.FormId, RollId: FormToRoll.RollId, EntryDate: FormToRoll.EntryDate, };
+        $scope.FormToRollModel = { RollFormMappingId: FormToRoll.RollFormMappingId, RollDescription: FormToRoll.RollDescription, FormTitle: FormToRoll.FormTitle, AuthorisedBy: FormToRoll.AuthorisedBy, FormId: FormToRoll.FormId, RollId: FormToRoll.RollId, EntryDate: FormToRoll.EntryDate, };
         $scope.FormToRollModel.RollId = $("#ddlRoll").val();
-       
+
         $scope.FormToRollModel.AllFormId = formlist;
         $scope.FormToRollModel.discontinew = discon1;
-        
+
         selected = [];
         ShowLoader();
         $http({
@@ -199,7 +199,7 @@
                 objShowCustomAlert.ShowCustomAlertBox();
             }
             $scope.CancelClick();
-          
+
         }, function (error) {
             HideLoader();
             console.log(error);
@@ -210,11 +210,11 @@
     //update
     // discontinew
     $scope.Discontinew = function (FormToRoll) {
-       
+
         selected = [];
         $scope.FormToRollModel = { RollFormMappingId: FormToRoll.RollFormMappingId, RollDescription: FormToRoll.RollDescription, FormTitle: FormToRoll.FormTitle, AuthorisedBy: FormToRoll.AuthorisedBy, FormId: FormToRoll.FormId, RollId: FormToRoll.RollId, EntryDate: FormToRoll.EntryDate, };
         $scope.FormToRollModel.discontinew = 'Discon';
-        
+
 
         ShowLoader();
         $http({
@@ -240,7 +240,7 @@
                 objShowCustomAlert.ShowCustomAlertBox();
             }
             $scope.CancelClick();
-           
+
         }, function (error) {
             HideLoader();
             console.log(error);
