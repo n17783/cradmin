@@ -1,0 +1,132 @@
+﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="ValidationTestQuetionController">
+    <div class="col-md-12"><div class="col-md-2"></div>  <h3 class="header">Validation Test Quetion</h3></div>
+
+    <div class="col-md-12" data-ng-show="AddNew">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="box-body">
+                <input type="hidden" data-ng-model="TestQuetionModel.TestQuetionCatagoryId" />
+                <div class="form-group">
+                    <label ng-hide="Update">Select Test</label>
+                    <select class="form-control" id="ddlTest"  ng-disabled="Update" ng-hide="Update"></select>
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.TestId">{{ErrorModel.ErrorSelectTest}}</span>
+                </div>
+                <div class="form-group">
+                    <label ng-hide="Update">Select Trade Category Domain</label>
+                    <select class="form-control" id="ddlTradeC" data-ng-model="TestQuetionModel.TradeCId" ng-hide="Update" data-ng-click="BindTradeList()" ng-disabled="Update"></select>
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.TradeCId">{{ErrorModel.ErrorSelectTradeC}}</span>
+                </div>
+                <div class="form-group">
+                    <label ng-hide="Update">Select Trade </label>
+                    <select class="form-control" id="ddlTrade" ng-hide="Update"  data-ng-model="TestQuetionModel.TradeId"></select>
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.TradeId">{{ErrorModel.ErrorSelectTrade}}</span>
+                </div>
+               
+                <div class="form-group">
+                    <label ng-hide="Update">Select Quetion Category</label>
+                    <select class="form-control" id="ddlQCategory"  data-ng-model="TestQuetionModel.TestQCategory" ng-hide="Update" >
+                        <option value="A . Health, Safety & Environment :">A . Health, Safety & Environment :</option>
+                        <option value="B . Trade Specific Validation :">B . Trade Specific Validation :</option>
+                    </select>
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.QCategory">{{ErrorModel.ErrorSelectQCategory}}</span>
+                </div>
+                <div class="form-group">
+                    <label>Enter Quetion Description</label>
+                    <input type="text" class="form-control" id="ddlQDescription"  data-ng-model="TestQuetionModel.TestQDescription">
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.TestQDescription">{{ErrorModel.ErrorSelectQDescription}}</span>
+                 </div>
+               
+
+            </div>
+            <div class="form-group">
+                <button class="btn btn-danger" type="button" data-ng-click="Save()" data-ng-show="Update==false && AddNew==true">Save</button>
+                <button class="btn btn-danger" type="button" data-ng-click="Update1()" data-ng-show="Update">Update</button>
+                <button class="btn btn-danger" type="button" data-ng-click="CancelClick()">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-12" data-ng-show="Details">
+        <hr />
+        <div class="col-md-12">
+            <div class="col-md-3"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" placeholder="Search" class="form-control" data-ng-model="Prefix"
+                           data-ng-change="FilterList()" />
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <button type="button" class="btn btn-danger" data-ng-click="FilterList()" data-toggle="tooltip"
+                            title="Search">
+                        Search
+                    </button>
+                    <button type="button" class="btn btn-danger" data-ng-click="AddNewClick()" data-toggle="tooltip"
+                            title="New">
+                        New
+                    </button>
+                    <button type="button" class="btn btn-danger" data-ng-click="Reset()" data-toggle="tooltip"
+                            title="Reset">
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Test Name</th>
+                        <th>Trade Name Type</th>
+                        <th>Quetion Category</th>
+                        <th>Quetion </th>
+                        
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="Quetion in MainQuetionList">
+                        <td>{{Quetion.TestQuetionCatagoryId}}</td>
+                        <td>{{Quetion.TestDescription}}</td>
+                        <td>{{Quetion.TradDescription}}</td>
+                        <td>{{Quetion.TestQCategory}}</td>
+                        <td>{{Quetion.TestQDescription}}</td>
+                        
+                        <td>
+                            <button type="button" class="btn btn-danger" data-ng-click="Edit(Quetion);" data-toggle="tooltip"
+                                    title="Update">
+                                Edit
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="col-md-12">
+                <div class="col-md-7"></div>
+                <div class="col-md-1">
+                    <div class="form-group">
+
+                        <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
+                            <option value="5">5</option>
+                            <option value="5">10</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <ul class="pager">
+                        <li><a href="#">Page No : {{TestQuetionModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
+                        <li><a href="#" data-ng-click="Prev()">Previous</a></li>
+                        <li><a href="#" data-ng-click="Next()">Next</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+

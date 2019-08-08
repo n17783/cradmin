@@ -344,12 +344,74 @@
 
     }
 
+    function Capture() {
+        webcam.capture();
+    }
+
     $scope.init = function () {
         checkToken();
         $("#ddlPageSize").val(5);
         $scope.Emp.PageSize = $("#ddlPageSize").val();
         $("#rdoMale").prop("checked", true);
         $("#rdoDM").prop("checked", true);
+        jQuery("#webcam").webcam({
+            width: 320,
+            height: 240,
+            mode: "save",
+            swffile: '@Url.Content("~/Scripts/AdminLayout/jscam.swf")',
+            debug: function (type, status) {
+                $('#camStatus').append(type + ": " + status + '<br /><br />');
+            },
+            onSave: function (data, ab) {
+                $.ajax({
+                    type: "POST",
+                    url: '/Home/GetCapture',
+                    data: '',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "text",
+                    success: function (r) {
+                        $("#webcam").hide();
+                        $("#imgCapture").show();
+                        $("#imgCapture").attr("src", r);
+                    },
+                    failure: function (response) {
+                        alert(response.d);
+                    }
+                });
+            },
+            onCapture: function () {
+                webcam.save('@Url.Action("Capture", "Dashboard")');
+            }
+        });
+
+        $("#uploadAdhaar").click(function () {
+            files = $("#AdhaarImage").get(0).files;
+            if (files.length == 0) {
+                $("#AdhaarImage").trigger("click");
+            }
+            else {
+                UploadA();
+            }
+        })
+        $("#AdhaarImage").change(function () {
+            $("#uploadAdhaar").trigger("click");
+        });
+        $("#dtReport").datepicker({
+            format: "dd-MM-yyyy",
+            autoclose: true,
+            todayHighlight: true
+        }).datepicker('update', new Date());
+
+        $("#dtBirth").datepicker({
+            format: "dd-MM-yyyy",
+            autoclose: true,
+            todayHighlight: true
+        }).datepicker('update', new Date());
+        $("#ddlAdate").datepicker({
+            format: "dd-MM-yyyy",
+            autoclose: true,
+            todayHighlight: true
+        }).datepicker('update', new Date());
         GetMasterDataList();
     }
 

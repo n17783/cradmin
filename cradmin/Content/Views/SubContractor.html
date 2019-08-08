@@ -1,0 +1,200 @@
+﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="SubContractorController">
+    <div class="col-md-12"><div class="col-md-2"></div>  <h3 class="header">SUB CONTRACTOR DETAILS</h3></div>
+
+    <div class="col-md-12" data-ng-show="AddNew">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="box-body">
+                <input type="hidden" data-ng-model="SubContractorModel.SubContractorId" />
+
+                <div class="form-group">
+                    <label>Select Main Contractor</label>
+                    <select class="form-control" id="ddlMconId"  ng-disabled="Update"></select>
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.ContractorId">{{ErrorModel.ErrorSelectMainContractor}}</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Sub Contractor Name</label>
+                    <input type="text" class="form-control" id="ddlSCName" data-ng-keypress="Validate()"  data-ng-model="SubContractorModel.SubCName" ng-disabled="Update">
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.SubCName">{{ErrorModel.ErrorEnterSubContractor}}</span>
+                 </div>
+                <div class="form-group">
+                    <label>Enter Sub Contractor Company Name</label>
+                    <input type="text" class="form-control" id="ddlSCCName"  data-ng-model="SubContractorModel.SubCCompanyName" ng-disabled="Update">
+               
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.SubCCompanyName">{{ErrorModel.ErrorEnterSubCCName}}</span> </div>
+                <div class="form-group">
+                    <label>Enter Sub Contractor Registration Number</label>
+                    <input type="text" class="form-control" id="ddlSCRNo" data-ng-model="SubContractorModel.SubCRegistrationNo" ng-disabled="Update">
+
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.SubCRegistrationNo">{{ErrorModel.ErrorEnterSubCRNo}}</span>
+                </div>
+                <div class="form-group">
+                    <label>Enter Sub Contractor GST Number</label>
+                    <input type="text" class="form-control" id="ddlSCGSTNo" data-ng-model="SubContractorModel.SubCGstNo" ng-disabled="Update">
+
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.SubCGstNo">{{ErrorModel.ErrorEnterSubGSTNo}}</span>
+                </div>
+                <div class="form-group">
+                    <label>Enter Sub Contractor Office Address</label>
+                    <input type="text" class="form-control" id="ddlSCOAdd" data-ng-model="SubContractorModel.SubCOfficeAddress" ng-disabled="Update">
+
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.SubCOfficeAddress">{{ErrorModel.ErrorEnterSubOAdd}}</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Sub Contractor Phone 1</label>
+                    <input type="text" class="form-control" id="ddlSCPhone1" data-ng-model="SubContractorModel.SubCPhoneNo" placeholder="Enter Phone Number ..." ng-disabled="Update"  data-ng-keypress="NumericPhone($event,SubContractorModel.SubCPhoneNo)">
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.SubCPhoneNo">{{ErrorModel.ErrorSubCPhon1}}</span>
+                </div>
+                <div class="form-group">
+                    <label>Sub Contractor Phone 2</label>
+                    <input type="text" class="form-control" id="ddlSCPhone2" data-ng-model="SubContractorModel.ContractorPhoneNo1" placeholder="Enter 2 Phone Number ..." ng-disabled="Update" data-ng-keypress="NumericPhone($event,SubContractorModel.ContractorPhoneNo1)">
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.ContractorPhoneNo1">{{ErrorModel.ErrorSubCPhon2}}</span>
+                </div>
+                <div class="form-group">
+                    <label>Email Id</label>
+                    <input type="text" class="form-control" id="ddlSCEmail" data-ng-model="SubContractorModel.EmailId" placeholder="Enter Email Id ..." ng-disabled="Update">
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.EmailId">{{ErrorModel.ErrorSubCEmail}}</span>
+                </div>
+                <div class="form-group">
+                    <label>Vendor Code</label>
+                    <input type="text" class="form-control" id="ddlSCCode" data-ng-model="SubContractorModel.Code" placeholder="Enter Vendor Code  ..." ng-disabled="Update">
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.Code">{{ErrorModel.ErrorSubCCode}}</span>
+                </div>
+                <div class="form-group">
+                    
+                    <label>Work Order No</label>
+                    <input type="text" class="form-control" id="ddlSCWorkONo" data-ng-model="SubContractorModel.WorkOrderNo" placeholder="Enter Work Order No ...">
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.WorkOrderNo">{{ErrorModel.ErrorSubCWorkONO}}</span>
+                </div>
+                <div class="form-group">
+
+                    <label>Nature Of Work</label>
+                    <input type="text" class="form-control" id="ddlSCNOW" data-ng-model="SubContractorModel.NatureOfWork" placeholder="Enter Nature Of Work ...">
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.NatureOfWork">{{ErrorModel.ErrorSubCNOW}}</span>
+                </div>
+                <div class="form-group">
+                    <label>Valid Up To</label>
+                    <input type="text" class="form-control" id="ddlVdate" placeholder="Enter Valid UpTo Date ..." >
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.ValidUpTo">{{ErrorModel.ErrorEnterVDate}}</span>
+                </div>
+
+                
+            </div>
+            <div class="form-group">
+                <button class="btn btn-danger" type="button" data-ng-click="Save()" data-ng-show="Update==false && AddNew==true">Save</button>
+                <button class="btn btn-danger" type="button" data-ng-click="Save()" data-ng-show="Update">Update</button>
+                <button class="btn btn-danger" type="button" data-ng-click="CancelClick()">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-12" data-ng-show="Details">
+        <hr />
+        <div class="col-md-12">
+            <div class="col-md-3"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" placeholder="Search" class="form-control" data-ng-model="Prefix"
+                           data-ng-change="FilterList()" />
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <button type="button" class="btn btn-danger" data-ng-click="FilterList()" data-toggle="tooltip"
+                            title="Search">
+                        Search
+                    </button>
+                    <button type="button" class="btn btn-danger" data-ng-click="AddNewClick()" data-toggle="tooltip"
+                            title="New">
+                        New
+                    </button>
+                    <button type="button" class="btn btn-danger" data-ng-click="Reset()" data-toggle="tooltip"
+                            title="Reset">
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Sub Contractor</th>
+                        <th>Company Name</th>
+                        <th>Registration No</th>
+                        <th>GST NO </th>
+                        <th>Address </th>
+                        <th>Phone No 1 </th>
+                        <th>Phone No 2 </th>
+                        <th>Email Id </th>
+                        <th>Vendor Code </th>
+                        <th>Work Order No </th>
+                        <th>Nature Of Work</th>
+                        <th>Valid UPTO</th>
+                        <th>Main Contractor</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="subcontractor in SubContractorList">
+
+                        <td>{{subcontractor.SubContractorId}}</td>
+                        <td>{{subcontractor.SubCName}}</td>
+                        <td>{{subcontractor.SubCCompanyName}}</td>
+                        <td>{{subcontractor.SubCRegistrationNo}}</td>
+                        <td>{{subcontractor.SubCGstNo}}</td>
+                        <td>{{subcontractor.SubCOfficeAddress}}</td>
+                        <td>{{subcontractor.SubCPhoneNo}}</td>
+                        <td>{{subcontractor.ContractorPhoneNo1}}</td>
+                        <td>{{subcontractor.EmailId}}</td>
+                        <td>{{subcontractor.Code}}</td>
+                        <td>{{subcontractor.WorkOrderNo}}</td>
+                        <td>{{subcontractor.NatureOfWork}}</td>
+                        <td>{{subcontractor.ValidUpTo |mydate|date: 'dd-MM-yyyy'}}</td>
+                        <td>{{subcontractor.ContractorId}}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger" data-ng-click="Edit(subcontractor)" data-toggle="tooltip"
+                                    title="Update">
+                                Edit
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="col-md-12">
+                <div class="col-md-7"></div>
+                <div class="col-md-1">
+                    <div class="form-group">
+
+                        <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
+                            <option value="5">5</option>
+                            <option value="5">10</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <ul class="pager">
+                        <li><a href="#">Page No : {{SubContractorModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
+                        <li><a href="#" data-ng-click="Prev()">Previous</a></li>
+                        <li><a href="#" data-ng-click="Next()">Next</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $("#ddlVdate").datepicker({
+                    format: "dd-MM-yyyy",
+                    autoclose: true,
+                    todayHighlight: true
+                }).datepicker('update', new Date());
+</script>
