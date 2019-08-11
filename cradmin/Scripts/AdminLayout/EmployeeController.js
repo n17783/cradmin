@@ -177,27 +177,55 @@
             $scope.ErrorModel.AadharNo = true;
             $scope.ErrorModel.ErrorMessageAdhaarNo = "Please Enter Valid Aadhar Number.";
             valid = false;
-           
         }
-        if ($scope.Emp.FName == "") {
-            $scope.ErrorModel.FName = true;
-            $scope.ErrorModel.ErrorMessageFName = "First Name should be filled.";
-            valid = false;
+        else {
+            valid = true;
+            $scope.ErrorModel.AadharNo = false;
         }
-        if ($scope.Emp.LName == "") {
-            $scope.ErrorModel.LName = true;
-            $scope.ErrorModel.ErrorMessageLName = "Last Name should be filled.";
-            valid = false;
+        if (valid) {
+            if ($scope.Emp.FName == "") {
+                $scope.ErrorModel.FName = true;
+                $scope.ErrorModel.ErrorMessageFName = "First Name should be filled.";
+                valid = false;
+            }
+            else {
+                valid = true;
+                $scope.ErrorModel.FName = false;
+            }
         }
-        if ($scope.Emp.MName == "") {
-            $scope.ErrorModel.MName = true;
-            $scope.ErrorModel.ErrorMessageMName = "Middle Name should be filled.";
-            valid = false;
+        if (valid) {
+            if ($scope.Emp.LName == "") {
+                $scope.ErrorModel.LName = true;
+                $scope.ErrorModel.ErrorMessageLName = "Last Name should be filled.";
+                valid = false;
+            }
+            else {
+                valid = true;
+                $scope.ErrorModel.LName = false;
+            }
         }
-        if ($scope.EmpDetails.DateOfReport == "") {
-            $scope.ErrorModel.DateOfReport = true;
-            $scope.ErrorModel.ErrorMessageMName = "Date Of Report should be filled.";
-            valid = false;
+        
+        if (valid) {
+            if ($scope.Emp.MName == "") {
+                $scope.ErrorModel.MName = true;
+                $scope.ErrorModel.ErrorMessageMName = "Middle Name should be filled.";
+                valid = false;
+            }
+            else {
+                valid = true;
+                $scope.ErrorModel.MName = false;
+            }
+        }
+        if (valid) {
+            if ($scope.EmpDetails.DateOfReport == "") {
+                $scope.ErrorModel.DateOfReport = true;
+                $scope.ErrorModel.ErrorMessageMName = "Date Of Report should be filled.";
+                valid = false;
+            }
+            else {
+                valid = true;
+                $scope.ErrorModel.DateOfReport = false;
+            }
         }
         return valid
     }
