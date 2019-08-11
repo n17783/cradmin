@@ -173,7 +173,7 @@
 
     $scope.Validate = function () {
         var valid = true;
-        if ( $scope.Emp.AdhaarNo.length<12) {
+        if ( $scope.Emp.AdhaarNo.length==12) {
             $scope.ErrorModel.AadharNo = true;
             $scope.ErrorModel.ErrorMessageAdhaarNo = "Please Enter Valid Aadhar Number.";
             valid = false;

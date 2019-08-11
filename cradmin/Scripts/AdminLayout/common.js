@@ -1,4 +1,4 @@
-﻿
+﻿var SelectedValidaterMode=[];
 
 function LoadViews(UserControl)
 {
@@ -86,6 +86,7 @@ function LogOff()
 }
 
 function LoadUserControls(element) {
+    debugger;
     var url = $(element).attr("data-url");
     $("#contentLoader").html("");
     $.ajax({
