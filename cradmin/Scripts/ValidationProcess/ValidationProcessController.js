@@ -119,7 +119,7 @@
     };
 
     $scope.init = function () {
-     
+        $('body').removeClass('modal-open');
         var mValue = SelectedValidaterModel;
         var d = new Date();
 
