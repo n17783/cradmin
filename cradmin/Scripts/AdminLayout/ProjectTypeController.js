@@ -7,9 +7,11 @@
     $scope.TotalRecords = 0;
     $scope.TotalPages = 0
 
-    $scope.ProjectTypeModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), ProjectTypeDescription: "", PTEnteryDate: "", CreatedBy: "" };
+    $scope.ProjectTypeModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), ProjectTypeDescription: "" };
 
     $scope.AddNewClick = function () {
+        var valid = true;
+        $scope.ErrorModel.ProjectTypeDescription = false;
         $scope.AddNew = true;
         $scope.Details = false;
         $scope.ProjectTypeModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), ProjectTypeDescription: "" };
@@ -25,21 +27,47 @@
     $scope.ProjectTypeList = [];
 
     $scope.Save = function () {
-        ShowLoader();
-        $http({
-            method: 'post',
-            url: $scope.urlBase + '/ProjectType/Save',
-            data: $scope.ProjectTypeModel,
-        }).then(function (response) {
-            HideLoader();
-            $scope.CancelClick();
-            $scope.GetProjectTypeList();
-        }, function (error) {
-            HideLoader();
-            console.log(error);
-        });
+        if ($scope.Validate()) {
+            var objShowCustomAlert = new ShowCustomAlert({
+                Title: "Error",
+                Message: "Are You Want To Save This Record",
+                Type: "confirm",
+                OnOKClick: function () {
+                    ShowLoader();
+                    $http({
+                        method: 'post',
+                        url: $scope.urlBase + '/ProjectType/Save',
+                        data: $scope.ProjectTypeModel,
+                    }).then(function (response) {
+                        HideLoader();
+                        if (response.data.Status == 0) {
+                            var objShowCustomAlert = new ShowCustomAlert({
+                                Title: "Error",
+                                Message: "This Record Is All Ready Exist",
+                                Type: "alert"
+                            });
+                            objShowCustomAlert.ShowCustomAlertBox();
+                        }
+                        else {
+                            var objShowCustomAlert = new ShowCustomAlert({
+                                Title: "Success",
+                                Message: "Record Seved Successfully",
+                                Type: "alert"
+                            });
+                            objShowCustomAlert.ShowCustomAlertBox();
+                        }
+                  
+                $scope.CancelClick();
+                $scope.GetProjectTypeList();
+            }, function (error) {
+                HideLoader();
+                console.log(error);
+            });
+                }
+            });
+            objShowCustomAlert.ShowCustomAlertBox();
+            }
     }
-
     $scope.GetProjectTypeList = function () {
         ShowLoader();
         $http({
@@ -62,7 +90,20 @@
             console.log(error);
         });
     }
-
+    $scope.ErrorModel = {
+        ProjectTypeDescription: false, ErrorMessagEnterProjectType: ""
+    };
+    
+    $scope.Validate = function () {
+        var valid = true;
+        if ($scope.ProjectTypeModel.ProjectTypeDescription =="") {
+            $scope.ErrorModel.ProjectTypeDescription = true;
+            $scope.ErrorModel.ErrorMessagEnterProjectType = "Please Enter Project Type.";
+            valid = false;
+           
+        }
+        return valid
+    }
     $scope.Prev = function () {
         if ($scope.ProjectTypeModel.PageNo > 1) {
             $scope.ProjectTypeModel.PageNo--;
@@ -71,6 +112,7 @@
     }
 
     $scope.Next = function () {
+
         if ($scope.ProjectTypeModel.PageNo < $scope.TotalPages) {
             $scope.ProjectTypeModel.PageNo++;
             $scope.GetProjectTypeList();

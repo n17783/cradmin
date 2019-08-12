@@ -15,9 +15,9 @@ namespace cradmin.Models.BAL
             EmployeeType objEmployeeType = new EmployeeType();
             List<SqlParameter> lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@EmpDesignation", Value = model.EmpDesignation });
-            lst.Add(new SqlParameter() { ParameterName = "@IsDmOrStaff", Value = model.IsDmOrStaff }); 
-            lst.Add(new SqlParameter() { ParameterName = "@EntryBy", Value = model.EntryBy });
-            lst.Add(new SqlParameter() { ParameterName = "@CreatedByAuthority", Value = model.CreatedByAuthority });
+            lst.Add(new SqlParameter() { ParameterName = "@IsDmOrStaff", Value = model.IsDmOrStaff });
+            lst.Add(new SqlParameter() { ParameterName = "@EmpGrade", Value = model.EmpGrade });
+            lst.Add(new SqlParameter() { ParameterName = "@Category", Value = model.Category });
             SettingsHelper objHelper = SettingsHelper.Instance;
             DataTable dt = objHelper.GetDataTable("Insert_EmployeeType", lst);
 

@@ -23,7 +23,7 @@ namespace cradmin.Models.BAL
 
             SettingsHelper objHelper = SettingsHelper.Instance;
             DataTable dt = objHelper.GetDataTable("InsertMainContractor", lst);
-            objContractor.Status = 1;
+            objContractor.Status = dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["SuccessFailed"].ToString()) : 0;
             return objContractor;
         }
 

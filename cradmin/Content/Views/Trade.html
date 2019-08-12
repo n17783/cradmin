@@ -6,22 +6,17 @@
             <div class="form-group">
                 <label>Trade Type Description</label>
                 <input type="text" class="form-control" placeholder="Trade Type Description ..." data-ng-model="TradeTypModel.TradDescription">
-            </div>
-            <div class="form-group">
-                <label>Trade Type Description</label>
+                <span class="badge badge-danger" data-ng-show="ErrorModel.TradDescription">{{ErrorModel.ErrorSelectTradDescription}}</span>
 
-                <select class="form-control" id="ddlTradeC"></select>
-            </div>
+             </div>
             <div class="form-group">
-                <label> Trade Created Authority</label>
-                <input type="text" class="form-control" placeholder="Enter Trade Created Authority ..." id="ddlTCAuto" data-ng-model="TradeTypModel.CreatedBy">
+                <label>Trade Category Domain</label>
 
+                <select class="form-control" id="ddlTradeC" ></select>
+                <span class="badge badge-danger" data-ng-show="ErrorModel.TradeCId">{{ErrorModel.ErrorSelectTradeCId}}</span>
             </div>
-            <div class="form-group">
-                <label>Trade Sanction Date</label>
-                <input type="text" class="form-control" placeholder="Enter Trade Sanctioned Date ..." id="ddlTSDate" data-ng-model="TradeTypModel.SanctionDate">
-
-            </div>
+           
+           
             <div class="form-group">
                 <button class="btn btn-danger" type="button" data-ng-click="Save()">Save</button>
                 <button class="btn btn-danger" type="button" data-ng-click="CancelClick()">Cancel</button>
@@ -39,17 +34,15 @@
                         <th>Id</th>
                         <th>Trade Name</th>
                         <th>Trade Catagory Name</th>
-                        <th>Trade Created Authority</th>
-                        <th>Trade Sanction Date</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                     <tr data-ng-repeat="TradeType in TradeTypeList">
                         <td>{{TradeType.TradeId}}</td>
                         <td>{{TradeType.TradDescription}}</td>
-                        <td>{{TradeType.TradeCId}}</td>
-                        <td>{{TradeType.CreatedBy}}</td>
-                        <td>{{TradeType.SanctionDate |mydate| date: 'dd-mm-yyyy'}}</td>
+                        <td>{{TradeType.TradCDescription}}</td>
+                       
 
                     </tr>
                 </tbody>

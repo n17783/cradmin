@@ -1,35 +1,40 @@
 ﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="PlantController">
-    <div class="col-md-12"><h3 class="header">Plant</h3></div>
+    <div class="col-md-12"><div class="col-md-2"></div><h3 class="header">Plant</h3></div>
     <div class="col-md-12" data-ng-show="AddNew">
-        <div class="col-md-2"></div>
+        <div class="col-md-3"></div>
         <div class="col-md-6">
-            <div class="form-group">
-                <label>Plant Name</label>
-                <input type="text" class="form-control" placeholder="Enter Plant Name ..." data-ng-model="PlantModel.PlantTitle">
+            <div class="box-body">
+                <input type="hidden" data-ng-model="PlantModel.PlantId" />
+                <div class="form-group">
+                    <label>Plant Name</label>
+                    <input type="text" class="form-control" id="ddlPlant" placeholder="Enter Plant Name ..." ng-disabled="Update" data-ng-model="PlantModel.PlantTitle">
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.PlantTitle">{{ErrorModel.ErrorSelectPlantTitle}}</span>
+                 </div>
+                <div class="form-group">
+                    <label> Plant Information</label>
+
+                    <input type="text" class="form-control" placeholder="Enter Plant Information ..." data-ng-model="PlantModel.PlantDescription" ng-disabled="Update">
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.PlantDescription">{{ErrorModel.ErrorSelectPlantDescription}}</span>
+                </div>
+                <div class="form-group">
+                    <label> Plant Incharge</label>
+                    <input type="text" class="form-control" placeholder="Enter Plant Incharge ..." data-ng-model="PlantModel.PlantIncharge">
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.PlantIncharge">{{ErrorModel.ErrorSelectPlantIncharge}}</span>
+                </div>
+                <div class="form-group">
+                    <label>Total Plant Strength</label>
+                    <input type="number" class="form-control" placeholder="Enter Total Plant Strength ..." data-ng-model="PlantModel.PlantStrenth">
+                    <!--<span class="badge badge-danger" data-ng-show="ErrorModel.PlantStrenth">{{ErrorModel.ErrorSelectPlantStrenth}}</span>-->
+                </div>
+                <div class="form-group">
+                    <label> Phone Number</label>
+                    <input type="number" class="form-control" placeholder="Enter  Phone Number ..." data-ng-model="PlantModel.PlantPhoneNo1" data-ng-keypress="Phone($event,PlantModel.PlantPhoneNo1)">
+                    <!--<span class="badge badge-danger" data-ng-show="ErrorModel.PlantPhoneNo1">{{ErrorModel.ErrorSelectPlantPhoneNo1}}</span>-->
+                </div>
             </div>
             <div class="form-group">
-                <label> Plant Information</label>
-
-                <input type="text" class="form-control" placeholder="Enter Plant Information ..." data-ng-model="PlantModel.PlantDescription">
-            </div>
-            <div class="form-group">
-                <label> Plant Address</label>
-                <input type="text" class="form-control" placeholder="Enter Plant Address ..." data-ng-model="PlantModel.PlantAddress">
-
-            </div>
-            <div class="form-group">
-                <label>First Phone Number</label>
-                <input type="text" class="form-control" placeholder="Enter First Phone Number ..." data-ng-model="PlantModel.PlantPhoneNo">
-
-            </div>
-            <div class="form-group">
-                <label> Second Phone Number</label>
-                <input type="text" class="form-control" placeholder="Enter Second Phone Number ..." data-ng-model="PlantModel.PlantPhoneNo2">
-
-            </div>
-
-            <div class="form-group">
-                <button class="btn btn-danger" type="button" data-ng-click="Save()">Save</button>
+                <button class="btn btn-danger" type="button" data-ng-click="Save()" data-ng-show="Update==false && AddNew==true">Save</button>
+                <button class="btn btn-danger" type="button" data-ng-click="EditPlantType()" data-ng-show="Update">Update</button>
                 <button class="btn btn-danger" type="button" data-ng-click="CancelClick()">Cancel</button>
             </div>
         </div>
@@ -45,9 +50,9 @@
                         <th>Id</th>
                         <th>Plant Name</th>
                         <th>Plant Description</th>
-                        <th>PlantAddress</th>
-                        <th>Plant Phone No first</th>
-                        <th>Plant Phone No Second</th>
+                        <th>PlantIncharge</th>
+                        <th>Total Plant Strength </th>
+                        <th>Plant Phone No </th>
                         <th>Edit</th>
                     </tr>
                 </thead>
@@ -56,10 +61,10 @@
                         <td>{{PlantType.PlantId}}</td>
                         <td>{{PlantType.PlantTitle}}</td>
                         <td>{{PlantType.PlantDescription}}</td>
-                        <td>{{PlantType.PlantAddress}}</td>
-                        <td>{{PlantType.PlantPhoneNo}}</td>
-                        <td>{{PlantType.PlantPhoneNo2 }}</td>
-                        <td><span class="glyphicon glyphicon-edit" data-ng-click="EditPlantType(PlantType)"></span></td>
+                        <td>{{PlantType.PlantIncharge}}</td>
+                        <td>{{PlantType.PlantStrenth}}</td>
+                        <td>{{PlantType.PlantPhoneNo1 }}</td>
+                        <td><span class="glyphicon glyphicon-edit" data-ng-click="Edit(PlantType)"></span></td>
                     </tr>
                 </tbody>
             </table>
@@ -84,6 +89,6 @@
             </div>
 
         </div>
-        
+
     </div>
 </div>

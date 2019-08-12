@@ -16,8 +16,7 @@ namespace cradmin.Models.BAL
             List<SqlParameter> lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@TradDescription", Value = model.TradDescription });
             lst.Add(new SqlParameter() { ParameterName = "@TradeCId", Value = model.TradeCId });
-            lst.Add(new SqlParameter() { ParameterName = "@CreatedBy", Value = model.CreatedBy });
-            lst.Add(new SqlParameter() { ParameterName = "@SanctionDate", Value = model.SanctionDate });
+          
             SettingsHelper objHelper = SettingsHelper.Instance;
             DataTable dt = objHelper.GetDataTable("Insert_Trade", lst);
 

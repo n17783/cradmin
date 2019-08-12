@@ -1,23 +1,31 @@
 ﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="EmployeeTypeController">
-    <div class="col-md-12"><h3 class="header">Employee Type</h3></div>
+    <div class="col-md-12"><h3 class="header">Employee Designation</h3></div>
     <div class="col-md-12" data-ng-show="AddNew">
         <div class="col-md-2"></div>
         <div class="col-md-6">
             <div class="form-group">
-                <label>Employee Type Description</label>
+                <label>Enter Employee Designation</label>
                 <input type="text" class="form-control" placeholder="Enter Employee Type Description ..." data-ng-model="EmployeeTypeModel.EmpDesignation">
-            </div>
+                <span class="badge badge-danger" data-ng-show="ErrorModel.EmpDesignation">{{ErrorModel.ErrorSelectEmpDesignation}}</span>
+             </div>
             <div class="form-group">
-                <label>Employee Type Description</label>
-                <select class="form-control" id="ddlIsDmOrStaff">
+                <label>Select Employee Category</label>
+                <select class="form-control" id="ddlIsDmOrStaff" >
                     <option value="DM">DM</option>
                     <option value="STAFF">STAFF</option>
 
                 </select>
+               
             </div>
             <div class="form-group">
-                <label>Created By </label>
-                <input type="text" class="form-control" placeholder="Enter Employee Type Created Authority ..." data-ng-model="EmployeeTypeModel.CreatedByAuthority">
+                <label>Employee Grade </label>
+                <input type="text" class="form-control" placeholder="Employee Grade ..." data-ng-model="EmployeeTypeModel.EmpGrade">
+                <span class="badge badge-danger" data-ng-show="ErrorModel.EmpGrade">{{ErrorModel.ErrorSelectEmpGrade}}</span>
+            </div>
+            <div class="form-group">
+                <label>Employee Category </label>
+                <input type="text" class="form-control" placeholder="Employee Category ..." data-ng-model="EmployeeTypeModel.Category">
+                <span class="badge badge-danger" data-ng-show="ErrorModel.Category">{{ErrorModel.ErrorSelectCategory}}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="button" data-ng-click="Save()">Save</button>
@@ -34,21 +42,19 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Employee Type</th>
+                        <th>Employee Designation</th>
                         <th>DM/STAFF</th>
-                        <th>Created Authority</th>
-                        <th>Created Time</th>
+                        <th>Employee Grade</th>
+                        <th>Category</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-ng-repeat="EmpType in EmpTypeList track by EmpType.EmpTypeId" >
+                    <tr data-ng-repeat="EmpType in EmpTypeList">
                         <td>{{EmpType.EmpTypeId}}</td>
                         <td>{{EmpType.EmpDesignation}}</td>
                         <td>{{EmpType.IsDmOrStaff==true?"DM":"STAFF"}}</td>
-                        <td>{{EmpType.CreatedByAuthority}}</td>
-                        <td>{{EmpType.EntryDate}}</td>
-
-
+                        <td>{{EmpType.EmpGrade}}</td>
+                        <td>{{EmpType.Category}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -73,6 +79,6 @@
             </div>
 
         </div>
-       
+
     </div>
 </div>

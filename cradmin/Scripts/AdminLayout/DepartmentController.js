@@ -5,7 +5,7 @@
     $scope.Details = true;
 
     $scope.TotalRecords = 0;
-    $scope.TotalPages = 0
+    $scope.TotalPages = 0;
 
     $scope.DeptTypModel = { PageNo: 1, PageSize: 2, Dept_Name: "" };
 

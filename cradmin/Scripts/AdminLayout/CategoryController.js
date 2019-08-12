@@ -10,6 +10,7 @@
     $scope.TradeModal = { PageNo: 1, PageSize: 2, TradCDescription: "" };
 
     $scope.AddNewClick = function () {
+        $scope.ErrorModel.TradCDescription = false;
         $scope.AddNew = true;
         $scope.Details = false;
         $scope.TradeModal = { PageNo: 1, PageSize: 2, TradCDescription: "" };
@@ -24,6 +25,13 @@
     $scope.TradeList = [];
 
     $scope.Save = function () {
+        valid = true;
+        if ($scope.Validate()) {
+            var objShowCustomAlert = new ShowCustomAlert({
+                Title: "Error",
+                Message: "Are You Want To Save This Record",
+                Type: "confirm",
+                OnOKClick: function () {
         ShowLoader();
         $http({
             method: 'post',
@@ -31,12 +39,33 @@
             data: $scope.TradeModal,
         }).then(function (response) {
             HideLoader();
+            if (response.data.Status == 0) {
+                var objShowCustomAlert = new ShowCustomAlert({
+                    Title: "Error",
+                    Message: "This Record Is All Ready Exist",
+                    Type: "alert"
+                });
+                objShowCustomAlert.ShowCustomAlertBox();
+            }
+            else {
+                var objShowCustomAlert = new ShowCustomAlert({
+                    Title: "Success",
+                    Message: "Record Seved Successfully",
+                    Type: "alert"
+                });
+                objShowCustomAlert.ShowCustomAlertBox();
+            }
             $scope.CancelClick();
             $scope.GetTradeDetails();
         }, function (error) {
             HideLoader();
             console.log(error);
         });
+                }
+            });
+            objShowCustomAlert.ShowCustomAlertBox();
+
+        }
     }
 
     $scope.GetTradeDetails = function () {
@@ -75,7 +104,26 @@
             $scope.GetTradeDetails();
         }
     }
+    $scope.Validate = function () {
+        var valid = true;
 
+
+        if ($scope.TradeModal.TradCDescription == "") {
+            $scope.ErrorModel.TradCDescription = true;
+            $scope.ErrorModel.ErrorSelectTradCDescription = "Please Enter Trade Catagory Domain Name.";
+            valid = false;
+        }
+        else {
+            $scope.ErrorModel.TradCDescription = false;
+
+
+            valid = true;
+        }
+        return valid;
+    }
+    $scope.ErrorModel = {
+        TradCDescription: false, ErrorSelectTradCDescription: ""
+    };
     $scope.init = function () {
         $scope.AddNew = false;
         $scope.Details = true;

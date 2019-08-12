@@ -22,7 +22,7 @@
         }).then(function (response) {
             HideLoader();
             if (response.data.Status == 1) {
-                $scope.TradeList = response.data.TradeList;
+                $scope.TradeList = response.data.TradeList
                 $scope.TradeCList = response.data.TradeCList
                 $scope.TestList = response.data.TestList;
 
@@ -95,11 +95,7 @@
     $scope.CancelClick = function () {
         $scope.AddNew = false;
         $scope.Details = true;
-        $("#ddlplant").val("");
-        $("#ddlPstrenth").val("");
-        $("#ddlPDstrenth").val("");
-        $("#ddlAstrenth").val("");
-        $("#ddlAAuthority").val("");
+      
 
 
         $scope.TestQuetionModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), Prefix: "", TestQuetionCatagoryId: "", TestId: "", TestQCategory: "", TestDescription: "", TradeId: "", TestQDescription: "" };
@@ -258,34 +254,38 @@
     }
 
     $scope.ErrorModel = {
-        PlantId: false, ErrorSelectPlant: "", TradeId: false, ErrorSelectTrade: "",
-        AuthorizedStrenth: false, ErrorEnterStrenth: "", AuthorizedBy: false, ErrorEnterAuthority: "",
-        AuthorizedDate: false, ErrorEnterDate: ""
+        TestId: false, ErrorSelectTest: "", TestQCategory: false, ErrorSelectTrade: "",
+        TradeCId: false, ErrorSelectTradeC: "", TradeId: false, ErrorSelectTrade: "",
+        QCategory: false, ErrorSelectQCategory: "", TestQDescription: false, ErrorSelectQDescription:""
     };
     $scope.Validate = function () {
         var valid = true;
 
-        if ($scope.TestQuetionModel.AuthorizedStrenth == "") {
-            $scope.ErrorModel.AuthorizedStrenth = true;
-            $scope.ErrorModel.ErrorEnterStrenth = "Please Enter Valid Strength.";
+        if ($scope.TestQuetionModel.TestId == "") {
+            $scope.ErrorModel.TestId = true;
+            $scope.ErrorModel.ErrorSelectTest = "Select Test.";
             valid = false;
         }
-        else {
-
-            valid = true;
-        }
-        if ($scope.TestQuetionModel.AuthorizedBy == "") {
-            $scope.ErrorModel.AuthorizedBy = true;
-            $scope.ErrorModel.ErrorEnterAuthority = "Please Enter Authority Name.";
+       
+        if ($scope.TestQuetionModel.TradeCId == "") {
+            $scope.ErrorModel.TradeCId = true;
+            $scope.ErrorModel.ErrorSelectTradeC = "Select Trade Domain.";
             valid = false;
         }
-        else {
-
-            valid = true;
+       
+        if ($scope.TestQuetionModel.TradeId == "") {
+            $scope.ErrorModel.TradeId = true;
+            $scope.ErrorModel.ErrorSelectTrade = "Select Trade.";
+            valid = false;
         }
-        if ($scope.TestQuetionModel.AuthorizedDate == "") {
-            $scope.ErrorModel.AuthorizedDate = true;
-            $scope.ErrorModel.ErrorEnterDate = "Please Enter Authorized Date.";
+        if ($scope.TestQuetionModel.TestQCategory == "") {
+            $scope.ErrorModel.QCategory = true;
+            $scope.ErrorModel.ErrorSelectQCategory = "Select Quetion Prefix Or Suffix.";
+            valid = false;
+        }
+        if ($scope.TestQuetionModel.TestQDescription == "") {
+            $scope.ErrorModel.TestQDescription = true;
+            $scope.ErrorModel.ErrorSelectQDescription = "Enter Releated Quetion.";
             valid = false;
         }
         else {

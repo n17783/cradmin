@@ -7,28 +7,35 @@
     $scope.TotalRecords = 0;
     $scope.TotalPages = 0
 
-    $scope.TradeTypModel = { PageNo: 1, PageSize: 2, TradDescription: "" };
+    $scope.TradeTypModel = { PageNo: 1, PageSize: 10, TradDescription: "" };
 
     $scope.AddNewClick = function () {
         $scope.AddNew = true;
         $scope.Details = false;
-        $scope.TradeTypModel = { PageNo: 1, PageSize: 2, TradDescription: "", TradeCId: "", CreatedBy: "", SanctionDate: "" };
+        $scope.ErrorModel.TradDescription = false;
+        $scope.ErrorModel.TradeCId = false;
+        valid = false;
+        $scope.TradeTypModel = { PageNo: 1, PageSize: 10, TradDescription: "", TradeCId: "",TradCDescription:"" };
     }
 
     $scope.CancelClick = function () {
         $scope.AddNew = false;
         $scope.Details = true;
-        $scope.TradeTypModel = { PageNo: 1, PageSize: 2, TradDescription: "", TradeCId: "", CreatedBy: "", SanctionDate:"" };
+        $scope.TradeTypModel = { PageNo: 1, PageSize: 10, TradDescription: "", TradeCId: "", TradCDescription: "" };
     }
 
     $scope.PageSizeList = [5, 10, 15, 20];
     $scope.TradeTypeList = [];
 
     $scope.Save = function () {
-        
+        if ($scope.Validate()) {
+            var objShowCustomAlert = new ShowCustomAlert({
+                Title: "Error",
+                Message: "Are You Want To Save This Record",
+                Type: "confirm",
+                OnOKClick: function () {
         $scope.TradeTypModel.TradeCId = $("#ddlTradeC").val();
-        $scope.TradeTypModel.CreatedBy = $("#ddlTCAuto").val();
-        $scope.TradeTypModel.SanctionDate = $("#ddlTSDate").val();
+       
         ShowLoader();
         $http({
             method: 'post',
@@ -58,6 +65,11 @@
             HideLoader();
             console.log(error);
         });
+                }
+            });
+            objShowCustomAlert.ShowCustomAlertBox();
+
+        }
     }
 
     $scope.TradeCategoryList = [];
@@ -94,7 +106,7 @@
         }).then(function (response) {
             HideLoader();
             $scope.TradeCategoryList = response.data;
-            $scope.TradeCategoryList.splice(0, 0, { TradeCId: 0, TradCDescription: "---Select Trade Category---" });
+           // $scope.TradeCategoryList.splice(0, 0, { TradeCId: 0, TradCDescription: "---Select Trade Category---" });
             var html = "";
             angular.forEach($scope.TradeCategoryList, function (value, key) {
                 html += "<option value='" + value.TradeCId + "'>" + value.TradCDescription + "</option>"
@@ -119,7 +131,47 @@
             $scope.GetTradeTypeList();
         }
     }
+    $scope.Validate = function () {
+        var valid = true;
 
+
+        if ($scope.TradeTypModel.TradDescription == "") {
+            $scope.ErrorModel.TradDescription = true;
+            $scope.ErrorModel.ErrorSelectTradDescription = "Please Enter New Trade.";
+            valid = false;
+        }
+        else {
+            $scope.ErrorModel.TradDescription = false;
+
+
+            valid = true;
+        }
+
+
+
+        if ($("#ddlTradeC").val() == "") {
+            $scope.ErrorModel.TradeCId = true;
+            $scope.ErrorModel.ErrorSelectTradeCId = "Please Select Trade Category domain .";
+            valid = false;
+        }
+        else {
+            if (valid == false) {
+                valid = false;
+                $scope.ErrorModel.TradeCId = true;
+            }
+            else {
+                $scope.ErrorModel.TradeCId = false;
+                valid = true;
+            }
+        }
+       
+        return valid;
+    }
+
+    $scope.ErrorModel = {
+        TradDescription: false, ErrorSelectTradDescription: "", TradeCId: false,
+        ErrorSelectTradeCId: ""
+    };
     $scope.init = function () {
         checkToken();
         $("#ddlPageSize").val(5);

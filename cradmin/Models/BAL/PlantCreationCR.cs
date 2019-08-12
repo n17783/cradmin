@@ -12,15 +12,17 @@ namespace cradmin.Models.BAL
     {
         public PlantModel save(PlantModel model)
         {
+            model.PlantPhoneNo1 = string.IsNullOrEmpty(model.PlantPhoneNo1) ? "" : model.PlantPhoneNo1;
+            model.PlantStrenth = string.IsNullOrEmpty(model.PlantStrenth.ToString()) ? 0 : model.PlantStrenth;
             PlantModel objplant = new PlantModel();
             List<SqlParameter> lst = new List<SqlParameter>();
-            
-            lst.Add(new SqlParameter() { ParameterName = "@PlantAddress", Value = model.PlantAddress });
+            lst.Add(new SqlParameter() { ParameterName = "@PlantId", Value = model.PlantId });
+            lst.Add(new SqlParameter() { ParameterName = "@PlantIncharge", Value = model.PlantIncharge });
             lst.Add(new SqlParameter() { ParameterName = "@PlantDescription", Value = model.PlantDescription });
             lst.Add(new SqlParameter() { ParameterName = "@PlantTitle", Value = model.PlantTitle });
-            lst.Add(new SqlParameter() { ParameterName = "@PlantPhoneNo", Value = model.PlantPhoneNo });
-            lst.Add(new SqlParameter() { ParameterName = "@PlantPhoneNo2", Value = model.PlantPhoneNo2 });
-            
+            lst.Add(new SqlParameter() { ParameterName = "@PlantStrenth", Value = model.PlantStrenth });
+            lst.Add(new SqlParameter() { ParameterName = "@PlantPhoneNo1", Value = model.PlantPhoneNo1 });
+
 
 
             SettingsHelper objHelper = SettingsHelper.Instance;
@@ -28,16 +30,16 @@ namespace cradmin.Models.BAL
 
             objplant.Status = dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["SuccessFailed"].ToString()) : 0;
             return objplant;
-            
+
+        }
+        public List<PlantModel> GetPlantList(PlantModel model)
+        {
+            List<SqlParameter> lst = new List<SqlParameter>();
+            lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = model.PageNo });
+            lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = model.PageSize });
+            SettingsHelper objHelper = SettingsHelper.Instance;
+            DataTable dt = objHelper.GetDataTable("Get_PlantList", lst);
+            return dt.ToList<PlantModel>();
+        }
     }
-    public List<PlantModel> GetPlantList(PlantModel model)
-    {
-        List<SqlParameter> lst = new List<SqlParameter>();
-        lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = model.PageNo });
-        lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = model.PageSize });
-        SettingsHelper objHelper = SettingsHelper.Instance;
-        DataTable dt = objHelper.GetDataTable("Get_PlantList", lst);
-        return dt.ToList<PlantModel>();
-    }
-}
 }

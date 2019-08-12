@@ -172,6 +172,7 @@
     <Compile Include="Controllers\ContractorController.cs" />
     <Compile Include="Controllers\CourseMasterController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\DeptZoneController.cs" />
     <Compile Include="Controllers\EmployeeTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -180,14 +181,18 @@
     <Compile Include="Controllers\ProjectTypeController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RollFormMappingController.cs" />
+    <Compile Include="Controllers\SubContractorController.cs" />
     <Compile Include="Controllers\TradeController.cs" />
     <Compile Include="Controllers\ValidationAgencyController.cs" />
+    <Compile Include="Controllers\ValidationTestController.cs" />
+    <Compile Include="Controllers\ValidationTestQuetionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BAL\AccountBusiness.cs" />
     <Compile Include="Models\BAL\CourseCreationCR.cs" />
+    <Compile Include="Models\BAL\DeptCR.cs" />
     <Compile Include="Models\BAL\EmpployeeRegisterBAL.cs" />
     <Compile Include="Models\BAL\FormAssignToRollCR.cs" />
     <Compile Include="Models\BAL\MainContractorCR.cs" />
@@ -197,9 +202,12 @@
     <Compile Include="Models\BAL\PlantTradeTrackingCR.cs" />
     <Compile Include="Models\BAL\ProjectTypeCR.cs" />
     <Compile Include="Models\BAL\RoleCR.cs" />
+    <Compile Include="Models\BAL\SubContractorCR.cs" />
     <Compile Include="Models\BAL\TradeCategoryCR.cs" />
     <Compile Include="Models\BAL\TradeTypeCR.cs" />
     <Compile Include="Models\BAL\ValidationAgencyCR.cs" />
+    <Compile Include="Models\BAL\ValidationQuetionCR.cs" />
+    <Compile Include="Models\BAL\ValidationTestCr.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Models\CourseDataResponce.cs" />
@@ -207,6 +215,7 @@
     <Compile Include="Models\Models\MasterDataResponse.cs" />
     <Compile Include="Models\Models\PlantTradeStreanth.cs" />
     <Compile Include="Models\Models\RollFormMappingResponce.cs" />
+    <Compile Include="Models\Models\TestResponce.cs" />
     <Compile Include="Models\MyAuthorizeAttribute.cs" />
     <Compile Include="Models\SessionManager.cs" />
     <Compile Include="Models\SettingsHelper.cs" />
@@ -240,11 +249,13 @@
     <Content Include="Content\Images\user4-128x128.jpg" />
     <Content Include="Content\Images\varmalaloader.gif" />
     <Content Include="Content\Views\CourseMaster.html" />
+    <Content Include="Content\Views\Department.html" />
     <Content Include="Content\Views\DeptZone.html" />
     <Content Include="Content\Views\EmplooyeeType.html" />
     <Content Include="Content\Views\Plant.html" />
     <Content Include="Content\Views\PlantTradeTracking.html" />
     <Content Include="Content\Views\RollFormMapping.html" />
+    <Content Include="Content\Views\SubContractor.html" />
     <Content Include="Content\Views\ValidationAgency.html" />
     <Content Include="Content\Views\Trade.html" />
     <Content Include="Content\Views\Role.html" />
@@ -252,6 +263,8 @@
     <Content Include="Content\Views\employee.html" />
     <Content Include="Content\Views\Contractor.html" />
     <Content Include="Content\Views\TradeCategory.html" />
+    <Content Include="Content\Views\ValidationTest.html" />
+    <Content Include="Content\Views\ValidationTestQuetion.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -273,6 +286,7 @@
     <Content Include="Scripts\AdminLayout\datehelper.js" />
     <Content Include="Scripts\AdminLayout\daterangepicker.js" />
     <Content Include="Scripts\AdminLayout\demo.js" />
+    <Content Include="Scripts\AdminLayout\DepartmentController.js" />
     <Content Include="Scripts\AdminLayout\DeptZoneController.js" />
     <Content Include="Scripts\AdminLayout\EmployeeController.js" />
     <Content Include="Scripts\AdminLayout\EmployeeTypeController.js" />
@@ -308,8 +322,11 @@
     <Content Include="Scripts\AdminLayout\RoleController.js" />
     <Content Include="Scripts\AdminLayout\RollFormMappingController.js" />
     <Content Include="Scripts\AdminLayout\ShowCustomAlert.js" />
+    <Content Include="Scripts\AdminLayout\SubContractorController.js" />
     <Content Include="Scripts\AdminLayout\TradeController.js" />
     <Content Include="Scripts\AdminLayout\ValidationAgencyController.js" />
+    <Content Include="Scripts\AdminLayout\ValidationTestController.js" />
+    <Content Include="Scripts\AdminLayout\ValidationTestQuetionController.js" />
     <Content Include="Scripts\AdminLayout\vendor.bundle.addons.js" />
     <Content Include="Scripts\AdminLayout\vendor.bundle.base.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -391,10 +408,14 @@
     <Content Include="Views\CourseMaster\Index.cshtml" />
     <Content Include="Views\Plant\Index.cshtml" />
     <Content Include="Views\RollFormMapping\Index.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\CaptureEmployee\" />
+    <Folder Include="Views\SubContractor\" />
+    <Folder Include="Views\ValidationTestQuetion\" />
+    <Folder Include="Views\ValidationTest\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

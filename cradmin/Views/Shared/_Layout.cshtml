@@ -50,59 +50,63 @@
     @Scripts.Render("~/Scripts/Adminlayout/common.js")
     @Scripts.Render("~/Scripts/Adminlayout/ShowCustomAlert.js")
 
-    
+
     <style>
-               .submitPopup {
-	display: none;
-	z-index: 70000;
-	position: absolute;
-}
-.overlay {
-	background: #fff;
-	bottom: 0;
-	opacity: 0;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 1001;
-}
+        .submitPopup {
+            display: none;
+            z-index: 70000;
+            position: absolute;
+        }
+
+        .overlay {
+            background: #fff;
+            bottom: 0;
+            opacity: 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1001;
+        }
 
 
 
-#alertBox .overlay {
-	background: #000;
-	opacity: 0.8;
-}
-.submitPopupPanel {
-	background: #e9edf0 !important;
-	color: #000 !important;
-	font-size: 1.1em;
-	/*margin-top:-95px;*/
-	margin-left: -150px;
-	position: fixed;
-	text-align: center;
-	top: 20%;
-	left: 50%;
-	width: 300px;
-	z-index: 70000;
-	padding: 15px;
-	border-radius: 8px;
-	box-shadow: 0px 5px 15px rgba(0,0,0,0.15);
-	border: 3px solid #dfe4e8;
-}
-.submitPopupPanel .legendBtn {
-	margin: 20px 0 0 0;
-	width: 100%;
-}
-.submitPopupPanel .legendBtn li:last-child {
-	margin: 0;
-}
-.submitPopupPanel .legendBtn li {
-	list-style-type: none;
-	display: inline-block;
-	margin: 0 10px 0 0;
-}
+        #alertBox .overlay {
+            background: #000;
+            opacity: 0.8;
+        }
 
+        .submitPopupPanel {
+            background: #e9edf0 !important;
+            color: #000 !important;
+            font-size: 1.1em;
+            /*margin-top:-95px;*/
+            margin-left: -150px;
+            position: fixed;
+            text-align: center;
+            top: 20%;
+            left: 50%;
+            width: 300px;
+            z-index: 70000;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.15);
+            border: 3px solid #dfe4e8;
+        }
+
+            .submitPopupPanel .legendBtn {
+                margin: 20px 0 0 0;
+                width: 100%;
+            }
+
+                .submitPopupPanel .legendBtn li:last-child {
+                    margin: 0;
+                }
+
+                .submitPopupPanel .legendBtn li {
+                    list-style-type: none;
+                    display: inline-block;
+                    margin: 0 10px 0 0;
+                }
     </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini" data-ng-app="CRAdminApp" data-ng-controller="TemplateController">
@@ -143,7 +147,7 @@
                                 </li>
                             </ul>
                         </li>
-                        
+
                     </ul>
                 </div>
             </nav>
@@ -168,7 +172,7 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                           
+
                             <li><a href="#" data-ng-click="LoadUserControls('ProjectType')"><i class="fa fa-circle-o"></i>Project Type</a></li>
                             <li><a href="#" data-ng-click="LoadUserControls('Contractor')"><i class="fa fa-circle-o"></i>Contractor</a></li>
                             <li><a href="#" data-ng-click="LoadUserControls('DeptZone')"><i class="fa fa-circle-o"></i>Dept Zone</a></li>
@@ -182,9 +186,12 @@
                             <li><a href="#" data-ng-click="LoadUserControls('PlantTradeTracking')"><i class="fa fa-circle-o"></i>Plant Trade</a></li>
                             <li><a href="#" data-ng-click="LoadUserControls('RollFormMapping')"><i class="fa fa-circle-o"></i>Roll Form Mapping</a></li>
                             <li><a href="#" data-ng-click="LoadUserControls('Department')"><i class="fa fa-circle-o"></i>Sub Department Creation</a></li>
+                            <li><a href="#" data-ng-click="LoadUserControls('SubContractor')"><i class="fa fa-circle-o"></i>Sub Contractor </a></li>
+                            <li><a href="#" data-ng-click="LoadUserControls('ValidationTest')"><i class="fa fa-circle-o"></i>Test Master For Validation </a></li>
+                            <li><a href="#" data-ng-click="LoadUserControls('ValidationTestQuetion')"><i class="fa fa-circle-o"></i>SET Quetion For Validation </a></li>
                         </ul>
                     </li>
-                    
+
                 </ul>
             </section>
             <!-- /.sidebar -->

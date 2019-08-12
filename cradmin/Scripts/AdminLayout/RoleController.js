@@ -8,8 +8,8 @@
     $scope.TotalPages = 0
 
     $scope.RollModel = {
-        PageNo: 1, PageSize: 5, RollId: 0, RollDescription: "", 
-         RoleEntryDate: "", RollEntryBy: ""
+        PageNo: 1, PageSize: 10, RollId: 0, RollDescription: "",
+        RoleEntryDate: "", RollEntryBy: ""
     };
 
     $scope.PageSizeList = [5, 10, 15, 20];
@@ -18,8 +18,9 @@
     $scope.AddNewClick = function () {
         $scope.AddNew = true;
         $scope.Details = false;
-        $scope.RollModel = { RollDescription: "", 
-             
+        $scope.RollModel = {
+            RollDescription: "",
+
         };
     }
 
@@ -27,15 +28,19 @@
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.RollModel = {
-            PageNo: 1, PageSize: $("#ddlPageSize").val(), RollId: 0, RollDescription: "", 
-             RollEntryDate: "", RollEntryBy: ""
+            PageNo: 1, PageSize: $("#ddlPageSize").val(), RollId: 0, RollDescription: "",
+            RollEntryDate: "", RollEntryBy: ""
         };
     }
 
     $scope.Save = function () {
-        ShowLoader();
-
-       
+        if ($scope.Validate()) {
+            var objShowCustomAlert = new ShowCustomAlert({
+                Title: "Error",
+                Message: "Are You Want To Save This Record",
+                Type: "confirm",
+                OnOKClick: function () {
+    ShowLoader();
         $scope.RollModel.RollEntryBy = 1;
         $http({
             method: 'post',
@@ -43,12 +48,33 @@
             data: $scope.RollModel,
         }).then(function (response) {
             HideLoader();
+            if (response.data.Status == 0) {
+                var objShowCustomAlert = new ShowCustomAlert({
+                    Title: "Error",
+                    Message: "This Record Is All Ready Exist",
+                    Type: "alert"
+                });
+                objShowCustomAlert.ShowCustomAlertBox();
+            }
+            else {
+                var objShowCustomAlert = new ShowCustomAlert({
+                    Title: "Success",
+                    Message: "Record Seved Successfully",
+                    Type: "alert"
+                });
+                objShowCustomAlert.ShowCustomAlertBox();
+            }
             $scope.CancelClick();
             $scope.GetRollList();
         }, function (error) {
             HideLoader();
             console.log(error);
         });
+                }
+            });
+            objShowCustomAlert.ShowCustomAlertBox();
+
+        }
     }
 
     $scope.Prev = function () {
@@ -89,7 +115,26 @@
             console.log(error);
         });
     }
+    $scope.Validate = function () {
+        var valid = true;
 
+
+        if ($scope.RollModel.RollDescription == "") {
+            $scope.ErrorModel.RollDescription = true;
+            $scope.ErrorModel.ErrorSelectRollDescription = "Please Enter New Role.";
+            valid = false;
+        }
+        else {
+            $scope.ErrorModel.RollDescription = false;
+
+
+            valid = true;
+        }
+        return valid;
+    }
+    $scope.ErrorModel = {
+        DeptZoneDescription: false, ErrorSelectDeptZone: ""
+    };
     $scope.init = function () {
         checkToken();
         $("#ddlPageSize").val(5);

@@ -6,26 +6,33 @@
             <div class="form-group">
                 <label>Contractor Name</label>
                 <input type="text" class="form-control" placeholder="Contractor Name ..." data-ng-model="ContractorModel.ContractorName">
+                <span class="badge badge-danger" data-ng-show="ErrorModel.ContractorName">{{ErrorModel.ErrorSelectContractor}}</span>
             </div>
             <div class="form-group">
                 <label>Contractor Company Name</label>
                 <input type="text" class="form-control" placeholder="Contractor Company Name ..." data-ng-model="ContractorModel.ContractorCompanyName">
+                <span class="badge badge-danger" data-ng-show="ErrorModel.ContractorCompanyName">{{ErrorModel.ErrorSelectMainCCoyName}}</span>
             </div>
             <div class="form-group">
                 <label>Contractor Registration No</label>
                 <input type="text" class="form-control" placeholder="Contractor Registration No ..." data-ng-model="ContractorModel.ContractorRegistrationNo">
+                <span class="badge badge-danger" data-ng-show="ErrorModel.ContractorRegistrationNo">{{ErrorModel.ErrorSelectMainCRegt}}</span>
             </div>
             <div class="form-group">
                 <label>Contractor Gst No</label>
                 <input type="text" class="form-control" placeholder="Contractor Gst No ..." data-ng-model="ContractorModel.ContractorGstNo">
+                <span class="badge badge-danger" data-ng-show="ErrorModel.ContractorGstNo">{{ErrorModel.ErrorSelectMainCGst}}</span>
             </div>
             <div class="form-group">
                 <label>Contractor Office Address</label>
-                <input type="text" class="form-control" placeholder="Contractor Office Address ..." data-ng-model="ContractorModel.ContractorOfficeAddress">
+                <textarea class="form-control" rows="5" placeholder="Contractor Office Address ..." data-ng-model="ContractorModel.ContractorOfficeAddress"></textarea>
+                <span class="badge badge-danger" data-ng-show="ErrorModel.ContractorOfficeAddress">{{ErrorModel.ErrorSelectMainCAdd}}</span>
             </div>
+           
             <div class="form-group">
                 <label>Contractor Phone No</label>
                 <input type="text" class="form-control" placeholder="Contractor Phone Nos ..." data-ng-model="ContractorModel.ContractorPhoneNo">
+                <span class="badge badge-danger" data-ng-show="ErrorModel.ContractorPhoneNo">{{ErrorModel.ErrorSelectMainCPh}}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="button" data-ng-click="Save()">Save</button>

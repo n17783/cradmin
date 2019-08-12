@@ -358,7 +358,7 @@
             width: 320,
             height: 240,
             mode: "save",
-            swffile: '@Url.Content("~/Scripts/AdminLayout/jscam.swf")',
+            swffile: $scope.urlBase + '/Scripts/AdminLayout/jscam.swf"',
             debug: function (type, status) {
                 $('#camStatus').append(type + ": " + status + '<br /><br />');
             },
@@ -380,7 +380,7 @@
                 });
             },
             onCapture: function () {
-                webcam.save('@Url.Action("Capture", "Dashboard")');
+                webcam.save($scope.urlBase + '/Dashboard/Capture');
             }
         });
 

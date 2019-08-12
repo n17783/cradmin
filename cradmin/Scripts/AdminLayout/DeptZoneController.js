@@ -26,9 +26,12 @@
     $scope.DeptZoneList = [];
 
     $scope.Save = function () {
-       
-
-
+        if ($scope.Validate()) {
+            var objShowCustomAlert = new ShowCustomAlert({
+                Title: "Error",
+                Message: "Are You Want To Save This Record",
+                Type: "confirm",
+                OnOKClick: function () {
         ShowLoader();
         $http({
             method: 'post',
@@ -58,6 +61,11 @@
             HideLoader();
             console.log(error);
         });
+
+                }
+            });
+            objShowCustomAlert.ShowCustomAlertBox();
+        }
     }
 
 
@@ -100,7 +108,84 @@
             $scope.GetDeptZoneList();
         }
     }
+    $scope.Validate = function () {
+        var valid = true;
 
+
+        if ($scope.DeptZoneModel.DeptZoneDescription == "") {
+            $scope.ErrorModel.DeptZoneDescription = true;
+            $scope.ErrorModel.ErrorSelectDeptZone = "Please Enter Zone Name.";
+            valid = false;
+        }
+        else {
+            $scope.ErrorModel.DeptZoneDescription = false;
+
+            valid = true;
+        }
+
+       
+
+        if ($scope.DeptZoneModel.DeptZoneAddress == "") {
+            $scope.ErrorModel.DeptZoneAddress = true;
+            $scope.ErrorModel.ErrorSelectDeptZoneDeptZoneAddress = "Please Enter Zone Address .";
+            valid = false;
+        }
+        else {
+            $scope.ErrorModel.DeptZoneAddress = false;
+            valid = true;
+        }
+        if ($scope.DeptZoneModel.ContactNo == "") {
+            $scope.ErrorModel.ContactNo = true;
+            $scope.ErrorModel.ErrorSelectDeptZoneContactNo = "Please Enter Contact No.";
+            valid = false;
+        }
+        else {
+            $scope.ErrorModel.ContactNo = false;
+            valid = true;
+        }
+
+        //if ($scope.DeptZoneModel.ContactNo2 == "") {
+        //    $scope.ErrorModel.ContactNo2 = true;
+        //    $scope.ErrorModel.ErrorSelectDeptZoneContactNo2 = "Please Enter Contact No 2.";
+        //    valid = false;
+        //}
+        //else {
+        //    $scope.ErrorModel.ContactNo2 = false;
+        //    valid = true;
+        //}
+        if ($scope.DeptZoneModel.EmailId == "") {
+            $scope.ErrorModel.EmailId = true;
+            $scope.ErrorModel.ErrorSelectDeptZoneEmail = "Please Enter Email Id.";
+            valid = false;
+        }
+        else {
+            $scope.ErrorModel.EmailId = false;
+            valid = true;
+        }
+        if ($scope.DeptZoneModel.CreatedBy == "") {
+            $scope.ErrorModel.CreatedBy = true;
+            $scope.ErrorModel.ErrorSelectCreated =" Enter Created By ";
+            valid = false;
+        }
+        else {
+            if (valid == false) {
+                valid = false;
+                $scope.ErrorModel.CreatedBy = true;
+            }
+            else {
+                $scope.ErrorModel.CreatedBy = false;
+                valid = true;
+            }
+
+        }
+        return valid;
+    }
+
+    $scope.ErrorModel = {
+        DeptZoneDescription: false, ErrorSelectDeptZone: "", DeptZoneAddress: false, ErrorSelectDeptZoneDeptZoneAddress: "", ContactNo: false, ErrorSelectDeptZoneContactNo: "",
+        ContactNo2: false, ErrorSelectDeptZoneContactNo2: "", EmailId: false, ErrorSelectDeptZoneEmail: "",
+        CreatedBy: false, ErrorSelectCreated: ""
+    };
     $scope.init = function () {
         checkToken();
         $("#ddlPageSize").val(5);

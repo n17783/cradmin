@@ -6,7 +6,8 @@
             <div class="form-group">
                 <label>Trade Category Description</label>
                 <input type="text" class="form-control" placeholder="Trade Category Description ..." data-ng-model="TradeModal.TradCDescription">
-            </div>
+                <span class="badge badge-danger" data-ng-show="ErrorModel.TradCDescription">{{ErrorModel.ErrorSelectTradCDescription}}</span>
+             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="button" data-ng-click="Save()">Save</button>
                 <button class="btn btn-danger" type="button" data-ng-click="CancelClick()">Cancel</button>
@@ -51,6 +52,6 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>

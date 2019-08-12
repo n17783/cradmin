@@ -17,6 +17,13 @@
     $scope.AddNewClick = function () {
         $scope.AddNew = true;
         $scope.Details = false;
+        $scope.ErrorModel.ContractorName = false;
+        $scope.ErrorModel.ContractorCompanyName = false;
+        $scope.ErrorModel.ContractorRegistrationNo = false;
+        $scope.ErrorModel.ContractorGstNo = false;
+        $scope.ErrorModel.ContractorOfficeAddress = false;
+        $scope.ErrorModel.ContractorPhoneNo = false;
+        valid = true;
         $scope.ContractorModel = {
             PageNo: 1, PageSize: $("#ddlPageSize").val(), ContractorId: 0, ContractorName: "", ContractorCompanyName: "",
             ContractorRegistrationNo: "", ContractorGstNo: "", ContractorOfficeAddress: "", ContractorPhoneNo: ""
@@ -33,21 +40,46 @@
     }
 
     $scope.Save = function () {
-        ShowLoader();
-        $http({
-            method: 'post',
-            url: $scope.urlBase + '/Contractor/Save',
-            data: $scope.ContractorModel,
-        }).then(function (response) {
-            HideLoader();
-            $scope.CancelClick();
-            $scope.GetContractorList();
-        }, function (error) {
-            HideLoader();
-            console.log(error);
-        });
+        if ($scope.Validate()) {
+            var objShowCustomAlert = new ShowCustomAlert({
+                Title: "Error",
+                Message: "Are You Want To Save This Record",
+                Type: "confirm",
+                OnOKClick: function () {
+                    ShowLoader();
+                    $http({
+                        method: 'post',
+                        url: $scope.urlBase + '/Contractor/Save',
+                        data: $scope.ContractorModel,
+                    }).then(function (response) {
+                        HideLoader();
+                        $scope.CancelClick();
+                        $scope.GetContractorList();
+                    }, function (error) {
+                        HideLoader();
+                        if (response.data.Status == 0) {
+                            var objShowCustomAlert = new ShowCustomAlert({
+                                Title: "Error",
+                                Message: "This Record Is All Ready Exist",
+                                Type: "alert"
+                            });
+                            objShowCustomAlert.ShowCustomAlertBox();
+                        }
+                        else {
+                            var objShowCustomAlert = new ShowCustomAlert({
+                                Title: "Success",
+                                Message: "Record Seved Successfully",
+                                Type: "alert"
+                            });
+                            objShowCustomAlert.ShowCustomAlertBox();
+                        }
+                        console.log(error);
+                    });
+                }
+            });
+            objShowCustomAlert.ShowCustomAlertBox();
+        }
     }
-
     $scope.Prev = function () {
         if ($scope.ContractorModel.PageNo > 1) {
             $scope.ContractorModel.PageNo--;
@@ -84,7 +116,83 @@
             console.log(error);
         });
     }
+    $scope.Validate = function () {
+        var valid = true;
+       
+      
+        if ($scope.ContractorModel.ContractorName == "") {
+            $scope.ErrorModel.ContractorName = true;
+            $scope.ErrorModel.ErrorSelectContractor = "Please Enter MainContractor.";
+            valid = false;
+        }
+        else {
+            $scope.ErrorModel.ContractorName = false;
+          
+            valid = true;
+        }
+       
+        if ($scope.ContractorModel.ContractorCompanyName == "") {
+            $scope.ErrorModel.ContractorCompanyName = true;
+            $scope.ErrorModel.ErrorSelectMainCCoyName = "Please Enter Contractor Company Name.";
+            valid = false;
+        }
+        else {
+            $scope.ErrorModel.ContractorCompanyName = false;
+            valid = true;
+        }
+        
+        if ($scope.ContractorModel.ContractorRegistrationNo == "") {
+            $scope.ErrorModel.ContractorRegistrationNo = true;
+            $scope.ErrorModel.ErrorSelectMainCRegt = "Please Enter REGT NO .";
+            valid = false;
+        }
+        else {
+            $scope.ErrorModel.ContractorRegistrationNo = false;
+            valid = true;
+        }
+        if ($scope.ContractorModel.ContractorGstNo == "") {
+            $scope.ErrorModel.ContractorGstNo = true;
+            $scope.ErrorModel.ErrorSelectMainCGst = "Please Enter GST No.";
+            valid = false;
+        }
+        else {
+            $scope.ErrorModel.ContractorGstNo = false;
+            valid = true;
+        }
+      
+        if ($scope.ContractorModel.ContractorOfficeAddress == "") {
+            $scope.ErrorModel.ContractorOfficeAddress = true;
+            $scope.ErrorModel.ErrorSelectMainCAdd = "Please Enter Contractor Office Address.";
+            valid = false;
+        }
+        else {
+            $scope.ErrorModel.ContractorOfficeAddress = false;
+            valid = true;
+        }
+        if ($scope.ContractorModel.ContractorPhoneNo == "") {
+            $scope.ErrorModel.ContractorPhoneNo = true;
+            $scope.ErrorModel.ErrorSelectMainCPh = "Contractor Phone No .";
+            valid = false;
+        }
+        else {
+            if (valid == false ) {
+                valid = false;
+                $scope.ErrorModel.ContractorPhoneNo = true;
+            }
+            else {
+                $scope.ErrorModel.ContractorPhoneNo = false;
+                valid = true;
+            }
+           
+        }
+        return valid;
+    }
 
+    $scope.ErrorModel = {
+        ContractorId: false, ErrorSelectContractor: "", ContractorCompanyName: false, ErrorSelectMainCCoyName: "", ContractorRegistrationNo: false, ErrorSelectMainCRegt: "",
+        ContractorGstNo: false, ErrorSelectMainCGst: "", ContractorOfficeAddress: false, ErrorSelectMainCAdd: "",
+        ContractorPhoneNo: false, ErrorSelectMainCPh: ""
+    };
     $scope.init = function () {
         checkToken();
         $("#ddlPageSize").val(5);

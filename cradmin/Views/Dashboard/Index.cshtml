@@ -20,6 +20,10 @@
 @Scripts.Render("~/Scripts/AdminLayout/RollFormMappingController.js")
 @Scripts.Render("~/Scripts/AdminLayout/jquery.webcam.js")
 @Scripts.Render("~/Scripts/AdminLayout/DepartmentController.js")
+@Scripts.Render("~/Scripts/AdminLayout/SubContractorController.js")
+@Scripts.Render("~/Scripts/AdminLayout/ValidationTestController.js")
+@Scripts.Render("~/Scripts/AdminLayout/ValidationTestQuetionController.js")
+
 <script type="text/javascript">
             $(function () {
                 jQuery("#webcam").webcam({
@@ -75,11 +79,12 @@
                     autoclose: true,
                     todayHighlight: true
                 }).datepicker('update', new Date());
-                $("#ddlAdate").datepicker({
-                    format: "dd-MM-yyyy",
-                    autoclose: true,
-                    todayHighlight: true
-                }).datepicker('update', new Date());
+                //$("#ddlAdate").datepicker({
+                //    format: "dd-MM-yyyy",
+                //    autoclose: true,
+                //    todayHighlight: true
+                //}).datepicker('update', new Date());
+               
             });
             function Capture() {
                 webcam.capture();

@@ -11,6 +11,7 @@ var CRAdminApp = angular.module('CRAdminApp',[]).run(['$rootScope', function ($r
         return IsBranding;
     }
 
+
     
 }]).filter("mydate", function () {
     var re = /\/Date\(([0-9]*)\)\//;
@@ -46,10 +47,11 @@ var CRAdminApp = angular.module('CRAdminApp',[]).run(['$rootScope', function ($r
     };
 });
 
+
 CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$rootScope', function ($scope, $http, $filter, $rootScope) {
     
     $scope.domainpath = GetVirtualDirectory();
-
+   
     $scope.templates = [
     //name: "employee",0
         {name: $scope.domainpath + '/Content/Views/employee.html',
@@ -117,12 +119,60 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
         name: $scope.domainpath + '/Content/Views/Department.html',
         url: $scope.domainpath + '/Content/Views/Department.html'
 
-    }];
+    },
+     {
+        name: $scope.domainpath + '/Content/Views/SubContractor.html',
+        url: $scope.domainpath + '/Content/Views/SubContractor.html'
 
+     },
+    {
+        name: $scope.domainpath + '/Content/Views/ValidationTest.html',
+        url: $scope.domainpath + '/Content/Views/ValidationTest.html'
+
+    },
+    {
+        name: $scope.domainpath + '/Content/Views/ValidationTestQuetion.html',
+        url: $scope.domainpath + '/Content/Views/ValidationTestQuetion.html'
+
+    }];
     
+    $scope.NumericAadhar = function ($event, aadhar) {
+        if (isNaN(String.fromCharCode($event.keyCode))) {
+            $event.preventDefault();
+        }
+        if (aadhar.length > 11)
+        {
+            $event.preventDefault();
+        }
+    }
+    $scope.NumericPhone = function ($event, no) {
+        if (isNaN(String.fromCharCode($event.keyCode))) {
+            $event.preventDefault();
+        }
+        if (no.length > 9) {
+            $event.preventDefault();
+        }
+    }
+
+    $scope.Phone = function ($event,no) {
+       
+        if (no.toString().length > 9) {
+            $event.preventDefault();
+        }
+    }
 
     $scope.LoadUserControls = function (tname) {
         switch (tname) {
+             
+             case "ValidationTestQuetion":
+                $scope.template = $scope.templates[16];
+        break
+            case "ValidationTest":
+                $scope.template = $scope.templates[15];
+                break
+            case "SubContractor":
+                $scope.template = $scope.templates[14];
+                break
             case "Department":
                 $scope.template = $scope.templates[13];
                 break

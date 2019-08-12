@@ -1,61 +1,64 @@
 ﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="RoleController">
     <div class="col-md-12"><h3 class="header">Role Master</h3></div>
     <div class="col-md-12" data-ng-show="AddNew">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>Role Description</label>
-                <input type="text" class="form-control" placeholder="Role Description ..." data-ng-model="RollModel.RollDescription">
-            </div>
-            <div class="form-group">
-                <button class="btn btn-danger" type="button" data-ng-click="Save()">Save</button>
-                <button class="btn btn-danger" type="button" data-ng-click="CancelClick()">Cancel</button>
+        <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Role Description</label>
+                    <input type="text" class="form-control" placeholder="Role Description ..." data-ng-model="RollModel.RollDescription">
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.RollDescription">{{ErrorModel.ErrorSelectRollDescription}}</span>
+
+                 </div>
+                <div class="form-group">
+                    <button class="btn btn-danger" type="button" data-ng-click="Save()">Save</button>
+                    <button class="btn btn-danger" type="button" data-ng-click="CancelClick()">Cancel</button>
+                </div>
             </div>
         </div>
-    </div>
     <div class="col-md-12" data-ng-show="Details">
-        <div class="col-md-12">
-            <div class="form-group">
-                <button class="btn btn-danger" type="button" data-ng-click="AddNewClick()">Add New</button>
-            </div>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Role Description</th>
-                        <th>Created Date</th>
-                        <th>Created By</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-ng-repeat="Role in RollList ">
-                        <td>{{Role.RollId}}</td>
-                        <td>{{Role.RollDescription}}</td>
-                        <td>{{Role.RollEntryDate}}</td>
-                        <td>{{Role.RollEntryBy}}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="col-md-12">
-                <div class="col-md-7"></div>
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
-                            <option value="5">2</option>
-                            <option value="5">10</option>
-                        </select>
+        <div class="col-md-12"><div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <button class="btn btn-danger" type="button" data-ng-click="AddNewClick()">Add New</button>
+                </div>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Role Description</th>
+                          
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="Role in RollList ">
+                            <td>{{Role.RollId}}</td>
+                            <td>{{Role.RollDescription}}</td>
+                           
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="col-md-12">
+                    <div class="col-md-7"></div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <select class="form-control" style="width:70px;" id="ddlPageSize">
+                                <option value="5">10</option>
+                                <option value="5">20</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <ul class="pager">
-                        <li><a href="#">Page No : {{RollModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
-                        <li><a href="#" data-ng-click="Prev()">Previous</a></li>
-                        <li><a href="#" data-ng-click="Next()">Next</a></li>
-                    </ul>
+                    <div>
+                        <ul class="pager">
+                            <li><a href="#">Page No : {{RollModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
+                            <li><a href="#" data-ng-click="Prev()">Previous</a></li>
+                            <li><a href="#" data-ng-click="Next()">Next</a></li>
+                        </ul>
+                    </div>
+
                 </div>
 
             </div>
-
         </div>
-        
     </div>
 </div>

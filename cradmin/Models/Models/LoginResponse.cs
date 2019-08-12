@@ -35,7 +35,7 @@ namespace cradmin.Models.Models
 
     }
 
-    
+
 
     public class Employee
     {
@@ -169,10 +169,10 @@ namespace cradmin.Models.Models
     {
         public int EmpTypeId { get; set; }
         public string EmpDesignation { get; set; }
-        public string IsDmOrStaff { get; set; }
-        public int EntryBy { get; set; }
-        public DateTime EntryDate { get; set; }
-        public string CreatedByAuthority { get; set; }
+        public bool IsDmOrStaff { get; set; }
+        public string EmpGrade { get; set; }
+        public string Category { get; set; }
+
     }
 
     public class ValidationAgency : Error
@@ -188,10 +188,7 @@ namespace cradmin.Models.Models
     {
         public int ProjectTypeId { get; set; }
         public string ProjectTypeDescription { get; set; }
-        public DateTime PTEnteryDate { get; set; }
        
-        public int PTEntryBy { get; set; }
-        public string CreatedBy { get; set; }
     }
 
     public class MainContractor : Error
@@ -203,20 +200,34 @@ namespace cradmin.Models.Models
         public string ContractorGstNo { get; set; }
         public string ContractorOfficeAddress { get; set; }
         public string ContractorPhoneNo { get; set; }
-       
-    }
 
+    }
+    public class SubContractor : Error
+    {
+        public int SubContractorId { get; set; }
+        public int ContractorId { get; set; }
+        public string ContractorCompanyName { get; set; }
+        public string SubCName { get; set; }
+        public string SubCCompanyName { get; set; }
+        public string SubCRegistrationNo { get; set; }
+        public string SubCGstNo { get; set; }
+        public string SubCOfficeAddress { get; set; }
+        public string SubCPhoneNo { get; set; }
+        public string ContractorPhoneNo1 { get; set; }
+        public string EmailId { get; set; }
+        public string Code { get; set; }
+        public string WorkOrderNo { get; set; }
+        public string NatureOfWork { get; set; }
+        public DateTime ValidUpTo { get; set; }
+        public bool IsContinew { get; set; }
+    }
     public class TradeType : Error
     {
         public int TradeId { get; set; }
         public int TradeCId { get; set; }
         public string TradDescription { get; set; }
-        public DateTime TEntryDate { get; set; }
-        public int EntryBy { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime SanctionDate { get; set; }
-        
-        
+        public string TradCDescription { get; set; }
+
     }
 
     public class DeptZone : Error
@@ -255,13 +266,13 @@ namespace cradmin.Models.Models
         public string AgencyAddress { get; set; }
         public string AgencyContactNo { get; set; }
         public bool isContinew { get; set; }
-        
+
     }
     public class PlantTradeTracking : Error
     {
         public int PlantTradeTrackingId { get; set; }
         public int TradeId { get; set; }
-        public string AuthorizedStrenth { get; set; }
+        public int AuthorizedStrenth { get; set; }
         public string AuthorizedBy { get; set; }
         public DateTime AuthorizedDate { get; set; }
         public string PlantTitle { get; set; }
@@ -272,7 +283,7 @@ namespace cradmin.Models.Models
         public DateTime UnAuthorizedDate { get; set; }
         public int ExitEntryBy { get; set; }
         public string TradDescription { get; set; }
-        
+
 
     }
     public class PlantModel : Error
@@ -280,11 +291,11 @@ namespace cradmin.Models.Models
         public int PlantId { get; set; }
         public string PlantTitle { get; set; }
         public string PlantDescription { get; set; }
-        public string PlantAddress { get; set; }
-        public string PlantPhoneNo { get; set; }
-        public string PlantPhoneNo2 { get; set; }
+        public string PlantIncharge { get; set; }
+        public string PlantPhoneNo1 { get; set; }
+        public int PlantStrenth { get; set; }
         public int DeptZoneId { get; set; }
-        
+
 
 
     }

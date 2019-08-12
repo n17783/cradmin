@@ -6,20 +6,26 @@
             <div class="form-group">
                 <label>Course Title</label>
                 <input type="text" class="form-control" placeholder="Enter Course Title ..." data-ng-model="CourseMasterModel.CourseTitle">
+                <span class="badge badge-danger" data-ng-show="ErrorModel.CourseTitle">{{ErrorModel.ErrorSelectCourseTitle}}</span>
+
             </div>
             <div class="form-group">
                 <label> Course Created Authority</label>
 
                 <input type="text" class="form-control" placeholder="Enter Course Created Authority ..." data-ng-model="CourseMasterModel.CourseCreatedBy">
-            </div>
-            <div class="form-group">
+                <span class="badge badge-danger" data-ng-show="ErrorModel.CourseCreatedBy">{{ErrorModel.ErrorSelectCourseCreatedBy}}</span>
+
+             </div>
+            <div class="form-group" >
                 <label> Course Created Date</label>
-                <input type="text" class="form-control" placeholder="Enter Course Created Date ..."  data-ng-model="CourseMasterModel.CourseSanctionDate">
+                <input type="text" class="form-control" id="ddlCSDate" placeholder="Enter Course Created Date ..."  data-ng-model="CourseMasterModel.CourseSanctionDate">
+                <span class="badge badge-danger" data-ng-show="ErrorModel.CourseSanctionDate">{{ErrorModel.ErrorSelectCourseSanctionDate}}</span>
 
             </div>
             <div class="form-group">
                 <label>Course Description</label>
                 <input type="text" class="form-control" placeholder="Enter Trade Sanctioned Date ..."  data-ng-model="CourseMasterModel.CourseDescription">
+                <span class="badge badge-danger" data-ng-show="ErrorModel.CourseDescription">{{ErrorModel.ErrorSelectCourseDescription}}</span>
 
             </div>
 
@@ -42,7 +48,7 @@
                         <th>Course Title</th>
                         <th>Course Description</th>
                         <th>Course Created Authority</th>
-                        <th>Course Sanction Date</th>
+                        <th>Course Created Date</th>
                         <th>Edit</th>
                     </tr>
                 </thead>
@@ -52,7 +58,7 @@
                         <td>{{CourseType.CourseTitle}}</td>
                         <td>{{CourseType.CourseDescription}}</td>
                         <td>{{CourseType.CourseCreatedBy}}</td>
-                        <td>{{CourseType.CourseSanctionDate |mydate| date: 'dd-mm-yyyy'}}</td>
+                        <td>{{CourseType.CourseSanctionDate |mydate| date: 'dd-MM-yyyy'}}</td>
                         <td><span class="glyphicon glyphicon-edit" data-ng-click="EditCourseType(CourseType)"></span></td>
                     </tr>
                 </tbody>
@@ -81,3 +87,10 @@
         
     </div>
 </div>
+<script type="text/javascript">
+     $("#ddlCSDate").datepicker({
+                    format: "dd-MM-yyyy",
+                    autoclose: true,
+                    todayHighlight: true
+                }).datepicker('update', new Date());
+</script>
