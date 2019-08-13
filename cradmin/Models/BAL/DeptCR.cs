@@ -15,8 +15,7 @@ namespace cradmin.Models.BAL
             DeptNames objdept = new DeptNames();
             List<SqlParameter> lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@Dept_Name", Value = model.Dept_Name });
-            lst.Add(new SqlParameter() { ParameterName = "@Dept_Address", Value = model.Dept_Address });
-            lst.Add(new SqlParameter() { ParameterName = "@PhoneNo", Value = model.PhoneNo });
+          
             SettingsHelper objhelper = SettingsHelper.Instance;
             DataTable dt = objhelper.GetDataTable("InsertDepartment", lst);
             objdept.Status = dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["SuccessFailed"].ToString()) : 0;

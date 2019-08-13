@@ -148,22 +148,19 @@
 
             valid = true;
         }
-        if ($scope.EmployeeTypeModel.Category == "") {
-            $scope.ErrorModel.Category = true;
-            $scope.ErrorModel.ErrorSelectCategory = "Please Enter Employee Category.";
-            valid = false;
-        }
-        else {
-            if (valid == false) {
-                valid = false;
+        if (valid == true) {
+            if ($scope.EmployeeTypeModel.Category == "") {
                 $scope.ErrorModel.Category = true;
+                $scope.ErrorModel.ErrorSelectCategory = "Please Enter Employee Category.";
+                valid = false;
             }
             else {
+
                 $scope.ErrorModel.Category = false;
                 valid = true;
+
             }
         }
-
 
 
         return valid;

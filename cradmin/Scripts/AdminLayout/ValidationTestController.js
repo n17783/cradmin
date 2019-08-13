@@ -14,6 +14,7 @@
     $scope.AddNewClick = function () {
         $scope.AddNew = true;
         $scope.Details = false;
+        $scope.ErrorModel.TestDescription = false;
         $scope.TestModal = { PageNo: 1, PageSize: 2, TestDescription: "" };
     }
 
@@ -111,6 +112,7 @@
             valid = false;
            
         }
+        
         return valid;
     }
 

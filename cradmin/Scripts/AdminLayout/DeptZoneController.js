@@ -162,21 +162,18 @@
             $scope.ErrorModel.EmailId = false;
             valid = true;
         }
+        if(valid==true){
         if ($scope.DeptZoneModel.CreatedBy == "") {
             $scope.ErrorModel.CreatedBy = true;
             $scope.ErrorModel.ErrorSelectCreated =" Enter Created By ";
             valid = false;
         }
         else {
-            if (valid == false) {
-                valid = false;
-                $scope.ErrorModel.CreatedBy = true;
-            }
-            else {
+           
+           
                 $scope.ErrorModel.CreatedBy = false;
                 valid = true;
-            }
-
+        }
         }
         return valid;
     }

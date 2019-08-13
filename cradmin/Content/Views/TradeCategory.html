@@ -1,7 +1,7 @@
 ﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="CategoryController">
     <div class="col-md-12"><h3 class="header">Trade Category</h3></div>
     <div class="col-md-12" data-ng-show="AddNew">
-        <div class="col-md-2"></div>
+        <div class="col-md-3"></div>
         <div class="col-md-6">
             <div class="form-group">
                 <label>Trade Category Description</label>
@@ -16,42 +16,46 @@
     </div>
     <div class="col-md-12" data-ng-show="Details">
         <div class="col-md-12">
-            <div class="form-group">
-                <button class="btn btn-danger" type="button" data-ng-click="AddNewClick()">Add New</button>
-            </div>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Trade Category Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-ng-repeat="trade in TradeList track by trade.TradeCId">
-                        <td>{{trade.TradeCId}}</td>
-                        <td>{{trade.TradCDescription}}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="col-md-12">
-                <div class="col-md-7"></div>
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
-                            <option value="5">5</option>
-                            <option value="5">10</option>
-                        </select>
-                    </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <button class="btn btn-danger" type="button" data-ng-click="AddNewClick()">Add New</button>
                 </div>
-                <div>
-                    <ul class="pager">
-                        <li><a href="#">Page No : {{TradeModal.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
-                        <li><a href="#" data-ng-click="Prev()">Previous</a></li>
-                        <li><a href="#" data-ng-click="Next()">Next</a></li>
-                    </ul>
-                </div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Trade Category Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="trade in TradeList track by trade.TradeCId">
+                            <td>{{trade.TradeCId}}</td>
+                            <td>{{trade.TradCDescription}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
+                <div class="col-md-12">
+                    <div class="col-md-7"></div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
+                                <option value="5">5</option>
+                                <option value="5">10</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="pager">
+                            <li><a href="#">Page No : {{TradeModal.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
+                            <li><a href="#" data-ng-click="Prev()">Previous</a></li>
+                            <li><a href="#" data-ng-click="Next()">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-    </div>
-</div>
+        </div>
+    

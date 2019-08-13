@@ -1,46 +1,54 @@
 ﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="RollFormMappingController">
     <div class="col-md-12"><h3 class="header">Roll Form Mapping</h3></div>
     <div class="col-md-12" data-ng-show="AddNew">
-        <div class="col-md-6">
-            <div class="box-body">
-                <input type="hidden" data-ng-model="FormToRollModel.RollFormMappingId" />
-                <div class="form-group">
-                    <label>Select Roll</label>
-                    <select class="form-control" id="ddlRoll" ng-disabled="Update"></select>
-                </div>
-                <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                    <table class="table table-bordered table-striped mb-0">
-                        <thead>
-                            <tr>
-                                <th scope="col">Form Name</th>
-                                <th scope="col">Form Name</th>
-                                <th scope="col">Form Name</th>
-                            </tr>
-                        </thead>
-                        <tr data-ng-repeat="gr in group1">
-                            <td data-ng-repeat="form1 in gr">{{form1.FormTitle}}<input type="checkbox" class="checkbox" data-ng-model="selectedItem[form1.FormId]" /></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="form-group">
-                    <label>Authorised Authority</label>
-                    <input type="text" class="form-control" id="ddlAAuthorised" data-ng-model="FormToRollModel.AuthorisedBy" placeholder="Enter Authorised Person Name with Designation ...">
-                </div>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-danger" type="button" data-ng-click="Save()"  data-ng-show="Update==false && AddNew==true">Save</button>
-                <button class="btn btn-danger" type="button" data-ng-click="Update()" data-ng-show="Update">Update</button>
-                <button class="btn btn-danger" type="button" data-ng-click="CancelClick()">Cancel</button>
-            </div>
-        </div>
+        <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="box-body">
+                    <input type="hidden" data-ng-model="FormToRollModel.RollFormMappingId" />
+                    <div class="form-group">
+                        <label>Select Roll</label>
+                        <select class="form-control" id="ddlRoll" ng-disabled="Update"></select>
+                        <span class="badge badge-danger" data-ng-show="ErrorModel.RollId">{{ErrorModel.ErrorSelectRollId}}</span>
 
-    </div>
+                    </div>
+                    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                        <table class="table table-bordered table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Form Name</th>
+                                    <th scope="col">Form Name</th>
+                                    <th scope="col">Form Name</th>
+                                </tr>
+                            </thead>
+                            <tr data-ng-repeat="gr in group1">
+                                <td data-ng-repeat="form1 in gr">{{form1.FormTitle}}<input type="checkbox" class="checkbox" data-ng-model="selectedItem[form1.FormId]" /></td>
+                            </tr>
+                        </table>
+                        <span class="badge badge-danger" data-ng-show="ErrorModel.selectedItem3">{{ErrorModel.ErrorSelectselectedItem3}}</span>
+
+                    </div>
+                    <div class="form-group">
+                        <label>Authorised Authority</label>
+                        <input type="text" class="form-control" id="ddlAAuthorised" data-ng-model="FormToRollModel.AuthorisedBy" placeholder="Enter Authorised Person Name with Designation ...">
+                        <span class="badge badge-danger" data-ng-show="ErrorModel.AuthorisedBy">{{ErrorModel.ErrorSelectAuthorisedBy}}</span>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-danger" type="button" data-ng-click="Save()" data-ng-show="Update==false && AddNew==true">Save</button>
+                    <button class="btn btn-danger" type="button" data-ng-click="Update()" data-ng-show="Update">Update</button>
+                    <button class="btn btn-danger" type="button" data-ng-click="CancelClick()">Cancel</button>
+                </div>
+            </div>
+
+        </div>
 
 
     <div class="col-md-12" data-ng-show="Details">
-
+        
         <hr />
-        <div class="col-md-8 divsearch">
+        <div class="col-md-2"></div>
+        <div class="col-md-6 divsearch">
             <input type="text" placeholder="Search" class="form-control" data-ng-model="FormToRollModel.Prefix"
                    data-ng-change="FilterList()" />
         </div>
@@ -59,51 +67,57 @@
             </button>
         </div>
         <hr />
-        <div class="col-md-8">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Roll Description</th>
-                        <th>Form Name</th>
-                        <th>Authorized By</th>
-                        <th>System Entery Date </th>
-                        <th>Update </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-ng-repeat="FormToRoll in RollFormMappingList">
-                        <td>{{FormToRoll.RollFormMappingId}}</td>
-                        <td>{{FormToRoll.FormTitle}}</td>
-                        <td>{{FormToRoll.AuthorisedBy}}</td>
-                        <td>{{FormToRoll.EntryDate |mydate| date: ' dd-MM-yyyy' }}</td>
-                        <td>
-                            <button type="button" class="btn btn-danger" data-ng-click="Discontinew(FormToRoll)" data-toggle="tooltip"
-                                    title="Update">
-                                Discontinew
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="col-md-12">
-                <div class="col-md-7"></div>
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
-                            <option value="5">5</option>
-                            <option value="5">10</option>
-                        </select>
-                    </div>
-                </div>
-                <div>
-                    <ul class="pager">
-                        <li><a href="#">Page No : {{FormToRollModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
-                        <li><a href="#" data-ng-click="Prev()">Previous</a></li>
-                        <li><a href="#" data-ng-click="Next()" ng-disabled="next">Next</a></li>
-                    </ul>
+        <div class="col-md-12">
+            <hr />
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+               
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Role Description</th>
+                            <th>Form Name</th>
+                            <th>Authorized By</th>
+                            <th>System Entery Date </th>
+                            <th>Update </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="FormToRoll in RollFormMappingList">
+                            <td>{{FormToRoll.RollFormMappingId}}</td>
+                            <td>{{FormToRoll.FormTitle}}</td>
+                            <td>{{FormToRoll.AuthorisedBy}}</td>
+                            <td>{{FormToRoll.EntryDate |mydate| date: ' dd-MM-yyyy' }}</td>
+                            <td>
+                                <button type="button" class="btn btn-danger" data-ng-click="Discontinew(FormToRoll)" data-toggle="tooltip"
+                                        title="Update">
+                                    Discontinew
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 </div>
             </div>
-        </div>
+                <div class="col-md-12">
+                    <div class="col-md-7"></div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
+                                <option value="5">5</option>
+                                <option value="5">10</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="pager">
+                            <li><a href="#">Page No : {{FormToRollModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
+                            <li><a href="#" data-ng-click="Prev()">Previous</a></li>
+                            <li><a href="#" data-ng-click="Next()" ng-disabled="next">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+           
 
     </div>
 </div>

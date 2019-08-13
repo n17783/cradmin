@@ -70,18 +70,12 @@
     $scope.selectedItem = {};
     var i = 0;
     function selectedform() {
-        if ($scope.selectedItem.length == 0) {
-            var objShowCustomAlert = new ShowCustomAlert({
-                Title: "Error",
-                Message: "Please select at list One Form for Assign To roll ",
-                Type: "alert"
-            });
-            objShowCustomAlert.ShowCustomAlertBox();
-
-        }
+        //var len = $scope.selectedItem.length;
+       
         for (i in $scope.selectedItem) {
             selected.push(i);
         }
+       
         formlist = selected.join(',');
         selected = [];
     }
@@ -100,7 +94,8 @@
         $scope.AddNew = true;
         $scope.Details = false;
         $scope.Update = false;
-        
+        $scope.ErrorModel.RollId = false;
+        $scope.ErrorModel.AuthorisedBy = false;
     }
 
     $scope.CancelClick = function () {
@@ -114,44 +109,66 @@
 
     $scope.Save = function () {
         selectedform();
-
-        $scope.FormToRollModel.RollId = $("#ddlRoll").val();
-        $scope.FormToRollModel.discontinew = "naresh";
-        $scope.FormToRollModel.RollFormMappingId = null;
-        $scope.FormToRollModel.AllFormId = formlist;
-        ShowLoader();
-        $http({
-            method: 'post',
-            url: $scope.urlBase + '/RollFormMapping/Save',
-            data: $scope.FormToRollModel,
-        }).then(function (response) {
-            HideLoader();
-            if (response.data.Status == 0) {
+        if ($scope.Validate()) {
+            if (formlist== "") {
                 var objShowCustomAlert = new ShowCustomAlert({
                     Title: "Error",
-                    Message: "This Record Is All Ready Exist",
+                    Message: "Please Select At Least One Form",
                     Type: "alert"
                 });
                 objShowCustomAlert.ShowCustomAlertBox();
-                $scope.selectedItem = {};
             }
             else {
                 var objShowCustomAlert = new ShowCustomAlert({
-                    Title: "Success",
-                    Message: "Record Seved Successfully",
-                    Type: "alert"
+                    Title: "Error",
+                    Message: "Are You Want To Save This Record",
+                    Type: "confirm",
+                    OnOKClick: function () {
+
+
+
+                        $scope.FormToRollModel.RollId = $("#ddlRoll").val();
+                        $scope.FormToRollModel.discontinew = "naresh";
+                        $scope.FormToRollModel.RollFormMappingId = null;
+                        $scope.FormToRollModel.AllFormId = formlist;
+                        ShowLoader();
+                        $http({
+                            method: 'post',
+                            url: $scope.urlBase + '/RollFormMapping/Save',
+                            data: $scope.FormToRollModel,
+                        }).then(function (response) {
+                            HideLoader();
+                            if (response.data.Status == 0) {
+                                var objShowCustomAlert = new ShowCustomAlert({
+                                    Title: "Error",
+                                    Message: "Some Form Is All Ready Exist In Choosen Role",
+                                    Type: "alert"
+                                });
+                                objShowCustomAlert.ShowCustomAlertBox();
+                                $scope.selectedItem = {};
+                            }
+                            else {
+                                var objShowCustomAlert = new ShowCustomAlert({
+                                    Title: "Success",
+                                    Message: "Form saved Seved Successfully Against Role",
+                                    Type: "alert"
+                                });
+                                objShowCustomAlert.ShowCustomAlertBox();
+                                $scope.selectedItem = {};
+                            }
+                            $scope.CancelClick();
+                            $scope.GetFormToRollList();
+                        }, function (error) {
+                            HideLoader();
+                            console.log(error);
+                        });
+                    }
                 });
                 objShowCustomAlert.ShowCustomAlertBox();
-                $scope.selectedItem = {};
             }
-            $scope.CancelClick();
-            $scope.GetFormToRollList();
-        }, function (error) {
-            HideLoader();
-            console.log(error);
-        });
-
+        }
     }
+    
     //Edit 
 
     //update
@@ -159,7 +176,11 @@
     //update
     // discontinew
     $scope.Discontinew = function (FormToRoll) {
-
+        var objShowCustomAlert = new ShowCustomAlert({
+            Title: "Error",
+            Message: "Are You Want To This Continew This Form",
+            Type: "confirm",
+            OnOKClick: function () {
        
         $scope.FormToRollModel = { AllFormId:"", RollFormMappingId: FormToRoll.RollFormMappingId, RollDescription: FormToRoll.RollDescription, FormTitle: FormToRoll.FormTitle, AuthorisedBy: FormToRoll.AuthorisedBy, FormId: FormToRoll.FormId, RollId: FormToRoll.RollId, EntryDate: FormToRoll.EntryDate, };
         $scope.FormToRollModel.discontinew = 'Discon';
@@ -196,8 +217,11 @@
             HideLoader();
             console.log(error);
         });
-       
+            }
+        });
+        objShowCustomAlert.ShowCustomAlertBox();
     }
+
     //discontinew
     var objdatehelper = new datehelper({ format: "dd/MM/yyyy", cdate: new Date() });
     $scope.Edit = function (FormToRoll) {
@@ -264,7 +288,39 @@
         $scope.SearchFormRollList = $scope.RollFormMappingList;
         $scope.First();
     }
+    $scope.ErrorModel = {
+        RollId: false, ErrorSelectRollId: "", selectedItem3: false, ErrorSelectselectedItem3: "",
+        AuthorisedBy: false, ErrorEnterAuthorisedBy: ""
+    };
+    $scope.Validate = function () {
+        var valid = true;
+        if ($("#ddlRoll").val() <= 0) {
+            $scope.ErrorModel.RollId = true;
+            $scope.ErrorModel.ErrorSelectRollId = "Please Select Role.";
+            valid = false;
+        }
+        else {
+            $scope.ErrorModel.RollId = false;
+            valid = true;
+        }
+       
 
+       if(valid==true){
+        if ($scope.FormToRollModel.AuthorisedBy == "") {
+            $scope.ErrorModel.AuthorisedBy = true;
+            $scope.ErrorModel.ErrorSelectAuthorisedBy = "Please Enter Authority Name.";
+            valid = false;
+        }
+        else {
+           
+            $scope.ErrorModel.AuthorisedBy = false;
+            valid = true;
+            
+        }
+    }
+
+        return valid;
+    }
 
     $scope.init = function () {
         checkToken();

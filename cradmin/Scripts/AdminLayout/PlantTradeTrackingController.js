@@ -89,9 +89,11 @@
     $scope.TradeTrackingModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), Prefix: "", AuthorizedStrenth: "", AuthorizedBy: "", AuthorizedDate: "", PlantId: "", TradeId: "", TradDescription: "", PlantTitle: "", PlantTradeTrackingId: "", PlantStrenth: 0 };
 
     $scope.AddNewClick = function () {
+        $scope.ErrorModel.PlantId = false;
+        $scope.ErrorModel.TradeId = false;
         $scope.ErrorModel.AuthorizedStrenth = false;
-        $scope.ErrorModel.AuthorizedBy = false;
         $scope.ErrorModel.AuthorizedDate = false;
+        $scope.ErrorModel.AuthorizedBy = false;
         $scope.AddNew = true;
         $scope.Details = false;
         $scope.Update = false;
@@ -102,7 +104,7 @@
     $scope.CancelClick = function () {
         $scope.AddNew = false;
         $scope.Details = true;
-       $("#ddlplant").val("---Select Plant---");
+        //$("#ddlplant").val("---Select Plant---");
         $("#ddlPstrenth").val("");
         $("#ddlPDstrenth").val("");
         $("#ddlAstrenth").val("");
@@ -399,20 +401,18 @@
         }
         else {
             $scope.ErrorModel.AuthorizedDate = false;
+
             valid = true;
             
         }
+        if(valid==true){
         if ($scope.TradeTrackingModel.AuthorizedBy == "") {
             $scope.ErrorModel.AuthorizedBy = true;
             $scope.ErrorModel.ErrorEnterAuthority = "Please Enter Authority Name.";
             valid = false;
         }
         else {
-            if (valid == false) {
-                valid = false;
-                $scope.ErrorModel.AuthorizedBy = true;
-            }
-            else {
+            
                 $scope.ErrorModel.AuthorizedBy = false;
                 valid = true;
 

@@ -169,22 +169,20 @@
             $scope.ErrorModel.ContractorOfficeAddress = false;
             valid = true;
         }
+        if(valid==true){
         if ($scope.ContractorModel.ContractorPhoneNo == "") {
             $scope.ErrorModel.ContractorPhoneNo = true;
             $scope.ErrorModel.ErrorSelectMainCPh = "Contractor Phone No .";
             valid = false;
         }
         else {
-            if (valid == false ) {
-                valid = false;
-                $scope.ErrorModel.ContractorPhoneNo = true;
-            }
-            else {
-                $scope.ErrorModel.ContractorPhoneNo = false;
-                valid = true;
-            }
+           
+            $scope.ErrorModel.ContractorPhoneNo = false;
+            valid = true;
+            
            
         }
+    }
         return valid;
     }
 

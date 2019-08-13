@@ -145,17 +145,14 @@
 
             valid = true;
         }
+        if(valid==true){
         if ($scope.ValidationAgencyModel.AgencyContactNo == "") {
             $scope.ErrorModel.AgencyContactNo = true;
             $scope.ErrorModel.ErrorSelectAgencyContactNo = "Please Enter Contact No.";
             valid = false;
         }
         else {
-            if (valid == false) {
-                valid = false;
-                $scope.ErrorModel.AgencyContactNo = true;
-            }
-            else {
+          
                 $scope.ErrorModel.AgencyContactNo = false;
                 valid = true;
             }

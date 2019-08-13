@@ -197,17 +197,14 @@
 
             valid = true;
         }
+        if(valid==true){
         if ($scope.PlantModel.PlantIncharge == "") {
             $scope.ErrorModel.PlantIncharge = true;
             $scope.ErrorModel.ErrorSelectPlantIncharge = "Please Enter Incharge Name.";
             valid = false;
         }
         else {
-            if (valid == false) {
-                valid = false;
-                $scope.ErrorModel.PlantIncharge = true;
-            }
-            else {
+           
                 $scope.ErrorModel.PlantIncharge = false;
                 valid = true;
             }

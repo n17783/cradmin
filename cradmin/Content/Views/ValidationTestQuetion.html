@@ -13,12 +13,12 @@
                 </div>
                 <div class="form-group">
                     <label ng-hide="Update">Select Trade Category Domain</label>
-                    <select class="form-control" id="ddlTradeC" data-ng-model="TestQuetionModel.TradeCId" ng-hide="Update" data-ng-click="BindTradeList()" ng-disabled="Update"></select>
+                    <select class="form-control" id="ddlTradeC"  ng-hide="Update" data-ng-click="BindTradeList()" ng-disabled="Update"></select>
                     <span class="badge badge-danger" data-ng-show="ErrorModel.TradeCId">{{ErrorModel.ErrorSelectTradeC}}</span>
                 </div>
                 <div class="form-group">
                     <label ng-hide="Update">Select Trade </label>
-                    <select class="form-control" id="ddlTrade" ng-hide="Update"  data-ng-model="TestQuetionModel.TradeId"></select>
+                    <select class="form-control" id="ddlTrade" ng-hide="Update"  ></select>
                     <span class="badge badge-danger" data-ng-show="ErrorModel.TradeId">{{ErrorModel.ErrorSelectTrade}}</span>
                 </div>
                
@@ -28,7 +28,7 @@
                         <option value="A . Health, Safety & Environment :">A . Health, Safety & Environment :</option>
                         <option value="B . Trade Specific Validation :">B . Trade Specific Validation :</option>
                     </select>
-                    <span class="badge badge-danger" data-ng-show="ErrorModel.QCategory">{{ErrorModel.ErrorSelectQCategory}}</span>
+                    <span class="badge badge-danger" data-ng-show="ErrorModel.TestQCategory">{{ErrorModel.ErrorSelectQCategory}}</span>
                 </div>
                 <div class="form-group">
                     <label>Enter Quetion Description</label>

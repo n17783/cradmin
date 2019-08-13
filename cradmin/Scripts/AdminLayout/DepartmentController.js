@@ -12,19 +12,25 @@
     $scope.AddNewClick = function () {
         $scope.AddNew = true;
         $scope.Details = false;
-        $scope.DeptTypModel = { PageNo: 1, PageSize: 2, Dept_Name: "", Dept_Address: "", PhoneNo: "", DeptId: "" };
+        $scope.ErrorModel.Dept_Name = false;
+        $scope.DeptTypModel = { PageNo: 1, PageSize: 2, Dept_Name: "", DeptId: "" };
     }
 
     $scope.CancelClick = function () {
         $scope.AddNew = false;
         $scope.Details = true;
-        $scope.DeptTypModel = { PageNo: 1, PageSize: 2, Dept_Name: "", Dept_Address: "", PhoneNo: "", DeptId: "" };
+        $scope.DeptTypModel = { PageNo: 1, PageSize: 2, Dept_Name: "", DeptId: "" };
     }
     $scope.PageSizeList = [5, 10, 15, 20];
     $scope.DeptTypeList = [];
 
     $scope.Save = function () {
-
+        if ($scope.Validate()) {
+            var objShowCustomAlert = new ShowCustomAlert({
+                Title: "Error",
+                Message: "Are You Want To Save This Record",
+                Type: "confirm",
+                OnOKClick: function () {
        
         ShowLoader();
         $http({
@@ -55,6 +61,11 @@
             HideLoader();
             console.log(error);
         });
+
+                }
+            });
+            objShowCustomAlert.ShowCustomAlertBox();
+        }
     }
 
     
@@ -97,7 +108,25 @@
             $scope.GetDeptTypeList();
         }
     }
+    $scope.ErrorModel = {
+        Dept_Name: false, ErrorEnterDept_Name: ""
+    };
+    $scope.Validate = function () {
+        var valid = true;
 
+
+        if ($scope.DeptTypModel.Dept_Name == "") {
+            $scope.ErrorModel.Dept_Name = true;
+            $scope.ErrorModel.ErrorEnterDept_Name = "Please Enter Sub Department Name.";
+            valid = false;
+        }
+        else {
+            $scope.ErrorModel.Dept_Name = false;
+
+            valid = true;
+        }
+        return valid
+    }
     $scope.init = function () {
         checkToken();
         $("#ddlPageSize").val(5);

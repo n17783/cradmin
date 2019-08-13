@@ -88,8 +88,12 @@
         $scope.AddNew = true;
         $scope.Details = false;
         $scope.Update = false;
-
-        $scope.TestQuetionModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), Prefix: "", TestQuetionCatagoryId: "", TestId: "", TestQCategory: "", TestDescription: "", TradeId: "", TestQDescription: "" };
+        $scope.ErrorModel.TestId = false;
+        $scope.ErrorModel.TradeCId = false;
+        $scope.ErrorModel.TradeId = false;
+        $scope.ErrorModel.TestQCategory = false;
+        $scope.ErrorModel.TestQDescription = false;
+       
     }
 
     $scope.CancelClick = function () {
@@ -98,7 +102,6 @@
       
 
 
-        $scope.TestQuetionModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), Prefix: "", TestQuetionCatagoryId: "", TestId: "", TestQCategory: "", TestDescription: "", TradeId: "", TestQDescription: "" };
     }
 
     $scope.PageSizeList = [5, 10, 15, 20];
@@ -106,6 +109,12 @@
 
     $scope.Save = function () {
         if ($scope.Validate()) {
+            var objShowCustomAlert = new ShowCustomAlert({
+                Title: "Error",
+                Message: "Are You Want To Save This Record",
+                Type: "confirm",
+                OnOKClick: function () {
+                   
 
             $scope.TestQuetionModel.TradeId = $("#ddlTrade").val();
             $scope.TestQuetionModel.TestId = $("#ddlTest").val();
@@ -136,20 +145,28 @@
                 }
                 $scope.CancelClick();
                 $scope.GetQuetionList();
-                GetMasterDataList()
+                
             }, function (error) {
                 HideLoader();
                 console.log(error);
             });
-        }
+                }
+            });
+            objShowCustomAlert.ShowCustomAlertBox();
 
+        }
     }
 
         //Edit 
 
         //update
     $scope.Update1 = function () {
-        if ($scope.Validate()) {
+        if ($scope.Validate1()) {
+            var objShowCustomAlert = new ShowCustomAlert({
+                Title: "Error",
+                Message: "Are You Want To Save This Record",
+                Type: "confirm",
+                OnOKClick: function () {
             ShowLoader();
             $http({
                 method: 'post',
@@ -175,13 +192,15 @@
                 }
                 $scope.CancelClick();
                 $scope.GetQuetionList();
-                GetMasterDataList()
             }, function (error) {
                 HideLoader();
                 console.log(error);
             });
-        }
+                }
+            });
+            objShowCustomAlert.ShowCustomAlertBox();
 
+        }
     }
 
     
@@ -258,39 +277,83 @@
         TradeCId: false, ErrorSelectTradeC: "", TradeId: false, ErrorSelectTrade: "",
         QCategory: false, ErrorSelectQCategory: "", TestQDescription: false, ErrorSelectQDescription:""
     };
-    $scope.Validate = function () {
+    $scope.Validate1 = function () {
         var valid = true;
 
-        if ($scope.TestQuetionModel.TestId == "") {
-            $scope.ErrorModel.TestId = true;
-            $scope.ErrorModel.ErrorSelectTest = "Select Test.";
-            valid = false;
-        }
-       
-        if ($scope.TestQuetionModel.TradeCId == "") {
-            $scope.ErrorModel.TradeCId = true;
-            $scope.ErrorModel.ErrorSelectTradeC = "Select Trade Domain.";
-            valid = false;
-        }
-       
-        if ($scope.TestQuetionModel.TradeId == "") {
-            $scope.ErrorModel.TradeId = true;
-            $scope.ErrorModel.ErrorSelectTrade = "Select Trade.";
-            valid = false;
-        }
-        if ($scope.TestQuetionModel.TestQCategory == "") {
-            $scope.ErrorModel.QCategory = true;
-            $scope.ErrorModel.ErrorSelectQCategory = "Select Quetion Prefix Or Suffix.";
-            valid = false;
-        }
         if ($scope.TestQuetionModel.TestQDescription == "") {
             $scope.ErrorModel.TestQDescription = true;
-            $scope.ErrorModel.ErrorSelectQDescription = "Enter Releated Quetion.";
+            $scope.ErrorModel.ErrorSelectQDescription = "Edit Test Quetion.";
             valid = false;
         }
         else {
+            $scope.ErrorModel.TestQDescription = false;
 
             valid = true;
+        }
+        return valid
+    }
+    $scope.Validate = function () {
+        var valid = true;
+       
+            if ($scope.TestQuetionModel.TestId == "") {
+                $scope.ErrorModel.TestId = true;
+                $scope.ErrorModel.ErrorSelectTest = "Select Test.";
+                valid = false;
+            }
+            else {
+                $scope.ErrorModel.TestId = false;
+
+                valid = true;
+            }
+        
+        if (valid == true) {
+            if ($("#ddlTradeC").val() <= 0) {
+                $scope.ErrorModel.TradeCId = true;
+                $scope.ErrorModel.ErrorSelectTradeC = "Select Trade Domain.";
+                valid = false;
+            }
+            else {
+                $scope.ErrorModel.TradeCId = false;
+
+                valid = true;
+            }
+        }
+        if (valid == true) {
+            if ($("#ddlTrade").val() <= 0) {
+                $scope.ErrorModel.TradeId = true;
+                $scope.ErrorModel.ErrorSelectTrade = "Select Trade.";
+                valid = false;
+            }
+            else {
+                $scope.ErrorModel.TradeId = false;
+
+                valid = true;
+            }
+        }
+        if (valid == true) {
+            if ($scope.TestQuetionModel.TestQCategory == "") {
+                $scope.ErrorModel.TestQCategory = true;
+                $scope.ErrorModel.ErrorSelectQCategory = "Select Quetion Prefix Or Suffix.";
+                valid = false;
+            }
+            else {
+
+                $scope.ErrorModel.TestQCategory = false;
+
+                valid = true;
+            }
+        }
+        if (valid == true) {
+            if ($scope.TestQuetionModel.TestQDescription == "") {
+                $scope.ErrorModel.TestQDescription = true;
+                $scope.ErrorModel.ErrorSelectQDescription = "Enter Releated Quetion.";
+                valid = false;
+            }
+            else {
+
+                $scope.ErrorModel.TestQDescription = false;
+                valid = true;
+            }
         }
         return valid;
     }

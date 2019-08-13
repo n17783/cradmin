@@ -1,7 +1,7 @@
 ﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="DeptZoneController">
     <div class="col-md-12"><h3 class="header">Dept Zone</h3></div>
     <div class="col-md-12" data-ng-show="AddNew">
-        <div class="col-md-2"></div>
+        <div class="col-md-3"></div>
         <div class="col-md-6">
             <div class="form-group">
                 <label>DEPT And ZONE Type Description</label>
@@ -42,56 +42,60 @@
     </div>
     <div class="col-md-12" data-ng-show="Details">
         <div class="col-md-12">
-            <div class="form-group">
-                <button class="btn btn-danger" type="button" data-ng-click="AddNewClick()">Add New</button>
-            </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>DEPT/ZONE Type</th>
-                        <th>ADDRESS</th>
-                        <th>CONTACT NO 1</th>
-                        <th>CONTACT NO 2</th>
-                        <th>Email Id</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-ng-repeat="DeptZone in DeptZoneList track by DeptZone.DeptZoneId">
-                        <td>{{DeptZone.DeptZoneId}}</td>
-                        <td>{{DeptZone.DeptZoneDescription}}</td>
-
-                        <td>{{DeptZone.DeptZoneAddress}}</td>
-
-                        <td>{{DeptZone.ContactNo}}</td>
-                        <td>{{DeptZone.ContactNo2}}</td>
-                        <td>{{DeptZone.EmailId}}</td>
-
-
-                    </tr>
-                </tbody>
-            </table>
-            <div class="col-md-12">
-                <div class="col-md-7"></div>
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
-                            <option value="5">5</option>
-                            <option value="5">10</option>
-                        </select>
-                    </div>
+            <div class="col-md-0"></div>
+            <div class="col-md-11">
+                <div class="form-group">
+                    <button class="btn btn-danger" type="button" data-ng-click="AddNewClick()">Add New</button>
                 </div>
-                <div>
-                    <ul class="pager">
-                        <li><a href="#">Page No : {{DeptZoneModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
-                        <li><a href="#" data-ng-click="Prev()">Previous</a></li>
-                        <li><a href="#" data-ng-click="Next()">Next</a></li>
-                    </ul>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>DEPT/ZONE Type</th>
+                            <th>ADDRESS</th>
+                            <th>CONTACT NO 1</th>
+                            <th>CONTACT NO 2</th>
+                            <th>Email Id</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="DeptZone in DeptZoneList track by DeptZone.DeptZoneId">
+                            <td>{{DeptZone.DeptZoneId}}</td>
+                            <td>{{DeptZone.DeptZoneDescription}}</td>
+
+                            <td>{{DeptZone.DeptZoneAddress}}</td>
+
+                            <td>{{DeptZone.ContactNo}}</td>
+                            <td>{{DeptZone.ContactNo2}}</td>
+                            <td>{{DeptZone.EmailId}}</td>
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+                <div class="col-md-12">
+                    <div class="col-md-7"></div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
+                                <option value="5">5</option>
+                                <option value="5">10</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="pager">
+                            <li><a href="#">Page No : {{DeptZoneModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
+                            <li><a href="#" data-ng-click="Prev()">Previous</a></li>
+                            <li><a href="#" data-ng-click="Next()">Next</a></li>
+                        </ul>
+                    </div>
+
                 </div>
 
             </div>
 
         </div>
-        
-    </div>
-</div>
+    

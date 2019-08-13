@@ -1,7 +1,7 @@
 ﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="EmployeeTypeController">
     <div class="col-md-12"><h3 class="header">Employee Designation</h3></div>
     <div class="col-md-12" data-ng-show="AddNew">
-        <div class="col-md-2"></div>
+        <div class="col-md-3"></div>
         <div class="col-md-6">
             <div class="form-group">
                 <label>Enter Employee Designation</label>
@@ -9,7 +9,7 @@
                 <span class="badge badge-danger" data-ng-show="ErrorModel.EmpDesignation">{{ErrorModel.ErrorSelectEmpDesignation}}</span>
              </div>
             <div class="form-group">
-                <label>Select Employee Category</label>
+                <label>Select DM/STAFF</label>
                 <select class="form-control" id="ddlIsDmOrStaff" >
                     <option value="DM">DM</option>
                     <option value="STAFF">STAFF</option>
@@ -35,50 +35,54 @@
     </div>
     <div class="col-md-12" data-ng-show="Details">
         <div class="col-md-12">
-            <div class="form-group">
-                <button class="btn btn-danger" type="button" data-ng-click="AddNewClick()">Add New</button>
-            </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Employee Designation</th>
-                        <th>DM/STAFF</th>
-                        <th>Employee Grade</th>
-                        <th>Category</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-ng-repeat="EmpType in EmpTypeList">
-                        <td>{{EmpType.EmpTypeId}}</td>
-                        <td>{{EmpType.EmpDesignation}}</td>
-                        <td>{{EmpType.IsDmOrStaff==true?"DM":"STAFF"}}</td>
-                        <td>{{EmpType.EmpGrade}}</td>
-                        <td>{{EmpType.Category}}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="col-md-12">
-                <div class="col-md-7"></div>
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
-                            <option value="5">5</option>
-                            <option value="5">10</option>
-                        </select>
-                    </div>
+            <div class="col-md-0"></div>
+            <div class="col-md-11">
+                <div class="form-group">
+                    <button class="btn btn-danger" type="button" data-ng-click="AddNewClick()">Add New</button>
                 </div>
-                <div>
-                    <ul class="pager">
-                        <li><a href="#">Page No : {{EmployeeTypeModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
-                        <li><a href="#" data-ng-click="Prev()">Previous</a></li>
-                        <li><a href="#" data-ng-click="Next()">Next</a></li>
-                    </ul>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Employee Designation</th>
+                            <th>DM/STAFF</th>
+                            <th>Employee Grade</th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="EmpType in EmpTypeList">
+                            <td>{{EmpType.EmpTypeId}}</td>
+                            <td>{{EmpType.EmpDesignation}}</td>
+                            <td>{{EmpType.IsDmOrStaff==true?"DM":"STAFF"}}</td>
+                            <td>{{EmpType.EmpGrade}}</td>
+                            <td>{{EmpType.Category}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+                <div class="col-md-12">
+                    <div class="col-md-7"></div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
+                                <option value="5">5</option>
+                                <option value="5">10</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="pager">
+                            <li><a href="#">Page No : {{EmployeeTypeModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
+                            <li><a href="#" data-ng-click="Prev()">Previous</a></li>
+                            <li><a href="#" data-ng-click="Next()">Next</a></li>
+                        </ul>
+                    </div>
+
                 </div>
 
             </div>
 
         </div>
-
-    </div>
-</div>
+    

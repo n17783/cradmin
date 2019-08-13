@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group">
                     <label>Total Plant Strength</label>
-                    <input type="number" class="form-control" placeholder="Enter Total Plant Strength ..." data-ng-model="PlantModel.PlantStrenth">
+                    <input type="number" class="form-control" placeholder="Enter Total Plant Strength ..." data-ng-model="PlantModel.PlantStrenth" data-ng-keypress="Phone($event,PlantModel.PlantStrenth)">
                     <!--<span class="badge badge-danger" data-ng-show="ErrorModel.PlantStrenth">{{ErrorModel.ErrorSelectPlantStrenth}}</span>-->
                 </div>
                 <div class="form-group">
@@ -40,55 +40,59 @@
         </div>
     </div>
     <div class="col-md-12" data-ng-show="Details">
-        <div class="col-md-14">
-            <div class="form-group">
-                <button class="btn btn-danger" type="button" data-ng-click="AddNewClick()">Add New</button>
-            </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Plant Name</th>
-                        <th>Plant Description</th>
-                        <th>PlantIncharge</th>
-                        <th>Total Plant Strength </th>
-                        <th>Plant Phone No </th>
-                        <th>Edit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-ng-repeat="PlantType in PlantList track by PlantType.PlantId ">
-                        <td>{{PlantType.PlantId}}</td>
-                        <td>{{PlantType.PlantTitle}}</td>
-                        <td>{{PlantType.PlantDescription}}</td>
-                        <td>{{PlantType.PlantIncharge}}</td>
-                        <td>{{PlantType.PlantStrenth}}</td>
-                        <td>{{PlantType.PlantPhoneNo1 }}</td>
-                        <td><span class="glyphicon glyphicon-edit" data-ng-click="Edit(PlantType)"></span></td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="col-md-12">
-                <div class="col-md-7"></div>
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
-                            <option value="5">5</option>
-                            <option value="5">10</option>
-                        </select>
-                    </div>
+        <div class="col-md-12">
+            <div class="col-md-0"></div>
+            <div class="col-md-11">
+                <div class="form-group">
+                    <button class="btn btn-danger" type="button" data-ng-click="AddNewClick()">Add New</button>
                 </div>
-                <div>
-                    <ul class="pager">
-                        <li><a href="#">Page No : {{PlantModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
-                        <li><a href="#" data-ng-click="Prev(PlantModel.PageNo)">Previous</a></li>
-                        <li><a href="#" data-ng-click="Next(PlantModel.PageNo)">Next</a></li>
-                    </ul>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Plant Name</th>
+                            <th>Plant Description</th>
+                            <th>PlantIncharge</th>
+                            <th>Total Plant Strength </th>
+                            <th>Plant Phone No </th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="PlantType in PlantList track by PlantType.PlantId ">
+                            <td>{{PlantType.PlantId}}</td>
+                            <td>{{PlantType.PlantTitle}}</td>
+                            <td>{{PlantType.PlantDescription}}</td>
+                            <td>{{PlantType.PlantIncharge}}</td>
+                            <td>{{PlantType.PlantStrenth}}</td>
+                            <td>{{PlantType.PlantPhoneNo1 }}</td>
+                            <td><span class="glyphicon glyphicon-edit" data-ng-click="Edit(PlantType)"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+                <div class="col-md-12">
+                    <div class="col-md-7"></div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
+                                <option value="5">5</option>
+                                <option value="5">10</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="pager">
+                            <li><a href="#">Page No : {{PlantModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
+                            <li><a href="#" data-ng-click="Prev(PlantModel.PageNo)">Previous</a></li>
+                            <li><a href="#" data-ng-click="Next(PlantModel.PageNo)">Next</a></li>
+                        </ul>
+                    </div>
+
                 </div>
 
             </div>
 
         </div>
-
-    </div>
-</div>
+    

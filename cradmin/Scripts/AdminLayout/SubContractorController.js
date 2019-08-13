@@ -53,7 +53,19 @@
         $scope.AddNew = true;
         $scope.Details = false;
         $scope.Update = false;
-        
+        $scope.ErrorModel.ContractorId = false;
+        $scope.ErrorModel.SubCName = false;
+        $scope.ErrorModel.SubCCompanyName = false;
+        $scope.ErrorModel.SubCRegistrationNo = false;
+        $scope.ErrorModel.SubCGstNo = false;
+        $scope.ErrorModel.SubCOfficeAddress = false;
+        $scope.ErrorModel.SubCPhoneNo = false;
+        $scope.ErrorModel.ContractorPhoneNo1 = false;
+        $scope.ErrorModel.EmailId = false;
+        $scope.ErrorModel.Code = false;
+        $scope.ErrorModel.WorkOrderNo = false;
+        $scope.ErrorModel.NatureOfWork = false;
+        $scope.ErrorModel.ValidUpTo = false;
         $scope.SubContractorModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), Prefix: "", SubContractorId: null, ContractorId: "", SubCName: "", SubCCompanyName: "", SubCRegistrationNo: "", SubCGstNo: "", SubCOfficeAddress: "", SubCPhoneNo: "", ContractorPhoneNo1: "", EmailId: "", Code: "", WorkOrderNo: "", NatureOfWork: "", ValidUpTo: "" };
     }
     $scope.ErrorModel = {
@@ -232,69 +244,144 @@
             $scope.ErrorModel.ErrorSelectMainContractor = "Please Select MainContractor.";
             valid = false;
         }
-       
+        else {
+            $scope.ErrorModel.ContractorId = false;
+
+            valid = true;
+
+        }
         if ($scope.SubContractorModel.SubCName == "") {
             $scope.ErrorModel.SubCName = true;
             $scope.ErrorModel.ErrorEnterSubContractor = "Please Enter Sub Contractor.";
             valid = false;
         }
-        
+        else {
+            $scope.ErrorModel.SubCName = false;
+
+            valid = true;
+
+        }
         if ($scope.SubContractorModel.SubCCompanyName == "") {
             $scope.ErrorModel.SubCCompanyName = true;
             $scope.ErrorModel.ErrorEnterSubCCName = "Please Select Sub Contractor Name.";
             valid = false;
+        }
+        else {
+            $scope.ErrorModel.SubCCompanyName = false;
+
+            valid = true;
+
         }
         if ($scope.SubContractorModel.SubCRegistrationNo == "") {
             $scope.ErrorModel.SubCRegistrationNo = true;
             $scope.ErrorModel.ErrorEnterSubCRNo = "Sub Contractor Registration No.";
             valid = false;
         }
+        else {
+            $scope.ErrorModel.SubCRegistrationNo = false;
+
+            valid = true;
+
+        }
         if ($scope.SubContractorModel.SubCGstNo == "") {
             $scope.ErrorModel.SubCGstNo = true;
             $scope.ErrorModel.ErrorEnterSubGSTNo = " Sub Contractor GST NO.";
             valid = false;
+        }
+        else {
+            $scope.ErrorModel.SubCGstNo = false;
+
+            valid = true;
+
         }
         if ($scope.SubContractorModel.SubCOfficeAddress == "") {
             $scope.ErrorModel.SubCOfficeAddress = true;
             $scope.ErrorModel.ErrorEnterSubOAdd = "Sub Contractor Office Address.";
             valid = false;
         }
+        else {
+            $scope.ErrorModel.SubCOfficeAddress = false;
+
+            valid = true;
+
+        }
         if ($scope.SubContractorModel.SubCPhoneNo == "") {
             $scope.ErrorModel.SubCPhoneNo = true;
             $scope.ErrorModel.ErrorSubCPhon1 = "Sub Contractor Phone No 1.";
             valid = false;
+        }
+        else {
+            $scope.ErrorModel.SubCPhoneNo = false;
+
+            valid = true;
+
         }
         if ($scope.SubContractorModel.ContractorPhoneNo1 == "") {
             $scope.ErrorModel.ContractorPhoneNo1 = true;
             $scope.ErrorModel.ErrorSubCPhon2 = "Sub Contractor Phone No 2.";
             valid = false;
         }
+        else {
+            $scope.ErrorModel.ContractorPhoneNo1 = false;
+
+            valid = true;
+
+        }
         if ($scope.SubContractorModel.EmailId == "") {
             $scope.ErrorModel.EmailId = true;
             $scope.ErrorModel.ErrorSubCEmail = "Sub Contractor Email ID.";
             valid = false;
+        }
+        else {
+            $scope.ErrorModel.EmailId = false;
+
+            valid = true;
+
         }
         if ($scope.SubContractorModel.Code == "") {
             $scope.ErrorModel.Code = true;
             $scope.ErrorModel.ErrorSubCCode = "Sub Contractor Vendor Code.";
             valid = false;
         }
+        else {
+            $scope.ErrorModel.Code = false;
+
+            valid = true;
+
+        }
         if ($scope.SubContractorModel.WorkOrderNo == "") {
             $scope.ErrorModel.WorkOrderNo = true;
             $scope.ErrorModel.ErrorSubCWorkONO = "Sub Contractor Work Order No.";
             valid = false;
+        }
+        else {
+            $scope.ErrorModel.WorkOrderNo = false;
+            valid = true;
+
         }
         if ($scope.SubContractorModel.NatureOfWork == "") {
             $scope.ErrorModel.NatureOfWork = true;
             $scope.ErrorModel.ErrorSubCNOW = "Sub Contractor Nature Of Work.";
             valid = false;
         }
-        if ($("#ddlVdate") == "") {
-            $scope.ErrorModel.ValidUpTo = true;
-            $scope.ErrorModel.ErrorEnterVDate = "Sub Contractor Valid UPTO Date.";
-            valid = false;
+        else {
+            $scope.ErrorModel.NatureOfWork = false;
+
+            valid = true;
+
         }
-       
+        if (valid == true) {
+            if ($("#ddlVdate") == "") {
+                $scope.ErrorModel.ValidUpTo = true;
+                $scope.ErrorModel.ErrorEnterVDate = "Sub Contractor Valid UPTO Date.";
+                valid = false;
+            }
+            else {
+                $scope.ErrorModel.ValidUpTo = false;
+                valid = true;
+
+            }
+        }
         return valid;
     }
    

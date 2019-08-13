@@ -142,12 +142,12 @@
         }
         else {
             $scope.ErrorModel.TradDescription = false;
-
+            $scope.ErrorModel.TradeCId = false;
 
             valid = true;
         }
 
-
+        if(valid==true){
 
         if ($("#ddlTradeC").val() == "") {
             $scope.ErrorModel.TradeCId = true;
@@ -155,11 +155,7 @@
             valid = false;
         }
         else {
-            if (valid == false) {
-                valid = false;
-                $scope.ErrorModel.TradeCId = true;
-            }
-            else {
+          
                 $scope.ErrorModel.TradeCId = false;
                 valid = true;
             }

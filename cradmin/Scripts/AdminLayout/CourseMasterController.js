@@ -150,24 +150,21 @@
 
             valid = true;
         }
-        
-        if ($scope.CourseMasterModel.CourseDescription == "") {
-            $scope.ErrorModel.CourseDescription = true;
-            $scope.ErrorModel.ErrorSelectCourseDescription = "Please Enter Course Description.";
-            valid = false;
-        }
-        else {
-            if (valid == false) {
-                valid = false;
+        if(valid==true){
+            if ($scope.CourseMasterModel.CourseDescription == "") {
                 $scope.ErrorModel.CourseDescription = true;
+                $scope.ErrorModel.ErrorSelectCourseDescription = "Please Enter Course Description.";
+                valid = false;
             }
             else {
+           
+           
                 $scope.ErrorModel.CourseDescription = false;
                 valid = true;
+            
             }
-        }
 
-
+    }
 
         return valid;
     }

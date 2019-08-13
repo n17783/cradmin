@@ -18,6 +18,7 @@
     $scope.AddNewClick = function () {
         $scope.AddNew = true;
         $scope.Details = false;
+         $scope.ErrorModel.RollDescription = false;
         $scope.RollModel = {
             RollDescription: "",
 
