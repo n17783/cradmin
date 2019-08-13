@@ -5273,3 +5273,50 @@ table.text-center, table.text-center td, table.text-center th {
     color: maroon;
     font-size: 3rem;
 }
+.mainLoader{
+    z-index: 100000;
+    width: calc(100% - 115px);
+    height: calc(50% - 93px);
+    top: 50px;
+    position: absolute;
+    left: 230px;
+        }
+     .mainInnerLoader{
+    z-index: 100000;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    right:50%;
+    position: absolute;
+        }
+        .lyfBg{
+             background-color: rgba(255, 255, 255, 0.7);
+    width: 100%;
+    height: 180%;
+    position: absolute;
+        }
+        .mainLoaderImg {
+            position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -26px 0 0 -26px;
+    background: url(../../Content/Images/varmalaloader.gif) no-repeat #fff 10px 10px;
+    width: 52px;
+    height: 52px;
+    z-index: 1;
+    border-radius: 8px;
+        }
+        .submitPopup {
+	display: none;
+	z-index: 70000;
+	position: absolute;
+}
+.overlay {
+	background: #fff;
+	bottom: 0;
+	opacity: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1001;
+}

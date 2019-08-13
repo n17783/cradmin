@@ -1,0 +1,188 @@
+GO
+/****** Object:  StoredProcedure [dbo].[GetLogginDetails]    Script Date: 08/12/2019 23:31:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[GetLogginDetails] 
+--declare
+	@UserName varchar(150)=NULL,--'pandurangkumbhar59@gmail.com',
+	@Password varchar(100)=NULL--'12345678'
+AS
+BEGIN
+	select * into #TmpLoginUser from tblEmployeeMaster emp
+	inner join tblUserMaster ts on emp.PkId=ts.EmployeeId
+	where ts.UserName=@UserName and ts.Pssword=@Password and ts.IsContinew=1 -- check IsContinue to fetch active user from User Master with latest role
+	
+	declare @RollId int;
+	declare @Token uniqueidentifier;
+	declare @EmpId int;
+	select @RollId=RollId,@EmpId=PKId from #TmpLoginUser
+	
+	if(@RollId=1) -- Check Roll Is Super Admin Or Not
+	begin
+		set @Token=NEWID();
+		select *,1 as Authorised,@Token as Token from #TmpLoginUser
+		insert into tblLoginDetails
+		(UserId,LoginTime,LogOutTime,IsContinew,UnexpecteError,Token)
+		values(@EmpId,GETDATE(),null,1,'',@Token)
+	end
+	else
+	begin
+		if(exists(select top 1 EE.* from tblEmpExitProcess EE  inner join tblEmployeeDetails ED
+		on EE.EmpDetailsId=ED.EmpDetailsId
+		inner join #TmpLoginUser LU on ED.PkId=LU.PKId
+		order by EE.EntryDate desc))
+		begin
+			declare @IsExit bit;
+			
+			select top 1 @IsExit=ISNULL(EE.IsExit,0) from tblEmpExitProcess EE  inner join tblEmployeeDetails ED
+			on EE.EmpDetailsId=ED.EmpDetailsId
+			inner join #TmpLoginUser LU on ED.PkId=LU.PKId
+			order by EE.EntryDate desc
+			
+			if(@IsExit=1)
+			begin
+				select *,0 as Authorised,NULL as Token from #TmpLoginUser
+			end
+			else
+			begin
+				
+				set @Token=NEWID();
+				select *,1 as Authorised,@Token as Token from #TmpLoginUser
+				insert into tblLoginDetails
+				(UserId,LoginTime,LogOutTime,IsContinew,UnexpecteError,Token)
+				values(@EmpId,GETDATE(),null,1,'',@Token)
+			end
+		end
+		else
+		begin
+			set @Token=NEWID();
+			select *,1 as Authorised,@Token as Token from #TmpLoginUser
+			insert into tblLoginDetails
+			(UserId,LoginTime,LogOutTime,IsContinew,UnexpecteError,Token)
+			values(@EmpId,GETDATE(),null,1,'',@Token)
+		end
+	end
+	drop table #TmpLoginUser
+END
+
+
+ALTER PROCEDURE [dbo].[ValidateToken]
+--declare 
+	@Token uniqueidentifier=NULL--'626E0BFB-55E5-4839-A012-F1C5B4884140'
+AS
+BEGIN
+
+	declare @IsContinue bit;
+	declare @UserId int=0;
+	declare @UserName nvarchar(150);
+	declare @Password nvarchar(150);
+	if(exists(select * from tblLoginDetails where Token=@Token and IsContinew=1))
+	begin
+		update tblLoginDetails set LastRequestTime=GETDATE() where Token=@Token and IsContinew=1
+	end
+	select @UserId=UserId from tblLoginDetails where Token=@Token and IsContinew=1
+	
+	select *,1 as Authorised,ul.Token from tblEmployeeMaster emp
+	inner join tblUserMaster ts on emp.PkId=ts.EmployeeId
+	inner join tblLoginDetails ul on emp.PkId=ul.UserId and ul.IsContinew=1
+	where ts.EmployeeId=@UserId and ul.Token=@Token and ul.IsContinew=1
+END
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[Register_Employee]
+	@PkId int=null,
+@Regt_No nvarchar(200)=null,
+@Gender bit=null,
+@FName nvarchar(200)=null,
+@MName nvarchar(200)=null,
+@LName nvarchar(200)=null,
+@DOB datetime=null,
+@BloodGroup nvarchar(10)=null,
+@EmpPhoto nvarchar(300)=null,
+@PanNo nvarchar(30)=null,
+@AadharNo nvarchar(100)=null,
+@EmpTypeId int=null,
+@JoiningStatus bit=null,
+@DateOfReport datetime=null,
+@ContractorId int=null,
+@ContactNo nvarchar(20)=null,
+@EmrContactNo nvarchar(20)=null,
+@IdProofType nvarchar(100)=null,
+@IdProofNo nvarchar(100)=null,
+@IdProofImage nvarchar(300)=null,
+@PHouseNo nvarchar(100)=null,
+@PVillageId int=null,
+@PDisticId int=null,
+@PTalukaId nvarchar(100)=null,
+@PStateId int=null,
+@PCountryId int=null,
+@PPincodeId int=null,
+@THouseNo nvarchar(100)=null,
+@TVillageId nvarchar(100)=null,
+@TDisticId int=null,
+@TTalukaId nvarchar(100),
+@TStateId int=null,
+@TCountryId int=null,
+@TPincode nvarchar(100)=null,
+@ReJoineOrNewJoin bit=null,
+@DeptZoneId int=null,
+@RegistrationDate datetime=null,
+@EntryBy int=null,
+@EnteryDate datetime=null,
+@ValidationAgencyId int=null,
+@IsAlreadyValidated bit=null,
+@TradeId int=null,
+@AdhaarImage nvarchar(150)=null,
+@IsDMorStaff bit=null,
+@UserName varchar(150)=null
+AS
+BEGIN
+	declare @IsNewUser bit=0;
+	if(@PkId is null)
+	begin
+		INSERT INTO tblEmployeeMaster ([Regt_No],[Gender],[FName],[MName],[LName],[DOB],[BloodGroup],[EmpPhoto],[PanNo],[AadharNo])
+		values(@Regt_No,@Gender,@FName,@MName,@LName,@DOB,@BloodGroup,@EmpPhoto,@PanNo,@AadharNo)
+		set @IsNewUser=1;
+		SET @PkId = ident_current('tblEmployeeMaster');
+	end
+
+	declare @EmpDetailsId int;
+	
+	INSERT INTO tblEmployeeDetails
+           ([EmpTypeId],PkId,[JoiningStatus],[DateOfReport],[ContractorId],[ContactNo],
+           [EmrContactNo],[IdProofType],[IdProofNo],[IdProofImage],[PHouseNo],[PVillageId],[PDisticId],
+           [PTalukaId],[PStateId],[PCountryId],[PPincodeId],[THouseNo],[TVillageId],[TDisticId]
+           ,[TTalukaId],[TStateId],[TCountryId],[TPincode],[ReJoineOrNewJoin],[DeptZoneId],[RegistrationDate]
+           ,[EntryBy],[EnteryDate],[ValidationAgencyId],[IsAlreadyValidated],[TradeId],[AdhaarImage],[IsDMorStaff])
+     VALUES
+           (@EmpTypeId,@PkId,@JoiningStatus,@DateOfReport,@ContractorId,@ContactNo,
+           @EmrContactNo,@IdProofType,@IdProofNo,@IdProofImage,@PHouseNo,@PVillageId,@PDisticId,
+           @PTalukaId,@PStateId,@PCountryId,@PPincodeId,@THouseNo,@TVillageId,@TDisticId,@TTalukaId,@TStateId,@TCountryId,@TPincode,@ReJoineOrNewJoin,@DeptZoneId,@RegistrationDate,
+           @EntryBy,GETDATE(),@ValidationAgencyId,@IsAlreadyValidated,@TradeId,@AdhaarImage,@IsDMorStaff)
+       
+      SET @EmpDetailsId = ident_current('tblEmployeeDetails');
+           
+      INSERT INTO tblEmpExitProcess ([EmpDetailsId],[IsExit])
+     VALUES (@EmpDetailsId,'false')	
+     
+     if(@IsDMorStaff=1 and @IsNewUser=1)
+     begin
+		if(exists(select * from tblUserMaster where EmployeeId=@PkId and IsContinew=1)) 
+		--- Continue is used like delete in user master table
+		begin
+			update tblUserMaster
+			set IsContinew=0
+			where EmployeeId=@PkId and IsContinew=1
+		end
+		insert into tblUserMaster
+		(UserName,EntryDate,Pssword,EmployeeId,IsContinew)
+		values(@UserName,GETDATE(),'123456',@PkId,1)
+     end
+     select @PKId as PKId,@EmpDetailsId as EmpDetailsId
+END

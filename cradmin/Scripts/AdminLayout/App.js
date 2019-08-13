@@ -147,8 +147,6 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
     
 
     $scope.LoadUserControls = function (tname) {
-        debugger;
-
         switch (tname) {
             case "ValidationTestQuetion":
                 $scope.template = $scope.templates[17];

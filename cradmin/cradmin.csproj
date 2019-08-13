@@ -168,12 +168,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DepartmentController.cs" />
-    <Compile Include="Controllers\Validation Process\CandidatesForValidationController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContractorController.cs" />
     <Compile Include="Controllers\CourseMasterController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\DeptZoneController.cs" />
     <Compile Include="Controllers\EmployeeTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -182,7 +181,10 @@
     <Compile Include="Controllers\ProjectTypeController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RollFormMappingController.cs" />
+    <Compile Include="Controllers\SubContractorController.cs" />
     <Compile Include="Controllers\TradeController.cs" />
+    <Compile Include="Controllers\UserRollMappingControllers.cs" />
+    <Compile Include="Controllers\Validation Process\CandidatesForValidationController.cs" />
     <Compile Include="Controllers\ValidationAgencyController.cs" />
     <Compile Include="Controllers\ValidationTestController.cs" />
     <Compile Include="Controllers\ValidationTestQuetionController.cs" />
@@ -203,6 +205,7 @@
     <Compile Include="Models\BAL\PlantTradeTrackingCR.cs" />
     <Compile Include="Models\BAL\ProjectTypeCR.cs" />
     <Compile Include="Models\BAL\RoleCR.cs" />
+    <Compile Include="Models\BAL\SubContractorCR.cs" />
     <Compile Include="Models\BAL\TradeCategoryCR.cs" />
     <Compile Include="Models\BAL\TradeTypeCR.cs" />
     <Compile Include="Models\BAL\ValidationAgencyCR.cs" />
@@ -249,7 +252,6 @@
     <Content Include="Content\Images\user3-128x128.jpg" />
     <Content Include="Content\Images\user4-128x128.jpg" />
     <Content Include="Content\Images\varmalaloader.gif" />
-    <Content Include="Content\Views\CandidatesForValidation.html" />
     <Content Include="Content\Views\CourseMaster.html" />
     <Content Include="Content\Views\Department.html" />
     <Content Include="Content\Views\DeptZone.html" />
@@ -258,7 +260,7 @@
     <Content Include="Content\Views\PlantTradeTracking.html" />
     <Content Include="Content\Views\RollFormMapping.html" />
     <Content Include="Content\Views\SubContractor.html" />
-    <Content Include="Content\Views\ValidatedCandidates.html" />
+    <Content Include="Content\Views\UserRoleMapping.html" />
     <Content Include="Content\Views\ValidationAgency.html" />
     <Content Include="Content\Views\Trade.html" />
     <Content Include="Content\Views\Role.html" />
@@ -266,7 +268,6 @@
     <Content Include="Content\Views\employee.html" />
     <Content Include="Content\Views\Contractor.html" />
     <Content Include="Content\Views\TradeCategory.html" />
-    <Content Include="Content\Views\ValidationProcess.html" />
     <Content Include="Content\Views\ValidationTest.html" />
     <Content Include="Content\Views\ValidationTestQuetion.html" />
     <Content Include="favicon.ico" />
@@ -355,9 +356,6 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\ValidationProcess\ValidatedCandidatesController.js" />
-    <Content Include="Scripts\ValidationProcess\CandidatesForValidationController.js" />
-    <Content Include="Scripts\ValidationProcess\ValidationProcessController.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -415,12 +413,14 @@
     <Content Include="Views\CourseMaster\Index.cshtml" />
     <Content Include="Views\Plant\Index.cshtml" />
     <Content Include="Views\RollFormMapping\Index.cshtml" />
-    <Content Include="Views\CandidatesForValidation\Index.cshtml" />
     <Content Include="Views\Department\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\CaptureEmployee\" />
+    <Folder Include="Views\SubContractor\" />
+    <Folder Include="Views\ValidationTestQuetion\" />
+    <Folder Include="Views\ValidationTest\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
