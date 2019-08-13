@@ -39,6 +39,11 @@
                 </div>
                 <div>
                     <div class="form-group">
+                        <label>Select Sub Department</label>
+                        <select class="form-control" id="ddlSDep" data-ng-disabled="IsNewUser!=1"></select>
+                        <span class="badge badge-danger" data-ng-show="ErrorModel.DeptId">{{ErrorModel.ErrorMessageDeptId}}</span>
+                    </div>
+                    <div class="form-group">
                         <label>First Name</label>
                         <input type="text" class="form-control" placeholder="Enter First Name ..." data-ng-model="Emp.FName">
                         <span class="badge badge-danger" data-ng-show="ErrorModel.FName">{{ErrorModel.ErrorMessageFName}}</span>

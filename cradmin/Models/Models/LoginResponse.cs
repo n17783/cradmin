@@ -303,7 +303,6 @@ namespace cradmin.Models.Models
     {
         public int DeptId { get; set; }
         public string Dept_Name { get; set; }
-        public string Dept_Address { get; set; }
-        public string PhoneNo { get; set; }
+       
     }
 }

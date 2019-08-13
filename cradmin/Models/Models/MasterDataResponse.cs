@@ -21,6 +21,7 @@ namespace cradmin.Models.Models
             StateList = new List<StateMaster>();
             CityList = new List<CityMaster>();
             CountryList = new List<CountryMaster>();
+            DeptList = new List<DeptNames>();
         }
 
         public List<CityMaster> CityList { get; set; }
@@ -38,7 +39,7 @@ namespace cradmin.Models.Models
         public List<ValidationAgency> ValidationAgencyList { get; set; }
 
         public List<EmployeeType> EmployeeTypeList { get; set; }
-      
+         public List<DeptNames> DeptList { get; set; }
         public EmployeeExit EmpExit { get; set; }
         public Employee Emp { get; set; }
         public EmployeeDetails EmpDetails { get; set; }

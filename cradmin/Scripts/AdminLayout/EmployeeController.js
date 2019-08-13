@@ -9,6 +9,7 @@
     $scope.CountryList = [];
     $scope.StateList = [];
     $scope.CityList = [];
+    $scope.DeptList = [];
     $scope.IsNewUser = "";
     $scope.Token=getCookie("token");
     $scope.Emp = { PageNo: 1, PageSize: 2, AdhaarNo: "", Regt_No: "", Gender: 0, FName: "", MName: "", LName: "", DOB: "", BloodGroup: "", EmpPhoto: "", PanNo: "", UserName:"" };
@@ -18,7 +19,7 @@
         IdProofImage: "", PHouseNo: "", PVillageId: "", PDisticId: 0, PTalukaId: "", PStateId: 0,
         PCountryId: 0, PPincodeId: "", THouseNo: "", TVillageId: "", TDisticId: 0, TTalukaId: "",
         TStateId: 0, TCountryId: "", TPincode: "", ReJoineOrNewJoin: 0, DeptZoneId: 0, ValidationAgencyId: 0,
-        IsAlreadyValidated: 0, TradeId: 0, AdhaarImage: "", IsDMorStaff: 0
+        IsAlreadyValidated: 0, TradeId: 0, AdhaarImage: "", IsDMorStaff: 0, DeptId:""
     };
 
     $scope.ErrorModel = {
@@ -32,7 +33,7 @@
         ErrorMessageTDisticId: "",
         TStateId: false, ErrorMessageTStateId: "", TCountryId: false, ErrorMessageContryId: "", TPincode: false, ErrorMessageTPincode: "", DeptZoneId: false, ErrorMessageDeptZoneId: "",
         ValidationAgencyId: false, ErrorMessageValidationAgencyId: "", TradeId: false, ErrorMessageTradeId: "",
-        AdhaarImage: false, ErrorMessageAdhaarImage: "", IsDMorStaff: false, ErrorMessageIsDMorStaff: ""
+        AdhaarImage: false, ErrorMessageAdhaarImage: "", IsDMorStaff: false, ErrorMessageIsDMorStaff: "",DeptId:false, ErrorMessageDeptId:""
     };
     $scope.EmpExit = {};
     var objdatehelper = new datehelper({ format: "dd/MM/yyyy", cdate: new Date() });
@@ -58,6 +59,7 @@
                 $scope.CountryList = response.data.CountryList;
                 $scope.StateList = response.data.StateList;
                 $scope.CityList = response.data.CityList;
+                $scope.DeptList = response.data.DeptList;
 
                 $scope.CountryList.splice(0, 0, { ContryId: 0, ContryName: "---Select Country---" });
                 $scope.ZoneList.splice(0, 0, { DeptZoneId: 0, DeptZoneDescription: "---Select Zone---" });
@@ -65,6 +67,7 @@
                 $scope.ValidationAgencyList.splice(0, 0, { ValidationAgencyId: 0, AgencyDescription: "---Select Agency---" });
                 $scope.EmployeeTypeList.splice(0, 0, { EmpTypeId: 0, EmpDesignation: "---Select Employee Type---" });
                 $scope.ContractorList.splice(0, 0, { ContractorId: 0, ContractorName: "---Select Contractor---" });
+                $scope.DeptList.splice(0, 0, { DeptId: 0, Dept_Name: "---Select Sub Department---" });
                 var html = "";
                 angular.forEach($scope.ZoneList, function (value, key) {
                     html += "<option value='" + value.DeptZoneId + "'>" + value.DeptZoneDescription + "</option>";
@@ -99,6 +102,12 @@
                 });
                 $("#ddlCountry").html(html5);
                 $("#ddlPCountry").html(html5);
+                var html5 = "";
+                angular.forEach($scope.DeptList, function (value, key) {
+                    html5 += "<option value='" + value.DeptId + "'>" + value.Dept_Name + "</option>";
+                });
+                $("#ddlSDep").html(html5);
+               
             }
             else {
                 window.location = $scope.urlBase + "/dashboard/index";
@@ -259,7 +268,9 @@
             $scope.EmpDetails.IdProofType=$("#ddlIdProofType").val();
             $scope.EmpDetails.EmpTypeId=$("#ddlEmpType").val();
             $scope.EmpDetails.ContractorId = $("#ddlContractor").val();
+            $scope.EmpDetails.DeptId = $("#ddlSDep").val();
             $scope.Emp.EmpPhoto = $("#imgCapture").attr("src");
+           
             var model = { Emp: $scope.Emp, EmpDetails: $scope.EmpDetails };
             $http({
                 method: 'post',
@@ -345,7 +356,7 @@
                         $("#ddlIdProofType").val($scope.EmpDetails.IdProofType);
                         $("#ddlEmpType").val($scope.EmpDetails.EmpTypeId);
                         $("#ddlContractor").val($scope.EmpDetails.ContractorId);
-
+                        $("#ddlSDep").val($scope.EmpDetails.DeptId);
                     }
                 }, function (error) {
                     HideLoader();

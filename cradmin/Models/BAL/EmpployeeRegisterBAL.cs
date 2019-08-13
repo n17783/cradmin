@@ -56,6 +56,11 @@ namespace cradmin.Models.BAL
             lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
             lst.Add(new SqlParameter() { ParameterName = "@StateId", Value = DBNull.Value });
             DataTable dtCityList = objHelper.GetDataTable("Get_CityList", lst);
+            lst = new List<SqlParameter>();
+            lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
+            lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
+            //lst.Add(new SqlParameter() { ParameterName = "@DeptId", Value = DBNull.Value });
+            DataTable dtDeptList = objHelper.GetDataTable("GetDeptList", lst);
 
             response.CityList = dtCityList.ToList<CityMaster>();
             response.StateList = dtStateList.ToList<StateMaster>();
@@ -65,6 +70,7 @@ namespace cradmin.Models.BAL
             response.ValidationAgencyList = dtValidattionAgency.ToList<ValidationAgency>();
             response.EmployeeTypeList = dtEmployeeTypeList.ToList<EmployeeType>();
             response.ContractorList = dtContractorList.ToList<MainContractor>();
+            response.DeptList = dtDeptList.ToList<DeptNames>();
             response.Status = 1;
             return response;
         }
