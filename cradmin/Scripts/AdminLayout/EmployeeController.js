@@ -10,7 +10,7 @@
     $scope.StateList = [];
     $scope.CityList = [];
     $scope.DeptList = [];
-    $scope.IsNewUser = "";
+    $scope.IsNewUser = undefined;
     $scope.Token=getCookie("token");
     $scope.Emp = { PageNo: 1, PageSize: 2, AdhaarNo: "", Regt_No: "", Gender: 0, FName: "", MName: "", LName: "", DOB: "", BloodGroup: "", EmpPhoto: "", PanNo: "", UserName:"" };
     $scope.EmpDetails = {
@@ -85,11 +85,6 @@
                 });
                 $("#ddlVAgency").html(html2);
 
-                var html3 = "";
-                angular.forEach($scope.EmployeeTypeList, function (value, key) {
-                    html3 += "<option value='" + value.EmpTypeId + "'>" + value.EmpDesignation + "</option>";
-                });
-                $("#ddlEmpType").html(html3);
                 var html4 = "";
                 angular.forEach($scope.ContractorList, function (value, key) {
                     html4 += "<option value='" + value.ContractorId + "'>" + value.ContractorName + "</option>";
@@ -236,7 +231,43 @@
                 $scope.ErrorModel.DateOfReport = false;
             }
         }
+        if (valid) {
+            if ($("#rdoStaff").prop("checked") == false && $("#rdoDM").prop("checked") == false) {
+                $scope.ErrorModel.IsDmOrStaff = true;
+                $scope.ErrorModel.ErrorMessageIsDMorStaff = "Please select employee type.";
+                valid = false;
+            }
+            else {
+                valid = true;
+                $scope.ErrorModel.IsDmOrStaff = false;
+            }
+        }
+        if (valid) {
+            if ($("#rdoStaff").prop("checked") == true) {
+                if ($scope.Emp.UserName=="") {
+                    $scope.ErrorModel.UserName = true;
+                    $scope.ErrorModel.ErrorMessageUserName = "Mail id should be filled while staff registration.";
+                    valid = false;
+                }
+                else {
+                    valid = true;
+                    $scope.ErrorModel.UserName = false;
+                }
+            }
+        }
         return valid
+    }
+
+    $scope.changeEmpType = function () {
+        var isdm=false;
+        isdm =$("#rdoDM").prop("checked");
+        var html3 = "";
+        var lst = $scope.EmployeeTypeList.filter(emptype => emptype.IsDmOrStaff == isdm);
+        lst.splice(0, 0, { EmpTypeId: 0, EmpDesignation: "---Select Emp Type---" });
+        lst.map((etype) => {
+            html3 += '<option value="' + etype.EmpTypeId + '">' + etype.EmpDesignation + '</option>';
+        });
+        $("#ddlEmpType").html(html3);
     }
 
     $scope.RegisterStaff = function () {
@@ -286,7 +317,17 @@
         }
     }
 
-
+    $scope.ClearOldData = function () {
+        $scope.Emp = { PageNo: 1, PageSize: 2, AdhaarNo: "", Regt_No: "", Gender: 0, FName: "", MName: "", LName: "", DOB: "", BloodGroup: "", EmpPhoto: "", PanNo: "", UserName: "" };
+        $scope.EmpDetails = {
+            EmpDetailsId: 0, PkId: 0, EmpTypeId: 0, JoiningStatus: 1, DateOfReport: "",
+            ContractorId: 1, ContactNo: "", EmrContactNo: "", IdProofType: "", IdProofNo: "",
+            IdProofImage: "", PHouseNo: "", PVillageId: "", PDisticId: 0, PTalukaId: "", PStateId: 0,
+            PCountryId: 0, PPincodeId: "", THouseNo: "", TVillageId: "", TDisticId: 0, TTalukaId: "",
+            TStateId: 0, TCountryId: "", TPincode: "", ReJoineOrNewJoin: 0, DeptZoneId: 0, ValidationAgencyId: 0,
+            IsAlreadyValidated: 0, TradeId: 0, AdhaarImage: "", IsDMorStaff: 0, DeptId: ""
+        };
+    }
 
     $scope.CheckAdhaarExist = function () {
         if ($scope.Emp.AadharNo.length < 12) {
@@ -295,6 +336,7 @@
             valid = false;
         }
         else {
+            var adhaarno=$scope.Emp.AadharNo;
             $scope.ErrorModel.ErrorMessageAdhaarNo = "";
             if ($scope.Emp.AadharNo.length == 12) {
                 ShowLoader();
@@ -306,6 +348,8 @@
                     HideLoader();
                     console.log(response);
                     if (response.data == "") {
+                        $scope.ClearOldData();
+                        $scope.Emp.AadharNo = adhaarno;
                         $scope.IsNewUser = 1;
                         var objShowCustomAlert = new ShowCustomAlert({
                             Title: "Warning",
@@ -317,6 +361,15 @@
                         $("#rdoDM").prop("checked", true);
                     }
                     else {
+                        var objShowCustomAlert = new ShowCustomAlert({
+                            Title: "Warning",
+                            Message: "This user already exist in system.",
+                            Type: "alert"
+                        });
+                        objShowCustomAlert.ShowCustomAlertBox();
+                        $("#webcam").hide();
+                        $("#imgCapture").show();
+                        $("#imgCapture").attr("src", response.data.Emp.EmpPhoto);
                         $scope.Emp = response.data.Emp;
                         $scope.EmpDetails = response.data.EmpDetails;
                         $scope.EmpExit = response.data.EmpExit;
@@ -332,12 +385,13 @@
                         else {
                             $("#rdoFemale").prop("checked", false);
                         }
-                        if ($scope.Emp.IsDMorStaff) {
-                            $("#rdoStaff").prop("checked", true);
+                        if ($scope.EmpDetails.IsDMorStaff) {
+                            $("#rdoDM").prop("checked", true);
                         }
                         else {
-                            $("#rdoDM").prop("checked", false);
+                            $("#rdoStaff").prop("checked", true);
                         }
+                        $scope.changeEmpType();
                         $scope.Emp.DOB = objdatehelper.getFormatteddate($filter('mydate')($scope.Emp.DOB), "dd/mm/yyyy");
                         $scope.EmpDetails.DateOfReport = objdatehelper.getFormatteddate($filter('mydate')($scope.EmpDetails.DateOfReport), "dd/mm/yyyy");
                         $("#ddlCountry").val($scope.EmpDetails.TCountryId);
@@ -393,6 +447,7 @@
         $scope.Emp.PageSize = $("#ddlPageSize").val();
         $("#rdoMale").prop("checked", true);
         $("#rdoDM").prop("checked", true);
+        $("#ddlEmpType").html("");
         jQuery("#webcam").webcam({
             width: 320,
             height: 240,

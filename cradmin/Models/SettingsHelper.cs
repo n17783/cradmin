@@ -46,25 +46,30 @@ namespace cradmin.Models
         public DataTable GetDataTable(string spName, List<SqlParameter> sqlParam = null)
         {
             DataTable ldt = new DataTable();
-            //SqlConnection msqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString);
-            SqlCommand msqlcmd = new SqlCommand();
-
-            msqlcmd.Connection = Connection;
-            msqlcmd.CommandType = CommandType.StoredProcedure;
-            msqlcmd.CommandText = spName;
-            if (sqlParam != null)
+            try
             {
-                if (sqlParam.Count > 0)
+                SqlCommand msqlcmd = new SqlCommand();
+                msqlcmd.Connection = Connection;
+                msqlcmd.CommandType = CommandType.StoredProcedure;
+                msqlcmd.CommandText = spName;
+                if (sqlParam != null)
                 {
-                    for (int i = 0; i < sqlParam.Count; i++)
+                    if (sqlParam.Count > 0)
                     {
-                        msqlcmd.Parameters.Add(sqlParam[i]);
+                        for (int i = 0; i < sqlParam.Count; i++)
+                        {
+                            msqlcmd.Parameters.Add(sqlParam[i]);
+                        }
                     }
                 }
+                SqlDataAdapter msqlsda = new SqlDataAdapter(msqlcmd);
+                msqlsda.Fill(ldt);
+                msqlcmd.Parameters.Clear();
             }
-            SqlDataAdapter msqlsda = new SqlDataAdapter(msqlcmd);
-            msqlsda.Fill(ldt);
-            msqlcmd.Parameters.Clear();
+            catch (Exception ex)
+            {
+
+            }
             return ldt;
         }
     }

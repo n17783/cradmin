@@ -79,7 +79,7 @@ namespace cradmin.Models.BAL
         {
             MasterDataResponse response = new MasterDataResponse();
             List<SqlParameter> lst = new List<SqlParameter>();
-            lst.Add(new SqlParameter() { ParameterName = "@AdhaarNo", Value = model.Emp.AadharNo });
+            lst.Add(new SqlParameter() { ParameterName = "@AadharNo", Value = model.Emp.AadharNo });
             lst.Add(new SqlParameter() { ParameterName = "@BloodGroup", Value = model.Emp.BloodGroup });
             lst.Add(new SqlParameter() { ParameterName = "@DOB", Value = model.Emp.DOB, DbType = DbType.DateTime });
             lst.Add(new SqlParameter() { ParameterName = "@EmpPhoto", Value = model.Emp.EmpPhoto });

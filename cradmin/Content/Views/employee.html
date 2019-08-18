@@ -133,13 +133,13 @@
                 <div class="form-group">
                     <div class="">
                         <label>
-                            <input type="radio" name="optionStaff" id="rdoStaff" value="0">
+                            <input type="radio" name="optionStaff" id="rdoStaff" value="0" data-ng-click="changeEmpType()">
                             STAFF
                         </label>
                     </div>
                     <div class="">
                         <label>
-                            <input type="radio" name="optionStaff" id="rdoDM" value="1">
+                            <input type="radio" name="optionStaff" id="rdoDM" value="1" data-ng-click="changeEmpType()">
                             DM
                         </label>
                     </div>
@@ -194,6 +194,7 @@
                     <div class="form-group">
                         <label>Email Id</label>
                         <input type="text" class="form-control" placeholder="Enter Email Id ..." data-ng-model="Emp.UserName">
+                        <span class="badge badge-danger" data-ng-show="ErrorModel.UserName">{{ErrorModel.ErrorMessageUserName}}</span>
                     </div>
                     <div class="form-group">
                         <label> Country</label>
@@ -241,8 +242,8 @@
         <div class="col-md-6">
             <div class="box-body">
                 <div class="form-group">
-                    <button type="button" class="btn btn-danger" data-ng-click="RegisterStaff()">Save</button>
-                    <button type="button" class="btn btn-danger">Update</button>
+                    <button type="button" class="btn btn-danger" data-ng-click="RegisterStaff()" data-ng-show="IsNewUser==1">Save</button>
+                    <button type="button" class="btn btn-danger" data--ng-show="IsNewUser==0 || IsNewUser==2">Update</button>
                 </div>
             </div>
         </div>
