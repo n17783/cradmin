@@ -18,7 +18,7 @@ namespace cradmin.Models.BAL
             lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
             lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
             
-            DataTable dt = objHelper.GetDataTable("get_trade_category", lst);
+            DataTable dt = objHelper.GetDataTable("Get_TradeList", lst);
             lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
             lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
@@ -66,7 +66,7 @@ namespace cradmin.Models.BAL
             response.StateList = dtStateList.ToList<StateMaster>();
             response.CountryList = dtCountryList.ToList<CountryMaster>();
             response.ZoneList = dtzone.ToList<DeptZoneMaster>();
-            response.TradeCategoryList = dt.ToList<TradeCategory>();
+            response.TradeList = dt.ToList<TradeType>();
             response.ValidationAgencyList = dtValidattionAgency.ToList<ValidationAgency>();
             response.EmployeeTypeList = dtEmployeeTypeList.ToList<EmployeeType>();
             response.ContractorList = dtContractorList.ToList<MainContractor>();

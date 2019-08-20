@@ -2,7 +2,7 @@
     
     $scope.urlBase = GetVirtualDirectory();
     $scope.ZoneList = [];
-    $scope.TradeCategoryList = [];
+    $scope.TradeList = [];
     $scope.ValidationAgencyList = [];
     $scope.EmployeeTypeList = [];
     $scope.ContractorList = [];
@@ -52,7 +52,7 @@
             HideLoader();
             if (response.data.Status == 1) {
                 $scope.ZoneList = response.data.ZoneList;
-                $scope.TradeCategoryList = response.data.TradeCategoryList;
+                $scope.TradeList = response.data.TradeList;
                 $scope.ValidationAgencyList = response.data.ValidationAgencyList;
                 $scope.EmployeeTypeList = response.data.EmployeeTypeList;
                 $scope.ContractorList = response.data.ContractorList;
@@ -63,7 +63,7 @@
 
                 $scope.CountryList.splice(0, 0, { ContryId: 0, ContryName: "---Select Country---" });
                 $scope.ZoneList.splice(0, 0, { DeptZoneId: 0, DeptZoneDescription: "---Select Zone---" });
-                $scope.TradeCategoryList.splice(0, 0, { TradeCId: 0, TradCDescription: "---Select Category---" });
+                $scope.TradeList.splice(0, 0, { TradeId: 0, TradDescription: "---Select Category---" });
                 $scope.ValidationAgencyList.splice(0, 0, { ValidationAgencyId: 0, AgencyDescription: "---Select Agency---" });
                 $scope.EmployeeTypeList.splice(0, 0, { EmpTypeId: 0, EmpDesignation: "---Select Employee Type---" });
                 $scope.ContractorList.splice(0, 0, { ContractorId: 0, ContractorName: "---Select Contractor---" });
