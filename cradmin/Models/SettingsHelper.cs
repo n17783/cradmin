@@ -11,6 +11,7 @@ namespace cradmin.Models
 {
     public class SettingsHelper
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(SettingsHelper));
         static SettingsHelper _Instance = null;
         private SettingsHelper()
         {
@@ -42,12 +43,12 @@ namespace cradmin.Models
             }
         }
 
-
         public DataTable GetDataTable(string spName, List<SqlParameter> sqlParam = null)
         {
             DataTable ldt = new DataTable();
             try
             {
+                log.Info("Calling SP" + spName);
                 SqlCommand msqlcmd = new SqlCommand();
                 msqlcmd.Connection = Connection;
                 msqlcmd.CommandType = CommandType.StoredProcedure;
@@ -65,10 +66,14 @@ namespace cradmin.Models
                 SqlDataAdapter msqlsda = new SqlDataAdapter(msqlcmd);
                 msqlsda.Fill(ldt);
                 msqlcmd.Parameters.Clear();
+                msqlsda.Dispose();
+                Connection.Close();
+                Connection.Dispose();
+                msqlcmd.Dispose();
             }
             catch (Exception ex)
             {
-
+                log.Error("Calling SP" + spName + ex.Message);
             }
             return ldt;
         }
