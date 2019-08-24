@@ -31,7 +31,7 @@
            
             <div class="form-group">
                 <label>Contractor Phone No</label>
-                <input type="text" class="form-control" placeholder="Contractor Phone Nos ..." data-ng-model="ContractorModel.ContractorPhoneNo" data-ng-keypress="Phone($event,ContractorModel.ContractorPhoneNo)">
+                <input type="text" class="form-control" placeholder="Contractor Phone Nos ..." data-ng-model="ContractorModel.ContractorPhoneNo" data-ng-keypress="NumericPhone($event,ContractorModel.ContractorPhoneNo)">
                 <span class="badge badge-danger" data-ng-show="ErrorModel.ContractorPhoneNo">{{ErrorModel.ErrorSelectMainCPh}}</span>
             </div>
             <div class="form-group">

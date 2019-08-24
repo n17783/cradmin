@@ -13,6 +13,8 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());},
             url: $scope.urlBase + '/Dashboard/GetMasterDataforRegister',
             data: $scope.EmployeeModal,
         }).then(function (response) {
@@ -27,6 +29,8 @@
     
 
     $scope.init = function () {
+        setCookie("Token", $('#hdnToken').val());
+        checkToken();
         $scope.AddNew = true;
         $scope.Details = true;
         $scope.GetMasterDataforRegister();

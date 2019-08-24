@@ -35,6 +35,8 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());},
             url: $scope.urlBase + '/DeptZone/Save',
             data: $scope.DeptZoneModel,
         }).then(function (response) {
@@ -74,6 +76,8 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());},
             url: $scope.urlBase + '/DeptZone/GetDeptZone',
             data: $scope.DeptZoneModel,
         }).then(function (response) {
@@ -122,45 +126,60 @@
 
             valid = true;
         }
-
        
+        if (valid == true) {
 
-        if ($scope.DeptZoneModel.DeptZoneAddress == "") {
-            $scope.ErrorModel.DeptZoneAddress = true;
-            $scope.ErrorModel.ErrorSelectDeptZoneDeptZoneAddress = "Please Enter Zone Address .";
-            valid = false;
+            if ($scope.DeptZoneModel.DeptZoneAddress == "") {
+                $scope.ErrorModel.DeptZoneAddress = true;
+                $scope.ErrorModel.ErrorSelectDeptZoneDeptZoneAddress = "Please Enter Zone Address .";
+                valid = false;
+            }
+            else {
+                $scope.ErrorModel.DeptZoneAddress = false;
+                valid = true;
+            }
         }
+        var no1 = this.Phone($scope.DeptZoneModel.ContactNo);
+        if (valid == true) {
+            if (no1 == false) {
+                $scope.ErrorModel.ContactNo = true;
+                $scope.ErrorModel.ErrorSelectDeptZoneContactNo = "Please Enter Proper Contact No.";
+                valid = false;
+            }
+            else {
+                $scope.ErrorModel.ContactNo = false;
+                valid = true;
+            }
+        }
+        var no2 = this.Phone($scope.DeptZoneModel.ContactNo2);
+        
+            if ($scope.DeptZoneModel.ContactNo2 == "") {
+                $scope.ErrorModel.ContactNo2 = false;
+                valid = true;
+            }
+        
         else {
-            $scope.ErrorModel.DeptZoneAddress = false;
-            valid = true;
-        }
-        if ($scope.DeptZoneModel.ContactNo == "") {
-            $scope.ErrorModel.ContactNo = true;
-            $scope.ErrorModel.ErrorSelectDeptZoneContactNo = "Please Enter Contact No.";
-            valid = false;
-        }
-        else {
-            $scope.ErrorModel.ContactNo = false;
-            valid = true;
-        }
-
-        //if ($scope.DeptZoneModel.ContactNo2 == "") {
-        //    $scope.ErrorModel.ContactNo2 = true;
-        //    $scope.ErrorModel.ErrorSelectDeptZoneContactNo2 = "Please Enter Contact No 2.";
-        //    valid = false;
-        //}
-        //else {
-        //    $scope.ErrorModel.ContactNo2 = false;
-        //    valid = true;
-        //}
-        if ($scope.DeptZoneModel.EmailId == "") {
-            $scope.ErrorModel.EmailId = true;
-            $scope.ErrorModel.ErrorSelectDeptZoneEmail = "Please Enter Email Id.";
-            valid = false;
-        }
-        else {
-            $scope.ErrorModel.EmailId = false;
-            valid = true;
+            if (no2 == false) {
+                $scope.ErrorModel.ContactNo2 = true;
+                $scope.ErrorModel.ErrorSelectDeptZoneContactNo2 = "Please Enter Contact No 2 or Don't Enter.";
+                valid = false;
+            }
+            else {
+                $scope.ErrorModel.ContactNo2 = false;
+                valid = true;
+            }
+            }
+            var email1 = this.validateEmail($scope.DeptZoneModel.EmailId);
+        if (valid == true) {
+            if (email1 == false) {
+                $scope.ErrorModel.EmailId = true;
+                $scope.ErrorModel.ErrorSelectDeptZoneEmail = "Please Enter Email Id.";
+                valid = false;
+            }
+            else {
+                $scope.ErrorModel.EmailId = false;
+                valid = true;
+            }
         }
         if(valid==true){
         if ($scope.DeptZoneModel.CreatedBy == "") {
@@ -184,6 +203,7 @@
         CreatedBy: false, ErrorSelectCreated: ""
     };
     $scope.init = function () {
+        setCookie("Token", $('#hdnToken').val());
         checkToken();
         $("#ddlPageSize").val(5);
         $scope.DeptZoneModel.PageSize = $("#ddlPageSize").val();

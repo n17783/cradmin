@@ -1,17 +1,6 @@
-﻿var SelectedValidaterMode=[];
+﻿
 
-function LoadViews(UserControl)
-{
-    var url = GetVirtualDirectory();
-    console.log(url);
-    switch (UserControl) {
-        case "Contact":
-            $("#divUserControls").load(url + "/Content/ContactUsWang.html");
-            break
-        default:
 
-    }
-}
 
 function getToken()
 {
@@ -31,15 +20,15 @@ function baseUrl() {
     return pathname;
 }
 
-function validateEmail(element)
-{
-    var isvalid = true;
-    var reg = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-    if (reg.test($(element).val()) == false) {
-        isvalid= false;
-    }
-    return isvalid;
-}
+//function validateEmail(element)
+//{
+//    var isvalid = true;
+//    var reg = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+//    if (reg.test($(element).val()) == false) {
+//        isvalid= false;
+//    }
+//    return isvalid;
+//}
 
 function checkToken()
 {
@@ -85,23 +74,7 @@ function LogOff()
     });
 }
 
-function LoadUserControls(element) {
-    debugger;
-    var url = $(element).attr("data-url");
-    $("#contentLoader").html("");
-    $.ajax({
-        url: url,
-        contentType: 'application/html; charset=utf-8',
-        type: 'GET',
-        dataType: 'html'
-    })
-    .success(function (result) {
-        $('#contentLoader').html(result);
-    })
-    .error(function (xhr, status) {
-        alert(status);
-    })
-}
+
 
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
@@ -126,74 +99,10 @@ function getCookie(cname) {
     return "";
 }
 
-function SendMessage()
-{
-    var touserid = $("#touserid").attr("data");
-    if (touserid===undefined) {
-        touserid = $("#UserId").val();
-    }
-    $.ajax({
-        cache: false,
-        type: "GET",
-        async: false,
-        url: GetVirtualDirectory() + "/Message/SendMessage?fromUserId=" + $("#ActiveUserId").val() + "&toUserId=" + touserid + "&msg=" + $("#status_message").val(),
-        dataType: "json",
-        success: function (students) {
-            var objShowCustomAlert = new ShowCustomAlert({
-                Title: "",
-                Message: "Your message has been send.",
-                Type: "alert",
-                OnOKClick: function () {
-                    window.location = GetVirtualDirectory() + "/UserProfile/Index";
-                },
-            });
-            objShowCustomAlert.ShowCustomAlertBox();
-            
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            alert('Error during process: \n' + xhr.responseText);
-        }
-    });
-}
 
-function ReadMessgesByUser() {
-    setInterval(function () {
-        if (document.getElementById("ActiveUserId") != null) {
-            $.ajax({
-                cache: false,
-                type: "GET",
-                async: false,
-                url: GetVirtualDirectory() + "/Home/ReadMessage?toUserId=" + $("#ActiveUserId").val(),
-                dataType: "json",
-                success: function (students) {
-                    bindUserMessage(students, $("#ActiveUserId").val());
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    
-                }
-            });
-        }
-    }, 15000);
-}
 
-function GetAllMessgaes(userid, touserid)
-{
-    setInterval(function () {
-        $.ajax({
-            cache: false,
-            type: "GET",
-            async: false,
-            url: GetVirtualDirectory() + "/Home/GetAllMessgaes?UserId=" + userid + "&ToUserId=" + touserid,
-            dataType: "json",
-            success: function (students) {
-                bindUserMessges(students);
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
 
-            }
-        });
-    }, 15000);
-}
+
 
 function parseJsonDate(jsondate) {
     var date = new Date(parseInt(jsondate.substr(6)));
@@ -203,44 +112,6 @@ function parseJsonDate(jsondate) {
     return date.getFullYear() + "-" + (month) + "-" + (day);
 }
 
-function bindUserMessges(students)
-{
-    var htmlin = "";
-    $("#msguser").html(htmlin);
-    for (var i = 0; i < students.length; i++) {
-        var date = new Date(parseInt(students[i].MessageDate.substr(6)));
-        htmlin += '<div class="chat-box-single-line"><abbr class="timestamp">' + date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear() + '</abbr></div>';
-        htmlin += '<div class="direct-chat-msg doted-border"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-left">';
-        if (students[i].FromUserId == $("#ActiveUserId").val()) {
-            htmlin += 'me';
-        }
-        else {
-            htmlin += $("#" + students[i].FromUserId + ">strong").html();
-        }
-        htmlin += '</span></div><div class="direct-chat-text">' + students[i].MessageText + '</div></div>';
-    }
-    $("#msguser").html(htmlin);
-}
-
-function bindUserMessage(respnse,userid)
-{
-    $("#inmsg").html("");
-    var htmlin = "";
-    for (var i = 0; i < respnse.length; i++) {
-        htmlin += '<li class="dropdown-menu-header text-center" id="' + respnse[i].Id + '" onclick="ShowChat(this)"><strong>' + respnse[i].FirstName + " " + respnse[i].LName + '</strong></li>';
-    }
-    $("#inmsg").html(htmlin);
-}
-
-function ShowChat(liuser)
-{
-    $('#qnimate').addClass('popup-box-on');
-    var touserid = $(liuser).attr("id");
-    $("#touserid").attr("data", touserid);
-    var userid = $("#ActiveUserId").val();
-    $("#chatuser").html(liuser.fir);
-    GetAllMessgaes(userid, touserid);
-}
 
 
 function GetVirtualDirectory() {

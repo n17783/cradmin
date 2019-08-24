@@ -6,12 +6,16 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using System.IO;
 
 namespace cradmin.Models
 {
     public class SettingsHelper
     {
+
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(SettingsHelper));
+
+
         static SettingsHelper _Instance = null;
         private SettingsHelper()
         {
@@ -22,26 +26,33 @@ namespace cradmin.Models
         {
             get
             {
-                if (_Instance==null)
+                if (_Instance == null)
                 {
                     _Instance = new SettingsHelper();
                 }
                 return _Instance;
             }
         }
-
+            
+		
+	
+	
         public SqlConnection Connection
         {
+
+
             get
             {
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-                if (con.State==System.Data.ConnectionState.Closed)
+                if (con.State == System.Data.ConnectionState.Closed)
                 {
                     con.Open();
                 }
                 return con;
             }
+
         }
+
 
         public DataTable GetDataTable(string spName, List<SqlParameter> sqlParam = null)
         {

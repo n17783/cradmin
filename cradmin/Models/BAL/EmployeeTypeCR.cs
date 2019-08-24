@@ -12,6 +12,10 @@ namespace cradmin.Models.BAL
     {
         public EmployeeType Save(EmployeeType model)
         {
+            try
+            {
+
+           
             EmployeeType objEmployeeType = new EmployeeType();
             List<SqlParameter> lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@EmpDesignation", Value = model.EmpDesignation });
@@ -23,6 +27,13 @@ namespace cradmin.Models.BAL
 
             objEmployeeType.Status = dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["SuccessFailed"].ToString()) : 0;
             return objEmployeeType;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public List<EmployeeType> GetEmployeeTypeList(EmployeeType model)

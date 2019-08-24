@@ -49,6 +49,9 @@
                     ShowLoader();
                     $http({
                         method: 'post',
+                        beforeSend: function (request) {
+                            request.setRequestHeader("Token", getToken());
+                        },
                         url: $scope.urlBase + '/Contractor/Save',
                         data: $scope.ContractorModel,
                     }).then(function (response) {
@@ -98,6 +101,9 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());
+            },
             url: $scope.urlBase + '/Contractor/GetContractorList',
             data: $scope.ContractorModel,
         }).then(function (response) {
@@ -130,47 +136,53 @@
           
             valid = true;
         }
-       
-        if ($scope.ContractorModel.ContractorCompanyName == "") {
-            $scope.ErrorModel.ContractorCompanyName = true;
-            $scope.ErrorModel.ErrorSelectMainCCoyName = "Please Enter Contractor Company Name.";
-            valid = false;
+        if (valid) {
+            if ($scope.ContractorModel.ContractorCompanyName == "") {
+                $scope.ErrorModel.ContractorCompanyName = true;
+                $scope.ErrorModel.ErrorSelectMainCCoyName = "Please Enter Contractor Company Name.";
+                valid = false;
+            }
+            else {
+                $scope.ErrorModel.ContractorCompanyName = false;
+                valid = true;
+            }
         }
-        else {
-            $scope.ErrorModel.ContractorCompanyName = false;
-            valid = true;
+        if (valid) {
+            if ($scope.ContractorModel.ContractorRegistrationNo == "") {
+                $scope.ErrorModel.ContractorRegistrationNo = true;
+                $scope.ErrorModel.ErrorSelectMainCRegt = "Please Enter REGT NO .";
+                valid = false;
+            }
+            else {
+                $scope.ErrorModel.ContractorRegistrationNo = false;
+                valid = true;
+            }
         }
-        
-        if ($scope.ContractorModel.ContractorRegistrationNo == "") {
-            $scope.ErrorModel.ContractorRegistrationNo = true;
-            $scope.ErrorModel.ErrorSelectMainCRegt = "Please Enter REGT NO .";
-            valid = false;
+        if (valid) {
+            if ($scope.ContractorModel.ContractorGstNo == "") {
+                $scope.ErrorModel.ContractorGstNo = true;
+                $scope.ErrorModel.ErrorSelectMainCGst = "Please Enter GST No.";
+                valid = false;
+            }
+            else {
+                $scope.ErrorModel.ContractorGstNo = false;
+                valid = true;
+            }
         }
-        else {
-            $scope.ErrorModel.ContractorRegistrationNo = false;
-            valid = true;
+        if (valid) {
+            if ($scope.ContractorModel.ContractorOfficeAddress == "") {
+                $scope.ErrorModel.ContractorOfficeAddress = true;
+                $scope.ErrorModel.ErrorSelectMainCAdd = "Please Enter Contractor Office Address.";
+                valid = false;
+            }
+            else {
+                $scope.ErrorModel.ContractorOfficeAddress = false;
+                valid = true;
+            }
         }
-        if ($scope.ContractorModel.ContractorGstNo == "") {
-            $scope.ErrorModel.ContractorGstNo = true;
-            $scope.ErrorModel.ErrorSelectMainCGst = "Please Enter GST No.";
-            valid = false;
-        }
-        else {
-            $scope.ErrorModel.ContractorGstNo = false;
-            valid = true;
-        }
-      
-        if ($scope.ContractorModel.ContractorOfficeAddress == "") {
-            $scope.ErrorModel.ContractorOfficeAddress = true;
-            $scope.ErrorModel.ErrorSelectMainCAdd = "Please Enter Contractor Office Address.";
-            valid = false;
-        }
-        else {
-            $scope.ErrorModel.ContractorOfficeAddress = false;
-            valid = true;
-        }
+        var phonev = this.Phone($scope.ContractorModel.ContractorPhoneNo);
         if(valid==true){
-        if ($scope.ContractorModel.ContractorPhoneNo == "") {
+            if (phonev == false) {
             $scope.ErrorModel.ContractorPhoneNo = true;
             $scope.ErrorModel.ErrorSelectMainCPh = "Contractor Phone No .";
             valid = false;
@@ -192,6 +204,7 @@
         ContractorPhoneNo: false, ErrorSelectMainCPh: ""
     };
     $scope.init = function () {
+        setCookie("Token", $('#hdnToken').val());
         checkToken();
         $("#ddlPageSize").val(5);
         $scope.ContractorModel.PageSize = $("#ddlPageSize").val();

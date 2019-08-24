@@ -51,6 +51,9 @@
                     ShowLoader();
                     $http({
                         method: 'post',
+                        beforeSend: function (request) {
+                            request.setRequestHeader("Token", getToken());
+                        },
                         url: $scope.urlBase + '/Plant/Save',
                         data: $scope.PlantModel,
                     }).then(function (response) {
@@ -94,6 +97,9 @@
                     ShowLoader();
                     $http({
                         method: 'post',
+                        beforeSend: function (request) {
+                            request.setRequestHeader("Token", getToken());
+                        },
                         url: $scope.urlBase + '/Plant/Save',
                         data: $scope.PlantModel,
                     }).then(function (response) {
@@ -135,6 +141,9 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());
+            },
             url: $scope.urlBase + '/Plant/GetPlantList',
             data: $scope.PlantModel,
         }).then(function (response) {
@@ -221,6 +230,7 @@
         CreatedBy: false, ErrorSelectCreated: ""
     };
     $scope.init = function () {
+        setCookie("Token", $('#hdnToken').val());
         checkToken();
         $("#ddlPageSize").val(5);
         $scope.PlantModel.PageSize = $("#ddlPageSize").val();

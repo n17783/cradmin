@@ -17,13 +17,13 @@ namespace cradmin.Controllers
         {
             return View();
         }
-       // [MyAuthorize]
+        [MyAuthorize]
         [HttpPost]
         public ActionResult Save(DeptNames model)
         {
             return Json(objdept.save(model));
         }
-        //[MyAuthorize]
+        [MyAuthorize]
         [HttpPost]
         public ActionResult GetDeptList(DeptNames model)
         {

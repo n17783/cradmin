@@ -35,6 +35,8 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());},
             url: $scope.urlBase + '/Category/Save',
             data: $scope.TradeModal,
         }).then(function (response) {
@@ -72,6 +74,8 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());},
             url: $scope.urlBase + '/Category/GetTrade',
             data: $scope.TradeModal,
         }).then(function (response) {
@@ -125,6 +129,8 @@
         TradCDescription: false, ErrorSelectTradCDescription: ""
     };
     $scope.init = function () {
+        setCookie("Token", $('#hdnToken').val());
+        checkToken();
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.GetTradeDetails();

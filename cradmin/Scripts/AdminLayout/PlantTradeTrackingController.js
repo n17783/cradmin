@@ -16,6 +16,9 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());
+            },
             url: $scope.urlBase + '/PlantTradeTracking/GetMasterDataforRegister',
             data: $scope.LoginModal,
         }).then(function (response) {
@@ -128,7 +131,7 @@
                     OnOKClick: function () {
                         var pdstr = parseInt($("#ddlPDstrenth").val());
                         var astr = parseInt($scope.TradeTrackingModel.AuthorizedStrenth);
-                        var srenth = parseInt(pdstr + astr); ddlPstrenth
+                        var srenth = parseInt(pdstr + astr);
                         var pstr = parseInt($("#ddlPstrenth").val());
                    
                         if (srenth <= pstr) {
@@ -139,6 +142,9 @@
                             ShowLoader();
                             $http({
                                 method: 'post',
+                                beforeSend: function (request) {
+                                    request.setRequestHeader("Token", getToken());
+                                },
                                 url: $scope.urlBase + '/PlantTradeTracking/Save',
                                 data: $scope.TradeTrackingModel,
                             }).then(function (response) {
@@ -216,6 +222,9 @@
                             ShowLoader();
                             $http({
                                 method: 'post',
+                                beforeSend: function (request) {
+                                    request.setRequestHeader("Token", getToken());
+                                },
                                 url: $scope.urlBase + '/PlantTradeTracking/Save',
                                 data: $scope.TradeTrackingModel,
                             }).then(function (response) {
@@ -302,11 +311,19 @@
     //Edit
 
     $scope.GetTradeTrackingList = function () {
+        $scope.TradeTrackingModel.PageSize = parseInt($scope.TradeTrackingModel.PageSize);
+        var model = $scope.TradeTrackingModel;
+        console.log(model);
+        //= { PageNo: 1, PageSize: $("#ddlPageSize").val(), Prefix: ""};
         ShowLoader();
         $http({
             method: 'post',
             url: $scope.urlBase + '/PlantTradeTracking/GetTradeStrenth',
-            data: $scope.TradeTrackingModel,
+            data: model,
+            //headers: getToken(),
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());
+            },
         }).then(function (response) {
             HideLoader();
 
@@ -375,36 +392,29 @@
             $scope.ErrorModel.PlantId = false;
             valid = true;
         }
-        if ($("#ddltrade").val()<=0) {
-            $scope.ErrorModel.TradeId = true;
-            $scope.ErrorModel.ErrorSelectTradeId = "Please Select Trade.";
-            valid = false;
+        if (valid) {
+            if ($("#ddltrade").val() <= 0) {
+                $scope.ErrorModel.TradeId = true;
+                $scope.ErrorModel.ErrorSelectTradeId = "Please Select Trade.";
+                valid = false;
+            }
+            else {
+                $scope.ErrorModel.TradeId = false;
+                valid = true;
+            }
         }
-        else {
-            $scope.ErrorModel.TradeId = false;
-            valid = true;
+        if (valid) {
+            if ($scope.TradeTrackingModel.AuthorizedStrenth == "") {
+                $scope.ErrorModel.AuthorizedStrenth = true;
+                $scope.ErrorModel.ErrorEnterStrenth = "Please Enter Valid Strength.";
+                valid = false;
+            }
+            else {
+                $scope.ErrorModel.AuthorizedStrenth = false;
+                valid = true;
+            }
         }
-
-        if ($scope.TradeTrackingModel.AuthorizedStrenth == "") {
-            $scope.ErrorModel.AuthorizedStrenth = true;
-            $scope.ErrorModel.ErrorEnterStrenth = "Please Enter Valid Strength.";
-            valid = false;
-        }
-        else {
-            $scope.ErrorModel.AuthorizedStrenth = false;
-            valid = true;
-        }
-        if ($("#ddlAdate").val() == "") {
-            $scope.ErrorModel.AuthorizedDate = true;
-            $scope.ErrorModel.ErrorEnterDate = "Please Enter Authorized Date.";
-            valid = false;
-        }
-        else {
-            $scope.ErrorModel.AuthorizedDate = false;
-
-            valid = true;
-            
-        }
+       
         if(valid==true){
         if ($scope.TradeTrackingModel.AuthorizedBy == "") {
             $scope.ErrorModel.AuthorizedBy = true;
@@ -418,14 +428,26 @@
 
             }
         }
-        
+        if (valid) {
+            if ($("#ddlAdate").val() == "") {
+                $scope.ErrorModel.AuthorizedDate = true;
+                $scope.ErrorModel.ErrorEnterDate = "Please Enter Authorized Date.";
+                valid = false;
+            }
+            else {
+                $scope.ErrorModel.AuthorizedDate = false;
+
+                valid = true;
+
+            }
+        }
        
         return valid;
     }
 
 
     $scope.init = function () {
-
+        setCookie("Token", $('#hdnToken').val());
         checkToken();
 
         $scope.MainTradeTrackList.PageSize = $("#ddlPageSize").val();

@@ -45,6 +45,9 @@
         $scope.RollModel.RollEntryBy = 1;
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());
+            },
             url: $scope.urlBase + '/Role/Save',
             data: $scope.RollModel,
         }).then(function (response) {
@@ -98,6 +101,9 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());
+            },
             url: $scope.urlBase + '/Role/GetRollList1',
             data: $scope.RollModel,
         }).then(function (response) {
@@ -137,6 +143,7 @@
         DeptZoneDescription: false, ErrorSelectDeptZone: ""
     };
     $scope.init = function () {
+        setCookie("Token", $('#hdnToken').val());
         checkToken();
         $("#ddlPageSize").val(5);
         $scope.RollModel.PageSize = $("#ddlPageSize").val();

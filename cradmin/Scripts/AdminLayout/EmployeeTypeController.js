@@ -47,6 +47,9 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());
+            },
             url: $scope.urlBase + '/EmployeeType/Save',
             data: $scope.EmployeeTypeModel,
         }).then(function (response) {
@@ -86,6 +89,9 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());
+            },
             url: $scope.urlBase + '/EmployeeType/GetEmpType',
             data: $scope.EmployeeTypeModel,
         }).then(function (response) {
@@ -137,16 +143,17 @@
         }
 
 
+        if (valid) {
+            if ($scope.EmployeeTypeModel.EmpGrade == "") {
+                $scope.ErrorModel.EmpGrade = true;
+                $scope.ErrorModel.ErrorSelectEmpGrade = "Please Enter Employee Grade .";
+                valid = false;
+            }
+            else {
+                $scope.ErrorModel.EmpGrade = false;
 
-        if ($scope.EmployeeTypeModel.EmpGrade == "") {
-            $scope.ErrorModel.EmpGrade = true;
-            $scope.ErrorModel.ErrorSelectEmpGrade = "Please Enter Employee Grade .";
-            valid = false;
-        }
-        else {
-            $scope.ErrorModel.EmpGrade = false;
-
-            valid = true;
+                valid = true;
+            }
         }
         if (valid == true) {
             if ($scope.EmployeeTypeModel.Category == "") {
@@ -172,6 +179,7 @@
         CreatedBy: false, ErrorSelectCreated: ""
     };
     $scope.init = function () {
+        setCookie("Token", $('#hdnToken').val());
         checkToken();
         $("#ddlPageSize").val(5);
         $scope.EmployeeTypeModel.PageSize = $("#ddlPageSize").val();

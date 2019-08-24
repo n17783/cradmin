@@ -84,7 +84,7 @@
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="button" data-ng-click="Save()" data-ng-show="Update==false && AddNew==true">Save</button>
-                <button class="btn btn-danger" type="button" data-ng-click="Save()" data-ng-show="Update">Update</button>
+                <button class="btn btn-danger" type="button" data-ng-click="Update1()" data-ng-show="Update">Update</button>
                 <button class="btn btn-danger" type="button" data-ng-click="CancelClick()">Cancel</button>
             </div>
         </div>
@@ -120,75 +120,77 @@
             </div>
         </div>
         <div class="col-md-12">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Sub Contractor</th>
-                        <th>Company Name</th>
-                        <th>Registration No</th>
-                        <th>GST NO </th>
-                        <th>Address </th>
-                        <th>Phone No 1 </th>
-                        <th>Phone No 2 </th>
-                        <th>Email Id </th>
-                        <th>Vendor Code </th>
-                        <th>Work Order No </th>
-                        <th>Nature Of Work</th>
-                        <th>Valid UPTO</th>
-                        <th>Main Contractor</th>
+            <div class="col-md-12" style="overflow:scroll;">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Sub Contractor</th>
+                            <th>Company Name</th>
+                            <th>Registration No</th>
+                            <th>GST NO </th>
+                            <th>Address </th>
+                            <th>Phone No 1 </th>
+                            <th>Phone No 2 </th>
+                            <th>Email Id </th>
+                            <th>Vendor Code </th>
+                            <th>Work Order No </th>
+                            <th>Nature Of Work</th>
+                            <th>Valid UPTO</th>
+                            <th>Main Contractor</th>
+                            <th>Update</th>
 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="subcontractor in SubContractorList">
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-ng-repeat="subcontractor in SubContractorList">
+                            <td>{{subcontractor.SubContractorId}}</td>
+                            <td>{{subcontractor.SubCName}}</td>
+                            <td>{{subcontractor.SubCCompanyName}}</td>
+                            <td>{{subcontractor.SubCRegistrationNo}}</td>
+                            <td>{{subcontractor.SubCGstNo}}</td>
+                            <td>{{subcontractor.SubCOfficeAddress}}</td>
+                            <td>{{subcontractor.SubCPhoneNo}}</td>
+                            <td>{{subcontractor.ContractorPhoneNo1}}</td>
+                            <td>{{subcontractor.EmailId}}</td>
+                            <td>{{subcontractor.Code}}</td>
+                            <td>{{subcontractor.WorkOrderNo}}</td>
+                            <td>{{subcontractor.NatureOfWork}}</td>
+                            <td>{{subcontractor.ValidUpTo |mydate|date: 'dd-MM-yyyy'}}</td>
+                            <td>{{subcontractor.ContractorId}}</td>
+                            <td>
+                                <button type="button" class="btn btn-danger" data-ng-click="Edit(subcontractor)" data-toggle="tooltip"
+                                        title="Update">
+                                    Edit
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+                    <div class="col-md-12">
+                        <div class="col-md-7"></div>
+                        <div class="col-md-1">
+                            <div class="form-group">
 
-                        <td>{{subcontractor.SubContractorId}}</td>
-                        <td>{{subcontractor.SubCName}}</td>
-                        <td>{{subcontractor.SubCCompanyName}}</td>
-                        <td>{{subcontractor.SubCRegistrationNo}}</td>
-                        <td>{{subcontractor.SubCGstNo}}</td>
-                        <td>{{subcontractor.SubCOfficeAddress}}</td>
-                        <td>{{subcontractor.SubCPhoneNo}}</td>
-                        <td>{{subcontractor.ContractorPhoneNo1}}</td>
-                        <td>{{subcontractor.EmailId}}</td>
-                        <td>{{subcontractor.Code}}</td>
-                        <td>{{subcontractor.WorkOrderNo}}</td>
-                        <td>{{subcontractor.NatureOfWork}}</td>
-                        <td>{{subcontractor.ValidUpTo |mydate|date: 'dd-MM-yyyy'}}</td>
-                        <td>{{subcontractor.ContractorId}}</td>
-                        <td>
-                            <button type="button" class="btn btn-danger" data-ng-click="Edit(subcontractor)" data-toggle="tooltip"
-                                    title="Update">
-                                Edit
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="col-md-12">
-                <div class="col-md-7"></div>
-                <div class="col-md-1">
-                    <div class="form-group">
+                                <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
+                                    <option value="5">5</option>
+                                    <option value="5">10</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <ul class="pager">
+                                <li><a href="#">Page No : {{SubContractorModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
+                                <li><a href="#" data-ng-click="Prev()">Previous</a></li>
+                                <li><a href="#" data-ng-click="Next()">Next</a></li>
+                            </ul>
+                        </div>
 
-                        <select class="form-control" style="margin-top:20px;" id="ddlPageSize">
-                            <option value="5">5</option>
-                            <option value="5">10</option>
-                        </select>
                     </div>
-                </div>
-                <div>
-                    <ul class="pager">
-                        <li><a href="#">Page No : {{SubContractorModel.PageNo}}/Pages : {{TotalPages}}/Total Records: {{TotalRecords}}</a></li>
-                        <li><a href="#" data-ng-click="Prev()">Previous</a></li>
-                        <li><a href="#" data-ng-click="Next()">Next</a></li>
-                    </ul>
-                </div>
 
-            </div>
-
-        </div>
+                </div>
     </div>
 </div>
 <script type="text/javascript">

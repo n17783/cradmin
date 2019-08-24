@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -168,11 +172,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\SubContractorController.cs" />
+    <Compile Include="Controllers\UserRollMappingControllers.cs" />
+    <Compile Include="Controllers\Validation Process\CandidatesForValidationController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContractorController.cs" />
     <Compile Include="Controllers\CourseMasterController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\DeptZoneController.cs" />
     <Compile Include="Controllers\EmployeeTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -181,10 +188,7 @@
     <Compile Include="Controllers\ProjectTypeController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RollFormMappingController.cs" />
-    <Compile Include="Controllers\SubContractorController.cs" />
     <Compile Include="Controllers\TradeController.cs" />
-    <Compile Include="Controllers\UserRollMappingControllers.cs" />
-    <Compile Include="Controllers\Validation Process\CandidatesForValidationController.cs" />
     <Compile Include="Controllers\ValidationAgencyController.cs" />
     <Compile Include="Controllers\ValidationTestController.cs" />
     <Compile Include="Controllers\ValidationTestQuetionController.cs" />
@@ -252,6 +256,7 @@
     <Content Include="Content\Images\user3-128x128.jpg" />
     <Content Include="Content\Images\user4-128x128.jpg" />
     <Content Include="Content\Images\varmalaloader.gif" />
+    <Content Include="Content\Views\CandidatesForValidation.html" />
     <Content Include="Content\Views\CourseMaster.html" />
     <Content Include="Content\Views\Department.html" />
     <Content Include="Content\Views\DeptZone.html" />
@@ -261,6 +266,7 @@
     <Content Include="Content\Views\RollFormMapping.html" />
     <Content Include="Content\Views\SubContractor.html" />
     <Content Include="Content\Views\UserRoleMapping.html" />
+    <Content Include="Content\Views\ValidatedCandidates.html" />
     <Content Include="Content\Views\ValidationAgency.html" />
     <Content Include="Content\Views\Trade.html" />
     <Content Include="Content\Views\Role.html" />
@@ -268,6 +274,7 @@
     <Content Include="Content\Views\employee.html" />
     <Content Include="Content\Views\Contractor.html" />
     <Content Include="Content\Views\TradeCategory.html" />
+    <Content Include="Content\Views\ValidationProcess.html" />
     <Content Include="Content\Views\ValidationTest.html" />
     <Content Include="Content\Views\ValidationTestQuetion.html" />
     <Content Include="favicon.ico" />
@@ -356,6 +363,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ValidationProcess\ValidatedCandidatesController.js" />
+    <Content Include="Scripts\ValidationProcess\CandidatesForValidationController.js" />
+    <Content Include="Scripts\ValidationProcess\ValidationProcessController.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -413,6 +423,7 @@
     <Content Include="Views\CourseMaster\Index.cshtml" />
     <Content Include="Views\Plant\Index.cshtml" />
     <Content Include="Views\RollFormMapping\Index.cshtml" />
+    <Content Include="Views\CandidatesForValidation\Index.cshtml" />
     <Content Include="Views\Department\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

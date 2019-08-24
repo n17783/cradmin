@@ -141,6 +141,8 @@ namespace cradmin.Models.Models
         public int? TradeId { get; set; }
         public string AdhaarImage { get; set; }
         public bool IsDMorStaff { get; set; }
+        public int DeptId { get; set; }
+        public int ProjectTypeId { get; set; }
     }
 
     public class DeptZoneMaster : Error

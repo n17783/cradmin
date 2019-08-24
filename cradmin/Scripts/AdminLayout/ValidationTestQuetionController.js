@@ -17,6 +17,9 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());
+            },
             url: $scope.urlBase + '/ValidationTestQuetion/GetMasterDataforQuetions',
             data: $scope.TestQuetionModel,
         }).then(function (response) {
@@ -123,6 +126,9 @@
             ShowLoader();
             $http({
                 method: 'post',
+                beforeSend: function (request) {
+                    request.setRequestHeader("Token", getToken());
+                },
                 url: $scope.urlBase + '/ValidationTestQuetion/Save',
                 data: $scope.TestQuetionModel,
             }).then(function (response) {
@@ -170,6 +176,9 @@
             ShowLoader();
             $http({
                 method: 'post',
+                beforeSend: function (request) {
+                    request.setRequestHeader("Token", getToken());
+                },
                 url: $scope.urlBase + '/ValidationTestQuetion/Save',
                 data: $scope.TestQuetionModel,
             }).then(function (response) {
@@ -218,6 +227,9 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());
+            },
             url: $scope.urlBase + '/ValidationTestQuetion/GetQuetion',
             data: $scope.TestQuetionModel,
         }).then(function (response) {
@@ -360,7 +372,7 @@
 
 
     $scope.init = function () {
-
+        setCookie("Token", $('#hdnToken').val());
         checkToken();
 
         $scope.MainQuetionList.PageSize = $("#ddlPageSize").val();

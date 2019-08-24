@@ -31,6 +31,9 @@
             ShowLoader();
             $http({
                 method: 'post',
+                beforeSend: function (request) {
+                    request.setRequestHeader("Token", getToken());
+                },
                 url: $scope.urlBase + '/ValidationTest/Save',
                 data: $scope.TestModal,
             }).then(function (response) {
@@ -64,6 +67,9 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());
+            },
             url: $scope.urlBase + '/ValidationTest/GetTest',
             data: $scope.TestModal,
         }).then(function (response) {
@@ -98,6 +104,8 @@
     }
 
     $scope.init = function () {
+        setCookie("Token", $('#hdnToken').val());
+        checkToken();
         $scope.AddNew = false;
         $scope.Details = true;
         $scope.GetTestDetails();

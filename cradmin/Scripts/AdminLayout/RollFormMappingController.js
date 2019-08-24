@@ -19,6 +19,9 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());
+            },
             url: $scope.urlBase + '/RollFormMapping/GetMasterDataforAssign',
             data: $scope.LoginModal,
         }).then(function (response) {
@@ -134,6 +137,9 @@
                         ShowLoader();
                         $http({
                             method: 'post',
+                            beforeSend: function (request) {
+                                request.setRequestHeader("Token", getToken());
+                            },
                             url: $scope.urlBase + '/RollFormMapping/Save',
                             data: $scope.FormToRollModel,
                         }).then(function (response) {
@@ -178,45 +184,48 @@
     $scope.Discontinew = function (FormToRoll) {
         var objShowCustomAlert = new ShowCustomAlert({
             Title: "Error",
-            Message: "Are You Want To This Continew This Form",
+            Message: "Are You Want To DisContinew This Form",
             Type: "confirm",
             OnOKClick: function () {
        
-        $scope.FormToRollModel = { AllFormId:"", RollFormMappingId: FormToRoll.RollFormMappingId, RollDescription: FormToRoll.RollDescription, FormTitle: FormToRoll.FormTitle, AuthorisedBy: FormToRoll.AuthorisedBy, FormId: FormToRoll.FormId, RollId: FormToRoll.RollId, EntryDate: FormToRoll.EntryDate, };
-        $scope.FormToRollModel.discontinew = 'Discon';
+                $scope.FormToRollModel = { AllFormId:"", RollFormMappingId: FormToRoll.RollFormMappingId, RollDescription: FormToRoll.RollDescription, FormTitle: FormToRoll.FormTitle, AuthorisedBy: FormToRoll.AuthorisedBy, FormId: FormToRoll.FormId, RollId: FormToRoll.RollId, EntryDate: FormToRoll.EntryDate, };
+                $scope.FormToRollModel.discontinew = 'Discon';
 
 
-        ShowLoader();
-        $http({
-            method: 'post',
-            url: $scope.urlBase + '/RollFormMapping/Discontinew',
-            data: $scope.FormToRollModel,
-        }).then(function (response) {
-            HideLoader();
-            if (response.data.Status == 0) {
-                var objShowCustomAlert = new ShowCustomAlert({
-                    Title: "Error",
-                    Message: "Technical Error for Discontinuation",
-                    Type: "alert"
+                ShowLoader();
+                $http({
+                    method: 'post',
+                    beforeSend: function (request) {
+                        request.setRequestHeader("Token", getToken());
+                    },
+                    url: $scope.urlBase + '/RollFormMapping/Discontinew',
+                    data: $scope.FormToRollModel,
+                }).then(function (response) {
+                    HideLoader();
+                    if (response.data.Status == 0) {
+                        var objShowCustomAlert = new ShowCustomAlert({
+                            Title: "Error",
+                            Message: "Technical Error for Discontinuation",
+                            Type: "alert"
+                        });
+                        objShowCustomAlert.ShowCustomAlertBox();
+                        $scope.GetFormToRollList();
+                    }
+                    else {
+                        var objShowCustomAlert = new ShowCustomAlert({
+                            Title: "Success",
+                            Message: " This Form Successfully Discontinew",
+                            Type: "alert"
+                        });
+                
+                        objShowCustomAlert.ShowCustomAlertBox();
+                    }
+                    $scope.CancelClick();
+                    $scope.GetFormToRollList();
+                }, function (error) {
+                    HideLoader();
+                    console.log(error);
                 });
-                objShowCustomAlert.ShowCustomAlertBox();
-                $scope.GetFormToRollList();
-            }
-            else {
-                var objShowCustomAlert = new ShowCustomAlert({
-                    Title: "Success",
-                    Message: " This Form Successfully Discontinew",
-                    Type: "alert"
-                });
-                objShowCustomAlert.ShowCustomAlertBox();
-                $scope.GetFormToRollList();
-            }
-           
-            
-        }, function (error) {
-            HideLoader();
-            console.log(error);
-        });
             }
         });
         objShowCustomAlert.ShowCustomAlertBox();
@@ -234,9 +243,13 @@
     //Edit
 
     $scope.GetFormToRollList = function () {
+        $scope.FormToRollModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), Prefix: "" };
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());
+            },
             url: $scope.urlBase + '/RollFormMapping/GetFormToRoll',
             data: $scope.FormToRollModel,
         }).then(function (response) {
@@ -323,6 +336,7 @@
     }
 
     $scope.init = function () {
+        setCookie("Token", $('#hdnToken').val());
         checkToken();
         $("#ddlPageSize").val(5);
         $scope.FormToRollModel.PageSize = $("#ddlPageSize").val();

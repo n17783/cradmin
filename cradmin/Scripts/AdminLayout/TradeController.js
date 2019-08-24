@@ -6,7 +6,7 @@
 
     $scope.TotalRecords = 0;
     $scope.TotalPages = 0
-
+    $scope.Prefix="";
     $scope.TradeTypModel = { PageNo: 1, PageSize: 10, TradDescription: "" };
 
     $scope.AddNewClick = function () {
@@ -15,13 +15,13 @@
         $scope.ErrorModel.TradDescription = false;
         $scope.ErrorModel.TradeCId = false;
         valid = false;
-        $scope.TradeTypModel = { PageNo: 1, PageSize: 10, TradDescription: "", TradeCId: "",TradCDescription:"" };
+        $scope.TradeTypModel = { PageNo: 1, PageSize: 10, Prefix:"", TradDescription: "", TradeCId: "" };
     }
 
     $scope.CancelClick = function () {
         $scope.AddNew = false;
         $scope.Details = true;
-        $scope.TradeTypModel = { PageNo: 1, PageSize: 10, TradDescription: "", TradeCId: "", TradCDescription: "" };
+        $scope.TradeTypModel = { PageNo: 1, PageSize: 10, Prefix: "", TradDescription: "", TradeCId: "" };
     }
 
     $scope.PageSizeList = [5, 10, 15, 20];
@@ -39,6 +39,9 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());
+            },
             url: $scope.urlBase + '/Trade/Save',
             data: $scope.TradeTypModel,
         }).then(function (response) {
@@ -78,6 +81,9 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());
+            },
             url: $scope.urlBase + '/Trade/GetTradeType',
             data: $scope.TradeTypModel,
         }).then(function (response) {
@@ -101,6 +107,9 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());
+            },
             url: $scope.urlBase + '/Category/GetTrade',
             data: {},
         }).then(function (response) {
@@ -121,6 +130,7 @@
     $scope.Prev = function () {
         if ($scope.TradeTypModel.PageNo > 1) {
             $scope.TradeTypModel.PageNo--;
+           
             $scope.GetTradeTypeList();
         }
     }
@@ -169,6 +179,7 @@
         ErrorSelectTradeCId: ""
     };
     $scope.init = function () {
+        setCookie("Token", $('#hdnToken').val());
         checkToken();
         $("#ddlPageSize").val(5);
         $scope.TradeTypModel.PageSize = $("#ddlPageSize").val();

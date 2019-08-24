@@ -39,6 +39,8 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());},
             url: $scope.urlBase + '/CourseMaster/Save',
             data: $scope.CourseMasterModel,
         }).then(function (response) {
@@ -78,6 +80,8 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());},
             url: $scope.urlBase + '/CourseMaster/GetCourseMasterDetails',
             data: $scope.CourseMasterModel,
         }).then(function (response) {
@@ -128,27 +132,30 @@
             valid = true;
         }
 
+        if (valid == true) {
 
+            if ($scope.CourseMasterModel.CourseCreatedBy == "") {
+                $scope.ErrorModel.CourseCreatedBy = true;
+                $scope.ErrorModel.ErrorSelectCourseCreatedBy = "Please Enter Authority Name  .";
+                valid = false;
+            }
+            else {
+                $scope.ErrorModel.CourseCreatedBy = false;
 
-        if ($scope.CourseMasterModel.CourseCreatedBy == "") {
-            $scope.ErrorModel.CourseCreatedBy = true;
-            $scope.ErrorModel.ErrorSelectCourseCreatedBy = "Please Enter Authority Name  .";
-            valid = false;
+                valid = true;
+            }
         }
-        else {
-            $scope.ErrorModel.CourseCreatedBy = false;
+        if (valid == true) {
+            if ($scope.CourseMasterModel.CourseSanctionDate == "") {
+                $scope.ErrorModel.CourseSanctionDate = true;
+                $scope.ErrorModel.ErrorSelectCourseSanctionDate = "Please Enter Course Sanction Date  .";
+                valid = false;
+            }
+            else {
+                $scope.ErrorModel.CourseSanctionDate = false;
 
-            valid = true;
-        }
-        if ($scope.CourseMasterModel.CourseSanctionDate == "") {
-            $scope.ErrorModel.CourseSanctionDate = true;
-            $scope.ErrorModel.ErrorSelectCourseSanctionDate = "Please Enter Course Sanction Date  .";
-            valid = false;
-        }
-        else {
-            $scope.ErrorModel.CourseSanctionDate = false;
-
-            valid = true;
+                valid = true;
+            }
         }
         if(valid==true){
             if ($scope.CourseMasterModel.CourseDescription == "") {
@@ -173,6 +180,7 @@
         CourseTitle: false, ErrorSelectCourseTitle: "", CourseCreatedBy: false, ErrorSelectCourseCreatedBy: "", CourseSanctionDate: false, ErrorSelectCourseSanctionDate: "",
         CourseDescription: false, ErrorSelectCourseDescription: "" };
     $scope.init = function () {
+        setCookie("Token", $('#hdnToken').val());
         checkToken();
         $("#ddlPageSize").val(5);
         $scope.CourseMasterModel.PageSize = $("#ddlPageSize").val();

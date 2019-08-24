@@ -35,6 +35,8 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());},
             url: $scope.urlBase + '/Department/Save',
             data: $scope.DeptTypModel,
         }).then(function (response) {
@@ -74,6 +76,8 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());},
             url: $scope.urlBase + '/Department/GetDeptList',
             data: $scope.DeptTypModel,
         }).then(function (response) {
@@ -128,6 +132,7 @@
         return valid
     }
     $scope.init = function () {
+        setCookie("Token", $('#hdnToken').val());
         checkToken();
         $("#ddlPageSize").val(5);
         $scope.DeptTypModel.PageSize = $("#ddlPageSize").val();

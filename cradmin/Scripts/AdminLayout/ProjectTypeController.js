@@ -36,6 +36,9 @@
                     ShowLoader();
                     $http({
                         method: 'post',
+                        beforeSend: function (request) {
+                            request.setRequestHeader("Token", getToken());
+                        },
                         url: $scope.urlBase + '/ProjectType/Save',
                         data: $scope.ProjectTypeModel,
                     }).then(function (response) {
@@ -72,6 +75,9 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());
+            },
             url: $scope.urlBase + '/ProjectType/GetProjectType',
             data: $scope.ProjectTypeModel,
         }).then(function (response) {
@@ -102,6 +108,13 @@
             valid = false;
            
         }
+        else
+        {
+            $scope.ErrorModel.ProjectTypeDescription = false;
+            valid = true;
+
+        }
+        
         return valid
     }
     $scope.Prev = function () {
@@ -120,6 +133,7 @@
     }
 
     $scope.init = function () {
+        setCookie("Token", $('#hdnToken').val());
         checkToken();
         $("#ddlPageSize").val(5);
         $scope.ProjectTypeModel.PageSize = $("#ddlPageSize").val();

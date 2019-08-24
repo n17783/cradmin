@@ -30,6 +30,7 @@ namespace cradmin.Controllers
         [HttpPost]
         public ActionResult GetTradeStrenth(PlantTradeTracking model)
         {
+            
             return Json(objTradeTracking.GetPlantTradeStrenth(model), JsonRequestBehavior.AllowGet);
         }
 

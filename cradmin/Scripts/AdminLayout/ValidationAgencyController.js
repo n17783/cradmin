@@ -48,6 +48,9 @@
         $scope.ValidationAgencyModel.ValidationAgencyEntryBy = 1;
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());
+            },
             url: $scope.urlBase + '/ValidationAgency/Save',
             data: $scope.ValidationAgencyModel,
         }).then(function (response) {
@@ -99,6 +102,9 @@
         ShowLoader();
         $http({
             method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());
+            },
             url: $scope.urlBase + '/ValidationAgency/GetValidationAgencyList',
             data: $scope.ValidationAgencyModel,
         }).then(function (response) {
@@ -133,17 +139,18 @@
             valid = true;
         }
 
+        if (valid) {
 
+            if ($scope.ValidationAgencyModel.AgencyAddress == "") {
+                $scope.ErrorModel.AgencyAddress = true;
+                $scope.ErrorModel.ErrorSelectAgencyAddress = "Please Enter Address .";
+                valid = false;
+            }
+            else {
+                $scope.ErrorModel.AgencyAddress = false;
 
-        if ($scope.ValidationAgencyModel.AgencyAddress == "") {
-            $scope.ErrorModel.AgencyAddress = true;
-            $scope.ErrorModel.ErrorSelectAgencyAddress = "Please Enter Address .";
-            valid = false;
-        }
-        else {
-            $scope.ErrorModel.AgencyAddress = false;
-
-            valid = true;
+                valid = true;
+            }
         }
         if(valid==true){
         if ($scope.ValidationAgencyModel.AgencyContactNo == "") {
@@ -168,6 +175,7 @@
        
     };
     $scope.init = function () {
+        setCookie("Token", $('#hdnToken').val());
         checkToken();
         $("#ddlPageSize").val(5);
         $scope.ValidationAgencyModel.PageSize = $("#ddlPageSize").val();

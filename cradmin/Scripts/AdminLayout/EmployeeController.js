@@ -1,25 +1,26 @@
 ﻿CRAdminApp.controller("EmployeeController", ['$scope', '$http', '$filter', '$rootScope', function ($scope, $http, $filter, $rootScope) {
-    
+
     $scope.urlBase = GetVirtualDirectory();
     $scope.ZoneList = [];
     $scope.TradeList = [];
     $scope.ValidationAgencyList = [];
     $scope.EmployeeTypeList = [];
-    $scope.ContractorList = [];
+    $scope.SubContractorList = [];
     $scope.CountryList = [];
     $scope.StateList = [];
     $scope.CityList = [];
     $scope.DeptList = [];
+    $scope.ProjectTypeList = [];
     $scope.IsNewUser = undefined;
-    $scope.Token=getCookie("token");
-    $scope.Emp = { PageNo: 1, PageSize: 2, AdhaarNo: "", Regt_No: "", Gender: 0, FName: "", MName: "", LName: "", DOB: "", BloodGroup: "", EmpPhoto: "", PanNo: "", UserName:"" };
+    //$scope.Token = getCookie("Token");
+    $scope.Emp = { PageNo: 1, PageSize: 2, AdhaarNo: "", Regt_No: "", Gender: 0, FName: "", MName: "", LName: "", DOB: "", BloodGroup: "", EmpPhoto: "", PanNo: "", UserName: "" };
     $scope.EmpDetails = {
         EmpDetailsId: 0, PkId: 0, EmpTypeId: 0, JoiningStatus: 1, DateOfReport: "",
         ContractorId: 1, ContactNo: "", EmrContactNo: "", IdProofType: "", IdProofNo: "",
         IdProofImage: "", PHouseNo: "", PVillageId: "", PDisticId: 0, PTalukaId: "", PStateId: 0,
         PCountryId: 0, PPincodeId: "", THouseNo: "", TVillageId: "", TDisticId: 0, TTalukaId: "",
         TStateId: 0, TCountryId: "", TPincode: "", ReJoineOrNewJoin: 0, DeptZoneId: 0, ValidationAgencyId: 0,
-        IsAlreadyValidated: 0, TradeId: 0, AdhaarImage: "", IsDMorStaff: 0, DeptId:""
+        IsAlreadyValidated: 0, TradeId: 0, AdhaarImage: "", IsDMorStaff: 0, DeptId: "", ProjectTypeId: ""
     };
 
     $scope.ErrorModel = {
@@ -33,20 +34,20 @@
         ErrorMessageTDisticId: "",
         TStateId: false, ErrorMessageTStateId: "", TCountryId: false, ErrorMessageContryId: "", TPincode: false, ErrorMessageTPincode: "", DeptZoneId: false, ErrorMessageDeptZoneId: "",
         ValidationAgencyId: false, ErrorMessageValidationAgencyId: "", TradeId: false, ErrorMessageTradeId: "",
-        AdhaarImage: false, ErrorMessageAdhaarImage: "", IsDMorStaff: false, ErrorMessageIsDMorStaff: "",DeptId:false, ErrorMessageDeptId:""
+        AdhaarImage: false, ErrorMessageAdhaarImage: "", IsDMorStaff: false, ErrorMessageIsDMorStaff: "", DeptId: false, ErrorMessageDeptId: ""
     };
     $scope.EmpExit = {};
     var objdatehelper = new datehelper({ format: "dd/MM/yyyy", cdate: new Date() });
 
-    
 
-    function GetMasterDataList()
-    {
+
+    function GetMasterDataList() {
         ShowLoader();
         $http({
             method: 'post',
             url: $scope.urlBase + '/Dashboard/GetMasterDataforRegister',
-            headers: getToken(),
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());},
             data: $scope.Emp,
         }).then(function (response) {
             HideLoader();
@@ -55,29 +56,36 @@
                 $scope.TradeList = response.data.TradeList;
                 $scope.ValidationAgencyList = response.data.ValidationAgencyList;
                 $scope.EmployeeTypeList = response.data.EmployeeTypeList;
-                $scope.ContractorList = response.data.ContractorList;
+                $scope.SubContractorList = response.data.SubContractorList;
                 $scope.CountryList = response.data.CountryList;
                 $scope.StateList = response.data.StateList;
                 $scope.CityList = response.data.CityList;
                 $scope.DeptList = response.data.DeptList;
-
+                $scope.ProjectTypeList = response.data.ProjectTypeList;
                 $scope.CountryList.splice(0, 0, { ContryId: 0, ContryName: "---Select Country---" });
                 $scope.ZoneList.splice(0, 0, { DeptZoneId: 0, DeptZoneDescription: "---Select Zone---" });
-                $scope.TradeList.splice(0, 0, { TradeId: 0, TradDescription: "---Select Category---" });
+                $scope.TradeList.splice(0, 0, { TradeId: 0, TradDescription: "---Select Trade---" });
                 $scope.ValidationAgencyList.splice(0, 0, { ValidationAgencyId: 0, AgencyDescription: "---Select Agency---" });
                 $scope.EmployeeTypeList.splice(0, 0, { EmpTypeId: 0, EmpDesignation: "---Select Employee Type---" });
-                $scope.ContractorList.splice(0, 0, { ContractorId: 0, ContractorName: "---Select Contractor---" });
+                $scope.SubContractorList.splice(0, 0, { SubContractorId: 0, SubCCompanyName: "---Select Contractor---" });
                 $scope.DeptList.splice(0, 0, { DeptId: 0, Dept_Name: "---Select Sub Department---" });
+                $scope.ProjectTypeList.splice(0, 0, { ProjectTypeId: 0, ProjectTypeDescription: "---Select Project type---" });
                 var html = "";
                 angular.forEach($scope.ZoneList, function (value, key) {
                     html += "<option value='" + value.DeptZoneId + "'>" + value.DeptZoneDescription + "</option>";
                 });
                 $("#ddlZone").html(html);
-                var html1 = "";
-                angular.forEach($scope.TradeCategoryList, function (value, key) {
-                    html1 += "<option value='" + value.TradeCId + "'>" + value.TradCDescription + "</option>";
+                //var html = "";
+                //angular.forEach($scope.EmployeeTypeList, function (value, key) {
+                //    html += "<option value='" + value.EmpTypeId + "'>" + value.EmpDesignation + "</option>";
+                //});
+                //$("#ddlEmpType").html(html);
+                var html = "";
+                angular.forEach($scope.TradeList, function (value, key) {
+                    html += "<option value='" + value.TradeId + "'>" + value.TradDescription + "</option>";
                 });
-                $("#ddlTrade").html(html1);
+                $("#ddlTrade").html(html);
+
 
                 var html2 = "";
                 angular.forEach($scope.ValidationAgencyList, function (value, key) {
@@ -86,8 +94,8 @@
                 $("#ddlVAgency").html(html2);
 
                 var html4 = "";
-                angular.forEach($scope.ContractorList, function (value, key) {
-                    html4 += "<option value='" + value.ContractorId + "'>" + value.ContractorName + "</option>";
+                angular.forEach($scope.SubContractorList, function (value, key) {
+                    html4 += "<option value='" + value.SubContractorId + "'>" + value.SubCCompanyName + "</option>";
                 });
                 $("#ddlContractor").html(html4);
 
@@ -102,7 +110,12 @@
                     html5 += "<option value='" + value.DeptId + "'>" + value.Dept_Name + "</option>";
                 });
                 $("#ddlSDep").html(html5);
-               
+                var html5 = "";
+                angular.forEach($scope.ProjectTypeList, function (value, key) {
+                    html5 += "<option value='" + value.ProjectTypeId + "'>" + value.ProjectTypeDescription + "</option>";
+                });
+                $("#ddlProjectType").html(html5);
+
             }
             else {
                 window.location = $scope.urlBase + "/dashboard/index";
@@ -113,9 +126,8 @@
         });
     }
 
-    $scope.BindStateList = function ()
-    {
-        if ($("#ddlCountry").val()>0) {
+    $scope.BindStateList = function () {
+        if ($("#ddlCountry").val() > 0) {
             var statelist = $scope.StateList.filter(function (state) {
                 return (state.ContryId == $("#ddlCountry").val());
             });
@@ -127,7 +139,7 @@
             });
             $("#ddlState").html(html5);
         }
-        
+
     }
 
     $scope.BindPStateList = function () {
@@ -144,7 +156,7 @@
             $("#ddlPState").html(html5);
         }
     }
-    
+
     $scope.BindPDistrictList = function () {
         if ($("#ddlPState").val() > 0) {
             var citylist = $scope.CityList.filter(function (state) {
@@ -177,7 +189,7 @@
 
     $scope.Validate = function () {
         var valid = true;
-        if ( $scope.Emp.AdhaarNo.length==12) {
+        if ($scope.Emp.AdhaarNo.length == 12) {
             $scope.ErrorModel.AadharNo = true;
             $scope.ErrorModel.ErrorMessageAdhaarNo = "Please Enter Valid Aadhar Number.";
             valid = false;
@@ -208,7 +220,7 @@
                 $scope.ErrorModel.LName = false;
             }
         }
-        
+
         if (valid) {
             if ($scope.Emp.MName == "") {
                 $scope.ErrorModel.MName = true;
@@ -244,7 +256,7 @@
         }
         if (valid) {
             if ($("#rdoStaff").prop("checked") == true) {
-                if ($scope.Emp.UserName=="") {
+                if ($scope.Emp.UserName == "") {
                     $scope.ErrorModel.UserName = true;
                     $scope.ErrorModel.ErrorMessageUserName = "Mail id should be filled while staff registration.";
                     valid = false;
@@ -259,20 +271,31 @@
     }
 
     $scope.changeEmpType = function () {
-        var isdm=false;
-        isdm =$("#rdoDM").prop("checked");
-        var html3 = "";
-        var lst = $scope.EmployeeTypeList.filter(emptype => emptype.IsDmOrStaff == isdm);
-        lst.splice(0, 0, { EmpTypeId: 0, EmpDesignation: "---Select Emp Type---" });
-        lst.map((etype) => {
-            html3 += '<option value="' + etype.EmpTypeId + '">' + etype.EmpDesignation + '</option>';
-        });
-        $("#ddlEmpType").html(html3);
+        $("#rdoDM").prop("checked", true);
+        var isdm = $("#rdoDM").prop("checked");
+        if (isdm) {
+            var html3 = "";
+            var lst = $scope.EmployeeTypeList.filter(emptype => emptype.IsDmOrStaff == isdm);
+            lst.splice(0, 0, { EmpTypeId: 0, EmpDesignation: "---Select Emp Type---" });
+            lst.map((etype) => {
+                html3 += '<option value="' + etype.EmpTypeId + '">' + etype.EmpDesignation + '</option>';
+            });
+            $("#ddlEmpType").html(html3);
+        }
+        else {
+            var html3 = "";
+            var lst = $scope.EmployeeTypeList.filter(emptype => emptype.IsDmOrStaff == isdm);
+            lst.splice(0, 0, { EmpTypeId: 0, EmpDesignation: "---Select Emp Type---" });
+            lst.map((etype) => {
+                html3 += '<option value="' + etype.EmpTypeId + '">' + etype.EmpDesignation + '</option>';
+            });
+            $("#ddlEmpType").html(html3);
+
+        }
     }
 
     $scope.RegisterStaff = function () {
-        if($scope.Validate())
-        {
+        if ($scope.Validate()) {
             ShowLoader();
             if ($("#rdoMale").prop("checked") == true) {
                 $scope.Emp.Gender = true;
@@ -287,33 +310,38 @@
                 $scope.EmpDetails.IsDMorStaff = false;
             }
 
-            $scope.EmpDetails.TCountryId=$("#ddlCountry").val();
-            $scope.EmpDetails.TStateId=$("#ddlState").val();
-            $scope.EmpDetails.TDisticId=$("#ddlDistrict").val();
-            $scope.EmpDetails.PCountryId=$("#ddlPCountry").val();
-            $scope.EmpDetails.PStateId=$("#ddlPState").val();
-            $scope.EmpDetails.PDisticId=$("#ddlPDistrict").val();
-            $scope.EmpDetails.DeptZoneId=$("#ddlZone").val();
-            $scope.EmpDetails.ValidationAgencyId=$("#ddlVAgency").val();
-            $scope.EmpDetails.TradeId=$("#ddlTrade").val();
-            $scope.EmpDetails.IdProofType=$("#ddlIdProofType").val();
-            $scope.EmpDetails.EmpTypeId=$("#ddlEmpType").val();
+            $scope.EmpDetails.TCountryId = $("#ddlCountry").val();
+            $scope.EmpDetails.TStateId = $("#ddlState").val();
+            $scope.EmpDetails.TDisticId = $("#ddlDistrict").val();
+            $scope.EmpDetails.PCountryId = $("#ddlPCountry").val();
+            $scope.EmpDetails.PStateId = $("#ddlPState").val();
+            $scope.EmpDetails.PDisticId = $("#ddlPDistrict").val();
+            $scope.EmpDetails.DeptZoneId = $("#ddlZone").val();
+            $scope.EmpDetails.ValidationAgencyId = $("#ddlVAgency").val();
+            $scope.EmpDetails.TradeId = $("#ddlTrade").val();
+            $scope.EmpDetails.IdProofType = $("#ddlIdProofType").val();
+            $scope.EmpDetails.EmpTypeId = $("#ddlEmpType").val();
             $scope.EmpDetails.ContractorId = $("#ddlContractor").val();
             $scope.EmpDetails.DeptId = $("#ddlSDep").val();
+            $scope.EmpDetails.ProjectTypeId = $("#ddlProjectType").val();
             $scope.Emp.EmpPhoto = $("#imgCapture").attr("src");
-           
+
             var model = { Emp: $scope.Emp, EmpDetails: $scope.EmpDetails };
             $http({
                 method: 'post',
+               
                 url: $scope.urlBase + '/Dashboard/Save',
                 data: model,
+                beforeSend: function (request) {
+                    request.setRequestHeader("Token", getToken());
+                },
             }).then(function (response) {
                 HideLoader();
 
             }, function (error) {
                 HideLoader();
                 console.log(error);
-            });    
+            });
         }
     }
 
@@ -336,7 +364,7 @@
             valid = false;
         }
         else {
-            var adhaarno=$scope.Emp.AadharNo;
+            var adhaarno = $scope.Emp.AadharNo;
             $scope.ErrorModel.ErrorMessageAdhaarNo = "";
             if ($scope.Emp.AadharNo.length == 12) {
                 ShowLoader();
@@ -344,6 +372,9 @@
                     method: 'post',
                     url: $scope.urlBase + '/Dashboard/CheckAdhaarExist',
                     data: $scope.Emp,
+                    beforeSend: function (request) {
+                        request.setRequestHeader("Token", getToken());
+                    },
                 }).then(function (response) {
                     HideLoader();
                     console.log(response);
@@ -358,7 +389,8 @@
                         });
                         objShowCustomAlert.ShowCustomAlertBox();
                         $("#rdoMale").prop("checked", true);
-                        $("#rdoDM").prop("checked", true);
+
+
                     }
                     else {
                         var objShowCustomAlert = new ShowCustomAlert({
@@ -420,7 +452,7 @@
         }
     }
 
-    
+
     $scope.fromUser = function () {
         if ($scope.Emp.AadharNo.length > 0) {
             var transformedInput = $scope.Emp.AadharNo.replace(/[^0-9]/g, '');
@@ -442,6 +474,7 @@
     }
 
     $scope.init = function () {
+        setCookie("Token",$('#hdnToken').val());
         checkToken();
         $("#ddlPageSize").val(5);
         $scope.Emp.PageSize = $("#ddlPageSize").val();
@@ -507,6 +540,7 @@
             todayHighlight: true
         }).datepicker('update', new Date());
         GetMasterDataList();
+
     }
 
     $scope.init();

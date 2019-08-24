@@ -21,7 +21,7 @@
             <div class="form-group">
                 <label>DEPT And ZONE Contact No 2</label>
                 <input type="text" class="form-control" placeholder="Enter DEPT And ZONE Contact No 2 ..." data-ng-model="DeptZoneModel.ContactNo2" data-ng-keypress="NumericPhone($event,DeptZoneModel.ContactNo2);">
-                <!--<span class="badge badge-danger" data-ng-show="ErrorModel.ContactNo2">{{ErrorModel.ErrorSelectDeptZoneContactNo2}}</span>-->
+                <span class="badge badge-danger" data-ng-show="ErrorModel.ContactNo2">{{ErrorModel.ErrorSelectDeptZoneContactNo2}}</span>
              </div>
             <div class="form-group">
                 <label>DEPT And ZONE Email Id</label>
@@ -59,7 +59,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr data-ng-repeat="DeptZone in DeptZoneList track by DeptZone.DeptZoneId">
+                        <tr data-ng-repeat="DeptZone in DeptZoneList ">
                             <td>{{DeptZone.DeptZoneId}}</td>
                             <td>{{DeptZone.DeptZoneDescription}}</td>
 

@@ -17,7 +17,7 @@ namespace cradmin.Models.BAL
             List<SqlParameter> lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
             lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
-            
+
             DataTable dt = objHelper.GetDataTable("Get_TradeList", lst);
             lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
@@ -38,7 +38,7 @@ namespace cradmin.Models.BAL
             lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
             lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
 
-            DataTable dtContractorList = objHelper.GetDataTable("GetMainContractorList", lst);
+            DataTable dtSubContractorList = objHelper.GetDataTable("Get_SubContractor", lst);
 
             lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
@@ -61,6 +61,11 @@ namespace cradmin.Models.BAL
             lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
             //lst.Add(new SqlParameter() { ParameterName = "@DeptId", Value = DBNull.Value });
             DataTable dtDeptList = objHelper.GetDataTable("GetDeptList", lst);
+            lst = new List<SqlParameter>();
+            lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
+            lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
+            //lst.Add(new SqlParameter() { ParameterName = "@DeptId", Value = DBNull.Value });
+            DataTable dtProjectTypeList = objHelper.GetDataTable("Get_ProjectType", lst);
 
             response.CityList = dtCityList.ToList<CityMaster>();
             response.StateList = dtStateList.ToList<StateMaster>();
@@ -69,8 +74,9 @@ namespace cradmin.Models.BAL
             response.TradeList = dt.ToList<TradeType>();
             response.ValidationAgencyList = dtValidattionAgency.ToList<ValidationAgency>();
             response.EmployeeTypeList = dtEmployeeTypeList.ToList<EmployeeType>();
-            response.ContractorList = dtContractorList.ToList<MainContractor>();
+            response.SubContractorList = dtSubContractorList.ToList<SubContractor>();
             response.DeptList = dtDeptList.ToList<DeptNames>();
+            response.ProjectTypeList = dtProjectTypeList.ToList<ProjectType>();
             response.Status = 1;
             return response;
         }
@@ -88,7 +94,7 @@ namespace cradmin.Models.BAL
             lst.Add(new SqlParameter() { ParameterName = "@LName", Value = model.Emp.LName });
             lst.Add(new SqlParameter() { ParameterName = "@MName", Value = model.Emp.MName });
             lst.Add(new SqlParameter() { ParameterName = "@PanNo", Value = model.Emp.PanNo });
-            if (model.Emp.PkId!=null)
+            if (model.Emp.PkId != null)
             {
                 lst.Add(new SqlParameter() { ParameterName = "@PkId", Value = model.Emp.PkId });
             }
@@ -131,8 +137,8 @@ namespace cradmin.Models.BAL
             response.EmpDetails = new EmployeeDetails();
             response.EmpDetails.PkId = Convert.ToInt32(dtEmployee.Rows[0]["PkId"]);
             response.EmpDetails.EmpDetailsId = Convert.ToInt32(dtEmployee.Rows[0]["EmpDetailsId"]);
-            return response;                              
-        }                                                 
+            return response;
+        }
 
         public MasterDataResponse CheckUserExist(Employee model)
         {
@@ -195,6 +201,9 @@ namespace cradmin.Models.BAL
                                 TradeId = Convert.ToInt32(tbl.GetField("TradeId")),
                                 IsAlreadyValidated = Convert.ToBoolean(tbl.GetField("IsAlreadyValidated")),
                                 IsDMorStaff = Convert.ToBoolean(tbl.GetField("IsDMorStaff")),
+                                DeptId = Convert.ToInt32(tbl.GetField("DeptId")),
+                                ProjectTypeId = Convert.ToInt32(tbl.GetField("ProjectTypeId")),
+
                             },
                             EmpExit = new EmployeeExit()
                             {

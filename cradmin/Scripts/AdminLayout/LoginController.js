@@ -40,7 +40,7 @@ CRAdminApp.controller("LoginController", ['$scope', '$http', '$filter', '$rootSc
     }
 
     $scope.init = function () {
-
+       
     }
 
     $scope.init();
