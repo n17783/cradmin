@@ -20,7 +20,7 @@ namespace cradmin.Controllers
            
             if (SessionManager.Instance.LoginUser==null)
             {
-                Response.SetCookie(null);
+                Response.Cookies.Clear();
                 ViewBag.Token = "";
                 return RedirectToAction("Index", "Home");
             }
@@ -35,6 +35,8 @@ namespace cradmin.Controllers
             }
         }
 
+        [MyAuthorize]
+        [HttpPost]
         public ActionResult CheckAdhaarExist(Employee model)
         {
             MasterDataResponse response = objEmp.CheckUserExist(model);
@@ -55,6 +57,7 @@ namespace cradmin.Controllers
             return Json(objEmp.RegisterEmployee(model), JsonRequestBehavior.AllowGet);
         }
 
+        [MyAuthorize]
         [HttpPost]
         public ActionResult Capture()
         {
@@ -64,7 +67,7 @@ namespace cradmin.Controllers
                 using (StreamReader reader = new StreamReader(Request.InputStream))
                 {
                     string hexString = Server.UrlEncode(reader.ReadToEnd());
-                    string imageName = DateTime.Now.ToString("dd-MM-yy hh-mm-ss");
+                    string imageName = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss");
                     string imagePath = string.Format("~/Content/CaptureEmployee/{0}.png", imageName);
                     System.IO.File.WriteAllBytes(Server.MapPath(imagePath), ConvertHexToBytes(hexString));
                     imagepath = VirtualPathUtility.ToAbsolute(imagePath);
@@ -73,16 +76,14 @@ namespace cradmin.Controllers
             return Json(imagepath, JsonRequestBehavior.AllowGet);
         }
 
-       
-
         [HttpPost]
         public ActionResult UploadA()
         {
-            string base64string = string.Empty;
+            string base64string = string.Empty; 
             if (Request.Files.Count > 0)
             {
                 HttpPostedFileBase file = Request.Files[0];
-                string imageName = DateTime.Now.ToString("dd-MM-yy hh-mm-ss");
+                string imageName = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss");
                 base64string = "Content/CaptureEmployee/" + imageName + ".jpg";
                 file.SaveAs(Server.MapPath("~/" + base64string));
                 base64string = VirtualPathUtility.ToAbsolute("~/" + base64string);

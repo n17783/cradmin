@@ -175,7 +175,6 @@
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\SubContractorController.cs" />
     <Compile Include="Controllers\UserRollMappingControllers.cs" />
-    <Compile Include="Controllers\Validation Process\CandidatesForValidationController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContractorController.cs" />
     <Compile Include="Controllers\CourseMasterController.cs" />
@@ -190,6 +189,7 @@
     <Compile Include="Controllers\RollFormMappingController.cs" />
     <Compile Include="Controllers\TradeController.cs" />
     <Compile Include="Controllers\ValidationAgencyController.cs" />
+    <Compile Include="Controllers\ValidationProcess\CandidatesForValidationController.cs" />
     <Compile Include="Controllers\ValidationTestController.cs" />
     <Compile Include="Controllers\ValidationTestQuetionController.cs" />
     <Compile Include="Global.asax.cs">

@@ -11,25 +11,20 @@
                         <span ng-switch-when="2" style="color:red">Re Join</span>
                     </div>
                     <div class="col-sm-4">
-
                         <div class='input-group date' id='dtReport'>
                             <input type="text" class="form-control" placeholder="Enter Date Of Reprting ..." data-ng-model="EmpDetails.DateOfReport">
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-time"></span>
                             </span>
-                            <span class="badge badge-danger" data-ng-show="ErrorModel.DateOfReport">{{ErrorModel.ErrorMessageDateOfReport}}</span>
                         </div>
+                        <span class="badge badge-danger" data-ng-show="ErrorModel.DateOfReport">{{ErrorModel.ErrorMessageDateOfReport}}</span>
                     </div>
                 </div>
             </div>
 
-
             <div class="col-md-8">
-
                 <div class="row">
-
                     <div class="col-sm-4">
-
                         <label>Aadhar No</label>
                         <input type="text" class="form-control" data-ng-model="Emp.AadharNo" placeholder="Enter Aadhar No ..." data-ng-blur="CheckAdhaarExist();">
                         <span class="badge badge-danger" data-ng-show="ErrorModel.AadharNo">{{ErrorModel.ErrorMessageAdhaarNo}}</span>
@@ -56,13 +51,13 @@
                     <div class="col-sm-2">
                         <div class="">
                             <label>
-                                <input type="radio" name="optionGender" id="rdoMale" data-ng-model="Emp.Gender" data-ng-value="1">
+                                <input type="radio" name="optionGender" id="rdoMale" data-ng-value="1">
                                 Male
                             </label>
                         </div>
                         <div class="rado">
                             <label>
-                                <input type="radio" name="optionGender" id="rdoFemale" data-ng-value="0" data-ng-model="Emp.Gender">
+                                <input type="radio" name="optionGender" id="rdoFemale" data-ng-value="0">
                                 Female
                             </label>
                         </div>
@@ -126,15 +121,9 @@
                         <select class="form-control" id="ddlSDep" data-ng-disabled="IsNewUser!=1"></select>
                         <span class="badge badge-danger" data-ng-show="ErrorModel.DeptId">{{ErrorModel.ErrorMessageDeptId}}</span>
                     </div>
-
                 </div>
                 <hr />
-
-
-
-
             </div>
-
             <div class="col-md-4">
                 <hr style="border-style: none" />
                 <hr style="border-style: none;  margin-top: 2.6em" />
@@ -148,13 +137,11 @@
                 </div>
             </div>
         </div>
-
     </div>
     <div class="col-md-12">
         <div class="panel panel-default" style="margin-left:18px">
             <div class="panel-heading"> Personal Information</div>
             <div class="row">
-
                 <div class="col-sm-4">
                     <label>First Name</label>
                     <input type="text" class="form-control" placeholder="Enter First Name ..." data-ng-model="Emp.FName">
@@ -170,8 +157,6 @@
                     <input type="text" class="form-control" placeholder="Enter Last Name ..." data-ng-model="Emp.LName">
                     <span class="badge badge-danger" data-ng-show="ErrorModel.LName">{{ErrorModel.ErrorMessageLName}}</span>
                 </div>
-
-
             </div>
             <div class="row">
                 <div class="col-sm-4">
@@ -260,7 +245,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-4" style="color:red">
-                    <label>If Both Address Same Than Click Me <input type="checkbox" class="checkbox" id="chkAddressSame" /></label>
+                    <label>If Both Address Same Than Click Me <input type="checkbox" class="checkbox" id="chkAddressSame" data-ng-click="copyAddress()"/></label>
 
                 </div>
             </div>
@@ -322,14 +307,12 @@
             </div>
         </div>
     </div>
-
-
     <div class="col-md-12">
         <div class="col-md-6">
             <div class="box-body">
                 <div class="form-group">
                     <button type="button" class="btn btn-danger" data-ng-click="RegisterStaff()" data-ng-show="IsNewUser==1">Save</button>
-                    <button type="button" class="btn btn-danger" data--ng-show="IsNewUser==0 || IsNewUser==2">Update</button>
+                    <button type="button" class="btn btn-danger" data--ng-show="IsNewUser==0 || IsNewUser==2" data-ng-click="RegisterStaff()">Update</button>
                 </div>
             </div>
         </div>
