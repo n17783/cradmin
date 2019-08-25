@@ -355,6 +355,9 @@
     <Content Include="Scripts\AdminLayout\ValidationTestQuetionController.js" />
     <Content Include="Scripts\AdminLayout\vendor.bundle.addons.js" />
     <Content Include="Scripts\AdminLayout\vendor.bundle.base.js" />
+    <Content Include="Scripts\AssesmentProcess\AssessedCandidatesController.js" />
+    <Content Include="Scripts\AssesmentProcess\AssessmentReportController.js" />
+    <Content Include="Scripts\AssesmentProcess\CandidatesForAssesmentController.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\AdminLayout\adminlte.min.css.map" />
@@ -379,6 +382,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\SkillMatrics\SkillController.js" />
     <Content Include="Scripts\SkillMatrics\SkillCreationController.js" />
+    <Content Include="Scripts\TrainingProcess\CandidatesForTrainingController.js" />
+    <Content Include="Scripts\TrainingProcess\TrainedCandidatesController.js" />
+    <Content Include="Scripts\TrainingProcess\TrainingProcessController.js" />
     <Content Include="Scripts\ValidationProcess\ValidatedCandidatesController.js" />
     <Content Include="Scripts\ValidationProcess\CandidatesForValidationController.js" />
     <Content Include="Scripts\ValidationProcess\ValidationProcessController.js" />

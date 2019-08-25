@@ -66,7 +66,7 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
         url: $scope.domainpath + '/Content/Views/Contractor.html'
     },
      {
-         //name: 'Sub Contractor', 4
+         //name: 'Sub Contractor', 3
          name: $scope.domainpath + '/Content/Views/SubContractor.html',
          url: $scope.domainpath + '/Content/Views/SubContractor.html'
      },
@@ -157,15 +157,50 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
         url: $scope.domainpath + '/Content/Views/ValidationProcess.html'
     },
     {
-        //name: 'Validation Process', 19
+        //name: 'Validation Process', 20
         name: $scope.domainpath + '/Content/Views/SkillMaster.html',
         url: $scope.domainpath + '/Content/Views/SkillMaster.html'
     },
     {
-        //name: 'Validation Process', 19
+        //name: 'Validation Process', 21
         name: $scope.domainpath + '/Content/Views/SkillCreation.html',
         url: $scope.domainpath + '/Content/Views/SkillCreation.html'
-    }];
+    },
+    {
+        //name: 'CandidatesForValidation', 22
+        name: $scope.domainpath + '/Content/Views/ValidatedCandidates.html',
+        url: $scope.domainpath + '/Content/Views/ValidatedCandidates.html'
+    },
+    {
+        //name: 'CandidatesForAssesment', 23
+        name: $scope.domainpath + '/Content/Views/CandidatesForAssesment.html',
+        url: $scope.domainpath + '/Content/Views/CandidatesForAssesment.html'
+    },
+    {
+        //name: 'AssessedCandidates', 24
+        name: $scope.domainpath + '/Content/Views/AssessedCandidates.html',
+        url: $scope.domainpath + '/Content/Views/AssessedCandidates.html'
+    },
+     {
+         //name: 'AssessedCandidates', 25
+         name: $scope.domainpath + '/Content/Views/AssessmentReport.html',
+         url: $scope.domainpath + '/Content/Views/AssessmentReport.html'
+     },
+     {
+         //name: 'AssessedCandidates', 26
+         name: $scope.domainpath + '/Content/Views/CandidatesForTraining.html',
+         url: $scope.domainpath + '/Content/Views/CandidatesForTraining.html'
+     },
+     {
+         //name: 'AssessedCandidates', 27
+         name: $scope.domainpath + '/Content/Views/TrainedCandidates.html',
+         url: $scope.domainpath + '/Content/Views/TrainedCandidates.html'
+     },
+     {
+         //name: 'AssessedCandidates', 28
+         name: $scope.domainpath + '/Content/Views/TrainingProcess.html',
+         url: $scope.domainpath + '/Content/Views/TrainingProcess.html'
+     }];
   
     
     $scope.validateEmail=function (element) {
@@ -208,9 +243,27 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
 
     $scope.LoadUserControls = function (tname) {
         switch (tname) {
+            case "TrainingProcess":
+                $scope.template = $scope.templates[28];
+                break
+            case "TrainedCandidates":
+                $scope.template = $scope.templates[27];
+                break
+            case "CandidatesForTraining":
+                $scope.template = $scope.templates[26];
+                break
+            case "AssessmentReport":
+                $scope.template = $scope.templates[25];
+                break
+            case "AssessedCandidates":
+                $scope.template = $scope.templates[24];
+                break
+            case "CandidatesForAssesment":
+                $scope.template = $scope.templates[23];
+                break
              case "SkillCreationMaster":
                 $scope.template = $scope.templates[21];
-        break
+            break
             case "SkillMaster":
                 $scope.template = $scope.templates[20];
                 break
