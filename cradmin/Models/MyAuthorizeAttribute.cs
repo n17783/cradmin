@@ -66,8 +66,14 @@ namespace cradmin.Models
                     if (string.IsNullOrEmpty(authtoken))
                     {
                         filterContext.HttpContext.Response.Cookies.Clear();
-                        var redirectTarget = new System.Web.Routing.RouteValueDictionary(new { action = "Index", controller = "Home", area = "" });
-                        filterContext.Result = new RedirectToRouteResult(redirectTarget);
+                        //var redirectTarget = new System.Web.Routing.RouteValueDictionary(new { action = "Index", controller = "Home", area = "" });
+                        Error error = new Error();
+                        error.Status = 2;
+                        filterContext.Result = new JsonResult
+                        {
+                            Data = error,
+                            JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                        };
                     }
                     else if (ValidateAuthToken(authtoken))
                     {

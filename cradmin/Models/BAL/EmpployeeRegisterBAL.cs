@@ -133,6 +133,7 @@ namespace cradmin.Models.BAL
             lst.Add(new SqlParameter() { ParameterName = "@TradeId", Value = model.EmpDetails.TradeId });
             lst.Add(new SqlParameter() { ParameterName = "@AdhaarImage", Value = model.EmpDetails.AdhaarImage });
             lst.Add(new SqlParameter() { ParameterName = "@IsDMorStaff", Value = model.EmpDetails.IsDMorStaff });
+            lst.Add(new SqlParameter() { ParameterName = "@ProjectTypeId", Value = model.EmpDetails.ProjectTypeId });
             DataTable dtEmployee = objHelper.GetDataTable("Register_Employee", lst);
             response.EmpDetails = new EmployeeDetails();
             response.EmpDetails.PkId = Convert.ToInt32(dtEmployee.Rows[0]["PkId"]);
@@ -156,7 +157,7 @@ namespace cradmin.Models.BAL
                                 DOB = Convert.ToDateTime(tbl.GetField("DOB")),
                                 EmpPhoto = Convert.ToString(tbl.GetField("EmpPhoto")),
                                 FName = Convert.ToString(tbl.GetField("FName")),
-                                Gender = Convert.ToBoolean(tbl.GetField("Gender")),
+                                Gender = Convert.ToInt32(tbl.GetField("Gender"))==0?false:true,
                                 LName = Convert.ToString(tbl.GetField("LName")),
                                 MName = Convert.ToString(tbl.GetField("MName")),
                                 PanNo = Convert.ToString(tbl.GetField("PanNo")),
