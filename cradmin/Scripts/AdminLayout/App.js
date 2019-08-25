@@ -197,6 +197,7 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
 
         }
     }
+
     $scope.Phone = function (no) {
         var no1 = true;
         
