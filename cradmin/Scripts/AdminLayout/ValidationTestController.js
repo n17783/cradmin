@@ -106,9 +106,10 @@
     $scope.init = function () {
         setCookie("Token", $('#hdnToken').val());
         checkToken();
+        $scope.GetTestDetails();
         $scope.AddNew = false;
         $scope.Details = true;
-        $scope.GetTestDetails();
+        
 
     }
     

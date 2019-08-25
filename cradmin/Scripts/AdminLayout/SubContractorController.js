@@ -507,8 +507,9 @@
         checkToken();
         
         $scope.SubContractorModel.PageSize = $("#ddlPageSize").val();
-        GetMasterDataList();
         $scope.GetsubcontractorList();
+        GetMasterDataList();
+       
     }
 
     $scope.init();

@@ -309,8 +309,8 @@
 
     }
     //Edit
-
-    $scope.GetTradeTrackingList = function () {
+    
+        $scope.GetTradeTrackingList=function () {
         $scope.TradeTrackingModel.PageSize = parseInt($scope.TradeTrackingModel.PageSize);
         var model = $scope.TradeTrackingModel;
         console.log(model);
@@ -354,7 +354,7 @@
     $scope.Next = function () {
         if ($scope.TradeTrackingModel.PageNo < $scope.TotalPages) {
             $scope.TradeTrackingModel.PageNo++;
-            $scope.GetTradeTrackingList();
+           $scope.GetTradeTrackingList();
         }
         if ($scope.TradeTrackingModel.PageNo == $scope.TotalPages) {
             $scope.next = true;
@@ -451,8 +451,9 @@
         checkToken();
 
         $scope.MainTradeTrackList.PageSize = $("#ddlPageSize").val();
+         $scope.GetTradeTrackingList();
         GetMasterDataList();
-        $scope.GetTradeTrackingList();
+       
     }
 
     $scope.init();

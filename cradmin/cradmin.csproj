@@ -173,6 +173,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\MultiSkilling\SkillController.cs" />
+    <Compile Include="Controllers\MultiSkilling\SkillCreationController.cs" />
     <Compile Include="Controllers\SubContractorController.cs" />
     <Compile Include="Controllers\UserRollMappingControllers.cs" />
     <Compile Include="Controllers\Validation Process\CandidatesForValidationController.cs" />
@@ -209,6 +211,8 @@
     <Compile Include="Models\BAL\PlantTradeTrackingCR.cs" />
     <Compile Include="Models\BAL\ProjectTypeCR.cs" />
     <Compile Include="Models\BAL\RoleCR.cs" />
+    <Compile Include="Models\BAL\SkillCreationCR.cs" />
+    <Compile Include="Models\BAL\SkillMatricsCR.cs" />
     <Compile Include="Models\BAL\SubContractorCR.cs" />
     <Compile Include="Models\BAL\TradeCategoryCR.cs" />
     <Compile Include="Models\BAL\TradeTypeCR.cs" />
@@ -264,6 +268,8 @@
     <Content Include="Content\Views\Plant.html" />
     <Content Include="Content\Views\PlantTradeTracking.html" />
     <Content Include="Content\Views\RollFormMapping.html" />
+    <Content Include="Content\Views\SkillCreation.html" />
+    <Content Include="Content\Views\SkillMaster.html" />
     <Content Include="Content\Views\SubContractor.html" />
     <Content Include="Content\Views\UserRoleMapping.html" />
     <Content Include="Content\Views\ValidatedCandidates.html" />
@@ -334,6 +340,7 @@
     <Content Include="Scripts\AdminLayout\RoleController.js" />
     <Content Include="Scripts\AdminLayout\RollFormMappingController.js" />
     <Content Include="Scripts\AdminLayout\ShowCustomAlert.js" />
+    <Content Include="Scripts\AdminLayout\SkillControllerController.js" />
     <Content Include="Scripts\AdminLayout\SubContractorController.js" />
     <Content Include="Scripts\AdminLayout\TradeController.js" />
     <Content Include="Scripts\AdminLayout\ValidationAgencyController.js" />
@@ -363,6 +370,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\SkillMatrics\SkillController.js" />
+    <Content Include="Scripts\SkillMatrics\SkillCreationController.js" />
     <Content Include="Scripts\ValidationProcess\ValidatedCandidatesController.js" />
     <Content Include="Scripts\ValidationProcess\CandidatesForValidationController.js" />
     <Content Include="Scripts\ValidationProcess\ValidationProcessController.js" />
@@ -429,6 +438,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\CaptureEmployee\" />
+    <Folder Include="Views\SkillCreation\" />
+    <Folder Include="Views\Skill\" />
     <Folder Include="Views\SubContractor\" />
     <Folder Include="Views\ValidationTestQuetion\" />
     <Folder Include="Views\ValidationTest\" />
