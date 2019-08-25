@@ -340,8 +340,9 @@
         checkToken();
         $("#ddlPageSize").val(5);
         $scope.FormToRollModel.PageSize = $("#ddlPageSize").val();
-        GetMasterDataList();
         $scope.GetFormToRollList();
+        GetMasterDataList();
+       
     }
 
     $scope.init();

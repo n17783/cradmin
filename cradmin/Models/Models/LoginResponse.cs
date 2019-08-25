@@ -176,6 +176,15 @@ namespace cradmin.Models.Models
         public string Category { get; set; }
 
     }
+    public class SkillType : Error
+    {
+        public int SkillId { get; set; }
+        public string SkillTitle { get; set; }
+        public int EmpTypeId { get; set; }
+        public string EmpDesignation { get; set; }
+        public int SkillCreationId { get; set; }
+    }
+
 
     public class ValidationAgency : Error
     {

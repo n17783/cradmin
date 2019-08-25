@@ -155,6 +155,16 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
         //name: 'Validation Process', 19
         name: $scope.domainpath + '/Content/Views/ValidationProcess.html',
         url: $scope.domainpath + '/Content/Views/ValidationProcess.html'
+    },
+    {
+        //name: 'Validation Process', 19
+        name: $scope.domainpath + '/Content/Views/SkillMaster.html',
+        url: $scope.domainpath + '/Content/Views/SkillMaster.html'
+    },
+    {
+        //name: 'Validation Process', 19
+        name: $scope.domainpath + '/Content/Views/SkillCreation.html',
+        url: $scope.domainpath + '/Content/Views/SkillCreation.html'
     }];
   
     
@@ -187,6 +197,7 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
 
         }
     }
+
     $scope.Phone = function (no) {
         var no1 = true;
         
@@ -197,7 +208,12 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
 
     $scope.LoadUserControls = function (tname) {
         switch (tname) {
-          
+             case "SkillCreationMaster":
+                $scope.template = $scope.templates[21];
+        break
+            case "SkillMaster":
+                $scope.template = $scope.templates[20];
+                break
                      
             case "ValidationProcess":
                 $scope.template = $scope.templates[19];

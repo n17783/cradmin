@@ -374,10 +374,9 @@
     $scope.init = function () {
         setCookie("Token", $('#hdnToken').val());
         checkToken();
-
         $scope.MainQuetionList.PageSize = $("#ddlPageSize").val();
-        GetMasterDataList();
         $scope.GetQuetionList();
+         GetMasterDataList();
     }
 
     $scope.init();
