@@ -1,0 +1,369 @@
+﻿
+
+<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="AssessmentReportController">
+    <style>
+        td {
+    padding: 5px;
+}
+        .content {
+    font-size: 16px;
+}
+        table {
+    width: 100%;
+}
+        .glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+         .content-wrapper {
+        min-height: 100%;
+        background-color: #ecf0f5;
+        z-index: 800;
+    }
+    </style>
+   
+    <div class="col-md-12" id="AssessmentReport" data-ng-show="AssessmentReport">
+        <section class="col-md-12 content-header">
+            <h1>
+                Assessment Report
+                <small>CR Asia Training &amp; Validation Center</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="https://sefnow.com/crasiasdc1//home"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active"> Assessment Report</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+
+        <section class="col-md-12 content">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+
+
+                </div>
+
+                <div class="col-md-12 box-body" id="AssessmentReportPDFDownload">
+                    <div class="col-md-12 row">
+                        <div class="col-md-12">
+                            <div style="border-top-color: #3c8dbc;" >
+                                <h2 style="text-align:center;padding:15px;font-weight:bold;color:#d20202;"><u>{{AssessmentReportDetailsList.ApplicationID}} - Assessment Report</u> </h2>
+                                <div class="col-md-12" style="min-width:100%;min-height:200px;">
+                                    <div class="col-md-12" style="padding:15px;margin:15px;">
+                                        <table style="width:100%;">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="border:1px solid #ccc;">
+                                                        <table style="width: 100%;">
+                                                            <tbody>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;height:30px;"><span style="font-weight:bold;">Application ID :</span><span style=""><br> {{AssessmentReportDetailsList.ApplicationID}} </span></td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;height:30px;"><span style="font-weight:bold;">Full Name :</span><span style=""><br>{{AssessmentReportDetailsList.Name}} </span></td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;height:30px;"><span style="font-weight:bold;">Job Title :</span><span style=""><br> {{AssessmentReportDetailsList.JobTitle}} </span></td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;height:30px;"><span style="font-weight:bold;">Mobile No :</span><span style=""><br> {{AssessmentReportDetailsList.MobileNo}}; </span></td></tr>
+                                                                <tr><td><span style="font-weight:bold;">Contractor :</span><span style=""><br> {{AssessmentReportDetailsList.Contractor}} </span></td></tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                    <td style="border:1px solid #ccc;">
+                                                        <table style="width: 100%;">
+                                                            <tbody>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;height:30px;"><span style="font-weight:bold;">Assessment ID :</span><span style=""><br> {{AssessmentReportDetailsList.AssessmentID}} </span></td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;height:30px;"><span style="font-weight:bold;">Assessment Date :</span><span style=""><br> {{AssessmentReportDetailsList.AssessmentDate}} </span></td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;height:30px;"><span style="font-weight:bold;">Trade Name :</span><span style=""><br> {{AssessmentReportDetailsList.TradeName}} </span></td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;height:30px;"><span style="font-weight:bold;">Emergency Contact No :</span><span style=""><br>{{AssessmentReportDetailsList.EmergencyContactNo}}; </span></td></tr>
+                                                                <tr><td><span style="font-weight:bold;">Aadhar No :</span><span style=""><br> {{AssessmentReportDetailsList.Adhar}} </span></td></tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                    <td style="border:1px solid #ccc;">
+                                                        <table style="width: 100%;">
+                                                            <tbody>
+                                                                <tr rowspan="3"><td style="border-bottom: 1px solid #ccc;text-align:center; "><img src="https://sefnow.com/crasiasdc1/uploads/candidate_photos/CRAC-2018062867_Photo.png" style="width:150px;height:120px;"></td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;height:30px;"><span style="font-weight:bold;">Date Of Birth :</span><span style=""><br> {{AssessmentReportDetailsList.DOB}} </span></td></tr>
+                                                                <tr><td><span style="font-weight:bold;height:30px;">Test Location :</span><span style=""><br> {{AssessmentReportDetailsList.TestLocation}} </span></td></tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="border:1px solid #ccc;">
+                                                        <table style="width: 100%;">
+                                                            <tbody>
+                                                                <tr><td style="height:50px;"><span style="font-weight:bold;">Permanent Address :</span><span style=""> {{AssessmentReportDetailsList.PermanentAddress}}<br><br> <b>City: </b>{{AssessmentReportDetailsList.City}}<br> <b>State: </b>{{AssessmentReportDetailsList.State}}<br> <b>Pincode: </b>{{AssessmentReportDetailsList.Pincode}}</span></td></tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <table style="width: 100%;">
+                                                            <tbody>
+                                                                <tr><td>&nbsp;</td></tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="border:1px solid #ccc;">
+                                                        <table style="width: 100%;">
+                                                            <tbody>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;height:20px;"><span style="font-weight:bold;">Sr No :</span></td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;">1</td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;">2</td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;">3</td></tr>
+                                                                <tr><td style="">&nbsp;</td></tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                    <td style="border:1px solid #ccc;">
+                                                        <table style="width: 100%;">
+                                                            <tbody>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;height:20px;"><span style="font-weight:bold;">Description :</span></td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;"><span>VERBAL AND BEHAVIOR :</span></td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;"><span>WRITTEN :</span></td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;"><span>PRACTICAL :</span></td></tr>
+                                                                <tr><td style=""><span style="font-weight:bold;"> Total :</span></td></tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                    <td style="border:1px solid #ccc;">
+                                                        <table style="width: 100%;">
+                                                            <tbody>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;height:20px;"><span style="font-weight:bold;">Marks Allowcated :</span></td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;"><span>{{AssessmentReportDetailsList.VOTotalMarks}}</span></td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;"><span>{{AssessmentReportDetailsList.VWTotalMarks}}</span></td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;"><span>{{AssessmentReportDetailsList.VPTotalMarks}}</span></td></tr>
+                                                                <tr><td style=""><span>&nbsp;</span></td></tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                    <td style="border:1px solid #ccc;">
+                                                        <table style="width: 100%;">
+                                                            <tbody>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;height:20px;"><span style="font-weight:bold;">Marks Obtained :</span></td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;"><span>{{AssessmentReportDetailsList.VOObtainMarks}}</span></td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;"><span>{{AssessmentReportDetailsList.VWObtainMarks}}</span></td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;"><span>{{AssessmentReportDetailsList.VPObtainMarks}}</span></td></tr>
+                                                                <tr><td style=""><span>{{AssessmentReportDetailsList.SumMarks}}</span></td></tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                    <td style="border:1px solid #ccc;">
+                                                        <table style="width: 100%;">
+                                                            <tbody>
+                                                                <tr><td style=""><span class="glyphicon glyphicon-qrcode"></span></td></tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <table style="width: 100%;">
+                                                            <tbody>
+                                                                <tr><td>&nbsp;</td></tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="border:1px solid #ccc;">
+                                                        <table style="width: 100%;">
+                                                            <tbody>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;height:20px;text-align:center;font-weight:bold;;"><span style="font-weight:bold;">Total Marks</span></td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;text-align:center;font-weight:bold;">{{AssessmentReportDetailsList.SumMarks}}</td></tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                    <td style="border:1px solid #ccc;">
+                                                        <table style="width: 100%;">
+                                                            <tbody>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;height:20px;text-align:center;font-weight:bold;"><span style="font-weight:bold;">Grade</span></td></tr>
+                                                                <tr><td style="border-bottom: 1px solid #ccc;text-align:center;font-weight:bold;"><span>Excellent </span></td></tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+
+
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <h2 style="text-align:center;">Assessment Remarks</h2>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon" style="padding:0px 12px;">
+                                        <label class="">1 </label>
+                                        <span class="glyphicon glyphicon-list-alt"></span>
+                                    </div>
+                                    <input type="text" name="comment_1" id="comment1" readonly="" value="Candidate is good, both theroretically and practically. Can work independently." autocomplete="off" class="form-control pull-right">
+                                    <div class="input-group-addon" style="padding:0px 12px;">
+                                        <label style="font-weight: normal;">
+                                           
+                                                <input type="radio" name="comment_checked" id="comment_1" value="comment_1" class="flat-red comments" style="position: absolute; margin-left: -8px; margin-top: 2px;">
+                                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
+                                            
+                                            <span style="margin:0px 10px 0px 10px;"> Yes </span>
+                                        </label>
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon" style="padding:0px 12px;">
+                                        <label class="">2 </label>
+                                        <span class="glyphicon glyphicon-list-alt"></span>
+                                    </div>
+                                    <input type="text" name="comment_2" id="comment2" readonly="" value="Lack adequate theoretical knowledge, but can perform the taks independently." autocomplete="off" class="form-control pull-right">
+                                    <div class="input-group-addon" style="padding:0px 12px;">
+                                        <label style="font-weight: normal;">
+                                            
+                                            <input type="radio" name="comment_checked" id="comment_2" value="comment_2" class="flat-red comments" style="position: absolute; margin-left: -8px; margin-top: 2px;">
+                                                <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;">
+                                                </ins>
+                                           
+                                             <span style="margin:0px 10px 0px 10px;"> Yes </span>
+                                       
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon" style="padding:0px 12px;">
+                                        <label class="">3 </label>
+                                        <span class="glyphicon glyphicon-list-alt"></span>
+                                    </div>
+                                    <input type="text" name="comment_3" id="comment2" readonly="" value="Inadequate theoretical &amp; practical knowledge, Can work in a group only." autocomplete="off" class="form-control pull-right">
+                                    <div class="input-group-addon" style="padding:0px 12px;">
+                                        <label style="font-weight: normal;">
+                                           
+                                                <input type="radio" name="comment_checked" id="comment_3" value="comment_3" class="flat-red comments" style="position: absolute; margin-left: -8px; margin-top: 2px;">
+                                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
+                                        
+                                             <span style="margin:0px 10px 0px 10px;"> Yes </span>
+                                        </label>
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <label class=""><b>Special Remark</b></label>
+                                        <span class="glyphicon glyphicon-list-alt"></span>
+                                    </div>
+                                    <input type="text" name="special_remark" id="special_remark" value="" autocomplete="off" placeholder="Enter special remark" class="form-control pull-right">
+                                </div>
+                                <p class="errorMsg hide" id="error_assComments">Please selector enter assessment remark.</p><p>
+                                </p>
+                            </div>
+                            <input type="hidden" name="publish_asses" id="publish_asses">
+                            <input type="hidden" name="candidate_id" id="candidate_id" value="67">
+                            <button type="submit" data-ng-click="PublishReport(AssessmentReportDetailsList)" class="btn btn-success " style="margin-left:15px;float:right;"><span class="glyphicon glyphicon-ok-sign" style="margin-right: 5px; " ></span>Publish Report</button>
+                           
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    &nbsp;
+                </div>
+            </div>
+
+
+
+        </section>
+        <!-- /.content -->
+    </div>
+
+    <div class="col-md-12" id="AssessmentReportStatus" data-ng-show="!AssessmentReport">
+        <section class="col-md-12 content-header">
+            <h1>
+                Assessment Report Status
+                <small>CR Asia Training &amp; Validation Center</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="https://sefnow.com/crasiasdc1//home"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active"> Assessment Report</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="col-md-12 content">
+            <div class="col-md-12 box box-primary">
+                <div class="box-header with-border">
+
+                </div>
+
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-success">
+                                Assessment report is generated suceesfully for candidate <b style="background-color: #3c8dbc;padding: 5px;">{{AssessmentReportDetailsList.ApplicationID}}</b>
+                                <br>
+                                <p style="margin-top:30px;">
+                                    Assessment Number is :<b style="background-color: #3c8dbc;padding: 5px;">{{AssessmentReportDetailsList.AssessmentID}} </b>
+                                    <a href="#" ng-data-click="savePdfSample()" class="btn btn-primary pull-right">View Report</a>
+                                </p>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                &nbsp;
+            </div>
+        </section>
+
+
+    </div>
+</div>

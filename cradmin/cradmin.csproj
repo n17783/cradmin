@@ -188,8 +188,8 @@
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RollFormMappingController.cs" />
     <Compile Include="Controllers\TradeController.cs" />
+    <Compile Include="Controllers\Validation Process\CandidatesForValidationController.cs" />
     <Compile Include="Controllers\ValidationAgencyController.cs" />
-    <Compile Include="Controllers\ValidationProcess\CandidatesForValidationController.cs" />
     <Compile Include="Controllers\ValidationTestController.cs" />
     <Compile Include="Controllers\ValidationTestQuetionController.cs" />
     <Compile Include="Global.asax.cs">
@@ -256,6 +256,11 @@
     <Content Include="Content\Images\user3-128x128.jpg" />
     <Content Include="Content\Images\user4-128x128.jpg" />
     <Content Include="Content\Images\varmalaloader.gif" />
+    <Content Include="Content\Views\AssessedCandidates.html" />
+    <Content Include="Content\Views\AssessmentReport.html" />
+    <Content Include="Content\Views\AssessmentReportStatus.html" />
+    <Content Include="Content\Views\CandidatesForAssesment.html" />
+    <Content Include="Content\Views\CandidatesForTraining.html" />
     <Content Include="Content\Views\CandidatesForValidation.html" />
     <Content Include="Content\Views\CourseMaster.html" />
     <Content Include="Content\Views\Department.html" />
@@ -265,6 +270,8 @@
     <Content Include="Content\Views\PlantTradeTracking.html" />
     <Content Include="Content\Views\RollFormMapping.html" />
     <Content Include="Content\Views\SubContractor.html" />
+    <Content Include="Content\Views\TrainedCandidates.html" />
+    <Content Include="Content\Views\TrainingProcess.html" />
     <Content Include="Content\Views\UserRoleMapping.html" />
     <Content Include="Content\Views\ValidatedCandidates.html" />
     <Content Include="Content\Views\ValidationAgency.html" />

@@ -1,7 +1,5 @@
-﻿/// <reference path="CandidatesForValidation.js" />
-
-
-CRAdminApp.controller("ValidatedCandidatesController", ['$scope', '$http', '$filter', '$rootScope', function ($scope, $http, $filter, $rootScope) {
+﻿
+CRAdminApp.controller("AssessedCandidatesController", ['$scope', '$http', '$filter', '$rootScope', function ($scope, $http, $filter, $rootScope) {
     $scope.urlBase = GetVirtualDirectory();
 
     $scope.TotalRecords = 0;
@@ -9,7 +7,7 @@ CRAdminApp.controller("ValidatedCandidatesController", ['$scope', '$http', '$fil
     $scope.GridContentText = "Loading...";
 
     $scope.CandidatesForValidationModel = {
-        PageNo: 1, PageSize: 10, getCandidates: 'Completed'
+        PageNo: 1, PageSize: 10, getCandidates: 'AssessmentComplete'
     };
 
     $scope.PageSizeList = [5, 10, 15, 20];
@@ -18,14 +16,14 @@ CRAdminApp.controller("ValidatedCandidatesController", ['$scope', '$http', '$fil
     $scope.Prev = function () {
         if ($scope.CandidatesForValidationModel.PageNo > 1) {
             $scope.CandidatesForValidationModel.PageNo--;
-            $scope.GetCandidatesForValidationList();
+            $scope.GetValidationAgencyList();
         }
     }
 
     $scope.Next = function () {
         if ($scope.CandidatesForValidationModel.PageNo < $scope.TotalPages) {
             $scope.CandidatesForValidationModel.PageNo++;
-            $scope.GetCandidatesForValidationList();
+            $scope.GetValidationAgencyList();
         }
     }
 
@@ -61,7 +59,7 @@ CRAdminApp.controller("ValidatedCandidatesController", ['$scope', '$http', '$fil
         debugger;
 
         checkToken();
-        $scope.CandidatesForValidationModel.getCandidates = 'Completed';
+        $scope.CandidatesForValidationModel.getCandidates = 'AssessmentComplete';
        
         $('.modal-backdrop').hide();
         $("#ddlPageSize").val(5);

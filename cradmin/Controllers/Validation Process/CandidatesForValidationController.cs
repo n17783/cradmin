@@ -36,5 +36,21 @@ namespace cradmin.Controllers
             return Json(obj.SaveValidatonProcess(model));
         }
 
+        [HttpPost]
+        public ActionResult GetAssessedReportDetails(ValidationInsertModal model)
+        {
+            return Json(obj.GetAssessedReportDetails(model));
+        }
+
+        [HttpPost]
+        public ActionResult SaveAssessmentResultStatusDetails(AssessmentReportDetailsModel model)
+        {
+            return Json(obj.SaveAssessmentResultStatusDetails(model));
+        }
+
+        public ActionResult GetTrainingProcessDetails(CandidatesForValidationModel model)
+        {
+            return Json(obj.GetTrainingProcessDetails(model));
+        }
     }
 }

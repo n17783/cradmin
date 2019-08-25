@@ -1,0 +1,163 @@
+﻿<style>
+    .content-wrapper {
+        min-height: 100%;
+        background-color: #ecf0f5;
+        z-index: 800;
+    }
+    .errorMsg {
+    color: red;
+}
+
+</style>
+<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="TrainingProcessController">
+    <div class="col-md-12">
+        <section class="content-header">
+
+            <h1>
+                Training Process
+                <small>CR Asia Training &amp; Validation Center</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="https://sefnow.com/crasiasdc1//home"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active"> Candidate Training Process</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <!-- SELECT2 EXAMPLE -->
+            <div class="box box-primary">
+                <!-- /.box-header -->
+               
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" style="border-bottom:1px solid #ccc;margin-bottom:0px;">
+                                    <div class="input-group" style="padding:10px;font-size:120%;">
+                                        <label class="">Name <span class="glyphicon glyphicon-user"></span> : </label>
+                                        <label style="margin-left:15px;">{{TrainingProcessDetailsResponse.Name}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="border-bottom:1px solid #ccc;margin-bottom:0px;">
+                                    <div class="input-group" style="padding:10px;font-size:120%;">
+                                        <label class="">Registration No. <span class="glyphicon glyphicon-user"></span> : </label>
+                                        <label style="margin-left:15px;">{{TrainingProcessDetailsResponse.RegistrationNo}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" style="margin-bottom:0px;">
+                                    <div class="input-group" style="padding:10px;font-size:120%;">
+                                        &nbsp;
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon" style="padding:10px;font-size:120%;">
+                                            <label class="">Trainee Registration No.  : </label>
+                                            <span class="glyphicon glyphicon-user"></span>
+                                        </div>
+                                        <input type="text" readonly="" name="T_R_No" value="{{TrainingProcessDetailsResponse.TraineeRegistrationNo}}" class="form-control marks-label" style="padding:10px;font-size:120%;height:45px;width: 200px;font-weight: bold;">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row testDetails" id="testDetails">
+                            <div class="col-md-12">
+                                <div class="alert" style="text-align:center;padding:10px;  border-bottom: 1px solid #ccc;" id="testType">
+                                    <u><h4><span></span> Details of Training</h4></u>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">1.</div>
+                                        <input type="text" readonly="" name="tname[]" id="SI_name" value="Safety Induction" class="form-control question">
+                                        <div class="input-group-addon"> Date <span class="glyphicon"></span> :</div>
+                                        <input type="text" readonly="" id="SI_date" name="tdate[]" class="form-control dtcontrol" value="{{TrainingProcessDetailsResponse.ExmSInductionDate}}" data-date-end-date="0d">
+                                        <div class="input-group-addon">Marks <span class="glyphicon "></span> :</div>
+                                        <input type="text" id="SI_marks" ng-keypress="filterNumericValue($event)" maxlength="2" name="tmark[]" value="{{TrainingProcessDetailsResponse.ExmSInductionMarks}}" class="form-control">
+                                        <div class="input-group-addon">Result <span class="glyphicon glyphicon-question-sign"></span></div>
+                                        <select class="form-control" id="SI_result" name="tresult[]">
+                                            <option value="">select result</option>
+                                            <option value="2">Failed</option>
+                                            <option value="1">Pass</option>
+
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">2.</div>
+                                        <input type="text" readonly="" id="CS_name" name="tname[]" value="Confined Space" class="form-control question">
+                                        <div class="input-group-addon"> Date <span class="glyphicon"></span> :</div>
+                                        <input type="text" readonly="" id="CS_date" name="tdate[]" class="form-control dtcontrol" value="{{TrainingProcessDetailsResponse.ExmCSpaceDate}}" data-date-end-date="0d">
+                                        <div class="input-group-addon">Marks <span class="glyphicon "></span> :</div>
+                                        <input type="text" id="CS_marks" ng-keypress="filterNumericValue($event)" maxlength="2" name="tmark[]" value="{{TrainingProcessDetailsResponse.ExmCSpaceMarks}}" class="form-control">
+                                        <div class="input-group-addon">Result <span class="glyphicon glyphicon-question-sign"></span></div>
+                                        <select class="form-control" id="CS_result" name="tresult[]">
+                                            <option value="">select result</option>
+                                            <option value="2">Failed</option>
+                                            <option value="1">Pass</option>
+
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">3.</div>
+                                        <input type="text" readonly="" id="WH_name" name="tname[]" value="Work at Height" class="form-control question">
+                                        <div class="input-group-addon"> Date <span class="glyphicon"></span> :</div>
+                                        <input type="text" readonly="" id="WH_date" name="tdate[]" class="form-control dtcontrol" value="{{TrainingProcessDetailsResponse.ExmWAtHightDate}}" data-date-end-date="0d">
+                                        <div class="input-group-addon">Marks <span class="glyphicon "></span> :</div>
+                                        <input type="text" id="WH_marks" ng-keypress="filterNumericValue($event)" maxlength="2" name="tmark[]" value="{{TrainingProcessDetailsResponse.ExmWAtHightMarks}}" class="form-control">
+                                        <div class="input-group-addon">Result <span class="glyphicon glyphicon-question-sign"></span></div>
+                                        <select class="form-control" id="WH_result" name="tresult[]">
+                                            <option value="">select result</option>
+                                            <option value="2">Failed</option>
+                                            <option value="1">Pass</option>
+
+                                        </select>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-12 ">
+
+                                <div class="form-group">
+                                    <div class="input-group pull-right">
+
+                                        <input type="hidden" name="alltpdone" id="alltpdone">
+                                        <input type="hidden" name="addtp">
+                                        <button type="submit" class="btn btn-success btn-md"><span class="glyphicon glyphicon-cloud-upload"></span> SAVE TRAINIG PROCESS</button>
+                                    </div>
+                                    <p class="errorMsg hide" id="err_record">Please enter at least one record.</p><p>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+
+
+
+                       
+                        <!-- /.row -->
+                    </div>
+                    
+                
+            </div>
+            <!-- /.box -->
+
+
+
+        </section>
+        <!-- /.content -->
+    </div>
+</div>

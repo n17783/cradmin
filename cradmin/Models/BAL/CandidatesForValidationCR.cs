@@ -58,5 +58,55 @@ namespace cradmin.Models.BAL
             var retList = dt.Rows[0]["Result"].ToString();
             return retList;
         }
+
+        public List<AssessmentReportDetailsModel> GetAssessedReportDetails(ValidationInsertModal model)
+        {
+            List<SqlParameter> lst = new List<SqlParameter>();
+
+            SettingsHelper objHelper = SettingsHelper.Instance;
+
+            lst.Add(new SqlParameter() { ParameterName = "@EmpValidationId", Value = model.EmpValidationId });
+        
+
+            DataTable dt = objHelper.GetDataTable("GetAssessedReportDetails", lst);
+
+            var retList = dt.ToList<AssessmentReportDetailsModel>();
+            return retList;
+        }
+
+        public string SaveAssessmentResultStatusDetails(AssessmentReportDetailsModel model)
+        {
+            List<SqlParameter> lst = new List<SqlParameter>();
+
+            SettingsHelper objHelper = SettingsHelper.Instance;
+
+           
+            lst.Add(new SqlParameter() { ParameterName = "@EmpValidationId", Value = model.EmpValidationId });
+            lst.Add(new SqlParameter() { ParameterName = "@LoginEmployeeId", Value = 0 });
+            lst.Add(new SqlParameter() { ParameterName = "@VAssRemarkOne", Value = model.RemartkOne });
+            lst.Add(new SqlParameter() { ParameterName = "@VAssRemarkTow", Value = model.RemartkTwo });
+            lst.Add(new SqlParameter() { ParameterName = "@VAssessmentNo", Value = model.AssessmentID });
+
+
+            DataTable dt = objHelper.GetDataTable("SaveAssessmentReportDetails", lst);
+
+            var retList = dt.Rows[0]["Result"].ToString();
+            return retList;
+        }
+
+        public List<TrainingProcessDetailsModel> GetTrainingProcessDetails(CandidatesForValidationModel model)
+        {
+            List<SqlParameter> lst = new List<SqlParameter>();
+
+            SettingsHelper objHelper = SettingsHelper.Instance;
+
+            lst.Add(new SqlParameter() { ParameterName = "@EmpDetailsId", Value = model.EmpDetailsId });
+
+
+            DataTable dt = objHelper.GetDataTable("GetTrainingProcessDetails", lst);
+
+            var retList = dt.ToList<TrainingProcessDetailsModel>();
+            return retList;
+        }
     }
 }

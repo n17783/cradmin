@@ -1,7 +1,5 @@
-﻿/// <reference path="CandidatesForValidation.js" />
-
-
-CRAdminApp.controller("ValidatedCandidatesController", ['$scope', '$http', '$filter', '$rootScope', function ($scope, $http, $filter, $rootScope) {
+﻿
+CRAdminApp.controller("CandidatesForAssessmentController", ['$scope', '$http', '$filter', '$rootScope', function ($scope, $http, $filter, $rootScope) {
     $scope.urlBase = GetVirtualDirectory();
 
     $scope.TotalRecords = 0;
@@ -9,7 +7,7 @@ CRAdminApp.controller("ValidatedCandidatesController", ['$scope', '$http', '$fil
     $scope.GridContentText = "Loading...";
 
     $scope.CandidatesForValidationModel = {
-        PageNo: 1, PageSize: 10, getCandidates: 'Completed'
+        PageNo: 1, PageSize: 10, getCandidates: 'AssessmentReport'
     };
 
     $scope.PageSizeList = [5, 10, 15, 20];
@@ -39,6 +37,7 @@ CRAdminApp.controller("ValidatedCandidatesController", ['$scope', '$http', '$fil
             HideLoader();
             $scope.CandidatesForValidationList = response.data;
             debugger;
+           
             if (response.data.length > 0) {
                 $scope.TotalRecords = response.data[0].TotalRecords;
                 $scope.TotalPages = parseInt($scope.TotalRecords / $scope.CandidatesForValidationModel.PageSize);
@@ -56,12 +55,17 @@ CRAdminApp.controller("ValidatedCandidatesController", ['$scope', '$http', '$fil
         });
     }
 
+    $scope.AssessReport = function (obj) {
+        debugger;              
+            SelectedValidaterModel = obj;            
+            $scope.LoadUserControls('AssessmentReport');       
+}
 
     $scope.init = function () {
         debugger;
 
         checkToken();
-        $scope.CandidatesForValidationModel.getCandidates = 'Completed';
+        $scope.CandidatesForValidationModel.getCandidates = 'AssessmentReport';
        
         $('.modal-backdrop').hide();
         $("#ddlPageSize").val(5);

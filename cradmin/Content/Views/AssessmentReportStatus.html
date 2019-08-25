@@ -1,0 +1,81 @@
+﻿
+
+<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="AssessmentReportStatusController">
+
+    <style>
+        td {
+            padding: 5px;
+        }
+
+        .content {
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        .glyphicon {
+            position: relative;
+            top: 1px;
+            display: inline-block;
+            font-family: 'Glyphicons Halflings';
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .content-wrapper {
+            min-height: 100%;
+            background-color: #ecf0f5;
+            z-index: 800;
+        }
+    </style>
+<!-- Content Header (Page header) -->
+    <div class="col-md-12  hide" id="AssessmentReportStatus">
+        <section class="col-md-12 content-header">
+            <h1>
+                Assessment Report Status
+                <small>CR Asia Training &amp; Validation Center</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="https://sefnow.com/crasiasdc1//home"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active"> Assessment Report</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="col-md-12 content">
+            <div class="col-md-12 box box-primary">
+                <div class="box-header with-border">
+
+                </div>
+
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-success">
+                                Assessment report is generated suceesfully for candidate <b style="background-color: #3c8dbc;padding: 5px;">{{$scope.AssessmentID}}</b>
+                                <br>
+                                <p style="margin-top:30px;">
+                                    Assessment Number is :<b style="background-color: #3c8dbc;padding: 5px;">CRAC-2018062615-ASMNT </b>
+                                    <a href="https://sefnow.com/crasiasdc1/assesment/viewassesReport/15" class="btn btn-primary pull-right">View Report</a>
+                                </p>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                &nbsp;
+            </div>
+        </section>
+
+
+    </div>
+    </div>

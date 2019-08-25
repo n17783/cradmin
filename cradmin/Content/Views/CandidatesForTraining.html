@@ -1,20 +1,21 @@
-﻿<style>
+﻿<!--CandidatesForValidationController-->
+<style>
     .content-wrapper {
         min-height: 100%;
         background-color: #ecf0f5;
         z-index: 800;
     }
 </style>
-<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="ValidatedCandidatesController">
+<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="CandidatesForTrainingController">
     <div class="col-md-12">
         <section class="col-md-12 content-header">
             <h1>
-                Validated Candidates
+                Candidates for Training
                 <small>CR Asia Training &amp; Validation Center</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="https://sefnow.com/crasiasdc1//home"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active"> Candidates for validation</li>
+                <li class="active"> Candidates for Assessment</li>
             </ol>
         </section>
         <section class="col-md-12 content">
@@ -26,19 +27,18 @@
                                 <tr>
                                     <th>Sr. No.</th>
                                     <th>PRN</th>
-                                    <th>Adhar</th>
+                                    <th>Adhar No</th>
+                                    <th>Trainee Reg No</th>
                                     <th>Name</th>
                                     <th>Photo</th>
                                     <th>Trade Category</th>
                                     <th>Trade Name</th>
                                     <th>Project Type</th>
-                                    <th>Result</th>
-                                    <th>Validation Date</th>
+                                    <th>Validation Agency</th>
+                                    <th>Training</th>
                                 </tr>
                             </thead>
-
-
-                            <tbody ng-switch="CandidatesForValidationList.length">
+                            <tbody ng-switch="TotalRecords">
                                 <tr ng-switch-when="0">
                                     <td colspan="11" style="text-align:center"><b>{{GridContentText}}</b></td>
                                 </tr>
@@ -46,6 +46,7 @@
                                     <td>{{ValidationAgency.SrNo}}</td>
                                     <td>{{ValidationAgency.PRN}}</td>
                                     <td>{{ValidationAgency.Adhar}}</td>
+                                    <td>{{ValidationAgency.TraineeRegNo}}</td>
                                     <td>{{ValidationAgency.Name}}</td>
                                     <td>
                                         <img src="{{ValidationAgency.PhotoURL}}" style="width:80px; height:60px;" />
@@ -54,22 +55,14 @@
 
                                     <td>{{ValidationAgency.TradeName}}</td>
                                     <td>{{ValidationAgency.ProjectTypeName}}</td>
-
+                                    <td>{{ValidationAgency.ValidationAgency}}</td>
                                     <td>
-                                        <div ng-switch="ValidationAgency.TestResult">
-                                            <div ng-switch-when="1">
-                                                <button class="{{'btn btn-sm btn-success'}}"><i class="{{'fa fa-check-square'}}"></i>{{' Passed'}}</button>
-                                            </div>
-                                            <div ng-switch-when="0">
-                                                <button class="{{'btn btn-sm btn-danger'}}"><i class="{{'fa fa-check-square'}}"></i>{{' Failed'}}</button>
-                                            </div>
-
+                                        <div>
+                                            <button data-ng-click="TrainingProcess(ValidationAgency)" class="{{'btn btn-sm btn-warning'}}"><i class="{{'fa fa-pencil-square-o'}}"></i>{{' Add Training Data'}}</button>
                                         </div>
                                     </td>
-                                    <td>{{ValidationAgency.ValidationDate}}</td>
                                 </tr>
                             </tbody>
-
                         </table>
                         <div class="col-md-12">
                             <div class="col-md-2">
@@ -89,8 +82,10 @@
                         </div>
 
                     </div>
+                    <div class="col-md-2"></div>
                 </div>
             </div>
+
         </section>
     </div>
-    </div>
+</div>

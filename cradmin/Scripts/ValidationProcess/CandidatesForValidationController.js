@@ -18,14 +18,14 @@ CRAdminApp.controller("CandidatesForValidationController", ['$scope', '$http', '
     $scope.Prev = function () {
         if ($scope.CandidatesForValidationModel.PageNo > 1) {
             $scope.CandidatesForValidationModel.PageNo--;
-            $scope.GetValidationAgencyList();
+            $scope.GetCandidatesForValidationList();
         }
     }
 
     $scope.Next = function () {
         if ($scope.CandidatesForValidationModel.PageNo < $scope.TotalPages) {
             $scope.CandidatesForValidationModel.PageNo++;
-            $scope.GetValidationAgencyList();
+            $scope.GetCandidatesForValidationList();
         }
     }
 

@@ -5,11 +5,11 @@
         z-index: 800;
     }
 </style>
-<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="ValidatedCandidatesController">
+<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="AssessedCandidatesController">
     <div class="col-md-12">
         <section class="col-md-12 content-header">
             <h1>
-                Validated Candidates
+                Assessed Candidates
                 <small>CR Asia Training &amp; Validation Center</small>
             </h1>
             <ol class="breadcrumb">
@@ -28,12 +28,10 @@
                                     <th>PRN</th>
                                     <th>Adhar</th>
                                     <th>Name</th>
-                                    <th>Photo</th>
-                                    <th>Trade Category</th>
-                                    <th>Trade Name</th>
-                                    <th>Project Type</th>
-                                    <th>Result</th>
-                                    <th>Validation Date</th>
+                                    <th>Assessment Number</th>
+                                    <th>Assessment Date</th>
+                                    <th>Validation Agency</th>
+                                    <th>Assessment</th>                                   
                                 </tr>
                             </thead>
 
@@ -47,26 +45,17 @@
                                     <td>{{ValidationAgency.PRN}}</td>
                                     <td>{{ValidationAgency.Adhar}}</td>
                                     <td>{{ValidationAgency.Name}}</td>
-                                    <td>
-                                        <img src="{{ValidationAgency.PhotoURL}}" style="width:80px; height:60px;" />
+                                   
+                                    <td>{{ValidationAgency.AssessmentNo}}</td>
+
+                                    <td>{{ValidationAgency.AssessmentDate}}</td>
+                                    <td>{{ValidationAgency.ValidationAgency}}</td>
+
+                                    <td>                                        
+                                        <a class="btn btn-sm btn-success" href="https://sefnow.com/crasiasdc1/assesment/viewassesReport/136"><i class="fa  fa-eye"></i> View Report</a>
+                                            
                                     </td>
-                                    <td>{{ValidationAgency.TradeCategory}}</td>
-
-                                    <td>{{ValidationAgency.TradeName}}</td>
-                                    <td>{{ValidationAgency.ProjectTypeName}}</td>
-
-                                    <td>
-                                        <div ng-switch="ValidationAgency.TestResult">
-                                            <div ng-switch-when="1">
-                                                <button class="{{'btn btn-sm btn-success'}}"><i class="{{'fa fa-check-square'}}"></i>{{' Passed'}}</button>
-                                            </div>
-                                            <div ng-switch-when="0">
-                                                <button class="{{'btn btn-sm btn-danger'}}"><i class="{{'fa fa-check-square'}}"></i>{{' Failed'}}</button>
-                                            </div>
-
-                                        </div>
-                                    </td>
-                                    <td>{{ValidationAgency.ValidationDate}}</td>
+                                    
                                 </tr>
                             </tbody>
 
@@ -93,4 +82,4 @@
             </div>
         </section>
     </div>
-    </div>
+</div>
