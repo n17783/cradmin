@@ -200,6 +200,11 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
          //name: 'AssessedCandidates', 28
          name: $scope.domainpath + '/Content/Views/TrainingProcess.html',
          url: $scope.domainpath + '/Content/Views/TrainingProcess.html'
+     },
+     {
+         //name: 'AssessedCandidates', 29
+         name: $scope.domainpath + '/Content/Views/UserRoleMapping.html',
+         url: $scope.domainpath + '/Content/Views/UserRoleMapping.html'
      }];
   
     
@@ -243,6 +248,9 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
 
     $scope.LoadUserControls = function (tname) {
         switch (tname) {
+            case "UserRollMapping":
+                $scope.template = $scope.templates[29];
+                break
             case "TrainingProcess":
                 $scope.template = $scope.templates[28];
                 break
@@ -267,7 +275,6 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
             case "SkillMaster":
                 $scope.template = $scope.templates[20];
                 break
-                     
             case "ValidationProcess":
                 $scope.template = $scope.templates[19];
                 break

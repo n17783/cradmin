@@ -24,7 +24,13 @@ namespace cradmin.Models.Models
             CountryList = new List<CountryMaster>();
             DeptList = new List<DeptNames>();
             ProjectTypeList = new List<ProjectType>();
+            RoleList = new List<RollModel>();
+            StaffList = new List<Staff>();
         }
+
+        public List<RollModel> RoleList { get; set; }
+
+        public List<Staff> StaffList { get; set; }
 
         public List<CityMaster> CityList { get; set; }
 

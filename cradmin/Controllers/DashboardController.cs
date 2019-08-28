@@ -45,6 +45,36 @@ namespace cradmin.Controllers
 
         [MyAuthorize]
         [HttpPost]
+        public ActionResult Get_UserRoles()
+        {
+            MasterDataResponse response = new MasterDataResponse();
+            response.RoleList = objEmp.Get_UserRoles();
+            response.Status = 1;
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
+
+        [MyAuthorize]
+        [HttpPost]
+        public ActionResult Get_StaffDetails(Staff model)
+        {
+            MasterDataResponse response = new MasterDataResponse();
+            response.StaffList = objEmp.Get_StaffDetails(model);
+            response.Status = 1;
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
+
+        [MyAuthorize]
+        [HttpPost]
+        public ActionResult Assign_Role(Staff model)
+        {
+            MasterDataResponse response = new MasterDataResponse();
+            objEmp.Assign_Role(model);
+            response.Status = 1;
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
+
+        [MyAuthorize]
+        [HttpPost]
         public ActionResult GetMasterDataforRegister()
         {
             return Json(objEmp.GetMasterData(), JsonRequestBehavior.AllowGet);

@@ -1,7 +1,7 @@
-﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="UserRollMapping">
+﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="UserRollMappingController">
     <div class="col-md-12"><h3 class="header">Staff Role Mapping</h3></div>
     
-    <div class="col-md-12" data-ng-show="Details">
+    <div class="col-md-12">
         <div class="col-md-12">
             <div class="col-md-0"></div>
             <div class="col-md-11">
@@ -11,15 +11,17 @@
                             <th>Employee Name</th>
                             <th>Designation</th>
                             <th>Contact No</th>
+                            <th>Adhaar No</th>
                             <th>Assign Role</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr data-ng-repeat="urole in UserList">
-                            <td>{{urole.ContractorId}}</td>
-                            <td>{{urole.ContractorName}}</td>
-                            <td>{{urole.ContractorCompanyName}}</td>
-                            <td><span class="glyphicon glyphicon-edit"></span></td>
+                            <td>{{urole.UserId}}</td>
+                            <td>{{urole.FName}}&nbsp;{{urole.LName}}</td>
+                            <td>{{urole.AadharNo}}</td>
+                            <td>{{urole.ContactNo}}</td>
+                            <td><span class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#myModal" data-ng-click="SetUser(urole)"></span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -45,5 +47,24 @@
 
         </div>
 
+    </div>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Assign Role</h4>
+                </div>
+                <div class="modal-body">
+                    <select class="form-control" id="ddlRole"></select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" data-ng-click="AssignRole()">Assign Role</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>

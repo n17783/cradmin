@@ -35,7 +35,33 @@ namespace cradmin.Models.Models
 
     }
 
+    public class Staff : Error
+    {
+        public int RowNum { get; set; }
 
+        public int UserId { get; set; }
+
+        public string FName { get; set; }
+
+        public string MName { get; set; }
+
+        public string LName { get; set; }
+
+        public string AadharNo { get; set; }
+
+        public bool IsExit { get; set; }
+
+        public int PkId { get; set; }
+
+        public int EmpDetailsId { get; set; }
+
+        public bool IsDMorStaff { get; set; }
+
+        public int RollId { get; set; }
+
+        public string ContactNo { get; set; }
+
+    }
 
     public class Employee
     {

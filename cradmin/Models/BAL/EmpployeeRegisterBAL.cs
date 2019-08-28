@@ -10,6 +10,30 @@ namespace cradmin.Models.BAL
 {
     public class EmpployeeRegisterBAL
     {
+        public List<Staff> Get_StaffDetails(Staff model)
+        {
+            List<SqlParameter> lst = new List<SqlParameter>();
+            lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = model.PageNo });
+            lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = model.PageSize });
+
+            DataTable dt = objHelper.GetDataTable("Get_StaffDetails", lst);
+            return dt.ToList<Staff>();
+        }
+
+        public List<RollModel> Get_UserRoles()
+        {
+            DataTable dtRollList = objHelper.GetDataTable("GetRoleListForFormAssign");
+            return dtRollList.ToList<RollModel>();
+        }
+
+        public void Assign_Role(Staff model)
+        {
+            List<SqlParameter> lst = new List<SqlParameter>();
+            lst.Add(new SqlParameter() { ParameterName = "@UserId", Value = model.UserId });
+            lst.Add(new SqlParameter() { ParameterName = "@RollId", Value = model.RollId });
+            objHelper.GetDataTable("Assign_Role",lst);
+        }
+
         SettingsHelper objHelper = SettingsHelper.Instance;
         public MasterDataResponse GetMasterData()
         {
@@ -81,6 +105,7 @@ namespace cradmin.Models.BAL
             return response;
         }
 
+
         internal MasterDataResponse RegisterEmployee(MasterDataResponse model)
         {
             MasterDataResponse response = new MasterDataResponse();
@@ -134,6 +159,7 @@ namespace cradmin.Models.BAL
             lst.Add(new SqlParameter() { ParameterName = "@AdhaarImage", Value = model.EmpDetails.AdhaarImage });
             lst.Add(new SqlParameter() { ParameterName = "@IsDMorStaff", Value = model.EmpDetails.IsDMorStaff });
             lst.Add(new SqlParameter() { ParameterName = "@ProjectTypeId", Value = model.EmpDetails.ProjectTypeId });
+            lst.Add(new SqlParameter() { ParameterName = "@DeptId", Value = model.EmpDetails.DeptId });
             DataTable dtEmployee = objHelper.GetDataTable("Register_Employee", lst);
             response.EmpDetails = new EmployeeDetails();
             response.EmpDetails.PkId = Convert.ToInt32(dtEmployee.Rows[0]["PkId"]);
@@ -141,6 +167,7 @@ namespace cradmin.Models.BAL
             return response;
         }
 
+        
         public MasterDataResponse CheckUserExist(Employee model)
         {
             MasterDataResponse response = new MasterDataResponse();
