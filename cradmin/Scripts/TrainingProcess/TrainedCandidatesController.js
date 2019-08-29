@@ -7,7 +7,7 @@ CRAdminApp.controller("TrainedCandidatesController", ['$scope', '$http', '$filte
     $scope.GridContentText = "Loading...";
 
     $scope.CandidatesForValidationModel = {
-        PageNo: 1, PageSize: 10, getCandidates: 'AssessmentComplete'
+        PageNo: 1, PageSize: 10, getCandidates: 'TrainedCandidates'
     };
 
     $scope.PageSizeList = [5, 10, 15, 20];
@@ -16,14 +16,14 @@ CRAdminApp.controller("TrainedCandidatesController", ['$scope', '$http', '$filte
     $scope.Prev = function () {
         if ($scope.CandidatesForValidationModel.PageNo > 1) {
             $scope.CandidatesForValidationModel.PageNo--;
-            $scope.GetValidationAgencyList();
+            $scope.GetCandidatesForValidationList();
         }
     }
 
     $scope.Next = function () {
         if ($scope.CandidatesForValidationModel.PageNo < $scope.TotalPages) {
             $scope.CandidatesForValidationModel.PageNo++;
-            $scope.GetValidationAgencyList();
+            $scope.GetCandidatesForValidationList();
         }
     }
 
@@ -37,6 +37,7 @@ CRAdminApp.controller("TrainedCandidatesController", ['$scope', '$http', '$filte
             HideLoader();
             $scope.CandidatesForValidationList = response.data;
             debugger;
+
             if (response.data.length > 0) {
                 $scope.TotalRecords = response.data[0].TotalRecords;
                 $scope.TotalPages = parseInt($scope.TotalRecords / $scope.CandidatesForValidationModel.PageSize);
@@ -54,12 +55,18 @@ CRAdminApp.controller("TrainedCandidatesController", ['$scope', '$http', '$filte
         });
     }
 
+    $scope.CompletedTrainingProcess = function (obj) {
+        debugger;
+        SelectedValidaterModel = obj;
+        SelectedValidaterModel.PageType = 'TrainedCandidates';
+        $scope.LoadUserControls('TrainingProcess');
+    }
 
     $scope.init = function () {
         debugger;
 
         checkToken();
-        $scope.CandidatesForValidationModel.getCandidates = 'AssessmentComplete';
+        $scope.CandidatesForValidationModel.getCandidates = 'TrainedCandidates';
 
         $('.modal-backdrop').hide();
         $("#ddlPageSize").val(5);
@@ -71,5 +78,6 @@ CRAdminApp.controller("TrainedCandidatesController", ['$scope', '$http', '$filte
     }
 
     $scope.init();
+
 
 }]);

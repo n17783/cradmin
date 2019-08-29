@@ -28,6 +28,7 @@ namespace cradmin.Models.Models
         public string AssessmentDate { get; set; }
         public string ValidationAgency { get; set; }
         public string TraineeRegNo { get; set; }
+        public int BTrainingId { get; set; }
     }
 
 
@@ -119,5 +120,7 @@ namespace cradmin.Models.Models
         public string ExmWAtHightMarks { get; set; }
         public string ExmWAtHightPassFail { get; set; }
         public int ExmWAtHightIsDone { get; set; }
+        public int BTrainingId { get; set; }
+        public int BTTekenBy { get; set; }
     }
 }

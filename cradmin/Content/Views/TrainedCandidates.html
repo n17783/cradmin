@@ -9,12 +9,12 @@
     <div class="col-md-12">
         <section class="col-md-12 content-header">
             <h1>
-                Trained Candidates
+                Training process complete candidates
                 <small>CR Asia Training &amp; Validation Center</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="https://sefnow.com/crasiasdc1//home"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active"> Candidates for validation</li>
+                <li class="active"> Training process complete candidates</li>
             </ol>
         </section>
         <section class="col-md-12 content">
@@ -26,39 +26,40 @@
                                 <tr>
                                     <th>Sr. No.</th>
                                     <th>PRN</th>
-                                    <th>Adhar</th>
+                                    <th>Adhar No</th>                                   
                                     <th>Name</th>
-                                    <th>Assessment Number</th>
-                                    <th>Assessment Date</th>
-                                    <th>Validation Agency</th>
-                                    <th>Assessment</th>
+                                    <th>Photo</th>
+                                    <th>Trade Category</th>
+                                    <th>Trade Name</th>
+                                    <th>Project Type</th>
+                                    <th>Trainee Reg No</th>
+                                    <th>Training</th>
                                 </tr>
                             </thead>
-
-
-                            <tbody ng-switch="CandidatesForValidationList.length">
+                            <tbody ng-switch="TotalRecords">
                                 <tr ng-switch-when="0">
                                     <td colspan="11" style="text-align:center"><b>{{GridContentText}}</b></td>
                                 </tr>
                                 <tr ng-switch-default data-ng-repeat="ValidationAgency in CandidatesForValidationList">
                                     <td>{{ValidationAgency.SrNo}}</td>
                                     <td>{{ValidationAgency.PRN}}</td>
-                                    <td>{{ValidationAgency.Adhar}}</td>
+                                    <td>{{ValidationAgency.Adhar}}</td>                                   
                                     <td>{{ValidationAgency.Name}}</td>
-
-                                    <td>{{ValidationAgency.AssessmentNo}}</td>
-
-                                    <td>{{ValidationAgency.AssessmentDate}}</td>
-                                    <td>{{ValidationAgency.ValidationAgency}}</td>
-
                                     <td>
-                                        <a class="btn btn-sm btn-success" href="https://sefnow.com/crasiasdc1/assesment/viewassesReport/136"><i class="fa  fa-eye"></i> View Report</a>
-
+                                        <img src="{{ValidationAgency.PhotoURL}}" style="width:80px; height:60px;" />
                                     </td>
+                                    <td>{{ValidationAgency.TradeCategory}}</td>
 
+                                    <td>{{ValidationAgency.TradeName}}</td>
+                                    <td>{{ValidationAgency.ProjectTypeName}}</td>
+                                    <td>{{ValidationAgency.TraineeRegNo}}</td>
+                                    <td>
+                                        <div>                                            
+                                            <button data-ng-click="CompletedTrainingProcess(ValidationAgency)" class="{{'btn btn-sm btn-primary'}}"><i class="{{'fa  fa-eye'}}"></i>{{' View Training Details'}}</button>                                            
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
-
                         </table>
                         <div class="col-md-12">
                             <div class="col-md-2">
@@ -78,8 +79,10 @@
                         </div>
 
                     </div>
+                    <div class="col-md-2"></div>
                 </div>
             </div>
+
         </section>
     </div>
 </div>

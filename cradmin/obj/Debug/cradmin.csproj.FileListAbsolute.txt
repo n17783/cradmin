@@ -204,9 +204,6 @@ E:\Dot Net Development\CRASIAADMIN\cradmin\cradmin\bin\Microsoft.Owin.Security.T
 E:\Dot Net Development\CRASIAADMIN\cradmin\cradmin\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\Dot Net Development\CRASIAADMIN\cradmin\cradmin\obj\Debug\cradmin.dll
 E:\Dot Net Development\CRASIAADMIN\cradmin\cradmin\obj\Debug\cradmin.pdb
-D:\Pandurang Kumbhar\CRAsia 25_8_19\cradmin\cradmin\obj\Debug\cradmin.dll
-D:\Pandurang Kumbhar\CRAsia 25_8_19\cradmin\cradmin\obj\Debug\cradmin.pdb
-D:\Pandurang Kumbhar\CRAsia 25_8_19\cradmin\cradmin\obj\Debug\cradmin.csprojResolveAssemblyReference.cache
 D:\Pandurang Kumbhar\CRAsia 25_8_19\cradmin\cradmin\bin\roslyn\csc.exe
 D:\Pandurang Kumbhar\CRAsia 25_8_19\cradmin\cradmin\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 D:\Pandurang Kumbhar\CRAsia 25_8_19\cradmin\cradmin\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -273,3 +270,6 @@ D:\Pandurang Kumbhar\CRAsia 25_8_19\cradmin\cradmin\bin\Microsoft.Owin.Security.
 D:\Pandurang Kumbhar\CRAsia 25_8_19\cradmin\cradmin\bin\Microsoft.Owin.Security.Google.xml
 D:\Pandurang Kumbhar\CRAsia 25_8_19\cradmin\cradmin\bin\Microsoft.Owin.Security.Twitter.xml
 D:\Pandurang Kumbhar\CRAsia 25_8_19\cradmin\cradmin\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Pandurang Kumbhar\CRAsia 25_8_19\cradmin\cradmin\obj\Debug\cradmin.dll
+D:\Pandurang Kumbhar\CRAsia 25_8_19\cradmin\cradmin\obj\Debug\cradmin.pdb
+D:\Pandurang Kumbhar\CRAsia 25_8_19\cradmin\cradmin\obj\Debug\cradmin.csprojResolveAssemblyReference.cache

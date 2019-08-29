@@ -58,6 +58,7 @@ CRAdminApp.controller("CandidatesForTrainingController", ['$scope', '$http', '$f
     $scope.TrainingProcess = function (obj) {
         debugger;
         SelectedValidaterModel = obj;
+        SelectedValidaterModel.PageType = 'CandidatesForTraining';
         $scope.LoadUserControls('TrainingProcess');
     }
 

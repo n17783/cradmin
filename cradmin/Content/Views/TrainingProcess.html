@@ -16,10 +16,11 @@
             <h1>
                 Training Process
                 <small>CR Asia Training &amp; Validation Center</small>
+
             </h1>
             <ol class="breadcrumb">
-                <li><a href="https://sefnow.com/crasiasdc1//home"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active"> Candidate Training Process</li>
+                <li><button data-ng-click="onBackPage()" class="{{'btn btn-sm btn-success'}}"><i class="{{'fa  fa-eye'}}"></i>{{'  Back'}}</button></li>
+               
             </ol>
         </section>
         <!-- Main content -->
@@ -76,11 +77,11 @@
                                         <div class="input-group-addon"> Date <span class="glyphicon"></span> :</div>
                                         <input type="text" readonly="" id="SI_date" name="tdate[]" class="form-control dtcontrol" value="{{TrainingProcessDetailsResponse.ExmSInductionDate}}" data-date-end-date="0d">
                                         <div class="input-group-addon">Marks <span class="glyphicon "></span> :</div>
-                                        <input type="text" id="SI_marks" ng-keypress="filterNumericValue($event)" maxlength="2" name="tmark[]" value="{{TrainingProcessDetailsResponse.ExmSInductionMarks}}" class="form-control">
+                                        <input type="text" id="SI_marks" ng-keypress="filterNumericValue($event)" maxlength="2" name="tmark[]" value="{{TrainingProcessDetailsResponse.ExmSInductionMarks}}" class="form-control dtcontrol">
                                         <div class="input-group-addon">Result <span class="glyphicon glyphicon-question-sign"></span></div>
-                                        <select class="form-control" id="SI_result" name="tresult[]">
+                                        <select class="form-control dtcontrol" id="SI_result" name="tresult[]">
                                             <option value="">select result</option>
-                                            <option value="2">Failed</option>
+                                            <option value="0">Failed</option>
                                             <option value="1">Pass</option>
 
                                         </select>
@@ -94,11 +95,11 @@
                                         <div class="input-group-addon"> Date <span class="glyphicon"></span> :</div>
                                         <input type="text" readonly="" id="CS_date" name="tdate[]" class="form-control dtcontrol" value="{{TrainingProcessDetailsResponse.ExmCSpaceDate}}" data-date-end-date="0d">
                                         <div class="input-group-addon">Marks <span class="glyphicon "></span> :</div>
-                                        <input type="text" id="CS_marks" ng-keypress="filterNumericValue($event)" maxlength="2" name="tmark[]" value="{{TrainingProcessDetailsResponse.ExmCSpaceMarks}}" class="form-control">
+                                        <input type="text" id="CS_marks" ng-keypress="filterNumericValue($event)" maxlength="2" name="tmark[]" value="{{TrainingProcessDetailsResponse.ExmCSpaceMarks}}" class="form-control dtcontrol">
                                         <div class="input-group-addon">Result <span class="glyphicon glyphicon-question-sign"></span></div>
-                                        <select class="form-control" id="CS_result" name="tresult[]">
+                                        <select class="form-control dtcontrol" id="CS_result" name="tresult[]">
                                             <option value="">select result</option>
-                                            <option value="2">Failed</option>
+                                            <option value="0">Failed</option>
                                             <option value="1">Pass</option>
 
                                         </select>
@@ -112,11 +113,11 @@
                                         <div class="input-group-addon"> Date <span class="glyphicon"></span> :</div>
                                         <input type="text" readonly="" id="WH_date" name="tdate[]" class="form-control dtcontrol" value="{{TrainingProcessDetailsResponse.ExmWAtHightDate}}" data-date-end-date="0d">
                                         <div class="input-group-addon">Marks <span class="glyphicon "></span> :</div>
-                                        <input type="text" id="WH_marks" ng-keypress="filterNumericValue($event)" maxlength="2" name="tmark[]" value="{{TrainingProcessDetailsResponse.ExmWAtHightMarks}}" class="form-control">
+                                        <input type="text" id="WH_marks" ng-keypress="filterNumericValue($event)" maxlength="2" name="tmark[]" value="{{TrainingProcessDetailsResponse.ExmWAtHightMarks}}" class="form-control dtcontrol">
                                         <div class="input-group-addon">Result <span class="glyphicon glyphicon-question-sign"></span></div>
-                                        <select class="form-control" id="WH_result" name="tresult[]">
+                                        <select class="form-control dtcontrol" id="WH_result" name="tresult[]">
                                             <option value="">select result</option>
-                                            <option value="2">Failed</option>
+                                            <option value="0">Failed</option>
                                             <option value="1">Pass</option>
 
                                         </select>
@@ -134,7 +135,7 @@
 
                                         <input type="hidden" name="alltpdone" id="alltpdone">
                                         <input type="hidden" name="addtp">
-                                        <button type="submit" class="btn btn-success btn-md"><span class="glyphicon glyphicon-cloud-upload"></span> SAVE TRAINIG PROCESS</button>
+                                        <button type="submit" class="btn btn-success btn-md btnTrainingProcessSave" data-ng-click="TrainingProcessSave()"><span class="glyphicon glyphicon-cloud-upload"></span> SAVE TRAINIG PROCESS</button>
                                     </div>
                                     <p class="errorMsg hide" id="err_record">Please enter at least one record.</p><p>
                                     </p>
@@ -144,15 +145,11 @@
                             <!-- /.col -->
                         </div>
                         <!-- /.row -->
-
-
-
-                       
                         <!-- /.row -->
                     </div>
-                    
-                
-            </div>
+
+
+                </div>
             <!-- /.box -->
 
 

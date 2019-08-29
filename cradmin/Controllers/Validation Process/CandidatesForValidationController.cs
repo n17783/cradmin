@@ -52,5 +52,10 @@ namespace cradmin.Controllers
         {
             return Json(obj.GetTrainingProcessDetails(model));
         }
+
+        public ActionResult SaveTrainingProcessDetails(TrainingProcessDetailsModel model)
+        {
+            return Json(obj.SaveTrainingProcessDetails(model));
+        }
     }
 }
