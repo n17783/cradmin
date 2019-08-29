@@ -1,10 +1,10 @@
 ﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="TradeController">
-    <div class="col-md-12"><h3 class="header">Trade</h3></div>
+    <div class="col-md-12"><h3 class="header">Designation/Trade</h3></div>
     <div class="col-md-12" data-ng-show="AddNew">
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <div class="form-group">
-                <label>Trade Type Description</label>
+                <label>Enter Designation/Trade</label>
                 <input type="text" class="form-control" placeholder="Trade Type Description ..." data-ng-model="TradeTypModel.TradDescription">
                 <span class="badge badge-danger" data-ng-show="ErrorModel.TradDescription">{{ErrorModel.ErrorSelectTradDescription}}</span>
 
@@ -34,7 +34,7 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Trade Name</th>
+                            <th>Designation/Trade</th>
                             <th>Trade Catagory Name</th>
 
                         </tr>

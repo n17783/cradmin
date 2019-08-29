@@ -24,7 +24,29 @@
         $scope.Details = true;
         $scope.EmployeeTypeModel = { PageNo: 1, PageSize: $("#ddlPageSize").val(), EmpTypeId: 0, EmpDesignation: "", IsDmOrStaff: null, EmpGrade: "", Category: "" };
     }
-
+    $scope.GetTradeList = function () {
+        ShowLoader();
+        $http({
+            method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Token", getToken());
+            },
+            url: $scope.urlBase + '/Trade/GetTradeType',
+            data: $scope.EmployeeTypeModel,
+        }).then(function (response) {
+            HideLoader();
+            $scope.TradeList = response.data;
+            $scope.TradeList.splice(0, 0, { TradeId: 0, TradDescription: "---Select Employee Designation ---" });
+            var html = "";
+            angular.forEach($scope.TradeList, function (value, key) {
+                html += "<option value='" + value.TradeId + "'>" + value.TradDescription + "</option>"
+            });
+            $("#ddltrade").html(html);
+        }, function (error) {
+            HideLoader();
+            console.log(error);
+        });
+    }
     $scope.PageSizeList = [5, 10, 15, 20];
     $scope.EmpTypeList = [];
 
@@ -42,7 +64,7 @@
         else {
             $scope.EmployeeTypeModel.IsDmOrStaff = false;
         }
-
+        $scope.EmployeeTypeModel.EmpDesignation = $("#ddltrade").val();
 
         ShowLoader();
         $http({
@@ -130,9 +152,9 @@
         var valid = true;
 
 
-        if ($scope.EmployeeTypeModel.EmpDesignation == "") {
+        if ($("#ddltrade").val() <=0) {
             $scope.ErrorModel.EmpDesignation = true;
-            $scope.ErrorModel.ErrorSelectEmpDesignation = "Please Enter New Designation.";
+            $scope.ErrorModel.ErrorSelectEmpDesignation = "Please Select Designation.";
             valid = false;
         }
         else {
@@ -174,9 +196,9 @@
     }
 
     $scope.ErrorModel = {
-        DeptZoneDescription: false, ErrorSelectDeptZone: "", DeptZoneAddress: false, ErrorSelectDeptZoneDeptZoneAddress: "", ContactNo: false, ErrorSelectDeptZoneContactNo: "",
-        ContactNo2: false, ErrorSelectDeptZoneContactNo2: "", EmailId: false, ErrorSelectDeptZoneEmail: "",
-        CreatedBy: false, ErrorSelectCreated: ""
+        EmpDesignation: false, ErrorSelectEmpDesignation: "", EmpGrade: false, ErrorSelectEmpGrade: "", Category: false, ErrorSelectCategory:""
+        
+       
     };
     $scope.init = function () {
         setCookie("Token", $('#hdnToken').val());
@@ -185,6 +207,7 @@
         $scope.EmployeeTypeModel.PageSize = $("#ddlPageSize").val();
         $scope.AddNew = false;
         $scope.Details = true;
+        $scope.GetTradeList();
         $scope.GetEmpTypeList();
 
     }

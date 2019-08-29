@@ -39,10 +39,10 @@ namespace cradmin.Models.BAL
         {
             MasterDataResponse response = new MasterDataResponse();
             List<SqlParameter> lst = new List<SqlParameter>();
-            lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
-            lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
+            //lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
+            //lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
 
-            DataTable dt = objHelper.GetDataTable("Get_TradeList", lst);
+            //DataTable dt = objHelper.GetDataTable("Get_TradeList", lst);
             lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
             lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
@@ -95,7 +95,7 @@ namespace cradmin.Models.BAL
             response.StateList = dtStateList.ToList<StateMaster>();
             response.CountryList = dtCountryList.ToList<CountryMaster>();
             response.ZoneList = dtzone.ToList<DeptZoneMaster>();
-            response.TradeList = dt.ToList<TradeType>();
+           // response.TradeList = dt.ToList<TradeType>();
             response.ValidationAgencyList = dtValidattionAgency.ToList<ValidationAgency>();
             response.EmployeeTypeList = dtEmployeeTypeList.ToList<EmployeeType>();
             response.SubContractorList = dtSubContractorList.ToList<SubContractor>();
@@ -155,7 +155,7 @@ namespace cradmin.Models.BAL
             lst.Add(new SqlParameter() { ParameterName = "@EnteryDate", Value = model.EmpDetails.EnteryDate });
             lst.Add(new SqlParameter() { ParameterName = "@ValidationAgencyId", Value = model.EmpDetails.ValidationAgencyId });
             lst.Add(new SqlParameter() { ParameterName = "@IsAlreadyValidated", Value = model.EmpDetails.IsAlreadyValidated });
-            lst.Add(new SqlParameter() { ParameterName = "@TradeId", Value = model.EmpDetails.TradeId });
+           // lst.Add(new SqlParameter() { ParameterName = "@TradeId", Value = model.EmpDetails.TradeId });
             lst.Add(new SqlParameter() { ParameterName = "@AdhaarImage", Value = model.EmpDetails.AdhaarImage });
             lst.Add(new SqlParameter() { ParameterName = "@IsDMorStaff", Value = model.EmpDetails.IsDMorStaff });
             lst.Add(new SqlParameter() { ParameterName = "@ProjectTypeId", Value = model.EmpDetails.ProjectTypeId });
@@ -226,7 +226,7 @@ namespace cradmin.Models.BAL
                                 TTalukaId = Convert.ToString(tbl.GetField("TTalukaId")),
                                 TVillageId = Convert.ToString(tbl.GetField("TVillageId")),
                                 ValidationAgencyId = Convert.ToInt32(tbl.GetField("ValidationAgencyId")),
-                                TradeId = Convert.ToInt32(tbl.GetField("TradeId")),
+                                //TradeId = Convert.ToInt32(tbl.GetField("TradeId")),
                                 IsAlreadyValidated = Convert.ToBoolean(tbl.GetField("IsAlreadyValidated")),
                                 IsDMorStaff = Convert.ToBoolean(tbl.GetField("IsDMorStaff")),
                                 DeptId = Convert.ToInt32(tbl.GetField("DeptId")),

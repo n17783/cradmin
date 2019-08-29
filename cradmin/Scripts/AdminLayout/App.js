@@ -222,6 +222,11 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
         if (aadhar.length > 11) {
             $event.preventDefault();
         }
+         if(no.length<11)
+        {
+           return valid=false
+
+        }
     }
     $scope.NumericPhone = function ($event, no) {
         var valid = true;
@@ -245,6 +250,17 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
             return no1 = false;
         }
     }
+    $scope.aadhar = function (no) {
+        var no1 = true;
+
+        if (no.toString().length < 11 || isNaN(no)) {
+            return no1 = false;
+        }
+    }
+    
+
+
+
 
     $scope.LoadUserControls = function (tname) {
         switch (tname) {

@@ -20,15 +20,7 @@ function baseUrl() {
     return pathname;
 }
 
-//function validateEmail(element)
-//{
-//    var isvalid = true;
-//    var reg = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-//    if (reg.test($(element).val()) == false) {
-//        isvalid= false;
-//    }
-//    return isvalid;
-//}
+
 
 function checkToken()
 {
@@ -96,7 +88,7 @@ function getCookie(cname) {
             return c.substring(name.length, c.length);
         }
     }
-    return "";
+    return $('#hdnToken').val();
 }
 
 

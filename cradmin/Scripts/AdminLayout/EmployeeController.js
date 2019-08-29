@@ -1,7 +1,7 @@
 ﻿CRAdminApp.controller("EmployeeController", ['$scope', '$http', '$filter', '$rootScope', function ($scope, $http, $filter, $rootScope) {
     $scope.urlBase = GetVirtualDirectory();
     $scope.ZoneList = [];
-    $scope.TradeList = [];
+   // $scope.TradeList = [];
     $scope.ValidationAgencyList = [];
     $scope.EmployeeTypeList = [];
     $scope.ContractorList = [];
@@ -18,7 +18,7 @@
         IdProofImage: "", PHouseNo: "", PVillageId: "", PDisticId: 0, PTalukaId: "", PStateId: 0,
         PCountryId: 0, PPincodeId: "", THouseNo: "", TVillageId: "", TDisticId: 0, TTalukaId: "",
         TStateId: 0, TCountryId: "", TPincode: "", ReJoineOrNewJoin: 0, DeptZoneId: 0, ValidationAgencyId: 0,
-        IsAlreadyValidated: 0, TradeId: 0, AdhaarImage: "", IsDMorStaff: 0, DeptId: ""
+        IsAlreadyValidated: 0,  AdhaarImage: "", IsDMorStaff: 0, DeptId: ""
     };
 
     $scope.ErrorModel = {
@@ -31,7 +31,7 @@
         PCountryId: false, ErrorMessagePContryId: "", PPincodeId: false, ErrorMessagePPincodeId: "", TVillageId: false, ErrorMessageTVillageId: "", TDisticId: false,
         ErrorMessageTDisticId: "",
         TStateId: false, ErrorMessageTStateId: "", TCountryId: false, ErrorMessageContryId: "", TPincode: false, ErrorMessageTPincode: "", DeptZoneId: false, ErrorMessageDeptZoneId: "",
-        ValidationAgencyId: false, ErrorMessageValidationAgencyId: "", TradeId: false, ErrorMessageTradeId: "",
+        ValidationAgencyId: false, ErrorMessageValidationAgencyId: "", 
         AdhaarImage: false, ErrorMessageAdhaarImage: "", IsDMorStaff: false, ErrorMessageIsDMorStaff: "", DeptId: false, ErrorMessageDeptId: ""
     };
     $scope.EmpExit = {};
@@ -52,7 +52,7 @@
             HideLoader();
             if (response.data.Status == 1) {
                 $scope.ZoneList = response.data.ZoneList;
-                $scope.TradeList = response.data.TradeList;
+                //$scope.TradeList = response.data.TradeList;
                 $scope.ValidationAgencyList = response.data.ValidationAgencyList;
                 $scope.EmployeeTypeList = response.data.EmployeeTypeList;
                 $scope.ContractorList = response.data.SubContractorList;
@@ -64,7 +64,7 @@
 
                 $scope.CountryList.splice(0, 0, { ContryId: 0, ContryName: "---Select Country---" });
                 $scope.ZoneList.splice(0, 0, { DeptZoneId: 0, DeptZoneDescription: "---Select Zone---" });
-                $scope.TradeList.splice(0, 0, { TradeId: 0, TradDescription: "---Select Category---" });
+               // $scope.TradeList.splice(0, 0, { TradeId: 0, TradDescription: "---Select Category---" });
                 $scope.ValidationAgencyList.splice(0, 0, { ValidationAgencyId: 0, AgencyDescription: "---Select Agency---" });
                 $scope.EmployeeTypeList.splice(0, 0, { EmpTypeId: 0, EmpDesignation: "---Select Employee Type---" });
                 $scope.ContractorList.splice(0, 0, { SubContractorId: 0, SubCName: "---Select Contractor---" });
@@ -75,11 +75,11 @@
                     html += "<option value='" + value.DeptZoneId + "'>" + value.DeptZoneDescription + "</option>";
                 });
                 $("#ddlZone").html(html);
-                var html1 = "";
-                angular.forEach($scope.TradeList, function (value, key) {
-                    html1 += "<option value='" + value.TradeId + "'>" + value.TradDescription + "</option>";
-                });
-                $("#ddlTrade").html(html1);
+                //var html1 = "";
+                //angular.forEach($scope.TradeList, function (value, key) {
+                //    html1 += "<option value='" + value.TradeId + "'>" + value.TradDescription + "</option>";
+                //});
+                //$("#ddlTrade").html(html1);
 
                 var html2 = "";
                 angular.forEach($scope.ValidationAgencyList, function (value, key) {
@@ -182,7 +182,8 @@
 
     $scope.Validate = function () {
         var valid = true;
-        if ($scope.Emp.AadharNo.length != 12) {
+        var no1 = this.Phone($scope.Emp.AadharNo);
+        if (no1 == false) {
             $scope.ErrorModel.AadharNo = true;
             $scope.ErrorModel.ErrorMessageAdhaarNo = "Please Enter Valid Aadhar Number.";
             valid = false;
@@ -268,9 +269,9 @@
         isdm = $("#rdoDM").prop("checked");
         var html3 = "";
         var lst = $scope.EmployeeTypeList.filter(emptype => emptype.IsDmOrStaff == isdm);
-        lst.splice(0, 0, { EmpTypeId: 0, EmpDesignation: "---Select Emp Type---" });
+        lst.splice(0, 0, { EmpTypeId: 0, TradDescription: "---Select Designation/Trade ---" });
         lst.map((etype) => {
-            html3 += '<option value="' + etype.EmpTypeId + '">' + etype.EmpDesignation + '</option>';
+            html3 += '<option value="' + etype.EmpTypeId + '">' + etype.TradDescription + '</option>';
         });
         $("#ddlEmpType").html(html3);
     }
@@ -300,7 +301,7 @@
             $scope.EmpDetails.PDisticId = $("#ddlPDistrict").val();
             $scope.EmpDetails.DeptZoneId = $("#ddlZone").val();
             $scope.EmpDetails.ValidationAgencyId = $("#ddlVAgency").val();
-            $scope.EmpDetails.TradeId = $("#ddlTrade").val();
+           // $scope.EmpDetails.TradeId = $("#ddlTrade").val();
             $scope.EmpDetails.IdProofType = $("#ddlIdProofType").val();
             $scope.EmpDetails.EmpTypeId = $("#ddlEmpType").val();
             $scope.EmpDetails.ContractorId = $("#ddlContractor").val();
@@ -349,7 +350,7 @@
         $("#ddlPDistrict").val(0);
         $("#ddlZone").val(0);
         $("#ddlVAgency").val(0);
-        $("#ddlTrade").val(0);
+       // $("#ddlTrade").val(0);
         $("#ddlIdProofType").val(0);
         $("#ddlEmpType").val(0);
         $("#ddlContractor").val(0);
@@ -363,7 +364,7 @@
             IdProofImage: "", PHouseNo: "", PVillageId: "", PDisticId: 0, PTalukaId: "", PStateId: 0,
             PCountryId: 0, PPincodeId: "", THouseNo: "", TVillageId: "", TDisticId: 0, TTalukaId: "",
             TStateId: 0, TCountryId: "", TPincode: "", ReJoineOrNewJoin: 0, DeptZoneId: 0, ValidationAgencyId: 0,
-            IsAlreadyValidated: 0, TradeId: 0, AdhaarImage: "", IsDMorStaff: 0, DeptId: "",ProjectTypeId:0
+            IsAlreadyValidated: 0,  AdhaarImage: "", IsDMorStaff: 0, DeptId: "",ProjectTypeId:0
         };
     }
 
@@ -382,6 +383,8 @@
     }
 
     $scope.CheckAdhaarExist = function () {
+         $("#rdoMale").prop("checked", true);
+        $("#rdoDM").prop("checked", true);
         if ($scope.Emp.AadharNo.length < 12) {
             $scope.ErrorModel.AadharNo = true;
             $scope.ErrorModel.ErrorMessageAdhaarNo = "Please Enter Valid Aadhar Number.";
@@ -455,7 +458,7 @@
                         $("#ddlPDistrict").val($scope.EmpDetails.PDisticId);
                         $("#ddlZone").val($scope.EmpDetails.DeptZoneId);
                         $("#ddlVAgency").val($scope.EmpDetails.ValidationAgencyId);
-                        $("#ddlTrade").val($scope.EmpDetails.TradeId);
+                       // $("#ddlTrade").val($scope.EmpDetails.TradeId);
                         $("#ddlIdProofType").val($scope.EmpDetails.IdProofType);
                         $("#ddlEmpType").val($scope.EmpDetails.EmpTypeId);
                         $("#ddlContractor").val($scope.EmpDetails.ContractorId);
