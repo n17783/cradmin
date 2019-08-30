@@ -62,7 +62,6 @@ namespace cradmin.Models.Models
         public string ContactNo { get; set; }
 
     }
-
     public class Employee
     {
         public int? PkId { get; set; }
@@ -196,11 +195,10 @@ namespace cradmin.Models.Models
     public class EmployeeType : Error
     {
         public int EmpTypeId { get; set; }
-        public int EmpDesignation { get; set; }
+        public string EmpDesignation { get; set; }
         public bool IsDmOrStaff { get; set; }
         public string EmpGrade { get; set; }
         public string Category { get; set; }
-        public string TradDescription { get; set; }
 
     }
     public class SkillType : Error

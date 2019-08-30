@@ -10,39 +10,15 @@ namespace cradmin.Models.BAL
 {
     public class EmpployeeRegisterBAL
     {
-        public List<Staff> Get_StaffDetails(Staff model)
-        {
-            List<SqlParameter> lst = new List<SqlParameter>();
-            lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = model.PageNo });
-            lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = model.PageSize });
-
-            DataTable dt = objHelper.GetDataTable("Get_StaffDetails", lst);
-            return dt.ToList<Staff>();
-        }
-
-        public List<RollModel> Get_UserRoles()
-        {
-            DataTable dtRollList = objHelper.GetDataTable("GetRoleListForFormAssign");
-            return dtRollList.ToList<RollModel>();
-        }
-
-        public void Assign_Role(Staff model)
-        {
-            List<SqlParameter> lst = new List<SqlParameter>();
-            lst.Add(new SqlParameter() { ParameterName = "@UserId", Value = model.UserId });
-            lst.Add(new SqlParameter() { ParameterName = "@RollId", Value = model.RollId });
-            objHelper.GetDataTable("Assign_Role",lst);
-        }
-
         SettingsHelper objHelper = SettingsHelper.Instance;
         public MasterDataResponse GetMasterData()
         {
             MasterDataResponse response = new MasterDataResponse();
             List<SqlParameter> lst = new List<SqlParameter>();
-            //lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
-            //lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
+            lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
+            lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
 
-            //DataTable dt = objHelper.GetDataTable("Get_TradeList", lst);
+            DataTable dt = objHelper.GetDataTable("Get_TradeList", lst);
             lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
             lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
@@ -95,7 +71,7 @@ namespace cradmin.Models.BAL
             response.StateList = dtStateList.ToList<StateMaster>();
             response.CountryList = dtCountryList.ToList<CountryMaster>();
             response.ZoneList = dtzone.ToList<DeptZoneMaster>();
-           // response.TradeList = dt.ToList<TradeType>();
+            response.TradeList = dt.ToList<TradeType>();
             response.ValidationAgencyList = dtValidattionAgency.ToList<ValidationAgency>();
             response.EmployeeTypeList = dtEmployeeTypeList.ToList<EmployeeType>();
             response.SubContractorList = dtSubContractorList.ToList<SubContractor>();
@@ -104,7 +80,6 @@ namespace cradmin.Models.BAL
             response.Status = 1;
             return response;
         }
-
 
         internal MasterDataResponse RegisterEmployee(MasterDataResponse model)
         {
@@ -155,11 +130,9 @@ namespace cradmin.Models.BAL
             lst.Add(new SqlParameter() { ParameterName = "@EnteryDate", Value = model.EmpDetails.EnteryDate });
             lst.Add(new SqlParameter() { ParameterName = "@ValidationAgencyId", Value = model.EmpDetails.ValidationAgencyId });
             lst.Add(new SqlParameter() { ParameterName = "@IsAlreadyValidated", Value = model.EmpDetails.IsAlreadyValidated });
-           // lst.Add(new SqlParameter() { ParameterName = "@TradeId", Value = model.EmpDetails.TradeId });
+            lst.Add(new SqlParameter() { ParameterName = "@TradeId", Value = model.EmpDetails.TradeId });
             lst.Add(new SqlParameter() { ParameterName = "@AdhaarImage", Value = model.EmpDetails.AdhaarImage });
             lst.Add(new SqlParameter() { ParameterName = "@IsDMorStaff", Value = model.EmpDetails.IsDMorStaff });
-            lst.Add(new SqlParameter() { ParameterName = "@ProjectTypeId", Value = model.EmpDetails.ProjectTypeId });
-            lst.Add(new SqlParameter() { ParameterName = "@DeptId", Value = model.EmpDetails.DeptId });
             DataTable dtEmployee = objHelper.GetDataTable("Register_Employee", lst);
             response.EmpDetails = new EmployeeDetails();
             response.EmpDetails.PkId = Convert.ToInt32(dtEmployee.Rows[0]["PkId"]);
@@ -167,7 +140,6 @@ namespace cradmin.Models.BAL
             return response;
         }
 
-        
         public MasterDataResponse CheckUserExist(Employee model)
         {
             MasterDataResponse response = new MasterDataResponse();
@@ -184,7 +156,7 @@ namespace cradmin.Models.BAL
                                 DOB = Convert.ToDateTime(tbl.GetField("DOB")),
                                 EmpPhoto = Convert.ToString(tbl.GetField("EmpPhoto")),
                                 FName = Convert.ToString(tbl.GetField("FName")),
-                                Gender = Convert.ToInt32(tbl.GetField("Gender"))==0?false:true,
+                                Gender = Convert.ToBoolean(tbl.GetField("Gender")),
                                 LName = Convert.ToString(tbl.GetField("LName")),
                                 MName = Convert.ToString(tbl.GetField("MName")),
                                 PanNo = Convert.ToString(tbl.GetField("PanNo")),
@@ -226,7 +198,7 @@ namespace cradmin.Models.BAL
                                 TTalukaId = Convert.ToString(tbl.GetField("TTalukaId")),
                                 TVillageId = Convert.ToString(tbl.GetField("TVillageId")),
                                 ValidationAgencyId = Convert.ToInt32(tbl.GetField("ValidationAgencyId")),
-                                //TradeId = Convert.ToInt32(tbl.GetField("TradeId")),
+                                TradeId = Convert.ToInt32(tbl.GetField("TradeId")),
                                 IsAlreadyValidated = Convert.ToBoolean(tbl.GetField("IsAlreadyValidated")),
                                 IsDMorStaff = Convert.ToBoolean(tbl.GetField("IsDMorStaff")),
                                 DeptId = Convert.ToInt32(tbl.GetField("DeptId")),
@@ -239,6 +211,29 @@ namespace cradmin.Models.BAL
                             }
                         }).FirstOrDefault();
             return response;
+        }
+        public List<Staff> Get_StaffDetails(Staff model)
+        {
+            List<SqlParameter> lst = new List<SqlParameter>();
+            lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = model.PageNo });
+            lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = model.PageSize });
+
+            DataTable dt = objHelper.GetDataTable("Get_StaffDetails", lst);
+            return dt.ToList<Staff>();
+        }
+
+        public List<RollModel> Get_UserRoles()
+        {
+            DataTable dtRollList = objHelper.GetDataTable("GetRoleListForFormAssign");
+            return dtRollList.ToList<RollModel>();
+        }
+
+        public void Assign_Role(Staff model)
+        {
+            List<SqlParameter> lst = new List<SqlParameter>();
+            lst.Add(new SqlParameter() { ParameterName = "@UserId", Value = model.UserId });
+            lst.Add(new SqlParameter() { ParameterName = "@RollId", Value = model.RollId });
+            objHelper.GetDataTable("Assign_Role", lst);
         }
     }
 }

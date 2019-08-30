@@ -205,8 +205,12 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
          //name: 'AssessedCandidates', 29
          name: $scope.domainpath + '/Content/Views/UserRoleMapping.html',
          url: $scope.domainpath + '/Content/Views/UserRoleMapping.html'
+     }, 
+     {
+         //name: 'AssessedCandidates', 29
+         name: $scope.domainpath + '/Content/Views/ValidationEntryForm.html',
+         url: $scope.domainpath + '/Content/Views/ValidationEntryForm.html'
      }];
-  
     
     $scope.validateEmail=function (element) {
         var isvalid = true;
@@ -264,6 +268,9 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
 
     $scope.LoadUserControls = function (tname) {
         switch (tname) {
+            case "ValidationEntryForm":
+                $scope.template = $scope.templates[30];
+        break
             case "UserRollMapping":
                 $scope.template = $scope.templates[29];
                 break
