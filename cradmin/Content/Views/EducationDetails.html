@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+
+</body>
+</html>
+<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="DMJoiningProcessController">
+    <div class="col-md-12"><h3 class="header">Educational Details</h3></div>
+    <div class="col-md-12">
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" placeholder="Search" class="form-control" data-ng-model="Prefix"
+                           data-ng-change="FilterList()" />
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <button type="button" class="btn btn-danger" data-ng-click="FilterList()" data-toggle="tooltip"
+                            title="Search">
+                        Search
+                    </button>
+
+                    <button type="button" class="btn btn-danger" data-ng-click="Reset()" data-toggle="tooltip"
+                            title="Reset">
+                        Reset
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Registration No</th>
+                        <th>Aadhar No</th>
+                        <th>Name</th>
+                        <th>Employee Designation</th>
+                        <th>Save/Update</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="Quetion in MainQuetionList">
+                        <td>{{Quetion.TestQuetionCatagoryId}}</td>
+                        <td>{{Quetion.TestDescription}}</td>
+                        <td>{{Quetion.TestDescription}}</td>
+                        <td>{{Quetion.TradDescription}}</td>
+
+
+                        <td>
+                            <button type="button" class="btn btn-danger" data-ng-click="GotoJoining(Quetion);" data-toggle="tooltip"
+                                    title="Update">
+                                GoTo Joining
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-12" data-ng-show="Details">
+
+        <div class="col-md-12">
+            <div class="panel panel-default" style="margin-left:18px;margin-right:18Px">
+                <div class="panel-heading"><label>Educational Details</label></div>
+
+
+                <hr />
+                <div class="row">
+
+                    <div class="col-sm-4">
+                        <label> Education </label>
+                        <select class="form-control" id="ddlEducation">
+                            <option value="Education">---Select Education --- </option>
+                            <option value="10th">10th</option>
+                            <option value="12th">12th</option>
+                            <option value="BA">BA</option>
+                            <option value="BCom">BCom</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Name Of Institute</label>
+                        <input type="text" class="form-control" placeholder="Name Of Institute ..." data-ng-model="EmpDetails.EmrContactNo">
+                    </div>
+                    <div class="col-sm-4">
+                        <label> Year Of Passing</label>
+                        <select class="form-control" id="ddlyearOfPassing">
+                            <option value="yearOfPassing">---Year Of Passing --- </option>
+                            <option value="2001">2001</option>
+                            <option value="2002">2002</option>
+
+
+
+                        </select>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label>Percentage</label>
+                        <input type="text" class="form-control" placeholder="Percentage"  data-ng-model="EmpDetails.EmrContactNo">
+                    </div>
+
+
+                    <div class="col-sm-4">
+                        <label>Class</label>
+                        <input type="text" class="form-control" ng-disabled="true" data-ng-model="EmpDetails.EmrContactNo">
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label>Remarks</label>
+                        <input type="text" class="form-control"  data-ng-model="EmpDetails.EmrContactNo">
+                    </div>
+
+                </div>
+
+                <hr />
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-danger" data-ng-click="RegisterStaff()">Save</button>
+                                <button type="button" class="btn btn-danger">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

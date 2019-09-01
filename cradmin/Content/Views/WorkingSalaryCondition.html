@@ -1,0 +1,202 @@
+﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="DMJoiningProcessController">
+    <div class="col-md-12"><h3 class="header">Working/Salary Condition</h3></div>
+    <div class="col-md-12">
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" placeholder="Search" class="form-control" data-ng-model="Prefix"
+                           data-ng-change="FilterList()" />
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <button type="button" class="btn btn-danger" data-ng-click="FilterList()" data-toggle="tooltip"
+                            title="Search">
+                        Search
+                    </button>
+
+                    <button type="button" class="btn btn-danger" data-ng-click="Reset()" data-toggle="tooltip"
+                            title="Reset">
+                        Reset
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Registration No</th>
+                        <th>Aadhar No</th>
+                        <th>Name</th>
+                        <th>Employee Designation</th>
+                        <th>Save/Update</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="Quetion in MainQuetionList">
+                        <td>{{Quetion.TestQuetionCatagoryId}}</td>
+                        <td>{{Quetion.TestDescription}}</td>
+                        <td>{{Quetion.TestDescription}}</td>
+                        <td>{{Quetion.TradDescription}}</td>
+
+
+                        <td>
+                            <button type="button" class="btn btn-danger" data-ng-click="GotoJoining(Quetion);" data-toggle="tooltip"
+                                    title="Update">
+                                GoTo Joining
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-12" data-ng-show="Details">
+
+        <div class="col-md-12">
+            <div class="panel panel-default" style="margin-left:18px;margin-right:18Px">
+                <div class="panel-heading"><label>Working Salary Condition</label></div>
+                
+                   
+                <hr />
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label> Working Condition</label>
+                        <select class="form-control" id="ddlWCondition">
+                            <option value="WCondition">---Select Working Condition--- </option>
+                            <option value="8hs">8hs</option>
+                            <option value="10hs">10hs</option>
+                            <option value="12hs">12hs</option>
+
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <label> Leave applicable </label>
+                        <select class="form-control" id="ddlLeave">
+                            <option value="Leave">---Select --- </option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <label> Allowance </label>
+                        <select class="form-control" id="ddlAllowance">
+                            <option value="Allowance">---Select --- </option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+
+
+                        </select>
+                    </div>
+                </div>
+
+                <hr />
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label> HRA</label>
+                        <select class="form-control" id="ddlHRA">
+                            <option value="HRA">---Select--- </option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Accommodation </label>
+                        <select class="form-control" id="ddlSassign">
+                            <option value="Accommodation">---Select --- </option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                            
+
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <label> Salary Negotiated </label>
+                        <input type="text" class="form-control" placeholder="Enter Salary Negotiated ..." data-ng-model="EmpDetails.EmrContactNo">
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label>Are you willing to Travel </label>
+                        <select class="form-control" id="ddlNotice">
+                            <option value="Travle">---Select --- </option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <label> If no, can we recover notice pay </label>
+                        <select class="form-control" id="ddlNoticePay">
+                            <option value="NoticePay">---Select --- </option>
+                            <option value="NoticePayYes">Yes</option>
+                            <option value="NoticePayNo">NO</option>
+
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Salary Negosiated Date </label>
+                        <div class='input-group date' id='dtSalDate'>
+                            <input type="text" class="form-control" placeholder="Select Salary Negosiated Date ..." data-ng-model="EmpDetails.DateOfReport">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-time"></span>
+                            </span>
+                            <!--<span class="badge badge-danger" data-ng-show="ErrorModel.DateOfReport">{{ErrorModel.ErrorMessageDateOfReport}}</span>-->
+                        </div>
+                    </div>
+                <hr />
+
+
+
+            </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label>Reason For Salary/Working Condition Change </label>
+                        <select class="form-control" id="ddlchange">
+                            <option value="Travle">---Select --- </option>
+                            <option value="Apprisal">Apprisal</option>
+                            <option value="Apprisal">Pramotion</option>
+                            <option value="Apprisal">Reward</option>
+                            <option value="New Job Assign">New Job Assign</option>
+                            <option value="Others">Others</option>
+
+                        </select>
+                    </div>
+                   
+                   
+                    
+
+
+
+                </div>
+                <hr />
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-danger" data-ng-click="RegisterStaff()">Save</button>
+                            <button type="button" class="btn btn-danger">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>

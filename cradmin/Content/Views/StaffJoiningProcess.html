@@ -1,0 +1,265 @@
+﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="StaffJoiningProcessController">
+    <div class="col-md-12"><h3 class="header">Staff Joining Process</h3></div>
+    <div class="col-md-12">
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" placeholder="Search" class="form-control" data-ng-model="Prefix"
+                           data-ng-change="FilterList()" />
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <button type="button" class="btn btn-danger" data-ng-click="FilterList()" data-toggle="tooltip"
+                            title="Search">
+                        Search
+                    </button>
+
+                    <button type="button" class="btn btn-danger" data-ng-click="Reset()" data-toggle="tooltip"
+                            title="Reset">
+                        Reset
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Registration No</th>
+                        <th>Aadhar No</th>
+                        <th>Name</th>
+                        <th>Employee Designation</th>
+                        <th>Save/Update</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="Quetion in MainQuetionList">
+                        <td>{{Quetion.TestQuetionCatagoryId}}</td>
+                        <td>{{Quetion.TestDescription}}</td>
+                        <td>{{Quetion.TestDescription}}</td>
+                        <td>{{Quetion.TradDescription}}</td>
+
+
+                        <td>
+                            <button type="button" class="btn btn-danger" data-ng-click="GotoJoining(Quetion);" data-toggle="tooltip"
+                                    title="Update">
+                                GoTo Joining
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-12" data-ng-show="Details">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-4" data-ng-switch="IsNewUser">
+                            <label>Nominee Details Status</label>
+                            <span ng-switch-when="0" style="color:red">Done</span>
+                            <span ng-switch-when="1" style="color:red">Not Done</span>
+
+                        </div>
+                        <div class="col-sm-3" data-ng-switch="IsNewUser">
+                            <label>Bank Account Details Status</label>
+                            <span ng-switch-when="0" style="color:red">Done</span>
+                            <span ng-switch-when="1" style="color:red">Not Done</span>
+
+                        </div>
+                        <div class="col-sm-4" style="margin-left:50px">
+
+                            <div class='input-group date' id='dtStaffJoining'>
+                                <input type="text" class="form-control" placeholder="Enter Date Of Joining ..." data-ng-model="EmpDetails.DateOfReport">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                                <!--<span class="badge badge-danger" data-ng-show="ErrorModel.DateOfReport">{{ErrorModel.ErrorMessageDateOfReport}}</span>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default" style="margin-left:18px;margin-right:18Px">
+                <div class="panel-heading"><label>Joining Process Click For Yes Otherwise No Click </label></div>
+                <hr/>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="height:25px">Are You Willing To Travel</label>
+
+                    </div>
+                    <div class="col-sm-1">
+
+                        <input type="checkbox" class="checkbox" id="chkTravel" style="width:25px;height:25px" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label style="height:25px">Have You Worked Easiles In CR Asia</label>
+
+                    </div>
+                    <div class="col-sm-1">
+                        <input type="checkbox" class="checkbox" id="chkEasily" style="width:25px;height:25px" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label style="height:25px;margin-left:100px">Details</label>
+                        
+                    </div>
+                    <div class="col-sm-4">
+                       
+                        <input type="text" class="form-control" id="txtDetails" />
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <label>Refer By</label>
+                        
+                    </div>
+                    <div class="col-sm-3">
+                       
+                        <input type="text" class="form-control" id="txtReferBy" style="margin-right:100px" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Pre Medical Check-up  </label>
+
+                    </div>
+                    
+                    <div class="col-sm-1">
+
+                        <input type="checkbox" class="checkbox" id="chkMedicalcheck" style="width:25px;height:25px" />
+                    </div>
+                    <div class="col-sm-1">
+                        <label>Comment</label>
+                       
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="txtMedicalComment" />
+                    </div>
+                   
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <label>Hiring Manager</label>
+
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="txtHiring" style="margin-right:100px" />
+                    </div>
+                </div>
+             <hr/>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default" style="margin-left:18px;margin-right:18px">
+                <div class="panel-heading"> Reference Details</div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label>Reference 1</label>
+                        <input type="text" class="form-control" placeholder="Reference 1 ..." data-ng-model="EmpDetails.ContactNo">
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Reference 2</label>
+                        <input type="text" class="form-control" placeholder="Reference 2 ..." data-ng-model="EmpDetails.EmrContactNo">
+                    </div>
+                   
+                </div>
+                <hr />
+            </div>
+
+
+
+            
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default" style="margin-left:18px;margin-right:18px">
+                <div class="panel-heading"> Identification Marks</div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label>Identification Marks 1</label>
+                        <input type="text" class="form-control" placeholder="Identification Marks 1 ..." data-ng-model="EmpDetails.ContactNo">
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Identification Marks 2</label>
+                        <input type="text" class="form-control" placeholder="Identification Marks 2 ..." data-ng-model="EmpDetails.EmrContactNo">
+                    </div>
+
+                </div>
+                <hr/>
+            </div>
+
+
+
+
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default" style="margin-left:18px;margin-right:18px">
+                <div class="panel-heading"> Term of Appointment</div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label> Select Term of Appointment</label>
+                        <select class="form-control" id="ddlTOAppointment">
+                            <option value="Contractual">Contractual</option>
+                            <option value="Permanent">Permanent</option>
+
+                        </select></div>
+                    <div class="col-sm-4">
+                        <label> Select Month/Year</label>
+                        <select class="form-control" id="ddlTOAppointment">
+                            <option value="Month">Month</option>
+                            <option value="Year">Year</option>
+
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <label> Select Duration</label>
+                        <select class="form-control" id="ddlTOAppointment">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+
+                        </select>
+                    </div>
+                    </div>
+                <hr/>
+                </div>
+            </div>
+        
+        
+
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="box-body">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-danger" data-ng-click="RegisterStaff()">Save</button>
+                        <button type="button" class="btn btn-danger">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

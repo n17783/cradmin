@@ -1,0 +1,260 @@
+﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="DMJoiningProcessController">
+    <div class="col-md-12"><h3 class="header">DM Joining Process</h3></div>
+    <div class="col-md-12">
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" placeholder="Search" class="form-control" data-ng-model="Prefix"
+                           data-ng-change="FilterList()" />
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <button type="button" class="btn btn-danger" data-ng-click="FilterList()" data-toggle="tooltip"
+                            title="Search">
+                        Search
+                    </button>
+
+                    <button type="button" class="btn btn-danger" data-ng-click="Reset()" data-toggle="tooltip"
+                            title="Reset">
+                        Reset
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Registration No</th>
+                        <th>Aadhar No</th>
+                        <th>Name</th>
+                        <th>Employee Designation</th>
+                        <th>Save/Update</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="Quetion in MainQuetionList">
+                        <td>{{Quetion.TestQuetionCatagoryId}}</td>
+                        <td>{{Quetion.TestDescription}}</td>
+                        <td>{{Quetion.TestDescription}}</td>
+                        <td>{{Quetion.TradDescription}}</td>
+
+
+                        <td>
+                            <button type="button" class="btn btn-danger" data-ng-click="GotoJoining(Quetion);" data-toggle="tooltip"
+                                    title="Update">
+                                GoTo Joining
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-12" data-ng-show="Details">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-4" data-ng-switch="IsNewUser">
+                            <label>Nominee Details Status</label>
+                            <span ng-switch-when="0" style="color:red">Done</span>
+                            <span ng-switch-when="1" style="color:red">Not Done</span>
+
+                        </div>
+                        <div class="col-sm-3" data-ng-switch="IsNewUser">
+                            <label>Bank Account Details Status</label>
+                            <span ng-switch-when="0" style="color:red">Done</span>
+                            <span ng-switch-when="1" style="color:red">Not Done</span>
+
+                        </div>
+                        <div class="col-sm-4" style="margin-left:50px">
+
+                            <div class='input-group date' id='dtDMJoining'>
+                                <input type="text" class="form-control" placeholder="Enter Date Of Joining ..." data-ng-model="EmpDetails.DateOfReport">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                                <!--<span class="badge badge-danger" data-ng-show="ErrorModel.DateOfReport">{{ErrorModel.ErrorMessageDateOfReport}}</span>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default" style="margin-left:18px;margin-right:18Px">
+                <div class="panel-heading"><label>Joining Process Click For Yes Otherwise No Click </label></div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label>Salary Finalization</label>
+
+                    </div>
+                    <div class="col-sm-2">
+
+                        <input type="checkbox" class="checkbox" id="chkSalFin" style="width:25px;height:25px" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Biometric </label>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="checkbox" class="checkbox" id="chkBio" style="width:25px;height:25px" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Add Photos</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="checkbox" class="checkbox" id="chkAddPhotos" style="width:25px;height:25px" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label>Job Application Letter</label>
+
+                    </div>
+                    <div class="col-sm-2">
+
+                        <input type="checkbox" class="checkbox" id="chkJALetter" style="width:25px;height:25px" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Bank form </label>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="checkbox" class="checkbox" id="chkBForm" style="width:25px;height:25px" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Form No 35</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="checkbox" class="checkbox" id="chkFormNo35" style="width:25px;height:25px" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label>Form No 2</label>
+
+                    </div>
+                    <div class="col-sm-2">
+
+                        <input type="checkbox" class="checkbox" id="chkFormNo2" style="width:25px;height:25px" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Form No 11 </label>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="checkbox" class="checkbox" id="chkFormNo11" style="width:25px;height:25px" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Trade Validation</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="checkbox" class="checkbox" id="chkTradeValidation" style="width:25px;height:25px" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label>Safety Induction</label>
+
+                    </div>
+                    <div class="col-sm-2">
+
+                        <input type="checkbox" class="checkbox" id="chkSafetyInduction" style="width:25px;height:25px" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Work at Height </label>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="checkbox" class="checkbox" id="chkWorkatHeight" style="width:25px;height:25px" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Confined Space</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="checkbox" class="checkbox" id="chkConfinedSpace" style="width:25px;height:25px" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label>CSM Card</label>
+
+                    </div>
+                    <div class="col-sm-2">
+
+                        <input type="checkbox" class="checkbox" id="chkCSMCard" style="width:25px;height:25px" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Safety Shoes </label>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="checkbox" class="checkbox" id="chkSafetyShoes" style="width:25px;height:25px" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Offer Latter</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="checkbox" class="checkbox" id="chkOfferLatter" style="width:25px;height:25px" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label>Pass Issue Date</label>
+
+                    </div>
+                    <div class="col-sm-2">
+
+                        <input type="checkbox" class="checkbox" id="chkPassIssueDate" style="width:25px;height:25px" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Deployment Form  </label>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="checkbox" class="checkbox" id="chkDeploymentForm " style="width:25px;height:25px" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Bank Account Open  </label>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="checkbox" class="checkbox" id="chkBankAccountOpen " style="width:25px;height:25px" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Nominee Details</label>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="checkbox" class="checkbox" id="chkNomineeDetails " style="width:25px;height:25px" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="box-body">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-danger" data-ng-click="RegisterStaff()" >Save</button>
+                        <button type="button" class="btn btn-danger" >Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,166 @@
+﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="DMJoiningProcessController">
+    <div class="col-md-12"><h3 class="header">Family/Nominee Details</h3></div>
+    <div class="col-md-12">
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" placeholder="Search" class="form-control" data-ng-model="Prefix"
+                           data-ng-change="FilterList()" />
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <button type="button" class="btn btn-danger" data-ng-click="FilterList()" data-toggle="tooltip"
+                            title="Search">
+                        Search
+                    </button>
+
+                    <button type="button" class="btn btn-danger" data-ng-click="Reset()" data-toggle="tooltip"
+                            title="Reset">
+                        Reset
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Registration No</th>
+                        <th>Aadhar No</th>
+                        <th>Name</th>
+                        <th>Employee Designation</th>
+                        <th>Save/Update</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="Quetion in MainQuetionList">
+                        <td>{{Quetion.TestQuetionCatagoryId}}</td>
+                        <td>{{Quetion.TestDescription}}</td>
+                        <td>{{Quetion.TestDescription}}</td>
+                        <td>{{Quetion.TradDescription}}</td>
+
+
+                        <td>
+                            <button type="button" class="btn btn-danger" data-ng-click="GotoJoining(Quetion);" data-toggle="tooltip"
+                                    title="Update">
+                                GoTo Joining
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-12" data-ng-show="Details">
+
+        <div class="col-md-12">
+            <div class="panel panel-default" style="margin-left:18px;margin-right:18Px">
+                <div class="panel-heading"><label>Family/Nominee Details</label></div>
+
+
+                <hr />
+                <div class="row">
+                    
+                        
+                        <div class="col-sm-4">
+                            <label>Relative Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Company Name ..." data-ng-model="EmpDetails.EmrContactNo">
+                        </div>
+                    
+                    <div class="col-sm-4">
+                        <label> Relation </label>
+                        <select class="form-control" id="ddlRelation">
+                            <option value="Relation">---Select Relation --- </option>
+                            <option value="Father">Father</option>
+                            <option value="Mother">Mother</option>
+                            <option value="Wife">Wife</option>
+                            <option value="Child">Child</option>
+                            
+
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <label> Dependant</label>
+                        <select class="form-control" id="ddlyear">
+                            <option value="Dependant">---Dependant --- </option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                            
+
+
+                        </select>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label> DOB</label>
+                        
+
+                            <div class='input-group date' id='dtRelDOB'>
+                                <input type="text" class="form-control" placeholder="Enter Date Of Joining ..." data-ng-model="EmpDetails.DateOfReport">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                                <!--<span class="badge badge-danger" data-ng-show="ErrorModel.DateOfReport">{{ErrorModel.ErrorMessageDateOfReport}}</span>-->
+                            </div>
+                        
+                    </div>
+                    
+                        
+                        <div class="col-sm-4">
+                            <label>Age</label>
+                            <input type="text" class="form-control" ng-disabled="true"  data-ng-model="EmpDetails.EmrContactNo">
+                        </div>
+                   
+                    <div class="col-sm-4">
+                        <label> Nominee</label>
+                        <select class="form-control" id="ddlyear">
+                            <option value="Nominee">---Select Nominee --- </option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                            
+
+
+                        </select>
+                    </div>
+
+                </div>
+
+                <hr />
+                <div class="row">
+
+                    <div class="col-sm-4">
+                        <label>Address </label>
+                        <input type="text" class="form-control" placeholder="Enter Company Name ..." data-ng-model="EmpDetails.EmrContactNo">
+                    </div>
+                </div>
+
+
+                <hr />
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-danger" data-ng-click="RegisterStaff()">Save</button>
+                                <button type="button" class="btn btn-danger">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
