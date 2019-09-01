@@ -20,7 +20,7 @@
         IdProofImage: "", PHouseNo: "", PVillageId: "", PDisticId: 0, PTalukaId: "", PStateId: 0,
         PCountryId: 0, PPincodeId: "", THouseNo: "", TVillageId: "", TDisticId: 0, TTalukaId: "",
         TStateId: 0, TCountryId: "", TPincode: "", ReJoineOrNewJoin: 0, DeptZoneId: 0, ValidationAgencyId: 0,
-        IsAlreadyValidated: 0, TradeId: 0, AdhaarImage: "", IsDMorStaff: 0, DeptId: "", ProjectTypeId: ""
+        IsAlreadyValidated: 0, TradeId: 0, ProfileImage: "", IsDMorStaff: 0, DeptId: "", ProjectTypeId: ""
     };
 
     $scope.ErrorModel = {
@@ -34,7 +34,7 @@
         ErrorMessageTDisticId: "",
         TStateId: false, ErrorMessageTStateId: "", TCountryId: false, ErrorMessageContryId: "", TPincode: false, ErrorMessageTPincode: "", DeptZoneId: false, ErrorMessageDeptZoneId: "",
         ValidationAgencyId: false, ErrorMessageValidationAgencyId: "", TradeId: false, ErrorMessageTradeId: "",
-        AdhaarImage: false, ErrorMessageAdhaarImage: "", IsDMorStaff: false, ErrorMessageIsDMorStaff: "", DeptId: false, ErrorMessageDeptId: ""
+        ProfileImage: false, ErrorMessageProfileImage: "", IsDMorStaff: false, ErrorMessageIsDMorStaff: "", DeptId: false, ErrorMessageDeptId: ""
     };
     $scope.EmpExit = {};
     var objdatehelper = new datehelper({ format: "dd/MM/yyyy", cdate: new Date() });
@@ -271,7 +271,6 @@
     }
 
     $scope.changeEmpType = function () {
-        $("#rdoDM").prop("checked", true);
         var isdm = $("#rdoDM").prop("checked");
         if (isdm) {
             var html3 = "";
@@ -292,6 +291,26 @@
             $("#ddlEmpType").html(html3);
 
         }
+    }
+
+    $scope.copyAddress = function () {
+        if ($("#chkAddressSame").prop("checked")) {
+            $scope.EmpDetails.THouseNo = $scope.EmpDetails.PHouseNo;
+            $scope.EmpDetails.TTalukaId = $scope.EmpDetails.PTalukaId;
+            $scope.EmpDetails.TVillageId = $scope.EmpDetails.PVillageId;
+            $scope.EmpDetails.TPincode = $scope.EmpDetails.PPincodeId;
+            $("#ddlCountry").val($("#ddlPCountry").val());
+            $scope.BindStateList();
+            $("#ddlState").val($("#ddlPState").val());
+            $scope.BindDistrictList();
+            $("#ddlDistrict").val($("#ddlPDistrict").val());
+        }
+    }
+
+
+    $scope.checkAlreadyValidated = function ()
+    {
+        $scope.EmpDetails.IsAlreadyValidated = $("#chkIsAlreadyValidated").prop("checked");
     }
 
     $scope.RegisterStaff = function () {
@@ -325,6 +344,9 @@
             $scope.EmpDetails.DeptId = $("#ddlSDep").val();
             $scope.EmpDetails.ProjectTypeId = $("#ddlProjectType").val();
             $scope.Emp.EmpPhoto = $("#imgCapture").attr("src");
+            $scope.EmpDetails.VCertificatePath = $("#hdnVCertificatePath").val();
+            $scope.EmpDetails.AdhaarImage = $("#hdnAdhaarImage").val();
+            $scope.EmpDetails.IdProofImage = $("#hdnIdProofImage").val();
 
             var model = { Emp: $scope.Emp, EmpDetails: $scope.EmpDetails };
             $http({
@@ -337,7 +359,15 @@
                 },
             }).then(function (response) {
                 HideLoader();
-
+                var objShowCustomAlert = new ShowCustomAlert({
+                    Title: "Success",
+                    Message: "Employee Registered Successfully.",
+                    Type: "alert",
+                    OnOKClick: function () {
+                        $scope.ClearOldData();
+                    }
+                });
+                objShowCustomAlert.ShowCustomAlertBox();
             }, function (error) {
                 HideLoader();
                 console.log(error);
@@ -353,7 +383,7 @@
             IdProofImage: "", PHouseNo: "", PVillageId: "", PDisticId: 0, PTalukaId: "", PStateId: 0,
             PCountryId: 0, PPincodeId: "", THouseNo: "", TVillageId: "", TDisticId: 0, TTalukaId: "",
             TStateId: 0, TCountryId: "", TPincode: "", ReJoineOrNewJoin: 0, DeptZoneId: 0, ValidationAgencyId: 0,
-            IsAlreadyValidated: 0, TradeId: 0, AdhaarImage: "", IsDMorStaff: 0, DeptId: ""
+            IsAlreadyValidated: 0, TradeId: 0, ProfileImage: "", IsDMorStaff: 0, DeptId: ""
         };
     }
 
@@ -389,8 +419,6 @@
                         });
                         objShowCustomAlert.ShowCustomAlertBox();
                         $("#rdoMale").prop("checked", true);
-
-
                     }
                     else {
                         var objShowCustomAlert = new ShowCustomAlert({
@@ -432,9 +460,9 @@
                         $scope.BindDistrictList();
                         $("#ddlDistrict").val($scope.EmpDetails.TDisticId);
                         $("#ddlPCountry").val($scope.EmpDetails.PCountryId);
-                        $scope.BindStateList();
+                        $scope.BindPStateList();
                         $("#ddlPState").val($scope.EmpDetails.PStateId);
-                        $scope.BindDistrictList();
+                        $scope.BindPDistrictList();
                         $("#ddlPDistrict").val($scope.EmpDetails.PDisticId);
                         $("#ddlZone").val($scope.EmpDetails.DeptZoneId);
                         $("#ddlVAgency").val($scope.EmpDetails.ValidationAgencyId);
@@ -443,6 +471,7 @@
                         $("#ddlEmpType").val($scope.EmpDetails.EmpTypeId);
                         $("#ddlContractor").val($scope.EmpDetails.ContractorId);
                         $("#ddlSDep").val($scope.EmpDetails.DeptId);
+                        $("#ddlProjectType").val($scope.EmpDetails.ProjectTypeId)
                     }
                 }, function (error) {
                     HideLoader();
@@ -463,10 +492,8 @@
             }
             else {
                 $scope.Emp.AadharNo = '';
-
             }
         }
-
     }
 
     function Capture() {
@@ -481,6 +508,7 @@
         $("#rdoMale").prop("checked", true);
         $("#rdoDM").prop("checked", true);
         $("#ddlEmpType").html("");
+        $scope.EmpDetails.IsAlreadyValidated = false;
         jQuery("#webcam").webcam({
             width: 320,
             height: 240,
@@ -511,17 +539,55 @@
             }
         });
 
+        $("#uploadProfile").click(function () {
+            files = $("#ProfileImage").get(0).files;
+            if (files.length == 0) {
+                $("#ProfileImage").trigger("click");
+            }
+            else {
+                UploadA();
+            }
+        })
+        $("#ProfileImage").change(function () {
+            $("#uploadProfile").trigger("click");
+        });
         $("#uploadAdhaar").click(function () {
             files = $("#AdhaarImage").get(0).files;
             if (files.length == 0) {
                 $("#AdhaarImage").trigger("click");
             }
             else {
-                UploadA();
+                UploadAdhaar();
             }
         })
         $("#AdhaarImage").change(function () {
             $("#uploadAdhaar").trigger("click");
+        });
+
+        $("#uploadValidationC").click(function () {
+            files = $("#ValidationCertificate").get(0).files;
+            if (files.length == 0) {
+                $("#ValidationCertificate").trigger("click");
+            }
+            else {
+                UploadValidationC();
+            }
+        })
+        $("#ValidationCertificate").change(function () {
+            $("#uploadValidationC").trigger("click");
+        });
+
+        $("#uploadIdProof").click(function () {
+            files = $("#IdProofDoc").get(0).files;
+            if (files.length == 0) {
+                $("#IdProofDoc").trigger("click");
+            }
+            else {
+                UploadIdProofDoc();
+            }
+        })
+        $("#ValidationCertificate").change(function () {
+            $("#IdProofDoc").trigger("click");
         });
         $("#dtReport").datepicker({
             format: "dd-MM-yyyy",
@@ -546,13 +612,14 @@
     $scope.init();
 }]);
 
+
 function UploadA() {
     var urlbase = GetVirtualDirectory();
     ShowLoader();
     var data = new FormData();
-    var files = $("#AdhaarImage").get(0).files;
+    var files = $("#ProfileImage").get(0).files;
     if (files.length > 0) {
-        data.append("AdhaarImage", files[0]);
+        data.append("ProfileImage", files[0]);
     }
     $.ajax({
         url: urlbase + "/Dashboard/UploadA",
@@ -571,6 +638,98 @@ function UploadA() {
             $("#imgCapture").show();
             $("#imgCapture").attr("src", response);
             HideLoader();
+        },
+        error: function (er) {
+            alert(er.responseText);
+        }
+    });
+}
+
+function UploadAdhaar() {
+    var urlbase = GetVirtualDirectory();
+    ShowLoader();
+    var data = new FormData();
+    var files = $("#AdhaarImage").get(0).files;
+    if (files.length > 0) {
+        data.append("AdhaarImage", files[0]);
+    }
+    $.ajax({
+        url: urlbase + "/Dashboard/UploadAdhaar",
+        type: "POST",
+        processData: false,
+        contentType: false,
+        data: data,
+        success: function (response) {
+            var objShowCustomAlert = new ShowCustomAlert({
+                Title: "",
+                Message: "Image uploaded successfully.",
+                Type: "alert",
+            });
+            objShowCustomAlert.ShowCustomAlertBox();
+            HideLoader();
+            $("#hdnAdhaarImage").val(response);
+            
+        },
+        error: function (er) {
+            alert(er.responseText);
+        }
+    });
+}
+
+function UploadValidationC() {
+    var urlbase = GetVirtualDirectory();
+    ShowLoader();
+    var data = new FormData();
+    var files = $("#ValidationCertificate").get(0).files;
+    if (files.length > 0) {
+        data.append("ValidationCertificate", files[0]);
+    }
+    $.ajax({
+        url: urlbase + "/Dashboard/UploadValidationCertificate",
+        type: "POST",
+        processData: false,
+        contentType: false,
+        data: data,
+        success: function (response) {
+            var objShowCustomAlert = new ShowCustomAlert({
+                Title: "",
+                Message: "Image uploaded successfully.",
+                Type: "alert",
+            });
+            objShowCustomAlert.ShowCustomAlertBox();
+            HideLoader();
+            $("#hdnVCertificatePath").val(response);
+            
+        },
+        error: function (er) {
+            alert(er.responseText);
+        }
+    });
+}
+
+function UploadIdProofDoc() {
+    var urlbase = GetVirtualDirectory();
+    ShowLoader();
+    var data = new FormData();
+    var files = $("#IdProofDoc").get(0).files;
+    if (files.length > 0) {
+        data.append("IdProofDoc", files[0]);
+    }
+    $.ajax({
+        url: urlbase + "/Dashboard/UploadIdProofDoc",
+        type: "POST",
+        processData: false,
+        contentType: false,
+        data: data,
+        success: function (response) {
+            var objShowCustomAlert = new ShowCustomAlert({
+                Title: "",
+                Message: "Image uploaded successfully.",
+                Type: "alert",
+            });
+            objShowCustomAlert.ShowCustomAlertBox();
+            HideLoader();
+            $("#hdnIdProofImage").val(response);
         },
         error: function (er) {
             alert(er.responseText);

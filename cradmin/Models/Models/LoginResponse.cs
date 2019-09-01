@@ -142,6 +142,7 @@ namespace cradmin.Models.Models
         public string IdProofNo { get; set; }
         public string IdProofImage { get; set; }
         public string PHouseNo { get; set; }
+        public string EmpPhoto { get; set; }
         public string PVillageId { get; set; }
         public int? PDisticId { get; set; }
         public string PTalukaId { get; set; }
@@ -168,6 +169,7 @@ namespace cradmin.Models.Models
         public bool IsDMorStaff { get; set; }
         public int DeptId { get; set; }
         public int ProjectTypeId { get; set; }
+        public string VCertificatePath { get; set; }
     }
 
     public class DeptZoneMaster : Error

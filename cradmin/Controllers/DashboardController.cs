@@ -107,6 +107,21 @@ namespace cradmin.Controllers
         }
 
         [HttpPost]
+        public ActionResult UploadAdhaar()
+        {
+            string base64string = string.Empty;
+            if (Request.Files.Count > 0)
+            {
+                HttpPostedFileBase file = Request.Files[0];
+                string imageName = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss");
+                base64string = "Content/UploadAdhaar/" + imageName + ".jpg";
+                file.SaveAs(Server.MapPath("~/" + base64string));
+                base64string = VirtualPathUtility.ToAbsolute("~/" + base64string);
+            }
+            return Json(base64string);
+        }
+
+        [HttpPost]
         public ActionResult UploadA()
         {
             string base64string = string.Empty; 
@@ -115,6 +130,36 @@ namespace cradmin.Controllers
                 HttpPostedFileBase file = Request.Files[0];
                 string imageName = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss");
                 base64string = "Content/CaptureEmployee/" + imageName + ".jpg";
+                file.SaveAs(Server.MapPath("~/" + base64string));
+                base64string = VirtualPathUtility.ToAbsolute("~/" + base64string);
+            }
+            return Json(base64string);
+        }
+
+        [HttpPost]
+        public ActionResult UploadValidationCertificate()
+        {
+            string base64string = string.Empty;
+            if (Request.Files.Count > 0)
+            {
+                HttpPostedFileBase file = Request.Files[0];
+                string imageName = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss");
+                base64string = "Content/UploadValidationCertificate/" + imageName + ".jpg";
+                file.SaveAs(Server.MapPath("~/" + base64string));
+                base64string = VirtualPathUtility.ToAbsolute("~/" + base64string);
+            }
+            return Json(base64string);
+        }
+
+        [HttpPost]
+        public ActionResult UploadIdProofDoc()
+        {
+            string base64string = string.Empty;
+            if (Request.Files.Count > 0)
+            {
+                HttpPostedFileBase file = Request.Files[0];
+                string imageName = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss");
+                base64string = "Content/UploadIdProofDoc/" + imageName + ".jpg";
                 file.SaveAs(Server.MapPath("~/" + base64string));
                 base64string = VirtualPathUtility.ToAbsolute("~/" + base64string);
             }

@@ -25,114 +25,111 @@
 
 
             <div class="col-md-8">
-
                 <div class="row">
-
                     <div class="col-sm-4">
-
                         <label>Aadhar No</label>
                         <input type="text" class="form-control" data-ng-model="Emp.AadharNo" placeholder="Enter Aadhar No ..." data-ng-blur="CheckAdhaarExist();">
                         <span class="badge badge-danger" data-ng-show="ErrorModel.AadharNo">{{ErrorModel.ErrorMessageAdhaarNo}}</span>
                     </div>
                     <div class="col-sm-4">
-                        <label>Aadhar Image</label>
-                        <input type="file" class="form-control">
+                        <div>
+                            <label>Aadhar Image</label>
+                        </div>
+                        <div>
+                            <button id="uploadAdhaar" class="btn btn-danger" type="button">Upload</button>
+                            <input id="AdhaarImage" type="file" style="display:none" />
+                        </div>
                     </div>
                     <div class="col-sm-2">
-                        <div class="">
+                        <div>
                             <label>
-                                <input type="radio" name="optionStaff" id="rdoStaff" value="0" data-ng-click="changeEmpType()">
+                                <input type="radio" name="optionStaff" id="rdoStaff" data-ng-click="changeEmpType()">
                                 STAFF
                             </label>
                         </div>
-                        <div class="">
+                        <div>
                             <label>
-                                <input type="radio" name="optionStaff" id="rdoDM" value="1" data-ng-click="changeEmpType()">
+                                <input type="radio" name="optionStaff" id="rdoDM" data-ng-click="changeEmpType()">
                                 DM
                             </label>
                         </div>
 
                     </div>
                     <div class="col-sm-2">
-                        <div class="">
+                        <div>
                             <label>
-                                <input type="radio" name="optionGender" id="rdoMale" data-ng-model="Emp.Gender" data-ng-value="1">
+                                <input type="radio" name="optionGender" id="rdoMale">
                                 Male
                             </label>
                         </div>
-                        <div class="rado">
+                        <div>
                             <label>
-                                <input type="radio" name="optionGender" id="rdoFemale" data-ng-value="0" data-ng-model="Emp.Gender">
+                                <input type="radio" name="optionGender" id="rdoFemale">
                                 Female
                             </label>
                         </div>
-
                     </div>
-
                 </div>
                 <hr />
                 <div class="row">
-
                     <div class="col-sm-4">
-
                         <label>Select Employee Designation</label>
                         <select class="form-control" id="ddlEmpType" data-ng-disabled="IsNewUser!=1"></select>
                     </div>
                     <div class="col-sm-4">
                         <label>Select Contractor</label>
-                        <select class="form-control" id="ddlContractor" data-ng-disabled="IsNewUser!=1"></select>
+                        <select class="form-control" id="ddlContractor" data-ng-disabled="IsNewUser==0"></select>
                     </div>
 
                     <div class="col-sm-4">
                         <label>Select Project Type</label>
-                        <select class="form-control" id="ddlProjectType" data-ng-disabled="IsNewUser!=1"></select>
+                        <select class="form-control" id="ddlProjectType" data-ng-disabled="IsNewUser==0"></select>
                     </div>
 
                 </div>
                 <hr />
+                <input type="hidden" id="hdnVCertificatePath" />
+                <input type="hidden" id="hdnAdhaarImage" />
+                <input type="hidden" id="hdnIdProofImage" />
                 <div class="row">
-
+                    <div class="col-sm-4">
+                        <label>Select Sub Department</label>
+                        <select class="form-control" id="ddlSDep" data-ng-disabled="IsNewUser==0"></select>
+                        <span class="badge badge-danger" data-ng-show="ErrorModel.DeptId">{{ErrorModel.ErrorMessageDeptId}}</span>
+                    </div>
                     <div class="col-sm-4">
                         <label>Already Validated</label>
-                        <input type="checkbox" class="checkbox" id="chkIsAlreadyValidated" />
+                        <input type="checkbox" class="checkbox" id="chkIsAlreadyValidated" data-ng-click="checkAlreadyValidated()" data-ng-disabled="IsNewUser==0"/>
                     </div>
                     <div class="col-sm-4">
-                        <label>Upload Validate Certificate</label>
-                        <input type="file" class="form-control">
+                        <div>
+                            <label>Upload Validate Certificate</label>
+                        </div>
+                        <div>
+                            <button id="uploadValidationC" class="btn btn-danger" type="button" data-ng-disabled="EmpDetails.IsAlreadyValidated==false">Upload</button>
+                            <input id="ValidationCertificate" type="file" style="display:none" />
+                        </div>
                     </div>
-                    <div class="col-sm-4">
-                        <label>Select Zone</label>
-                        <select class="form-control" id="ddlZone" data-ng-disabled="IsNewUser!=1"></select>
-                        <span class="badge badge-danger" data-ng-show="ErrorModel.DeptZoneId">{{ErrorModel.ErrorMessageDeptZoneId}}</span>
-                    </div>
-
-
                 </div>
                 <hr />
                 <div class="row">
                     <div class="col-sm-4">
+                        <label>Select Zone</label>
+                        <select class="form-control" id="ddlZone" data-ng-disabled="IsNewUser==0"></select>
+                        <span class="badge badge-danger" data-ng-show="ErrorModel.DeptZoneId">{{ErrorModel.ErrorMessageDeptZoneId}}</span>
+                    </div>
+                    <div class="col-sm-4">
                         <label>Select Validation Agency</label>
-                        <select class="form-control" id="ddlVAgency" data-ng-disabled="IsNewUser!=1"></select>
+                        <select class="form-control" id="ddlVAgency" data-ng-disabled="IsNewUser==0"></select>
                         <span class="badge badge-danger" data-ng-show="ErrorModel.ValidationAgencyId">{{ErrorModel.ErrorMessageValidationAgencyId}}</span>
                     </div>
                     <div class="col-sm-4">
                         <label>Select Trade</label>
-                        <select class="form-control" id="ddlTrade" data-ng-disabled="IsNewUser!=1"></select>
+                        <select class="form-control" id="ddlTrade" data-ng-disabled="IsNewUser==0"></select>
                         <span class="badge badge-danger" data-ng-show="ErrorModel.TradeId">{{ErrorModel.ErrorMessageTradeId}}</span>
                     </div>
-
-                    <div class="col-sm-4">
-                        <label>Select Sub Department</label>
-                        <select class="form-control" id="ddlSDep" data-ng-disabled="IsNewUser!=1"></select>
-                        <span class="badge badge-danger" data-ng-show="ErrorModel.DeptId">{{ErrorModel.ErrorMessageDeptId}}</span>
-                    </div>
-
                 </div>
                 <hr />
-
-
-
-
             </div>
 
             <div class="col-md-4">
@@ -143,8 +140,8 @@
                     <img id="imgCapture" style="display: none; width: 300px;height: 320px" />
 
                     <input type="button" class="btn btn-danger" value="Capture" onclick="Capture();" />
-                    <button id="uploadAdhaar" class="btn btn-danger" type="button">Upload</button>
-                    <input id="AdhaarImage" type="file" style="display:none" />
+                    <button id="uploadProfile" class="btn btn-danger" type="button">Upload</button>
+                    <input id="ProfileImage" type="file" style="display:none" />
                 </div>
             </div>
         </div>
@@ -210,7 +207,10 @@
                 </div>
                 <div class="col-sm-4">
                     <label>Upload Id Proof Document</label>
-                    <input type="file" class="form-control" placeholder="Upload Id Proof Document ...">
+                    <div>
+                        <button id="uploadIdProof" class="btn btn-danger" type="button">Upload</button>
+                        <input id="IdProofDoc" type="file" style="display:none" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -260,7 +260,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-4" style="color:red">
-                    <label>If Both Address Same Than Click Me <input type="checkbox" class="checkbox" id="chkAddressSame" /></label>
+                    <label>If Both Address Same Than Click Me <input type="checkbox" class="checkbox" id="chkAddressSame" data-ng-click="copyAddress()"/></label>
 
                 </div>
             </div>
@@ -329,7 +329,7 @@
             <div class="box-body">
                 <div class="form-group">
                     <button type="button" class="btn btn-danger" data-ng-click="RegisterStaff()" data-ng-show="IsNewUser==1">Save</button>
-                    <button type="button" class="btn btn-danger" data--ng-show="IsNewUser==0 || IsNewUser==2">Update</button>
+                    <button type="button" class="btn btn-danger" data--ng-show="IsNewUser==0 || IsNewUser==2" data-ng-click="RegisterStaff()">Update</button>
                 </div>
             </div>
         </div>

@@ -133,6 +133,7 @@ namespace cradmin.Models.BAL
             lst.Add(new SqlParameter() { ParameterName = "@TradeId", Value = model.EmpDetails.TradeId });
             lst.Add(new SqlParameter() { ParameterName = "@AdhaarImage", Value = model.EmpDetails.AdhaarImage });
             lst.Add(new SqlParameter() { ParameterName = "@IsDMorStaff", Value = model.EmpDetails.IsDMorStaff });
+            lst.Add(new SqlParameter() { ParameterName = "@VCertificatePath", Value = model.EmpDetails.VCertificatePath });
             DataTable dtEmployee = objHelper.GetDataTable("Register_Employee", lst);
             response.EmpDetails = new EmployeeDetails();
             response.EmpDetails.PkId = Convert.ToInt32(dtEmployee.Rows[0]["PkId"]);
@@ -203,6 +204,8 @@ namespace cradmin.Models.BAL
                                 IsDMorStaff = Convert.ToBoolean(tbl.GetField("IsDMorStaff")),
                                 DeptId = Convert.ToInt32(tbl.GetField("DeptId")),
                                 ProjectTypeId = Convert.ToInt32(tbl.GetField("ProjectTypeId")),
+                                EmpPhoto= Convert.ToString(tbl.GetField("EmpPhoto")),
+                                VCertificatePath= Convert.ToString(tbl.GetField("VCertificatePath"))
 
                             },
                             EmpExit = new EmployeeExit()
