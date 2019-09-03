@@ -56,7 +56,7 @@
     $scope.savePdfSample = function () {
         debugger;
         //var pdf = new jsPDF('p', 'pt', 'letter');
-       
+
         //var canvas = pdf.canvas
         //canvas.height = 72 * 15;
         //canvas.width = 72 * 15;
@@ -64,53 +64,53 @@
         //var options = {
         //    pagesplit: true
         //};
-       
 
 
-       // var pdf = new jsPDF({ unit: 'pt', format: 'letter' }), // Infers that units are in mm and page is portrait
-       //     pageNum = 1,
-       //     margin = 72, // = 1 inch
-       //     cursor = { x: margin, y: 18 },
-       //     temp;
 
-       // pdf.setFont("arial");
-       // /***************** Header *****************/
-       // /************* Border *************/
-       // pdf.setFontSize(16);
-       // temp = 2 * pdf.internal.getLineHeight(); //2 rows at 16
-       // pdf.setFontSize(11);
-       // temp = temp + (5 * pdf.internal.getLineHeight()); //Roughly 5 rows at 11
-       // pdf.setFontSize(12);
-       // temp += pdf.internal.getLineHeight(); //1 row at 12
-       // pdf.rect(cursor.x, cursor.y + 2, pdf.internal.pageSize.width - (2 * margin), Math.ceil(temp) + 6 /*give a little buffer*/, 'S');
-       // /************* Text *************/
-       // pdf.setFontSize(16);
-       // pdf.setFontStyle("bold");
-       // pdf.text("A DESK GUIDE FOR THE REVIEW OF NONPROFIT\nAPPLICATIONS", pdf.internal.pageSize.width / 2, cursor.y + pdf.internal.getLineHeight(), 'center');
-       // cursor.y += pdf.internal.getLineHeight() * 2;
-       // pdf.setFontSize(11);
-       // cursor.y += pdf.internal.getLineHeight();
-       // cursor.x = (margin * 2); // Indent for list
-       // pdf.circle(cursor.x - (margin / 8), cursor.y + (pdf.internal.getLineHeight() * .75), 2, 'F');
-       // pdf.text("DO NOT POST ON THE WEB.", cursor.x + (margin / 8), cursor.y + pdf.internal.getLineHeight());
-       // cursor.y += pdf.internal.getLineHeight();
-       // pdf.circle(cursor.x - (margin / 8), cursor.y + (pdf.internal.getLineHeight() * .75), 2, 'F');
-       // pdf.text("DO NOT DISTRIBUTE TO ANYONE OTHER THAN EMPLOYEES", cursor.x + (margin / 8), cursor.y + pdf.internal.getLineHeight());
-       // cursor.y += pdf.internal.getLineHeight();
-       // pdf.circle(cursor.x - (margin / 8), cursor.y + (pdf.internal.getLineHeight() * .75), 2, 'F');
-       // pdf.text("CONFIDENTIAL - FOR HUD INTERNAL USE ONLY", cursor.x + (margin / 8), cursor.y + pdf.internal.getLineHeight());
-       // cursor.y += pdf.internal.getLineHeight();
-       // cursor.y += pdf.internal.getLineHeight();
-       // pdf.setFontSize(12);
-       // pdf.setFontStyle("normal");
-       // pdf.text("Revised March 14, 2016", pdf.internal.pageSize.width / 2, cursor.y + pdf.internal.getLineHeight(), 'center');
-       // /*************** End Header ***************/
+        // var pdf = new jsPDF({ unit: 'pt', format: 'letter' }), // Infers that units are in mm and page is portrait
+        //     pageNum = 1,
+        //     margin = 72, // = 1 inch
+        //     cursor = { x: margin, y: 18 },
+        //     temp;
 
-       // var html = $("#AssessmentReportPDFDownload").html();
-       // pdf.text(html, pdf.internal.pageSize.width / 2, cursor.y + pdf.internal.getLineHeight(), 'center');
-       //// html2pdf(html, pdf, function (pdf) {
-       //     pdf.save('AssessmentReport.pdf');
-       // //});
+        // pdf.setFont("arial");
+        // /***************** Header *****************/
+        // /************* Border *************/
+        // pdf.setFontSize(16);
+        // temp = 2 * pdf.internal.getLineHeight(); //2 rows at 16
+        // pdf.setFontSize(11);
+        // temp = temp + (5 * pdf.internal.getLineHeight()); //Roughly 5 rows at 11
+        // pdf.setFontSize(12);
+        // temp += pdf.internal.getLineHeight(); //1 row at 12
+        // pdf.rect(cursor.x, cursor.y + 2, pdf.internal.pageSize.width - (2 * margin), Math.ceil(temp) + 6 /*give a little buffer*/, 'S');
+        // /************* Text *************/
+        // pdf.setFontSize(16);
+        // pdf.setFontStyle("bold");
+        // pdf.text("A DESK GUIDE FOR THE REVIEW OF NONPROFIT\nAPPLICATIONS", pdf.internal.pageSize.width / 2, cursor.y + pdf.internal.getLineHeight(), 'center');
+        // cursor.y += pdf.internal.getLineHeight() * 2;
+        // pdf.setFontSize(11);
+        // cursor.y += pdf.internal.getLineHeight();
+        // cursor.x = (margin * 2); // Indent for list
+        // pdf.circle(cursor.x - (margin / 8), cursor.y + (pdf.internal.getLineHeight() * .75), 2, 'F');
+        // pdf.text("DO NOT POST ON THE WEB.", cursor.x + (margin / 8), cursor.y + pdf.internal.getLineHeight());
+        // cursor.y += pdf.internal.getLineHeight();
+        // pdf.circle(cursor.x - (margin / 8), cursor.y + (pdf.internal.getLineHeight() * .75), 2, 'F');
+        // pdf.text("DO NOT DISTRIBUTE TO ANYONE OTHER THAN EMPLOYEES", cursor.x + (margin / 8), cursor.y + pdf.internal.getLineHeight());
+        // cursor.y += pdf.internal.getLineHeight();
+        // pdf.circle(cursor.x - (margin / 8), cursor.y + (pdf.internal.getLineHeight() * .75), 2, 'F');
+        // pdf.text("CONFIDENTIAL - FOR HUD INTERNAL USE ONLY", cursor.x + (margin / 8), cursor.y + pdf.internal.getLineHeight());
+        // cursor.y += pdf.internal.getLineHeight();
+        // cursor.y += pdf.internal.getLineHeight();
+        // pdf.setFontSize(12);
+        // pdf.setFontStyle("normal");
+        // pdf.text("Revised March 14, 2016", pdf.internal.pageSize.width / 2, cursor.y + pdf.internal.getLineHeight(), 'center');
+        // /*************** End Header ***************/
+
+        // var html = $("#AssessmentReportPDFDownload").html();
+        // pdf.text(html, pdf.internal.pageSize.width / 2, cursor.y + pdf.internal.getLineHeight(), 'center');
+        //// html2pdf(html, pdf, function (pdf) {
+        //     pdf.save('AssessmentReport.pdf');
+        // //});
 
         //var pdf = new jsPDF('p', 'pt', [780, 900]);
         //var canvas = pdf.canvas;
@@ -124,7 +124,7 @@
 
         //    }
         //});
-       
+
         let mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');
 
         mywindow.document.write(`<html><head><title></title>`);
@@ -144,35 +144,43 @@
 
     $scope.PublishReport = function (cObj) {
         debugger;
-        
-        ShowLoader();
+        if ($("input[name='comment_checked']:checked").val() === undefined)
+            alert('Please select assessment remark.');
+        else if ($('#special_remark').val() != '' && $('#special_remark').val() != null) {
 
-        var mValue = SelectedValidaterModel;
+            ShowLoader();
 
-        $scope.RequestModel = {           
-            EmpValidationId: mValue.EmpValidationId, AssessmentID: $scope.AssessmentReportDetailsList.AssessmentID,
-            EmpValidationId: mValue.EmpValidationId, RemartkOne: $('#special_remark').val(), RemartkTwo: $("input[name='comment_checked']:checked").val()
-        };
+            var mValue = SelectedValidaterModel;
 
-        $http({
-            method: 'post',
-            url: $scope.urlBase + '/CandidatesForValidation/SaveAssessmentResultStatusDetails',
-            data: $scope.RequestModel,
-        }).then(function (response) {
-            debugger;
-            HideLoader();
+            $scope.RequestModel = {
+                EmpValidationId: mValue.EmpValidationId, AssessmentID: $scope.AssessmentReportDetailsList.AssessmentID,
+                EmpValidationId: mValue.EmpValidationId, RemartkOne: $('#special_remark').val(), RemartkTwo: $("input[name='comment_checked']:checked").val()
+            };
 
-            $scope.AssessmentReport = false;
-        }, function (error) {
-            HideLoader();
-            console.log(error);
-        });
+            $http({
+                method: 'post',
+                url: $scope.urlBase + '/CandidatesForValidation/SaveAssessmentResultStatusDetails',
+                data: $scope.RequestModel,
+            }).then(function (response) {
+                debugger;
+                HideLoader();
 
-        
+                $scope.AssessmentReport = false;
+            }, function (error) {
+                HideLoader();
+                console.log(error);
+            });
+
+        }
+        else {
+            alert('Please enter special remark.');
+        }
+
+
     }
 
     $scope.init = function () {
-            debugger;
+        debugger;
         $scope.urlBase = GetVirtualDirectory();
         $('body').removeClass('modal-open');
         var mValue = SelectedValidaterModel;
@@ -180,7 +188,7 @@
         $scope.ValidationProcessModel = {
             Name: mValue.Name, PRN: mValue.PRN, SrNo: mValue.SrNo,
             EmpDetailsId: mValue.EmpDetailsId, TradeName: mValue.TradeName, TradeCName: mValue.TradeCategory,
-            EmpValidationId:mValue.EmpValidationId
+            EmpValidationId: mValue.EmpValidationId
         };
         $scope.AssessmentReport = true;
         $scope.GetAssessedReportDetails();

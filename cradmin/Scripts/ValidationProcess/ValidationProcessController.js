@@ -15,7 +15,9 @@
 
     $scope.ValidateQuestionsList = [];
 
-   
+    $scope.CancelValidation=function(){
+        $scope.LoadUserControls('CandidatesForValidation');
+    }
 
     $scope.GetQuestionsList = function () {
         debugger;
@@ -71,8 +73,12 @@
         $('#VPConfermDialog').modal('show');
     }
 
-    $scope.resetTestResult = function () {
+    $scope.resetTestResult = function (callFrom) {
         $('#VPConfermDialog').modal('hide');
+        if (callFrom === 'modal-written-marks') {
+            $('#modal-written-marks').modal('hide');
+            $scope.LoadUserControls('CandidatesForValidation');
+        }
     }
 
     $scope.setWrittentTestMarks = function () {

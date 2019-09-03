@@ -1,160 +1,349 @@
-﻿<style>
-    .content-wrapper {
-        min-height: 100%;
-        background-color: #ecf0f5;
-        z-index: 800;
-    }
-    .errorMsg {
-    color: red;
-}
+﻿
+<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="ValidationProcessController">
+    <style>
+        .content-wrapper {
+            min-height: 100%;
+            background-color: #ecf0f5;
+            z-index: 800;
+        }
+    </style>
+    <style>
+        .marks-container {
+            padding-left: 15px;
+            font-size: 25px;
+        }
 
-</style>
-<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="TrainingProcessController">
+        .input-group-addon {
+            padding: 6px 12px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1;
+            color: #555;
+            text-align: center;
+            background-color: #eee;
+            border: 1px solid #ccc;
+            border-top-color: rgb(204, 204, 204);
+            border-right-color: rgb(204, 204, 204);
+            border-right-style: solid;
+            border-right-width: 1px;
+            border-bottom-color: rgb(204, 204, 204);
+            border-left-color: rgb(204, 204, 204);
+            border-radius: 4px;
+        }
+
+        .input-group-addon, .input-group-btn {
+            width: 1%;
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+
+        .input-group .form-control, .input-group-addon, .input-group-btn {
+            display: table-cell;
+        }
+
+        .input-group .input-group-addon {
+            border-radius: 0;
+            border-color: #d2d6de;
+            background-color: #fff;
+        }
+
+        .input-group .input-group-addon {
+            border-radius: 0;
+            border-color: #d2d6de;
+            background-color: #fff;
+        }
+
+        .marks-radio {
+            margin-bottom: 0px;
+            min-width: 60px;
+            border-left: 1px solid red;
+        }
+
+        .iradio_flat-green {
+            background-position: -88px 0;
+        }
+
+        .icheckbox_flat-green, .iradio_flat-green {
+            display: inline-block;
+            *display: inline;
+            vertical-align: middle;
+            margin: 0;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            background: url(green.png) no-repeat;
+            background-position-x: 0%;
+            background-position-y: 0%;
+            border: none;
+            cursor: pointer;
+        }
+
+        .iradio_flat-green {
+            background-position: -88px 0;
+        }
+
+        .form_error, .errorMsg {
+            color: red;
+        }
+    </style>
+
     <div class="col-md-12">
         <section class="content-header">
 
             <h1>
-                Training Process
+                New Validation
                 <small>CR Asia Training &amp; Validation Center</small>
-
             </h1>
-            <ol class="breadcrumb">
-                <li><button data-ng-click="onBackPage()" class="{{'btn btn-sm btn-success'}}"><i class="{{'fa  fa-eye'}}"></i>{{'  Back'}}</button></li>
-               
-            </ol>
+
         </section>
-        <!-- Main content -->
-        <section class="content">
-            <!-- SELECT2 EXAMPLE -->
-            <div class="box box-primary">
-                <!-- /.box-header -->
-               
-                    <div class="box-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group" style="border-bottom:1px solid #ccc;margin-bottom:0px;">
-                                    <div class="input-group" style="padding:10px;font-size:120%;">
-                                        <label class="">Name <span class="glyphicon glyphicon-user"></span> : </label>
-                                        <label style="margin-left:15px;">{{TrainingProcessDetailsResponse.Name}}</label>
-                                    </div>
-                                </div>
-                                <div class="form-group" style="border-bottom:1px solid #ccc;margin-bottom:0px;">
-                                    <div class="input-group" style="padding:10px;font-size:120%;">
-                                        <label class="">Registration No. <span class="glyphicon glyphicon-user"></span> : </label>
-                                        <label style="margin-left:15px;">{{TrainingProcessDetailsResponse.RegistrationNo}}</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group" style="margin-bottom:0px;">
-                                    <div class="input-group" style="padding:10px;font-size:120%;">
-                                        &nbsp;
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon" style="padding:10px;font-size:120%;">
-                                            <label class="">Trainee Registration No.  : </label>
-                                            <span class="glyphicon glyphicon-user"></span>
-                                        </div>
-                                        <input type="text" readonly="" name="T_R_No" value="{{TrainingProcessDetailsResponse.TraineeRegistrationNo}}" class="form-control marks-label" style="padding:10px;font-size:120%;height:45px;width: 200px;font-weight: bold;">
-
-                                    </div>
-
-                                </div>
-
-                            </div>
+    </div>
+    <div class="col-md-12 box box-primary">
+        <div class="box-header with-border">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group" style="border-bottom:1px solid #ccc;margin-bottom:0px;">
+                        <div class="input-group" style="padding:10px;font-size:120%;">
+                            <label class="">Name <span class="glyphicon glyphicon-user"></span> : </label>
+                            <label style="margin-left:15px;">{{ValidationProcessModel.Name}}</label>
                         </div>
-                        <div class="row testDetails" id="testDetails">
-                            <div class="col-md-12">
-                                <div class="alert" style="text-align:center;padding:10px;  border-bottom: 1px solid #ccc;" id="testType">
-                                    <u><h4><span></span> Details of Training</h4></u>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">1.</div>
-                                        <input type="text" readonly="" name="tname[]" id="SI_name" value="Safety Induction" class="form-control question">
-                                        <div class="input-group-addon"> Date <span class="glyphicon"></span> :</div>
-                                        <input type="text" readonly="" id="SI_date" name="tdate[]" class="form-control dtcontrol" value="{{TrainingProcessDetailsResponse.ExmSInductionDate}}" data-date-end-date="0d">
-                                        <div class="input-group-addon">Marks <span class="glyphicon "></span> :</div>
-                                        <input type="text" id="SI_marks" ng-keypress="filterNumericValue($event)" maxlength="2" name="tmark[]" value="{{TrainingProcessDetailsResponse.ExmSInductionMarks}}" class="form-control dtcontrol">
-                                        <div class="input-group-addon">Result <span class="glyphicon glyphicon-question-sign"></span></div>
-                                        <select class="form-control dtcontrol" id="SI_result" name="tresult[]">
-                                            <option value="">select result</option>
-                                            <option value="0">Failed</option>
-                                            <option value="1">Pass</option>
-
-                                        </select>
-                                    </div>
-
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">2.</div>
-                                        <input type="text" readonly="" id="CS_name" name="tname[]" value="Confined Space" class="form-control question">
-                                        <div class="input-group-addon"> Date <span class="glyphicon"></span> :</div>
-                                        <input type="text" readonly="" id="CS_date" name="tdate[]" class="form-control dtcontrol" value="{{TrainingProcessDetailsResponse.ExmCSpaceDate}}" data-date-end-date="0d">
-                                        <div class="input-group-addon">Marks <span class="glyphicon "></span> :</div>
-                                        <input type="text" id="CS_marks" ng-keypress="filterNumericValue($event)" maxlength="2" name="tmark[]" value="{{TrainingProcessDetailsResponse.ExmCSpaceMarks}}" class="form-control dtcontrol">
-                                        <div class="input-group-addon">Result <span class="glyphicon glyphicon-question-sign"></span></div>
-                                        <select class="form-control dtcontrol" id="CS_result" name="tresult[]">
-                                            <option value="">select result</option>
-                                            <option value="0">Failed</option>
-                                            <option value="1">Pass</option>
-
-                                        </select>
-                                    </div>
-
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">3.</div>
-                                        <input type="text" readonly="" id="WH_name" name="tname[]" value="Work at Height" class="form-control question">
-                                        <div class="input-group-addon"> Date <span class="glyphicon"></span> :</div>
-                                        <input type="text" readonly="" id="WH_date" name="tdate[]" class="form-control dtcontrol" value="{{TrainingProcessDetailsResponse.ExmWAtHightDate}}" data-date-end-date="0d">
-                                        <div class="input-group-addon">Marks <span class="glyphicon "></span> :</div>
-                                        <input type="text" id="WH_marks" ng-keypress="filterNumericValue($event)" maxlength="2" name="tmark[]" value="{{TrainingProcessDetailsResponse.ExmWAtHightMarks}}" class="form-control dtcontrol">
-                                        <div class="input-group-addon">Result <span class="glyphicon glyphicon-question-sign"></span></div>
-                                        <select class="form-control dtcontrol" id="WH_result" name="tresult[]">
-                                            <option value="">select result</option>
-                                            <option value="0">Failed</option>
-                                            <option value="1">Pass</option>
-
-                                        </select>
-
-                                    </div>
-
-                                </div>
-
-
-                            </div>
-                            <div class="col-md-12 ">
-
-                                <div class="form-group">
-                                    <div class="input-group pull-right">
-
-                                        <input type="hidden" name="alltpdone" id="alltpdone">
-                                        <input type="hidden" name="addtp">
-                                        <button type="submit" class="btn btn-success btn-md btnTrainingProcessSave" data-ng-click="TrainingProcessSave()"><span class="glyphicon glyphicon-cloud-upload"></span> SAVE TRAINIG PROCESS</button>
-                                    </div>
-                                    <p class="errorMsg hide" id="err_record">Please enter at least one record.</p><p>
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- /.col -->
-                            <!-- /.col -->
+                    </div>
+                    <div class="form-group" style="border-bottom:1px solid #ccc;margin-bottom:0px;">
+                        <div class="input-group" style="padding:10px;font-size:120%;">
+                            <label class="">Registration No. <span class="glyphicon glyphicon-user"></span> : </label>
+                            <label style="margin-left:15px;">{{ValidationProcessModel.PRN}}</label>
                         </div>
-                        <!-- /.row -->
-                        <!-- /.row -->
+                    </div>
+                    <div class="form-group" style="border-bottom:1px solid #ccc;margin-bottom:0px;">
+                        <div class="input-group" style="padding:10px;font-size:120%;">
+                            <label class="">Date : </label>
+                            <label style="margin-left:15px;">{{ValidationProcessModel.Date}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group" style="margin-bottom:0px;">
+                        <div class="input-group" style="padding:10px;font-size:120%;">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <label class="">Marks  : </label>
+                            </div>
+
+                            <label class="form-control marks-label" style="margin-left:0px;padding-top: 0px;">Obtained : <span class="marks-container" id="obt_marks">{{ObtainedMarks}}</span></label>
+                            <label class="form-control marks-label" style="margin-left:0px;padding-top: 0px;">Total :<span class="marks-container" id="total_marks">{{TotalMarks}}</span></label>
+
+                        </div>
+                        <div class="errorMsg hide" id="error_trade_cat">Please Select Validation Trade</div>
                     </div>
 
-
                 </div>
-            <!-- /.box -->
+            </div>
+            <div class="row testDetails" id="testDetails" style="display: block;">
+                <div class="col-md-12 ">
+                    <div class="alert" style="text-align:center;padding:0px;  border: 1px solid #ccc;" id="testType">
+                        <u><h3><span id="test_cat_name">{{ValidationProcessModel.TradeName}}</span> - <span id="test_subcat_name">{{ValidationProcessModel.TradeCName}}</span> Test </h3></u>
+                        <u><h4><span id="test_test_name">{{ValidationProcessModel.TestType}}</span> Test</h4></u>
+                    </div>
+                    <div id="questions_container" data-ng-show="!isWrittenTest">
+                        <div class="questions">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div style="border:1px solid #ccc;padding:5px;">
+                                        <label>
+                                            <span id="test_qtype">A. Practical Skills </span> :
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="qcontainer" id="qcontainer">
+                                <div data-ng-repeat="ValidateQuestions in ValidateQuestionsList">
+                                    <div ng-if="ValidateQuestions.GroupName!=='B'" class="form-group questiondiv">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">{{ValidateQuestions.QuestionIndex}}. </div>
+                                            <input type="text" value="{{ValidateQuestions.TestQDescription}}" readonly="" name="question[]" class="form-control question">
+                                            <div class="input-group-addon">
+                                                <label class="marks-radio">
+                                                    <div class="iradio_flat-green" style="position: relative;" aria-checked="false" aria-disabled="false">
+                                                        <input type="radio" name="A_Marks_{{ValidateQuestions.TestQDescription}}" class="flat-red radio-marks" data-ng-click='calMarks()' value="1" />
+                                                    </div> 1
+                                                </label>
+                                                <label class="marks-radio">
+                                                    <div class="iradio_flat-green" style="position: relative;" aria-checked="false" aria-disabled="false">
+                                                        <input type="radio" name="A_Marks_{{ValidateQuestions.TestQDescription}}" class="flat-red radio-marks" data-ng-click='calMarks()' value="2">
+                                                    </div> 2
+                                                </label>
+                                                <label class="marks-radio">
+                                                    <div class="iradio_flat-green" style="position: relative;" aria-checked="false" aria-disabled="false">
+                                                        <input type="radio" name="A_Marks_{{ValidateQuestions.TestQDescription}}" class="flat-red radio-marks" data-ng-click='calMarks()' value="3" />
+                                                    </div> 3
+                                                </label>
+                                                <label class="marks-radio">
+                                                    <div class="iradio_flat-green" style="position: relative;" aria-checked="false" aria-disabled="false">
+                                                        <input type="radio" name="A_Marks_{{ValidateQuestions.TestQDescription}}" class="flat-red radio-marks" data-ng-click='calMarks()' value="4" />
+                                                    </div> 4
+                                                </label>
+                                                <label class="marks-radio">
+                                                    <div class="iradio_flat-green" style="position: relative;" aria-checked="false" aria-disabled="false">
+                                                        <input type="radio" name="A_Marks_{{ValidateQuestions.TestQDescription}}" class="flat-red radio-marks" data-ng-click='calMarks()' value="5" />
+                                                    </div> 5
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="questions">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div style="border:1px solid #ccc;padding:5px;">
+                                        <label>
+                                            <span id="test_qtype">B. Interpersonal Skill </span> :
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="qcontainer" id="qcontainer">
+                                <div data-ng-repeat="ValidateQuestions in ValidateQuestionsList">
+                                    <div ng-if="ValidateQuestions.GroupName!=='A'" class="form-group questiondiv">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">{{ValidateQuestions.QuestionIndex}}. </div>
+                                            <input type="text" value="{{ValidateQuestions.TestQDescription}}" readonly="" name="question[]" class="form-control question">
+                                            <div class="input-group-addon">
+                                                <label class="marks-radio">
+                                                    <div class="iradio_flat-green" style="position: relative;" aria-checked="false" aria-disabled="false">
+                                                        <input type="radio" name="B_Marks_{{ValidateQuestions.TestQDescription}}" class="flat-red radio-marks" data-ng-click='calMarks()' value="1">
+                                                    </div> 1
+                                                </label>
+                                                <label class="marks-radio">
+                                                    <div class="iradio_flat-green" style="position: relative;" aria-checked="false" aria-disabled="false">
+                                                        <input type="radio" name="B_Marks_{{ValidateQuestions.TestQDescription}}" class="flat-red radio-marks" data-ng-click='calMarks()' value="2">
+                                                    </div> 2
+                                                </label>
+                                                <label class="marks-radio">
+                                                    <div class="iradio_flat-green" style="position: relative;" aria-checked="false" aria-disabled="false">
+                                                        <input type="radio" name="B_Marks_{{ValidateQuestions.TestQDescription}}" class="flat-red radio-marks" data-ng-click='calMarks()' value="3" />
+                                                    </div> 3
+                                                </label>
+                                                <label class="marks-radio">
+                                                    <div class="iradio_flat-green" style="position: relative;" aria-checked="false" aria-disabled="false">
+                                                        <input type="radio" name="B_Marks_{{ValidateQuestions.TestQDescription}}" class="flat-red radio-marks" data-ng-click='calMarks()' value="4" />
+                                                    </div> 4
+                                                </label>
+                                                <label class="marks-radio">
+                                                    <div class="iradio_flat-green" style="position: relative;" aria-checked="false" aria-disabled="false">
+                                                        <input type="radio" name="B_Marks_{{ValidateQuestions.TestQDescription}}" class="flat-red radio-marks" data-ng-click='calMarks()' value="5" />
+                                                    </div> 5
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                    </div>
+                    <div id="written_test_container" class="col-md-6" data-ng-show="isWrittenTest">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <label class="hidden-xs">Obtained Written Marks: </label>
+                                    <span class="glyphicon glyphicon-list-alt"></span>
+                                </div>
+                                <input type="text" name="written_marks" ng-keypress="filterNumericValue($event)" id="written_marks" placeholder="Enter written test marks" class="form-control pull-right" maxlength="2">
+                                <div class="input-group-addon">
+                                    <label class="hidden-xs">Out of <span id="wootm">{{TotalMarks}}</span></label>
+                                    <span class="glyphicon glyphicon-list-alt"></span>
+                                </div>
+                            </div>
+                            <p class="errorMsg" id="error_written_marks" style="display: none;">Enter written test marks out of 10.</p><p>
 
+                            </p>
+                        </div>
 
-        </section>
-        <!-- /.content -->
+                    </div>
+                    <div id="VPConfermDialog" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header" style="border-bottom-color:#00a65a;">
+                                    <h4 class="modal-title" style="color: #00;font-weight: bold;">
+                                        Candidate Result :
+                                        <button type="button" class="{{'btn btn-md '+ (ObtainedPer<PassinngPer?'btn-danger':'btn-success')}}" id="resultbtn">
+                                            {{ObtainedPer< PassinngPer ?'Failed':'Passed'}}
+                                        </button>
+                                    </h4>
+
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                        <b>Test Marks :</b>
+                                        <span style="font-size: 130%;font-weight: bold;padding: 5px;" id="final_obt_t_marks">{{ObtainedMarks}}</span> Out Of <span style="font-size: 130%;font-weight: bold;padding: 5px;" id="final_total_t_marks">{{TotalMarks}}</span>
+                                    </p>
+                                    <p>
+                                        <b>Obtained Marks :</b>
+                                        <button type="button" class="{{'btn btn-md margin '+ (ObtainedPer<OutOfMarks?'btn-danger':'btn-success')}}" style="font-size: 130%;font-weight: bold;    padding: 5px 20px 5px 20px;" id="final_obt_marks_btn">{{OutofPer}}</button> Out of
+                                        <button type="button" class="btn bg-navy btn-flat margin" style="font-size: 130%;font-weight: bold;    padding: 5px 20px 5px 20px;" id="final_total_marks_btn">{{OutOfMarks}}</button>
+                                    </p>
+                                    <p>Minimum passing criteria for  <span id="result_test_name" style="font-weight:bold">{{ValidationProcessModel.TestType}}</span> test is <span style="font-weight:bold" id="result_criteria">{{resultCriteriaTest}}</span> </p>
+                                </div>
+                                <div class="modal-footer" style="border-top-color: #008d4c;">
+                                    <button type="button" class="btn btn-primary pull-left" data-ng-click="resetTestResult('VPConfermDialog')">Cancel and revalidate</button>
+                                    <button type="submit" class="btn btn-success pull-right" data-ng-click="VPFinalSubmit()">Continue</button>
+
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                    </div>
+                    <div class="modal fade in" id="modal-written-marks" data-keyboard="false" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header" style="border-bottom-color:#00a65a;">
+                                    <h4 class="modal-title" style="color: #00;font-weight: bold;">Written Test Total Marks</h4>
+
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <label class="hidden-xs">Enter Written Test Total Marks: </label>
+                                                <span class="glyphicon glyphicon-list-alt"></span>
+                                            </div>
+                                            <input type="text" name="written_totial_e_marks" ng-keypress="filterNumericValue($event)" id="written_totial_e_marks" placeholder="Enter written test total marks" class="form-control pull-right" maxlength="3">
+
+                                        </div>
+                                        <p class="errorMsg hide" id="error_written_totial_e_marks">Enter written test total marks.</p><p>
+
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="modal-footer" style="border-top-color: #008d4c;">
+                                    <button type="button" class="btn btn-primary pull-left" data-ng-click="resetTestResult('modal-written-marks')">Cancel</button>
+                                    <button type="button" data-ng-click="setWrittentTestMarks();" class="btn btn-success pull-right">Continue</button>
+
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                </div>
+                <div class="col-md-12 " style="padding-bottom: 10px;">
+
+                    <div class="form-group">
+                        <div class="input-group pull-right">
+                            <button type="button" class="btn btn-primary pull-left" style="margin-right: 10px;" data-ng-click="CancelValidation()">Cancel</button>
+                            <button type="button" data-toggle="modal" data-ng-click="validateTest()" class="btn btn-success btn-md"><span class="glyphicon glyphicon-cloud-upload"></span> SAVE TEST</button>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.col -->
+                <!-- /.col -->
+            </div>
+        </div>
     </div>
 </div>
