@@ -20,7 +20,7 @@
         IdProofImage: "", PHouseNo: "", PVillageId: "", PDisticId: 0, PTalukaId: "", PStateId: 0,
         PCountryId: 0, PPincodeId: "", THouseNo: "", TVillageId: "", TDisticId: 0, TTalukaId: "",
         TStateId: 0, TCountryId: "", TPincode: "", ReJoineOrNewJoin: 0, DeptZoneId: 0, ValidationAgencyId: 0,
-        IsAlreadyValidated: 0, TradeId: 0, ProfileImage: "", IsDMorStaff: 0, DeptId: "", ProjectTypeId: ""
+        IsAlreadyValidated: 0, TradeId: 0, ProfileImage: "", IsDMorStaff: 0, DeptId: "", ProjectTypeId: "",EmpEmail:""
     };
 
     $scope.ErrorModel = {
@@ -189,7 +189,7 @@
 
     $scope.Validate = function () {
         var valid = true;
-        if ($scope.Emp.AdhaarNo.length == 12) {
+        if ($scope.Emp.AadharNo.length <12) {
             $scope.ErrorModel.AadharNo = true;
             $scope.ErrorModel.ErrorMessageAdhaarNo = "Please Enter Valid Aadhar Number.";
             valid = false;
@@ -347,7 +347,7 @@
             $scope.EmpDetails.VCertificatePath = $("#hdnVCertificatePath").val();
             $scope.EmpDetails.AdhaarImage = $("#hdnAdhaarImage").val();
             $scope.EmpDetails.IdProofImage = $("#hdnIdProofImage").val();
-
+            
             var model = { Emp: $scope.Emp, EmpDetails: $scope.EmpDetails };
             $http({
                 method: 'post',
@@ -472,6 +472,7 @@
                         $("#ddlContractor").val($scope.EmpDetails.ContractorId);
                         $("#ddlSDep").val($scope.EmpDetails.DeptId);
                         $("#ddlProjectType").val($scope.EmpDetails.ProjectTypeId)
+                        $scope.Emp.AadharNo = $scope.Emp.AadharNo;
                     }
                 }, function (error) {
                     HideLoader();

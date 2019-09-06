@@ -39,9 +39,9 @@ namespace cradmin.Models.Models
         public List<StateMaster> StateList { get; set; }
 
         public List<DeptZoneMaster> ZoneList { get; set; }
-
+        
         public List<TradeType> TradeList { get; set; }
-
+        public List<TradeType> AssignTradeList { get; set; }
         public List<MainContractor> ContractorList { get; set; }
         public List<SubContractor> SubContractorList { get; set; }
         public List<ValidationAgency> ValidationAgencyList { get; set; }

@@ -6,14 +6,14 @@
             <div class="col-sm-3"></div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="text" placeholder="Search" class="form-control" data-ng-model="Prefix"
-                           data-ng-change="FilterList()" />
+                    <input type="text" placeholder="Search" class="form-control"  />
+                            
 
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <button type="button" class="btn btn-danger" data-ng-click="FilterList()" data-toggle="tooltip"
+                    <button type="button" class="btn btn-danger" data-ng-click="CheckAdhaarExist()" 
                             title="Search">
                         Search
                     </button>
@@ -44,11 +44,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-ng-repeat="Quetion in MainQuetionList">
-                        <td>{{Quetion.TestQuetionCatagoryId}}</td>
-                        <td>{{Quetion.TestDescription}}</td>
-                        <td>{{Quetion.TestDescription}}</td>
-                        <td>{{Quetion.TradDescription}}</td>
+                    <tr >
+                        <td>}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
 
 
                         <td>
@@ -82,7 +82,7 @@
                         <div class="col-sm-4" style="margin-left:50px">
 
                             <div class='input-group date' id='dtDMJoining'>
-                                <input type="text" class="form-control" placeholder="Enter Date Of Joining ..." data-ng-model="EmpDetails.DateOfReport">
+                                <input type="text" class="form-control" placeholder="Enter Date Of Joining ..." >
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-time"></span>
                                 </span>

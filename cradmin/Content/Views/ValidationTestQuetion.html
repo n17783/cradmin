@@ -8,7 +8,7 @@
                 <input type="hidden" data-ng-model="TestQuetionModel.TestQuetionCatagoryId" />
                 <div class="form-group">
                     <label ng-hide="Update">Select Test</label>
-                    <select class="form-control" id="ddlTest"  ng-disabled="Update" ng-hide="Update" data-ng-model="TestQuetionModel.TestId"></select>
+                    <select class="form-control" id="ddlTest"  ng-disabled="Update" ng-hide="Update" data-ng-model="TestQuetionModel.TestId" data-ng-click="ChangeDropDown()"></select>
                     <span class="badge badge-danger" data-ng-show="ErrorModel.TestId">{{ErrorModel.ErrorSelectTest}}</span>
                 </div>
                 <div class="form-group">
@@ -25,10 +25,8 @@
                 <div class="form-group">
                     <label ng-hide="Update">Select Quetion Category</label>
                     <select class="form-control" id="ddlQCategory"  data-ng-model="TestQuetionModel.TestQCategory" ng-hide="Update" >
-                        <option value="A . Health, Safety & Environment :">A . Health, Safety & Environment :</option>
-                        <option value="B . Trade Specific Validation :">B . Trade Specific Validation :</option>
-                        <option value="A . Practical Skills  :">A . Practical Skills  :</option>
-                        <option value="B . Interpersonal Skill  :">B . Interpersonal Skill  :</option>
+                       
+                         
                     </select>
                     <span class="badge badge-danger" data-ng-show="ErrorModel.TestQCategory">{{ErrorModel.ErrorSelectQCategory}}</span>
                 </div>

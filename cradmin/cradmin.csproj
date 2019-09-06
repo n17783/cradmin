@@ -176,7 +176,6 @@
     <Compile Include="Controllers\MultiSkilling\SkillController.cs" />
     <Compile Include="Controllers\MultiSkilling\SkillCreationController.cs" />
     <Compile Include="Controllers\SubContractorController.cs" />
-    <Compile Include="Controllers\UserRollMappingControllers.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContractorController.cs" />
     <Compile Include="Controllers\CourseMasterController.cs" />
@@ -263,18 +262,27 @@
     <Content Include="Content\Views\AssessedCandidates.html" />
     <Content Include="Content\Views\AssessmentReport.html" />
     <Content Include="Content\Views\AssessmentReportStatus.html" />
+    <Content Include="Content\Views\BankDetails.html" />
     <Content Include="Content\Views\CandidatesForAssesment.html" />
     <Content Include="Content\Views\CandidatesForTraining.html" />
     <Content Include="Content\Views\CandidatesForValidation.html" />
     <Content Include="Content\Views\CourseMaster.html" />
     <Content Include="Content\Views\Department.html" />
     <Content Include="Content\Views\DeptZone.html" />
+    <Content Include="Content\Views\DMJoiningProcess.html" />
+    <Content Include="Content\Views\EducationDetails.html" />
     <Content Include="Content\Views\EmplooyeeType.html" />
+    <Content Include="Content\Views\EmployeeExperience.html" />
+    <Content Include="Content\Views\ExitProcess.html" />
+    <Content Include="Content\Views\FamilyDetails.html" />
+    <Content Include="Content\Views\NomineeDetails.html" />
     <Content Include="Content\Views\Plant.html" />
     <Content Include="Content\Views\PlantTradeTracking.html" />
     <Content Include="Content\Views\RollFormMapping.html" />
+    <Content Include="Content\Views\SiteHRActivity.html" />
     <Content Include="Content\Views\SkillCreation.html" />
     <Content Include="Content\Views\SkillMaster.html" />
+    <Content Include="Content\Views\StaffJoiningProcess.html" />
     <Content Include="Content\Views\SubContractor.html" />
     <Content Include="Content\Views\TrainedCandidates.html" />
     <Content Include="Content\Views\TrainingProcess.html" />
@@ -287,9 +295,11 @@
     <Content Include="Content\Views\employee.html" />
     <Content Include="Content\Views\Contractor.html" />
     <Content Include="Content\Views\TradeCategory.html" />
+    <Content Include="Content\Views\ValidationEntryForm.html" />
     <Content Include="Content\Views\ValidationProcess.html" />
     <Content Include="Content\Views\ValidationTest.html" />
     <Content Include="Content\Views\ValidationTestQuetion.html" />
+    <Content Include="Content\Views\WorkingSalaryCondition.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -370,6 +380,7 @@
     <Content Include="Content\fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\CRASIAPublish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\HR\DMJoiningProcessController.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -385,8 +396,10 @@
     <Content Include="Scripts\TrainingProcess\CandidatesForTrainingController.js" />
     <Content Include="Scripts\TrainingProcess\TrainedCandidatesController.js" />
     <Content Include="Scripts\TrainingProcess\TrainingProcessController.js" />
+    <Content Include="Scripts\ValidationProcess\AssessmentReportStatusController.js" />
     <Content Include="Scripts\ValidationProcess\ValidatedCandidatesController.js" />
     <Content Include="Scripts\ValidationProcess\CandidatesForValidationController.js" />
+    <Content Include="Scripts\ValidationProcess\ValidationEntryFormController.js" />
     <Content Include="Scripts\ValidationProcess\ValidationProcessController.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
@@ -451,6 +464,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\CaptureEmployee\" />
+    <Folder Include="Content\UploadAdhaar\" />
+    <Folder Include="Content\UploadValidationCertificate\" />
     <Folder Include="Views\SkillCreation\" />
     <Folder Include="Views\Skill\" />
     <Folder Include="Views\SubContractor\" />

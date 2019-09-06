@@ -109,6 +109,32 @@
 
     $scope.PageSizeList = [5, 10, 15, 20];
     $scope.PlantQuetionList = [];
+    $scope.ChangeDropDown = function () {
+        $scope.qcategory = [];
+      
+
+       
+        
+        if($("#ddlTest").val()==1)
+        {
+            $scope.qcategory = [{ name: "A . Health, Safety & Environment :" }, { name: "B . Trade Specific Validation :" }];
+        }
+        if ($("#ddlTest").val() == 3) {
+            $scope.qcategory = [{ name: "A . Practical Skills  :" }, { name: "B . Trade Specific Validation :" }];
+        }
+        if ($("#ddlTest").val() != 1 && $("#ddlTest").val() != 3)
+        {
+
+            $scope.qcategory = [{ name: "A" }, { name: "B" }, { name: "C" }, { name: "D" }];
+        }
+        $scope.qcategory.splice(0, 0, { name: 0, name: "---Select Quetion Category---" });
+        var html1 = "";
+        angular.forEach($scope.qcategory, function (value, key) {
+            html1 += "<option value='" + value.name + "'>" + value.name + "</option>";
+        });
+        $("#ddlQCategory").html(html1);
+       
+    }
 
     $scope.Save = function () {
         if ($scope.Validate()) {
@@ -343,7 +369,7 @@
             }
         }
         if (valid == true) {
-            if ($scope.TestQuetionModel.TestQCategory == "") {
+            if ($("#ddlQCategory").val() == "---Select Quetion Category---") {
                 $scope.ErrorModel.TestQCategory = true;
                 $scope.ErrorModel.ErrorSelectQCategory = "Select Quetion Prefix Or Suffix.";
                 valid = false;

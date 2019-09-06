@@ -210,7 +210,52 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
          //name: 'AssessedCandidates', 29
          name: $scope.domainpath + '/Content/Views/ValidationEntryForm.html',
          url: $scope.domainpath + '/Content/Views/ValidationEntryForm.html'
-     }];
+     }, 
+     {
+         //name: 'DMJoiningProcess', 30
+         name: $scope.domainpath + '/Content/Views/DMJoiningProcess.html',
+         url: $scope.domainpath + '/Content/Views/DMJoiningProcess.html'
+     },
+     {
+         //name: 'StaffJoiningProcess', 31
+         name: $scope.domainpath + '/Content/Views/StaffJoiningProcess.html',
+         url: $scope.domainpath + '/Content/Views/StaffJoiningProcess.html'
+     }, {
+         //name: 'BankDetails', 32
+         name: $scope.domainpath + '/Content/Views/BankDetails.html',
+         url: $scope.domainpath + '/Content/Views/BankDetails.html'
+     },
+     {
+         //name: 'EducationDetails', 33
+         name: $scope.domainpath + '/Content/Views/EducationDetails.html',
+         url: $scope.domainpath + '/Content/Views/EducationDetails.html'
+     }, {
+         //name: 'EmployeeExperience', 34
+         name: $scope.domainpath + '/Content/Views/EmployeeExperience.html',
+         url: $scope.domainpath + '/Content/Views/EmployeeExperience.html'
+     }, {
+         //name: 'FamilyDetails', 35
+         name: $scope.domainpath + '/Content/Views/FamilyDetails.html',
+         url: $scope.domainpath + '/Content/Views/FamilyDetails.html'
+     }, {
+         //name: 'WorkingSalaryCondition', 36
+         name: $scope.domainpath + '/Content/Views/WorkingSalaryCondition.html',
+         url: $scope.domainpath + '/Content/Views/WorkingSalaryCondition.html'
+     },
+    {
+        //name: 'FamilyDetails', 37
+        name: $scope.domainpath + '/Content/Views/FamilyDetails.html',
+        url: $scope.domainpath + '/Content/Views/FamilyDetails.html'
+},
+    {
+         //name: 'SiteHRActivity', 37
+         name: $scope.domainpath + '/Content/Views/SiteHRActivity.html',
+         url: $scope.domainpath + '/Content/Views/SiteHRActivity.html'
+     }, {
+         //name: 'ExitProcess', 37
+         name: $scope.domainpath + '/Content/Views/ExitProcess.html',
+         url: $scope.domainpath + '/Content/Views/ExitProcess.html'
+     }]; 
     
     $scope.validateEmail=function (element) {
         var isvalid = true;
@@ -268,6 +313,36 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
 
     $scope.LoadUserControls = function (tname) {
         switch (tname) {
+            case "ExitProcess":
+                $scope.template = $scope.templates[40];
+                break 
+            case "SiteHRActivity":
+                $scope.template = $scope.templates[39];
+                break
+            case "FamilyDetails":
+                $scope.template = $scope.templates[38];
+                break
+            case "WorkingSalaryCondition":
+                $scope.template = $scope.templates[37];
+        break
+            case "FamilyDetails":
+                $scope.template = $scope.templates[36];
+        break
+            case "EmployeeExperience":
+                $scope.template = $scope.templates[35];
+                break
+        case "EducationDetails":
+    $scope.template = $scope.templates[34];
+    break
+            case "BankDetails":
+                $scope.template = $scope.templates[33];
+        break
+            case "StaffJoiningProcess":
+                $scope.template = $scope.templates[32];
+                break
+            case "DMJoiningProcess":
+                $scope.template = $scope.templates[31];
+        break
             case "ValidationEntryForm":
                 $scope.template = $scope.templates[30];
         break

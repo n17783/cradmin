@@ -42,7 +42,20 @@ namespace cradmin.Controllers
             MasterDataResponse response = objEmp.CheckUserExist(model);
             return Json(response, JsonRequestBehavior.AllowGet);
         }
+        [MyAuthorize]
+        [HttpPost]
+        public ActionResult GetEmpFilterTradeList(TradeType model)
 
+        {
+            List<TradeType> response = objEmp.EmpFilterTradeList(model);
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
+        [MyAuthorize]
+        [HttpPost]
+        public ActionResult MultiTrade(TradeMapping model)
+        {
+            return Json(objEmp.MultiTrade(model), JsonRequestBehavior.AllowGet);
+        }
         [MyAuthorize]
         [HttpPost]
         public ActionResult Get_UserRoles()

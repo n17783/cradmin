@@ -83,9 +83,9 @@ namespace cradmin.Models.BAL
            
             lst.Add(new SqlParameter() { ParameterName = "@EmpValidationId", Value = model.EmpValidationId });
             lst.Add(new SqlParameter() { ParameterName = "@LoginEmployeeId", Value = 0 });
-            lst.Add(new SqlParameter() { ParameterName = "@VAssRemarkOne", Value = model.RemartkOne });
-            lst.Add(new SqlParameter() { ParameterName = "@VAssRemarkTow", Value = model.RemartkTwo });
-            lst.Add(new SqlParameter() { ParameterName = "@VAssessmentNo", Value = model.AssessmentID });
+            lst.Add(new SqlParameter() { ParameterName = "@VAssRemarkOne", Value = model.RemartkOne=="" ? null:model.RemartkOne });
+            lst.Add(new SqlParameter() { ParameterName = "@VAssRemarkTow", Value = model.RemartkTwo==""?null:model.RemartkTwo });
+            lst.Add(new SqlParameter() { ParameterName = "@VAssessmentNo", Value = model.AssessmentID=="" ? null: model.AssessmentID });
 
 
             DataTable dt = objHelper.GetDataTable("SaveAssessmentReportDetails", lst);

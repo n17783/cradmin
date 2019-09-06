@@ -43,13 +43,13 @@
                     <div class="col-sm-2">
                         <div>
                             <label>
-                                <input type="radio" name="optionStaff" id="rdoStaff" data-ng-click="changeEmpType()">
+                                <input type="radio" name="optionStaff" id="rdoStaff" data-ng-click="changeEmpType()" data-ng-disabled="IsNewUser!=1">
                                 STAFF
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="radio" name="optionStaff" id="rdoDM" data-ng-click="changeEmpType()">
+                                <input type="radio" name="optionStaff" id="rdoDM" data-ng-click="changeEmpType()" data-ng-disabled="IsNewUser!=1">
                                 DM
                             </label>
                         </div>
@@ -58,13 +58,13 @@
                     <div class="col-sm-2">
                         <div>
                             <label>
-                                <input type="radio" name="optionGender" id="rdoMale">
+                                <input type="radio" name="optionGender" id="rdoMale" data-ng-disabled="IsNewUser!=1">
                                 Male
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="radio" name="optionGender" id="rdoFemale">
+                                <input type="radio" name="optionGender" id="rdoFemale" data-ng-disabled="IsNewUser!=1">
                                 Female
                             </label>
                         </div>
@@ -136,8 +136,8 @@
                 <hr style="border-style: none" />
                 <hr style="border-style: none;  margin-top: 2.6em" />
                 <div class="row">
-                    <div id="webcam" style="min-height:200px;max-height:250px;"></div>
-                    <img id="imgCapture" style="display: none; width: 300px;height: 320px" />
+                    <div id="webcam" style="min-height:150px;max-height:200px;"></div>
+                    <img id="imgCapture" style="display: none; width: 250px;height: 270px" />
 
                     <input type="button" class="btn btn-danger" value="Capture" onclick="Capture();" />
                     <button id="uploadProfile" class="btn btn-danger" type="button">Upload</button>
@@ -316,7 +316,7 @@
                 </div>
                 <div class="col-sm-4">
                     <label>Email Id</label>
-                    <input type="text" class="form-control" placeholder="Enter Email Id ..." data-ng-model="Emp.UserName">
+                    <input type="text" class="form-control" placeholder="Enter Email Id ..." data-ng-model="EmpDetails.EmpEmail">
                     <span class="badge badge-danger" data-ng-show="ErrorModel.UserName">{{ErrorModel.ErrorMessageUserName}}</span>
                 </div>
             </div>

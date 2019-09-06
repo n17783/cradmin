@@ -56,13 +56,13 @@ CRAdminApp.controller("CandidatesForAssessmentController", ['$scope', '$http', '
     }
 
     $scope.AssessReport = function (obj) {
-        debugger;              
+                      
             SelectedValidaterModel = obj;            
             $scope.LoadUserControls('AssessmentReport');       
 }
 
     $scope.init = function () {
-        debugger;
+        
 
         checkToken();
         $scope.CandidatesForValidationModel.getCandidates = 'AssessmentReport';

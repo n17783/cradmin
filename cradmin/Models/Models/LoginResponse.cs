@@ -62,7 +62,7 @@ namespace cradmin.Models.Models
         public string ContactNo { get; set; }
 
     }
-    public class Employee
+    public class Employee :Error
     {
         public int? PkId { get; set; }
         public string Regt_No { get; set; }
@@ -76,6 +76,26 @@ namespace cradmin.Models.Models
         public string PanNo { get; set; }
         public string AadharNo { get; set; }
         public string UserName { get; set; }
+        
+    }
+
+    public class TradeMapping:Error
+    {
+        public int MappingId { get; set; }
+        public int TradeId { get; set; }
+        public int ValidationAgencyId { get; set; }
+        public DateTime MappingDate { get; set; }
+        public int DeptZoneId { get; set; }
+        public int CreatedBy { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public bool IsDelete { get; set; }
+        public bool IsAlreadyValidated { get; set; }
+        public int EmpDetailsId { get; set; }
+        public string VCertificatePath { get; set; }
+        public int ProjectTypeId { get; set; }
+        public int ContractorId { get; set; }
+        
+
     }
 
     public class CountryMaster
@@ -170,6 +190,7 @@ namespace cradmin.Models.Models
         public int DeptId { get; set; }
         public int ProjectTypeId { get; set; }
         public string VCertificatePath { get; set; }
+        public string EmpEmail { get; set; }
     }
 
     public class DeptZoneMaster : Error
@@ -265,6 +286,7 @@ namespace cradmin.Models.Models
         public int TradeCId { get; set; }
         public string TradDescription { get; set; }
         public string TradCDescription { get; set; }
+        public string AadharNo { get; set; }
 
     }
 
