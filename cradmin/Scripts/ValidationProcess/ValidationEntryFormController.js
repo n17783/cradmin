@@ -330,7 +330,7 @@
             };
         }
 
-        $scope.modelAadhar = {PageNo:"",PageSize:"",AadharNo:""};
+        $scope.modelAadhar = {PageNo:"",PageSize:"",EmpDetailsId:""};
 
         $scope.CheckAdhaarExist = function () {
             if ($scope.Emp.AadharNo.length < 12) {
@@ -345,7 +345,7 @@
                     ShowLoader();
                     $http({
                         method: 'post',
-                        url: $scope.urlBase + '/Dashboard/CheckAdhaarExist',
+                        url: $scope.urlBase + '/Dashboard/CheckUserForMultiValidation',
                         data: $scope.Emp,
                         beforeSend: function (request) {
                             request.setRequestHeader("Token", getToken());
@@ -357,6 +357,7 @@
                             $scope.ClearOldData();
                             $scope.Emp.AadharNo = adhaarno;
                             $scope.IsNewUser = 1;
+                            $("#ddlAssignTrade").val("");
                             var objShowCustomAlert = new ShowCustomAlert({
                                 Title: "Warning",
                                 Message: "No Such User Exist Of DM Type.",
@@ -396,7 +397,7 @@
                         HideLoader();
                         console.log(error);
                     })
-                    $scope.modelAadhar.AdhaarNo = $scope.Emp.AdhaarNo;
+                    $scope.modelAadhar.EmpDetailsId = $scope.EmpDetails.EmpDetailsId;
                         $http({
                             method: 'post',
                             url: $scope.urlBase + '/Dashboard/GetEmpFilterTradeList',

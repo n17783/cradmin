@@ -286,7 +286,7 @@ namespace cradmin.Models.Models
         public int TradeCId { get; set; }
         public string TradDescription { get; set; }
         public string TradCDescription { get; set; }
-        public string AadharNo { get; set; }
+        public int EmpDetailsId { get; set; }
 
     }
 

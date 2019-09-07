@@ -44,6 +44,14 @@ namespace cradmin.Controllers
         }
         [MyAuthorize]
         [HttpPost]
+        public ActionResult CheckUserForMultiValidation(Employee model)
+        {
+            MasterDataResponse response = objEmp.CheckUserForMultiValidation(model);
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
+        
+        [MyAuthorize]
+        [HttpPost]
         public ActionResult GetEmpFilterTradeList(TradeType model)
 
         {
