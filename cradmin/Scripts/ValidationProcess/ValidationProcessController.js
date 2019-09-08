@@ -156,7 +156,7 @@
         debugger;
         $scope.ValidationProcessModel = {
             Name: mValue.Name, PRN: mValue.PRN, Date: cDate, TestType: SelectedTestType, SrNo: mValue.SrNo,
-            EmpDetailsId: mValue.EmpDetailsId, TradeName: mValue.TradeName, TradeCName: mValue.TradeCategory
+            EmpDetailsId: mValue.EmpDetailsId, TradeName: mValue.TradeName, TradeCName: mValue.TradeCategory, TradeId: mValue.TradeId
         };
     
 

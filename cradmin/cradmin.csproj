@@ -173,6 +173,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\HRProcess\StaffJoiningProcessController.cs" />
     <Compile Include="Controllers\MultiSkilling\SkillController.cs" />
     <Compile Include="Controllers\MultiSkilling\SkillCreationController.cs" />
     <Compile Include="Controllers\SubContractorController.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Models\BAL\RoleCR.cs" />
     <Compile Include="Models\BAL\SkillCreationCR.cs" />
     <Compile Include="Models\BAL\SkillMatricsCR.cs" />
+    <Compile Include="Models\BAL\STAFFDMJoiningProcessCR.cs" />
     <Compile Include="Models\BAL\SubContractorCR.cs" />
     <Compile Include="Models\BAL\TradeCategoryCR.cs" />
     <Compile Include="Models\BAL\TradeTypeCR.cs" />
@@ -381,6 +383,7 @@
     <None Include="Properties\PublishProfiles\CRASIAPublish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\HR\DMJoiningProcessController.js" />
+    <Content Include="Scripts\HR\StaffJoiningProcessController.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -397,6 +400,7 @@
     <Content Include="Scripts\TrainingProcess\TrainedCandidatesController.js" />
     <Content Include="Scripts\TrainingProcess\TrainingProcessController.js" />
     <Content Include="Scripts\ValidationProcess\AssessmentReportStatusController.js" />
+    <Content Include="Scripts\ValidationProcess\UserRollMappingController.js" />
     <Content Include="Scripts\ValidationProcess\ValidatedCandidatesController.js" />
     <Content Include="Scripts\ValidationProcess\CandidatesForValidationController.js" />
     <Content Include="Scripts\ValidationProcess\ValidationEntryFormController.js" />
@@ -468,6 +472,7 @@
     <Folder Include="Content\UploadValidationCertificate\" />
     <Folder Include="Views\SkillCreation\" />
     <Folder Include="Views\Skill\" />
+    <Folder Include="Views\StaffJoiningProcess\" />
     <Folder Include="Views\SubContractor\" />
     <Folder Include="Views\ValidationTestQuetion\" />
     <Folder Include="Views\ValidationTest\" />

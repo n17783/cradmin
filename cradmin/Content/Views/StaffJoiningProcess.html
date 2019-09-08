@@ -6,22 +6,22 @@
             <div class="col-sm-3"></div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="text" placeholder="Search" class="form-control" data-ng-model="Prefix"
-                           data-ng-change="FilterList()" />
-
+                    <input type="text" placeholder="Search" class="form-control" data-ng-model="Joining.AadharNo" 
+                            />
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <button type="button" class="btn btn-danger" data-ng-click="FilterList()" data-toggle="tooltip"
+                    <button type="button" class="btn btn-danger" data-ng-click="CheckAdhaarExist()" data-toggle="tooltip"
                             title="Search">
                         Search
                     </button>
 
-                    <button type="button" class="btn btn-danger" data-ng-click="Reset()" data-toggle="tooltip"
-                            title="Reset">
-                        Reset
+                    <button type="button" class="btn btn-danger" data-ng-click="AddNew()" data-toggle="tooltip"
+                            title="AddNew">
+                        AddNew
                     </button>
+                   
                 </div>
             </div>
 
@@ -38,7 +38,7 @@
                         <th>Aadhar No</th>
                         <th>Name</th>
                         <th>Employee Designation</th>
-                        <th>Save/Update</th>
+                        <th>Update</th>
 
 
                     </tr>
@@ -54,7 +54,7 @@
                         <td>
                             <button type="button" class="btn btn-danger" data-ng-click="GotoJoining(Quetion);" data-toggle="tooltip"
                                     title="Update">
-                                GoTo Joining
+                                Update
                             </button>
                         </td>
                     </tr>
@@ -67,13 +67,26 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
+
                         <div class="col-sm-4" data-ng-switch="IsNewUser">
+                            <label>User Status</label>
+                            <span ng-switch-when="0" style="color:red">Existing User</span>
+                            <span ng-switch-when="1" style="color:red">No Such User Exist Of DM Type Or Exit From System</span>
+
+                        </div>
+                       
+                       
+                    </div>
+                    <hr/>
+                    <div class="row">
+                       
+                        <div class="col-sm-4" data-ng-switch="IsFamyly">
                             <label>Nominee Details Status</label>
                             <span ng-switch-when="0" style="color:red">Done</span>
                             <span ng-switch-when="1" style="color:red">Not Done</span>
 
                         </div>
-                        <div class="col-sm-3" data-ng-switch="IsNewUser">
+                        <div class="col-sm-3" data-ng-switch="IsBank">
                             <label>Bank Account Details Status</label>
                             <span ng-switch-when="0" style="color:red">Done</span>
                             <span ng-switch-when="1" style="color:red">Not Done</span>
@@ -91,13 +104,39 @@
                         </div>
                     </div>
                 </div>
-
+               
             </div>
         </div>
         <div class="col-md-12">
             <div class="panel panel-default" style="margin-left:18px;margin-right:18Px">
                 <div class="panel-heading"><label>Joining Process Click For Yes Otherwise No Click </label></div>
                 <hr/>
+                <div class="row">
+
+                    <div class="col-sm-4">
+
+                        <label>Aadhar No</label>
+                        <input type="text" class="form-control" data-ng-model="Emp.AadharNo" placeholder="Enter Aadhar No ..." data-ng-blur="CheckAdhaarExist();">
+                    </div>
+
+
+                    <div class="col-sm-4">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" placeholder="Enter First Name ..." data-ng-model="Emp.FName">
+                    </div>
+                        <div class="col-sm-4">
+                        <label>Middle Name</label>
+                        <input type="text" class="form-control" placeholder="Enter Middle Name ..." data-ng-model="Emp.MName">
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" placeholder="Enter Last Name ..." data-ng-model="Emp.LName">
+                    </div>
+
+
+
+                </div>
+                <hr />
                 <div class="row">
                     <div class="col-sm-2">
                         <label style="height:25px">Are You Willing To Travel</label>
@@ -107,21 +146,18 @@
 
                         <input type="checkbox" class="checkbox" id="chkTravel" style="width:25px;height:25px" />
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-2" style="margin-left:100px">
                         <label style="height:25px">Have You Worked Easiles In CR Asia</label>
 
                     </div>
                     <div class="col-sm-1">
                         <input type="checkbox" class="checkbox" id="chkEasily" style="width:25px;height:25px" />
                     </div>
-                    <div class="col-sm-2">
-                        <label style="height:25px;margin-left:100px">Details</label>
-                        
-                    </div>
                     <div class="col-sm-4">
-                       
-                        <input type="text" class="form-control" id="txtDetails" />
+                        <label style="height:25px">Details</label>
+                        <input type="text" class="form-control" id="txtDetails" data-ng-model="StaffJoiningModel.EasilyWorkInCrAsiaDeatils" />
                     </div>
+                   
                 </div>
                 <hr/>
                 <div class="row">
@@ -131,7 +167,7 @@
                     </div>
                     <div class="col-sm-3">
                        
-                        <input type="text" class="form-control" id="txtReferBy" style="margin-right:100px" />
+                        <input type="text" class="form-control" id="txtReferBy" style="margin-right:100px" data-ng-model="StaffJoiningModel.ReferBy" />
                     </div>
                     <div class="col-sm-2">
                         <label>Pre Medical Check-up  </label>
@@ -147,7 +183,7 @@
                        
                     </div>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="txtMedicalComment" />
+                        <input type="text" class="form-control" id="txtMedicalComment" data-ng-model="StaffJoiningModel.MedicalRemarks" />
                     </div>
                    
                 </div>
@@ -158,7 +194,7 @@
 
                     </div>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="txtHiring" style="margin-right:100px" />
+                        <input type="text" class="form-control" id="txtHiring" style="margin-right:100px" data-ng-model="StaffJoiningModel.HiringManager" />
                     </div>
                 </div>
              <hr/>
@@ -170,11 +206,11 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <label>Reference 1</label>
-                        <input type="text" class="form-control" placeholder="Reference 1 ..." data-ng-model="EmpDetails.ContactNo">
+                        <input type="text" class="form-control" placeholder="Reference 1 ..." data-ng-model="StaffJoiningModel.Reference1">
                     </div>
                     <div class="col-sm-4">
                         <label>Reference 2</label>
-                        <input type="text" class="form-control" placeholder="Reference 2 ..." data-ng-model="EmpDetails.EmrContactNo">
+                        <input type="text" class="form-control" placeholder="Reference 2 ..." data-ng-model="StaffJoiningModel.Reference2">
                     </div>
                    
                 </div>
@@ -191,11 +227,11 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <label>Identification Marks 1</label>
-                        <input type="text" class="form-control" placeholder="Identification Marks 1 ..." data-ng-model="EmpDetails.ContactNo">
+                        <input type="text" class="form-control" placeholder="Identification Marks 1 ..." data-ng-model="StaffJoiningModel.IdentificatOnMarks1">
                     </div>
                     <div class="col-sm-4">
                         <label>Identification Marks 2</label>
-                        <input type="text" class="form-control" placeholder="Identification Marks 2 ..." data-ng-model="EmpDetails.EmrContactNo">
+                        <input type="text" class="form-control" placeholder="Identification Marks 2 ..." data-ng-model="StaffJoiningModel.IdentificatOnMarks2">
                     </div>
 
                 </div>
@@ -219,7 +255,7 @@
                         </select></div>
                     <div class="col-sm-4">
                         <label> Select Month/Year</label>
-                        <select class="form-control" id="ddlTOAppointment">
+                        <select class="form-control" id="ddlDurationTypeM_Y">
                             <option value="Month">Month</option>
                             <option value="Year">Year</option>
 
@@ -227,7 +263,7 @@
                     </div>
                     <div class="col-sm-4">
                         <label> Select Duration</label>
-                        <select class="form-control" id="ddlTOAppointment">
+                        <select class="form-control" id="ddlDuration">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>

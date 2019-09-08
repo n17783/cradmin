@@ -9,9 +9,16 @@ CRAdminApp.controller("CandidatesForAssessmentController", ['$scope', '$http', '
     $scope.CandidatesForValidationModel = {
         PageNo: 1, PageSize: 10, getCandidates: 'AssessmentReport'
     };
-
-    $scope.PageSizeList = [5, 10, 15, 20];
+       
     $scope.CandidatesForValidationList = [];
+    $scope.PageSizeList = [{ id: 5, name: "5" }, { id: 10, name: "10" }, { id: 15, name: "15" }, { id: 20, name: "20" }];
+    $scope.PagerDDLSelectedValue = $scope.PageSizeList[1];
+
+    $scope.changedValue = function (item) {
+            $scope.CandidatesForValidationModel.PageNo = 1;
+            $scope.CandidatesForValidationModel.PageSize = item.id;
+            $scope.GetCandidatesForValidationList();      
+    }
 
     $scope.Prev = function () {
         if ($scope.CandidatesForValidationModel.PageNo > 1) {
@@ -56,19 +63,18 @@ CRAdminApp.controller("CandidatesForAssessmentController", ['$scope', '$http', '
     }
 
     $scope.AssessReport = function (obj) {
-                      
+        debugger;              
             SelectedValidaterModel = obj;            
             $scope.LoadUserControls('AssessmentReport');       
 }
 
     $scope.init = function () {
-        
+        debugger;
 
         checkToken();
         $scope.CandidatesForValidationModel.getCandidates = 'AssessmentReport';
        
-        $('.modal-backdrop').hide();
-        $("#ddlPageSize").val(5);
+        $('.modal-backdrop').hide();       
         $scope.CandidatesForValidationModel.PageSize = 10;
         $scope.Details = true;
         //getCandidates

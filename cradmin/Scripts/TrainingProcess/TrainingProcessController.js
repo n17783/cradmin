@@ -98,7 +98,8 @@ CRAdminApp.controller("TrainingProcessController", ['$scope', '$http', '$filter'
                     data: $scope.TrainingProcessDetailsRequest,
                 }).then(function (response) {
                     debugger;
-
+                    pValue.BTrainingId = response.data;
+                    $scope.onBackPage();
                     HideLoader();
 
                 }, function (error) {

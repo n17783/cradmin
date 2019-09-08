@@ -73,10 +73,8 @@
                         </table>
                         <div class="col-md-12">
                             <div class="col-md-2">
-                                <select class="form-control" style="margin-top:20px;" data-ng-model="ValidationAgencyModel.PageSize">
-                                    <option value="5">5</option>
-                                    <option value="5">10</option>
-                                </select>
+                                <select class="form-control" style="margin-top:20px;" data-ng-model="PagerDDLSelectedValue" ng-change="changedValue(PagerDDLSelectedValue)"
+                                        data-ng-options="PageSizeValue as PageSizeValue.name for PageSizeValue in PageSizeList"></select>
                             </div>
                             <div class="col-md-8">
                                 <ul class="pager">

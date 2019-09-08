@@ -10,8 +10,15 @@ CRAdminApp.controller("CandidatesForTrainingController", ['$scope', '$http', '$f
         PageNo: 1, PageSize: 10, getCandidates: 'CandidatesForTraining'
     };
 
-    $scope.PageSizeList = [5, 10, 15, 20];
     $scope.CandidatesForValidationList = [];
+    $scope.PageSizeList = [{ id: 5, name: "5" }, { id: 10, name: "10" }, { id: 15, name: "15" }, { id: 20, name: "20" }];
+    $scope.PagerDDLSelectedValue = $scope.PageSizeList[1];
+
+    $scope.changedValue = function (item) {
+            $scope.CandidatesForValidationModel.PageNo = 1;
+            $scope.CandidatesForValidationModel.PageSize = item.id;
+            $scope.GetCandidatesForValidationList();      
+    }
 
     $scope.Prev = function () {
         if ($scope.CandidatesForValidationModel.PageNo > 1) {
@@ -69,7 +76,6 @@ CRAdminApp.controller("CandidatesForTrainingController", ['$scope', '$http', '$f
         $scope.CandidatesForValidationModel.getCandidates = 'CandidatesForTraining';
 
         $('.modal-backdrop').hide();
-        $("#ddlPageSize").val(5);
         $scope.CandidatesForValidationModel.PageSize = 10;
         $scope.Details = true;
         //getCandidates

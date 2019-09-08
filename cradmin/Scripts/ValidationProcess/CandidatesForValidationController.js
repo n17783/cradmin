@@ -8,12 +8,22 @@ CRAdminApp.controller("CandidatesForValidationController", ['$scope', '$http', '
     $scope.TotalPages = 0;
     $scope.GridContentText = "Loading...";
 
+
     $scope.CandidatesForValidationModel = {
         PageNo: 1, PageSize: 10, getCandidates: 'Pending'
     };
 
-    $scope.PageSizeList = [5, 10, 15, 20];
     $scope.CandidatesForValidationList = [];
+    $scope.PageSizeList = [{ id: 5, name: "5" }, { id: 10, name: "10" }, { id: 15, name: "15" }, { id: 20, name: "20" }];
+    $scope.PagerDDLSelectedValue = $scope.PageSizeList[1];
+
+    $scope.changedValue = function (item) {
+        // if (item.id < $scope.TotalRecords) {
+        $scope.CandidatesForValidationModel.PageNo = 1;
+        $scope.CandidatesForValidationModel.PageSize = item.id;
+        $scope.GetCandidatesForValidationList();
+        // }
+    }
 
     $scope.Prev = function () {
         if ($scope.CandidatesForValidationModel.PageNo > 1) {
@@ -29,6 +39,13 @@ CRAdminApp.controller("CandidatesForValidationController", ['$scope', '$http', '
         }
     }
 
+    $scope.changePageSize = function () {
+        debugger;
+        $scope.CandidatesForValidationModel.PageNo = 1;
+        $scope.CandidatesForValidationModel.PageSize = $("#ddlPageSize").val();
+        $scope.GetCandidatesForValidationList();
+    }
+
     $scope.GetCandidatesForValidationList = function () {
         ShowLoader();
         $http({
@@ -37,9 +54,10 @@ CRAdminApp.controller("CandidatesForValidationController", ['$scope', '$http', '
             data: $scope.CandidatesForValidationModel,
         }).then(function (response) {
             HideLoader();
+            console.log(response.data);
             $scope.CandidatesForValidationList = response.data;
             debugger;
-           
+
             if (response.data.length > 0) {
                 $scope.TotalRecords = response.data[0].TotalRecords;
                 $scope.TotalPages = parseInt($scope.TotalRecords / $scope.CandidatesForValidationModel.PageSize);
@@ -79,9 +97,9 @@ CRAdminApp.controller("CandidatesForValidationController", ['$scope', '$http', '
 
         checkToken();
         $scope.CandidatesForValidationModel.getCandidates = 'Pending';
-       
+
         $('.modal-backdrop').hide();
-        $("#ddlPageSize").val(5);
+        //  $("#ddlPageSize").val(10);
         $scope.CandidatesForValidationModel.PageSize = 10;
         $scope.Details = true;
         //getCandidates

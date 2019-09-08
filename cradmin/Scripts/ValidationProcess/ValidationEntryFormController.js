@@ -357,7 +357,7 @@
                             $scope.ClearOldData();
                             $scope.Emp.AadharNo = adhaarno;
                             $scope.IsNewUser = 1;
-                            $("#ddlAssignTrade").val("");
+                            $("#ddlAssignTrade").val("");    
                             var objShowCustomAlert = new ShowCustomAlert({
                                 Title: "Warning",
                                 Message: "No Such User Exist Of DM Type.",

@@ -1,4 +1,5 @@
-﻿
+﻿var SelectedValidaterMode = [];
+var SelectedTestType = "";
 
 
 

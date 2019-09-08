@@ -29,6 +29,7 @@ namespace cradmin.Models.Models
         public string ValidationAgency { get; set; }
         public string TraineeRegNo { get; set; }
         public int BTrainingId { get; set; }
+        public int TradeId { get; set; }
     }
 
 

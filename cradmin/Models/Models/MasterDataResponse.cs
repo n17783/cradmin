@@ -15,7 +15,7 @@ namespace cradmin.Models.Models
             ValidationAgencyList = new List<ValidationAgency>();
             EmployeeTypeList = new List<EmployeeType>();
             ZoneList = new List<DeptZoneMaster>();
-
+            StaffJoiningList = new List<StaffJoining> ();
             EmpExit = new EmployeeExit();
             Emp = new Employee();
             EmpDetails = new EmployeeDetails();
@@ -26,6 +26,8 @@ namespace cradmin.Models.Models
             ProjectTypeList = new List<ProjectType>();
             RoleList = new List<RollModel>();
             StaffList = new List<Staff>();
+            FamilyDetails = new EmpFamilyDetails();
+            BankDetails = new EmpBankDetails();
         }
 
         public List<RollModel> RoleList { get; set; }
@@ -42,6 +44,7 @@ namespace cradmin.Models.Models
         
         public List<TradeType> TradeList { get; set; }
         public List<TradeType> AssignTradeList { get; set; }
+        public List<StaffJoining> StaffJoiningList { get; set; }
         public List<MainContractor> ContractorList { get; set; }
         public List<SubContractor> SubContractorList { get; set; }
         public List<ValidationAgency> ValidationAgencyList { get; set; }
@@ -51,6 +54,8 @@ namespace cradmin.Models.Models
         public EmployeeExit EmpExit { get; set; }
         public Employee Emp { get; set; }
         public EmployeeDetails EmpDetails { get; set; }
+        public EmpFamilyDetails FamilyDetails { get; set; }
+        public EmpBankDetails BankDetails { get; set; }
 
     }
 }

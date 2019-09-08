@@ -28,7 +28,7 @@ namespace cradmin.Models.BAL
            
             SettingsHelper objHelper = SettingsHelper.Instance;
            
-            lst.Add(new SqlParameter() { ParameterName = "@EmpDetailsId", Value = model.EmpDetailsId });
+            lst.Add(new SqlParameter() { ParameterName = "@TradeId", Value = model.TradeId });
             lst.Add(new SqlParameter() { ParameterName = "@TestType", Value = model.TestType });
 
             DataTable dt = objHelper.GetDataTable("GetCandidatesForValidationQuestionsList", lst);
