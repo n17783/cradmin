@@ -43,5 +43,23 @@ namespace cradmin.Models
             }
         }
 
+
+        public string ImageUrl
+        {
+            get
+            {
+                string emp = null;
+                if (HttpContext.Current.Session["ImageUrl"] != null)
+                {
+                    emp = Convert.ToString(HttpContext.Current.Session["ImageUrl"]);
+                }
+                return emp;
+            }
+            set
+            {
+                HttpContext.Current.Session["ImageUrl"] = value;
+            }
+        }
+
     }
 }

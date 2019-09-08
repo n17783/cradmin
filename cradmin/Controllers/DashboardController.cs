@@ -108,7 +108,6 @@ namespace cradmin.Controllers
             return Json(objEmp.RegisterEmployee(model), JsonRequestBehavior.AllowGet);
         }
 
-        [MyAuthorize]
         [HttpPost]
         public ActionResult Capture()
         {
@@ -124,7 +123,14 @@ namespace cradmin.Controllers
                     imagepath = VirtualPathUtility.ToAbsolute(imagePath);
                 }
             }
+            SessionManager.Instance.ImageUrl = imagepath;
             return Json(imagepath, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult Get_Url()
+        {
+            return Json(SessionManager.Instance.ImageUrl, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -165,7 +171,8 @@ namespace cradmin.Controllers
             {
                 HttpPostedFileBase file = Request.Files[0];
                 string imageName = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss");
-                base64string = "Content/UploadValidationCertificate/" + imageName + ".jpg";
+                string extension = Path.GetExtension(file.FileName);
+                base64string = "Content/UploadValidationCertificate/" + imageName + "." + extension;
                 file.SaveAs(Server.MapPath("~/" + base64string));
                 base64string = VirtualPathUtility.ToAbsolute("~/" + base64string);
             }

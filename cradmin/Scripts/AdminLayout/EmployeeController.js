@@ -75,18 +75,11 @@
                     html += "<option value='" + value.DeptZoneId + "'>" + value.DeptZoneDescription + "</option>";
                 });
                 $("#ddlZone").html(html);
-                //var html = "";
-                //angular.forEach($scope.EmployeeTypeList, function (value, key) {
-                //    html += "<option value='" + value.EmpTypeId + "'>" + value.EmpDesignation + "</option>";
-                //});
-                //$("#ddlEmpType").html(html);
                 var html = "";
                 angular.forEach($scope.TradeList, function (value, key) {
                     html += "<option value='" + value.TradeId + "'>" + value.TradDescription + "</option>";
                 });
                 $("#ddlTrade").html(html);
-
-
                 var html2 = "";
                 angular.forEach($scope.ValidationAgencyList, function (value, key) {
                     html2 += "<option value='" + value.ValidationAgencyId + "'>" + value.AgencyDescription + "</option>";
@@ -115,7 +108,7 @@
                     html5 += "<option value='" + value.ProjectTypeId + "'>" + value.ProjectTypeDescription + "</option>";
                 });
                 $("#ddlProjectType").html(html5);
-
+                $scope.changeEmpType();
             }
             else {
                 window.location = $scope.urlBase + "/dashboard/index";
@@ -508,6 +501,7 @@
         $scope.Emp.PageSize = $("#ddlPageSize").val();
         $("#rdoMale").prop("checked", true);
         $("#rdoDM").prop("checked", true);
+        
         $("#ddlEmpType").html("");
         $scope.EmpDetails.IsAlreadyValidated = false;
         jQuery("#webcam").webcam({
@@ -521,7 +515,7 @@
             onSave: function (data, ab) {
                 $.ajax({
                     type: "POST",
-                    url: '/Home/GetCapture',
+                    url: $scope.urlBase + '/Dashboard/Get_Url',
                     data: '',
                     contentType: "application/json; charset=utf-8",
                     dataType: "text",
