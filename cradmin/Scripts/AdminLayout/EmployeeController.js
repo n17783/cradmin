@@ -434,6 +434,7 @@
                         }
                         if ($scope.Emp.Gender) {
                             $("#rdoMale").prop("checked", true);
+                            
                         }
                         else {
                             $("#rdoFemale").prop("checked", false);
@@ -490,9 +491,7 @@
         }
     }
 
-    function Capture() {
-        webcam.capture();
-    }
+    
 
     $scope.init = function () {
         setCookie("Token",$('#hdnToken').val());
@@ -522,7 +521,7 @@
                     success: function (r) {
                         $("#webcam").hide();
                         $("#imgCapture").show();
-                        $("#imgCapture").attr("src", r);
+                        $("#imgCapture").attr("src", JSON.parse(r));
                     },
                     failure: function (response) {
                         alert(response.d);
@@ -533,6 +532,7 @@
                 webcam.save($scope.urlBase + '/Dashboard/Capture');
             }
         });
+        
 
         $("#uploadProfile").click(function () {
             files = $("#ProfileImage").get(0).files;
@@ -603,10 +603,13 @@
         GetMasterDataList();
 
     }
-
+    
     $scope.init();
 }]);
 
+function Capture() {
+    webcam.capture();
+}
 
 function UploadA() {
     var urlbase = GetVirtualDirectory();
@@ -639,6 +642,8 @@ function UploadA() {
         }
     });
 }
+
+
 
 function UploadAdhaar() {
     var urlbase = GetVirtualDirectory();

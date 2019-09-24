@@ -81,6 +81,8 @@ namespace cradmin.Models
                 Connection.Close();
                 Connection.Dispose();
                 msqlcmd.Dispose();
+                log.Info("Calling Complited" + spName);
+                
             }
             catch (Exception ex)
             {
@@ -101,6 +103,7 @@ namespace cradmin.Models
 
         public int LoginUserId { get; set; }
         public string Prefix { get; set; }
+        public Int64 RowNum{ get; set; }
     }
 
     public static class Extensions

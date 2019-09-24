@@ -34,10 +34,117 @@ namespace cradmin.Models.Models
         public Guid Token { get; set; }
 
     }
+    public class WorkHoldDetail:Error
+    {
+        public int EmpWorkDetailsId { get; set; }
+        public int EmpDetailsId { get; set; }
+        public int SubContractorId { get; set; }
+        public int PSubContractorId { get; set; }
+        public int ProjectTypeId { get; set; }
+        public int PProjectTypeId { get; set; }
+        public int PlantId { get; set; }
+        public int PPlantId { get; set; }
+        public int TradeId1 { get; set; }
+        public int PTradeId1 { get; set; }
+        public int TradeId2 { get; set; }
+        public int PTradeId2 { get; set; }
+        public int TradeId3 { get; set; }
+        public int PTradeId3 { get; set; }
+        public int WorkAndSalaryConditionId { get; set; }
+        public int PWorkAndSalaryConditionId { get; set; }
+        public int DeptId { get; set; }
+        public int PDeptId { get; set; }
+        public string EpNo { get; set; }
+        public string CsmNo { get; set; }
+        public string EpNoChangeReson { get; set; }
+        public string CsmNoChangeReson { get; set; }
+        public DateTime UnderDate { get; set; }
+        public DateTime ExitDate { get; set; }
+        public int EntryBy { get; set; }
+        public int ExitBy { get; set; }
+        public bool FlagDone { get; set; }
+        public bool HoldIsContinew { get; set; }
+        public DateTime PassReceiveDate { get; set; }
+        public DateTime PassIssueDate { get; set; }
+        public string Remarks { get; set; }
+        public DateTime EnteryDate { get; set; }
+        public string PermissionBy { get; set; }
+        public DateTime HoldLastUpdateDate { get; set; }
+        public string TradeName1 { get; set; }
+        public string TradeName2 { get; set; }
+        public string TradeName3 { get; set; }
+        public string Dept_Name { get; set; }
+        public string SubCCompanyName { get; set; }
+        public string ProjectTypeDescription { get; set; }
+         public string PlantTitle { get; set; }
+        public DateTime SalaryNegosiatedDate { get; set; }
+        public string Flag1 { get; set; }
+        public string FullName { get; set; }
+        public string AadharNo { get; set; }
+        public string EmpDesignation { get; set; }
+
+
+    }
+    public class SalWorkCondition:Error
+    {
+        public int WorkAndSalaryConditionId { get; set; }
+        public int EmpDetailsId { get; set; }
+        public string WorkingCondition { get; set; }
+        public float Salary { get; set; }
+        public bool LeaveApplicable { get; set; }
+        public bool Allowance { get; set; }
+        public bool HRA { get; set; }
+        public bool Accommodation { get; set; }
+        public bool AreUWillToTravel { get; set; }
+        public int EntryBy { get; set; }
+        public DateTime EntryDate { get; set; }
+        public int StopBy { get; set; }
+        public DateTime StopDate { get; set; }
+        public string ResonForStop { get; set; }
+        public DateTime SalaryNegosiatedDate { get; set; }
+        public bool IsContinew { get; set; }
+        public string Flag1 { get; set; }
+    }
+    public class DMJoining:Error
+    {
+        public int DMJoiningId { get; set; }
+        public int EmpDetailsId { get; set; }
+        public DateTime DmJoiningDate { get; set; }
+        public bool SalaryFinalization { get; set; }
+        public bool Biometric { get; set; }
+        public bool AddPhotos { get; set; }
+        public bool JobApplicationLetter { get; set; }
+        public bool BankForm { get; set; }
+        public bool FormNo35 { get; set; }
+        public bool FormNo2 { get; set; }
+        public bool FormNo11 { get; set; }
+        public bool CsmCard { get; set; }
+        public bool OfferLater { get; set; }
+        public bool IsPassIssue { get; set; }
+        public bool DeploymenForm { get; set; }
+        public bool HasBankAccountOpen { get; set; }
+        public int EntryBy { get; set; }
+        public DateTime EntryDate { get; set; }
+        public bool IsSaftyShoesIssue { get; set; }
+        public bool IsTradeValidationPass { get; set; }
+        public bool IsSefetyInductionDone { get; set; }
+        public bool IsWorkAtHightDone { get; set; }
+        public bool IsConfinedspaceDone { get; set; }
+        public bool IsNomineeDetailsDone { get; set; }
+        public string FullName { get; set; }
+        public string AadharNo { get; set; }
+        public string EmpDesignation { get; set; }
+        public string Flag1 { get; set; }
+        public bool ContractualPermenant { get; set; }
+        public string DurationTypeM_Y { get; set; }
+        public string Duration { get; set; }
+        public DateTime? ContractualEndDate { get; set; }
+        public DateTime StaffExitDate { get; set; }
+    }
 
     public class Staff : Error
     {
-        public int RowNum { get; set; }
+       
 
         public int UserId { get; set; }
 
@@ -181,7 +288,7 @@ namespace cradmin.Models.Models
         }
 
         public class EmployeeDetails
-        {
+        {public int EmpDId { get; set; }
             public int? EmpDetailsId { get; set; }
             public int? PkId { get; set; }
             public int? EmpTypeId { get; set; }
@@ -319,18 +426,19 @@ namespace cradmin.Models.Models
             public string TradDescription { get; set; }
             public string TradCDescription { get; set; }
             public int EmpDetailsId { get; set; }
+            
 
-        }
+    }
         public class StaffJoining : Error
         {
             public int StaffJoiningId { get; set; }
             public int EmpDetailsId { get; set; }
             public bool ContractualPermenant { get; set; }
-            public DateTime StaffJoiningDate { get; set; }
             public string DurationTypeM_Y { get; set; }
             public string Duration { get; set; }
-            public DateTime ContractualEndDate { get; set; }
-            public int EntryBy { get; set; }
+            public DateTime? ContractualEndDate { get; set; }
+        public DateTime StaffJoiningDate { get; set; }
+        public int EntryBy { get; set; }
             public DateTime EntryDate { get; set; }
             public bool AreUWillToTravel { get; set; }
             public bool EasilyWorkInCrAsia { get; set; }
@@ -344,7 +452,12 @@ namespace cradmin.Models.Models
             public string IdentificatOnMarks1 { get; set; }
             public string IdentificatOnMarks2 { get; set; }
             public DateTime StaffExitDate { get; set; }
-        }
+            public string FullName { get; set; }
+            public string AadharNo { get; set; }
+            public string EmpDesignation { get; set; }
+        
+            public string Flag1 { get; set; }
+    }
 
         public class DeptZone : Error
         {

@@ -66,6 +66,11 @@ namespace cradmin.Models.BAL
             lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
             //lst.Add(new SqlParameter() { ParameterName = "@DeptId", Value = DBNull.Value });
             DataTable dtProjectTypeList = objHelper.GetDataTable("Get_ProjectType", lst);
+            lst = new List<SqlParameter>();
+            lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = DBNull.Value });
+            lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = DBNull.Value });
+            //lst.Add(new SqlParameter() { ParameterName = "@DeptId", Value = DBNull.Value });
+            DataTable dtPlantList = objHelper.GetDataTable("Get_PlantList", lst);
 
             response.CityList = dtCityList.ToList<CityMaster>();
             response.StateList = dtStateList.ToList<StateMaster>();
@@ -77,6 +82,7 @@ namespace cradmin.Models.BAL
             response.SubContractorList = dtSubContractorList.ToList<SubContractor>();
             response.DeptList = dtDeptList.ToList<DeptNames>();
             response.ProjectTypeList = dtProjectTypeList.ToList<ProjectType>();
+            response.PlantList = dtPlantList.ToList<PlantModel>();
             response.Status = 1;
             return response;
         }
@@ -350,12 +356,12 @@ namespace cradmin.Models.BAL
         }
         public List<TradeType> EmpFilterTradeList(TradeType model)
         {
-            
+            SettingsHelper dtFilterTrade = SettingsHelper.Instance;
             List<SqlParameter> lst = new List<SqlParameter>();
             lst.Add(new SqlParameter() { ParameterName = "@PageNo", Value = model.PageNo });
             lst.Add(new SqlParameter() { ParameterName = "@PageSize", Value = model.PageSize});
-            lst.Add(new SqlParameter() { ParameterName = "@EmpDeatilsId", Value = model.EmpDetailsId });
-            DataTable dtFilterTradeList= objHelper.GetDataTable("Get_TradeListOfEmployee", lst);
+            lst.Add(new SqlParameter() { ParameterName = "@EmpDetailsId", Value = model.EmpDetailsId });
+            DataTable dtFilterTradeList= dtFilterTrade.GetDataTable("Get_TradeListOfEmployee", lst);
 
          
 

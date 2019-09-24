@@ -11,6 +11,7 @@
         $scope.DeptList = [];
         $scope.ProjectTypeList = [];
         $scope.AssignTradeList = [];
+        $scope.TradeList = [];
         $scope.IsNewUser = undefined;
         //$scope.Token = getCookie("Token");
         $scope.Emp = { PageNo: 1, PageSize: 2, AdhaarNo: "", Regt_No: "", FName: "", MName: "", LName: "", DOB: "", EmpPhoto: "" };
@@ -38,7 +39,7 @@
                 HideLoader();
                 if (response.data.Status == 1) {
                     $scope.ZoneList = response.data.ZoneList;
-                    $scope.TradeList = response.data.TradeList;
+                    //$scope.TradeList = response.data.TradeList;
                     $scope.ValidationAgencyList = response.data.ValidationAgencyList;
                     $scope.EmployeeTypeList = response.data.EmployeeTypeList;
                     $scope.SubContractorList = response.data.SubContractorList;
@@ -49,7 +50,7 @@
                     $scope.ProjectTypeList = response.data.ProjectTypeList;
                     $scope.CountryList.splice(0, 0, { ContryId: 0, ContryName: "---Select Country---" });
                     $scope.ZoneList.splice(0, 0, { DeptZoneId: 0, DeptZoneDescription: "---Select Zone---" });
-                    $scope.TradeList.splice(0, 0, { TradeId: 0, TradDescription: "---Select Trade---" });
+                    //$scope.TradeList.splice(0, 0, { TradeId: 0, TradDescription: "---Select Trade---" });
                     $scope.ValidationAgencyList.splice(0, 0, { ValidationAgencyId: 0, AgencyDescription: "---Select Agency---" });
                     $scope.EmployeeTypeList.splice(0, 0, { EmpTypeId: 0, EmpDesignation: "---Select Employee Type---" });
                     $scope.SubContractorList.splice(0, 0, { SubContractorId: 0, SubCCompanyName: "---Select Contractor---" });
@@ -65,11 +66,11 @@
                     //    html += "<option value='" + value.EmpTypeId + "'>" + value.EmpDesignation + "</option>";
                     //});
                     //$("#ddlEmpType").html(html);
-                    var html = "";
-                    angular.forEach($scope.TradeList, function (value, key) {
-                        html += "<option value='" + value.TradeId + "'>" + value.TradDescription + "</option>";
-                    });
-                    $("#ddlTrade").html(html);
+                    //var html = "";
+                    //angular.forEach($scope.TradeList, function (value, key) {
+                    //    html += "<option value='" + value.TradeId + "'>" + value.TradDescription + "</option>";
+                    //});
+                    //$("#ddlTrade").html(html);
 
 
                     var html2 = "";
@@ -333,6 +334,7 @@
         $scope.modelAadhar = {PageNo:"",PageSize:"",EmpDetailsId:""};
 
         $scope.CheckAdhaarExist = function () {
+            $scope.TradeList = [];
             if ($scope.Emp.AadharNo.length < 12) {
                 $scope.ErrorModel.AadharNo = true;
                 $scope.ErrorModel.ErrorMessageAdhaarNo = "Please Enter Valid Aadhar Number.";
@@ -357,7 +359,7 @@
                             $scope.ClearOldData();
                             $scope.Emp.AadharNo = adhaarno;
                             $scope.IsNewUser = 1;
-                            $("#ddlAssignTrade").val("");    
+                            $("#ddlAssignTrade").val("");
                             var objShowCustomAlert = new ShowCustomAlert({
                                 Title: "Warning",
                                 Message: "No Such User Exist Of DM Type.",
@@ -380,8 +382,8 @@
                             $scope.Emp = response.data.Emp;
                             $scope.EmpDetails = response.data.EmpDetails;
                             $scope.EmpExit = response.data.EmpExit;
-                           
-                            
+
+
                             $("#ddlEmpType").val($scope.EmpDetails.EmpTypeId);
                             $scope.Emp.AadharNo = $scope.Emp.AadharNo;
                             $scope.AssignTradeList = response.data.AssignTradeList;
@@ -391,38 +393,39 @@
                                 html += "<option value='" + value.TradeId + "'>" + value.TradDescription + "</option>";
                             });
                             $("#ddlAssignTrade").html(html);
-                            
+                            $scope.modelAadhar.EmpDetailsId = $scope.EmpDetails.EmpDetailsId;
+                            $scope.getFilterTradeList();
                         }
                     }, function (error) {
                         HideLoader();
-                        console.log(error);
                     })
-                    $scope.modelAadhar.EmpDetailsId = $scope.EmpDetails.EmpDetailsId;
-                        $http({
-                            method: 'post',
-                            url: $scope.urlBase + '/Dashboard/GetEmpFilterTradeList',
-                            data: $scope.modelAadhar,
-                            beforeSend: function (request) {
-                                request.setRequestHeader("Token", getToken());
-                            },
-                        }).then(function (response) {
-                            $scope.TradeFilterList = response.data;
-                            $scope.TradeFilterList.splice(0, 0, { TradeId: 0, TradDescription: "---Select filter Trade---" });
-                            var html = "";
-                            angular.forEach($scope.TradeFilterList, function (value, key) {
-                                html += "<option value='" + value.TradeId + "'>" + value.TradDescription + "</option>";
-                            });
-                            $("#ddlTrade").html(html);
-                            
-                        }, function (error) {
-                            HideLoader();
-                            console.log(error);
-                        })
-                    }
-                    }
+                }
             }
+        }
 
+        $scope.getFilterTradeList = function () {
+            $scope.modelAadhar.EmpDetailsId = $scope.EmpDetails.EmpDetailsId;
+            $http({
+                method: 'post',
+                url: $scope.urlBase + '/Dashboard/GetEmpFilterTradeList',
+                data: $scope.modelAadhar,
+                beforeSend: function (request) {
+                    request.setRequestHeader("Token", getToken());
+                },
+            }).then(function (response) {
+                $scope.TradeFilterList = response.data;
+                $scope.TradeFilterList.splice(0, 0, { TradeId: 0, TradDescription: "---Select filter Trade---" });
+                var html = "";
+                angular.forEach($scope.TradeFilterList, function (value, key) {
+                    html += "<option value='" + value.TradeId + "'>" + value.TradDescription + "</option>";
+                });
+                $("#ddlTrade").html(html);
 
+            }, function (error) {
+                HideLoader();
+                console.log(error);
+            })
+        }
 
         function Capture() {
             webcam.capture();
@@ -450,7 +453,9 @@
         $scope.init();
     }]);
 
-
+function Capture() {
+    webcam.capture();
+}
     
 
     

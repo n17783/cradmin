@@ -9,13 +9,19 @@ namespace cradmin.Models.Models
     {
         public MasterDataResponse()
         {
+            PlantList = new List<PlantModel>();
+            DMJoiningList = new DMJoining();
+            FTradeList = new TradeType();
+               AssignTradeList = new List<TradeType>();
+            FilterTradeList = new List<TradeType>();
             TradeList = new List<TradeType>();
             SubContractorList = new List<SubContractor>();
             ContractorList = new List<MainContractor>();
             ValidationAgencyList = new List<ValidationAgency>();
             EmployeeTypeList = new List<EmployeeType>();
             ZoneList = new List<DeptZoneMaster>();
-            StaffJoiningList = new List<StaffJoining> ();
+            StaffJoiningList = new StaffJoining ();
+            WorkHoldDetailList = new WorkHoldDetail();
             EmpExit = new EmployeeExit();
             Emp = new Employee();
             EmpDetails = new EmployeeDetails();
@@ -31,11 +37,12 @@ namespace cradmin.Models.Models
         }
 
         public List<RollModel> RoleList { get; set; }
-
+        public DMJoining DMJoiningList { get; set; }
+        public WorkHoldDetail WorkHoldDetailList { get; set; }
         public List<Staff> StaffList { get; set; }
 
         public List<CityMaster> CityList { get; set; }
-
+        public List<PlantModel> PlantList { get; set; }
         public List<CountryMaster> CountryList { get; set; }
 
         public List<StateMaster> StateList { get; set; }
@@ -44,7 +51,8 @@ namespace cradmin.Models.Models
         
         public List<TradeType> TradeList { get; set; }
         public List<TradeType> AssignTradeList { get; set; }
-        public List<StaffJoining> StaffJoiningList { get; set; }
+        public List<TradeType> FilterTradeList { get; set; }
+        public StaffJoining StaffJoiningList { get; set; }
         public List<MainContractor> ContractorList { get; set; }
         public List<SubContractor> SubContractorList { get; set; }
         public List<ValidationAgency> ValidationAgencyList { get; set; }
@@ -56,6 +64,7 @@ namespace cradmin.Models.Models
         public EmployeeDetails EmpDetails { get; set; }
         public EmpFamilyDetails FamilyDetails { get; set; }
         public EmpBankDetails BankDetails { get; set; }
+        public TradeType FTradeList { get; set; }
 
     }
 }

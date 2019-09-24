@@ -173,6 +173,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\HRProcess\DMHoldAndWorkDetailsController.cs" />
+    <Compile Include="Controllers\HRProcess\DMJoiningProcessController.cs" />
+    <Compile Include="Controllers\HRProcess\EmpHoldAndWorkDetailsController.cs" />
     <Compile Include="Controllers\HRProcess\StaffJoiningProcessController.cs" />
     <Compile Include="Controllers\MultiSkilling\SkillController.cs" />
     <Compile Include="Controllers\MultiSkilling\SkillCreationController.cs" />
@@ -202,6 +205,7 @@
     <Compile Include="Models\BAL\CandidatesForValidationCR.cs" />
     <Compile Include="Models\BAL\CourseCreationCR.cs" />
     <Compile Include="Models\BAL\DeptCR.cs" />
+    <Compile Include="Models\BAL\DMHoldAndWorkDetailsCR.cs" />
     <Compile Include="Models\BAL\EmpployeeRegisterBAL.cs" />
     <Compile Include="Models\BAL\FormAssignToRollCR.cs" />
     <Compile Include="Models\BAL\MainContractorCR.cs" />
@@ -214,6 +218,7 @@
     <Compile Include="Models\BAL\SkillCreationCR.cs" />
     <Compile Include="Models\BAL\SkillMatricsCR.cs" />
     <Compile Include="Models\BAL\STAFFDMJoiningProcessCR.cs" />
+    <Compile Include="Models\BAL\StaffHoldAndWorkDetailsCR.cs" />
     <Compile Include="Models\BAL\SubContractorCR.cs" />
     <Compile Include="Models\BAL\TradeCategoryCR.cs" />
     <Compile Include="Models\BAL\TradeTypeCR.cs" />
@@ -271,8 +276,10 @@
     <Content Include="Content\Views\CourseMaster.html" />
     <Content Include="Content\Views\Department.html" />
     <Content Include="Content\Views\DeptZone.html" />
+    <Content Include="Content\Views\DMHoldAndWorkDetails.html" />
     <Content Include="Content\Views\DMJoiningProcess.html" />
     <Content Include="Content\Views\EducationDetails.html" />
+    <Content Include="Content\Views\EmpHoldAndWorkDetails.html" />
     <Content Include="Content\Views\EmplooyeeType.html" />
     <Content Include="Content\Views\EmployeeExperience.html" />
     <Content Include="Content\Views\ExitProcess.html" />
@@ -382,7 +389,9 @@
     <Content Include="Content\fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\CRASIAPublish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\HR\DMHoldAndWorkDetailsController.js" />
     <Content Include="Scripts\HR\DMJoiningProcessController.js" />
+    <Content Include="Scripts\HR\EmpHoldAndWorkDetailsController.js" />
     <Content Include="Scripts\HR\StaffJoiningProcessController.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -470,6 +479,9 @@
     <Folder Include="Content\CaptureEmployee\" />
     <Folder Include="Content\UploadAdhaar\" />
     <Folder Include="Content\UploadValidationCertificate\" />
+    <Folder Include="Views\DMHoldAndWorkDetails\" />
+    <Folder Include="Views\DMJoiningProcess\" />
+    <Folder Include="Views\EmpHoldAndWorkDetails\" />
     <Folder Include="Views\SkillCreation\" />
     <Folder Include="Views\Skill\" />
     <Folder Include="Views\StaffJoiningProcess\" />

@@ -109,12 +109,10 @@
 
     $scope.PageSizeList = [5, 10, 15, 20];
     $scope.PlantQuetionList = [];
+
     $scope.ChangeDropDown = function () {
         $scope.qcategory = [];
       
-
-       
-        
         if($("#ddlTest").val()==1)
         {
             $scope.qcategory = [{ name: "A . Health, Safety & Environment :" }, { name: "B . Trade Specific Validation :" }];

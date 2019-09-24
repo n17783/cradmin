@@ -1,65 +1,64 @@
 ﻿<div class="row nomargin" data-ng-app="CRAdminApp" data-ng-controller="DMJoiningProcessController">
     <div class="col-md-12"><h3 class="header">DM Joining Process</h3></div>
-    <div class="col-md-12">
+    <div class="col-md-12" ng-hide="">
+        <div class="col-md-12">
 
-        <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input type="text" placeholder="Search" class="form-control"  />
-                            
-
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" placeholder="Search" class="form-control" data-ng-model="Joining.AadharNo" />
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <button type="button" class="btn btn-danger" data-ng-click="CheckAdhaarExist()" 
-                            title="Search">
-                        Search
-                    </button>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-danger" data-ng-click="GetDoneJoiningStaffList()" data-toggle="tooltip"
+                                title="Search">
+                            Search
+                        </button>
 
-                    <button type="button" class="btn btn-danger" data-ng-click="Reset()" data-toggle="tooltip"
-                            title="Reset">
-                        Reset
-                    </button>
+                        <button type="button" class="btn btn-danger" data-ng-click="AddNew()" data-toggle="tooltip"
+                                title="AddNew">
+                            AddNew
+                        </button>
+
+                    </div>
                 </div>
+
             </div>
 
         </div>
-
-    </div>
-    <div class="col-md-12">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Registration No</th>
-                        <th>Aadhar No</th>
-                        <th>Name</th>
-                        <th>Employee Designation</th>
-                        <th>Save/Update</th>
+        <div class="col-md-12">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>S / No</th>
+                            <th>Aadhar No</th>
+                            <th> Full Name</th>
+                            <th>Employee Designation</th>
+                            <th>Joining Date</th>
 
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr >
-                        <td>}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
 
 
-                        <td>
-                            <button type="button" class="btn btn-danger" data-ng-click="GotoJoining(Quetion);" data-toggle="tooltip"
-                                    title="Update">
-                                GoTo Joining
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="Staff in GetJoiningDetails">
+                            <td>{{Staff.RowNum}}</td>
+                            <td>{{Staff.AadharNo}}</td>
+                            <td>{{Staff.FullName}}</td>
+                            <td>{{Staff.EmpDesignation}}</td>
+                            <td>{{Staff.DmJoiningDate |mydate|date: 'dd-MM-yyyy'}}</td>
+
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <div class="col-md-12" data-ng-show="Details">
@@ -67,27 +66,41 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
+
                         <div class="col-sm-4" data-ng-switch="IsNewUser">
+                            <label>User Status</label>
+                            <span ng-switch-when="0" style="color:red">Existing User</span>
+                            <span ng-switch-when="1" style="color:red">No Such User Exist Of Staff Type Or Exit From System</span>
+                            <span ng-switch-when="5" style="color:red"></span>
+                        </div>
+
+
+                    </div>
+                    <hr />
+                    <div class="row">
+
+                        <div class="col-sm-4" data-ng-switch="IsFamyly">
                             <label>Nominee Details Status</label>
                             <span ng-switch-when="0" style="color:red">Done</span>
                             <span ng-switch-when="1" style="color:red">Not Done</span>
+                            <span ng-switch-when="2" style="color:red"></span>
 
                         </div>
-                        <div class="col-sm-3" data-ng-switch="IsNewUser">
+                        <div class="col-sm-3" data-ng-switch="IsBank">
                             <label>Bank Account Details Status</label>
                             <span ng-switch-when="0" style="color:red">Done</span>
                             <span ng-switch-when="1" style="color:red">Not Done</span>
+                            <span ng-switch-when="2" style="color:red"></span>
 
                         </div>
                         <div class="col-sm-4" style="margin-left:50px">
-
-                            <div class='input-group date' id='dtDMJoining'>
-                                <input type="text" class="form-control" placeholder="Enter Date Of Joining ..." >
+                            <div class='input-group date' id='dtStaffJoining'>
+                                <input type="text" class="form-control" placeholder="Enter Date Of Joining ..." data-ng-model="StaffJoiningModel.DmJoiningDate">
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-time"></span>
                                 </span>
-                                <!--<span class="badge badge-danger" data-ng-show="ErrorModel.DateOfReport">{{ErrorModel.ErrorMessageDateOfReport}}</span>-->
                             </div>
+                            <span class="badge badge-danger" data-ng-show="ErrorModel.DmJoiningDate">{{ErrorModel.ErrorMessageStaffJoiningDate}}</span>
                         </div>
                     </div>
                 </div>
@@ -97,6 +110,33 @@
         <div class="col-md-12">
             <div class="panel panel-default" style="margin-left:18px;margin-right:18Px">
                 <div class="panel-heading"><label>Joining Process Click For Yes Otherwise No Click </label></div>
+                <hr />
+                <div class="row">
+
+                    <div class="col-sm-4">
+
+                        <label>Aadhar No</label>
+                        <input type="text" class="form-control" data-ng-model="Emp.AadharNo" placeholder="Enter Aadhar No ..." data-ng-blur="CheckAdhaarExist();">
+                    </div>
+
+
+                    <div class="col-sm-4">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" placeholder="Enter First Name ..." data-ng-model="Emp.FName">
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Middle Name</label>
+                        <input type="text" class="form-control" placeholder="Enter Middle Name ..." data-ng-model="Emp.MName">
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" placeholder="Enter Last Name ..." data-ng-model="Emp.LName">
+                    </div>
+
+
+
+                </div>
+                <hr />
                 <div class="row">
                     <div class="col-sm-2">
                         <label>Salary Finalization</label>
@@ -226,31 +266,58 @@
 
                     </div>
                     <div class="col-sm-2">
-                        <input type="checkbox" class="checkbox" id="chkDeploymentForm " style="width:25px;height:25px" />
+                        <input type="checkbox" class="checkbox" id="chkDeploymentForm" style="width:25px;height:25px" />
                     </div>
                     <div class="col-sm-2">
                         <label>Bank Account Open  </label>
 
                     </div>
                     <div class="col-sm-2">
-                        <input type="checkbox" class="checkbox" id="chkBankAccountOpen " style="width:25px;height:25px" />
+                        <input type="checkbox" class="checkbox" id="chkBankAccountOpen" style="width:25px;height:25px" />
                     </div>
                     <div class="col-sm-2">
                         <label>Nominee Details</label>
 
                     </div>
                     <div class="col-sm-2">
-                        <input type="checkbox" class="checkbox" id="chkNomineeDetails " style="width:25px;height:25px" />
+                        <input type="checkbox" class="checkbox" id="chkNomineeDetails" style="width:25px;height:25px" />
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default" style="margin-left:18px;margin-right:18px">
+                <div class="panel-heading"> Term of Appointment</div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label> Select Term of Appointment</label>
+                        <select class="form-control" id="ddlTOAppointment"></select>
+                        <span class="badge badge-danger" data-ng-show="ErrorModel.Appointment">{{ErrorModel.ErrorMessageAppointment}}</span>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label> Select Month/Year</label>
+                        <select class="form-control" id="ddlDurationTypeM_Y"></select>
+                    </div>
+                    <div class="col-sm-4">
+                        <label> Select Duration</label>
+                        <select class="form-control" id="ddlDuration"></select>
+                    </div>
+                    <div class="col-sm-4">
+
+                        <input type="text" class="form-control" placeholder="Emp Details Id ..." data-ng-model="StaffJoiningModelEmpId.EmpDetailsId" ng-hide="true">
+                    </div>
+                </div>
+                <hr />
             </div>
         </div>
         <div class="col-md-12">
             <div class="col-md-6">
                 <div class="box-body">
                     <div class="form-group">
-                        <button type="button" class="btn btn-danger" data-ng-click="RegisterStaff()" >Save</button>
-                        <button type="button" class="btn btn-danger" >Update</button>
+                        <button type="button" class="btn btn-danger" data-ng-click="NewJoinStaff()" ng-hide="NewButtons">New Join</button>
+                        <button type="button" class="btn btn-danger" data-ng-click="Update()" ng-hide="Buttons">Update</button>
+                        <button type="button" class="btn btn-danger" data-ng-click="ReJoin()" ng-hide="Buttons">Re Join</button>
                     </div>
                 </div>
             </div>

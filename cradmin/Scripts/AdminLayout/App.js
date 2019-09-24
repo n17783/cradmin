@@ -46,6 +46,12 @@ var CRAdminApp = angular.module('CRAdminApp',[]).run(['$rootScope', function ($r
     };
 });
 
+CRAdminApp.run(function ($rootScope, $templateCache) {
+   $rootScope.$on('$viewContentLoaded', function() {
+      $templateCache.removeAll();
+   });
+});
+
 CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$rootScope', function ($scope, $http, $filter, $rootScope) {
     
     $scope.domainpath = GetVirtualDirectory();
@@ -252,10 +258,20 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
          name: $scope.domainpath + '/Content/Views/SiteHRActivity.html',
          url: $scope.domainpath + '/Content/Views/SiteHRActivity.html'
      }, {
-         //name: 'ExitProcess', 37
+         //name: 'ExitProcess', 37 
          name: $scope.domainpath + '/Content/Views/ExitProcess.html',
          url: $scope.domainpath + '/Content/Views/ExitProcess.html'
-     }]; 
+     },
+    {
+        //name: ' Staff Hold And Work Details', 41
+        name: $scope.domainpath + '/Content/Views/EmpHoldAndWorkDetails.html',
+        url: $scope.domainpath + '/Content/Views/EmpHoldAndWorkDetails.html'
+    },
+    {
+        //name: 'DM Hold And Work Details', 41
+        name: $scope.domainpath + '/Content/Views/DMHoldAndWorkDetails.html',
+        url: $scope.domainpath + '/Content/Views/DMHoldAndWorkDetails.html'
+    }];
     
     $scope.validateEmail=function (element) {
         var isvalid = true;
@@ -313,6 +329,12 @@ CRAdminApp.controller("TemplateController", ['$scope', '$http', '$filter', '$roo
 
     $scope.LoadUserControls = function (tname) {
         switch (tname) {
+            case "DMHoldAndWorkDetails":
+                $scope.template = $scope.templates[42];
+                break
+            case "EmpHoldAndWorkDetails":
+                $scope.template = $scope.templates[41];
+        break 
             case "ExitProcess":
                 $scope.template = $scope.templates[40];
                 break 
